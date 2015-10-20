@@ -13,6 +13,8 @@ app/config/services/services_dev.neon
 app/config/twitter/twitter_dev.neon
 app/config/config.local.neon
 doc/
+deploy.ini
+deploy.log
 
 #################
 ## NetBeans

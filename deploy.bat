@@ -1,0 +1,1 @@
+php vendor/ftp-deployment/Deployment/deployment.php deploy.ini
