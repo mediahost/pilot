@@ -1,0 +1,35 @@
+.tagged-multiselect-child {
+    border: 1px #d1d1d1 solid;
+    min-height: 26px;
+    padding: 5px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    overflow: hidden;
+    .tagged-multiselect-tag {
+        float: left;
+        border: 1px #d1d1d1 solid;
+        .rounded(3px);
+        padding: 5px;
+        padding-right: 14px;
+        margin-right: 2px;
+        margin-bottom: 2px;
+        position: relative;
+        .gradientBackground4();
+        .tagged-multiselect-close {
+            position: absolute;
+            top: 7px;
+            right: 2px;
+            display: block;
+            width: 9px;
+            height: 9px;
+            background: transparent url('@{pathImages}black-x.png') no-repeat center bottom;
+            opacity: .7;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    &:after {
+        .cleaner();
+    }
+}

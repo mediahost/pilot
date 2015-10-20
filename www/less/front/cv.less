@@ -1,0 +1,513 @@
+@addTabWidth: 50px;
+@borderWidth: 1px;
+@widthTab: ((@containerWidth - @addTabWidth) / 6)  - (2*@borderWidth);
+@heightTab: 35px;
+@controlWidth: 25px;
+
+#cv.container {
+    width: 95%;
+    min-width: @containerWidth;
+    max-width: 1250px;
+}
+
+/*** TABS ***/
+#cv .tabs { 
+    margin-top: 15px;
+}
+#cv .tabs ul > li {
+    float: left;
+}
+#cv .tabs .tab {
+    height: @heightTab;
+    width: @widthTab;
+    border: @borderWidth @borderGray solid;
+    background-color: @verylightGray;
+    .transition(@timeTransitionLink, ~"background-color");
+}
+#cv .tabs .tab:hover,
+#cv .tabs .tab.active {
+    background-color: @white;
+}
+#cv .tabs .tab > div,
+#cv .tabs .tab .show > div {
+    float: left;
+    height: 100%;
+}
+#cv .tabs .tab .show .name {
+    overflow: hidden;
+    width: @widthTab - @controlWidth;
+}
+#cv .tabs .tab .show .name a {
+    display: block;
+    height: 100%;
+    color: @darkGray;
+    font-size: @fontSizeMiddle;
+    line-height: @heightTab;
+    text-decoration: none;
+    padding-left: 10px;
+    background: transparent url('@{pathImages}comeback_arrow_small.png') -16px @heightTab no-repeat;
+}
+#cv .tabs .tab.active .show .name a,
+#cv .tabs .tab .show .name a:hover {
+    color: @green;
+    padding-left: 26px;
+    background-position: 6px 10px;
+}
+#cv .tabs .tab .show .controls {
+    width: @controlWidth;
+}
+#cv .tabs .tab .show .controls a {
+    display: block;
+    height: 100%;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: .5;
+}
+#cv .tabs .tab .show .controls a:hover {
+    opacity: 1;
+}
+#cv .tabs .tab .show .controls a.edit {
+    background-image: url('@{pathImages}edit.png');
+}
+#cv .tabs .tab .show .controls a.delete {
+    background-image: url('@{pathImages}remove.png');
+}
+#cv .tabs .add a {
+    display: block;
+    height: @heightTab;
+    width: @addTabWidth - (2* @borderWidth);
+    border: @borderWidth transparent solid;
+    background: transparent url('@{pathImages}plus.png') center center no-repeat;
+    opacity: .6;
+    .transition(@timeTransitionLink, ~"opacity");
+}
+#cv .tabs .add a:hover {
+    opacity: 1;
+}
+
+#cv .tabs .inputs {
+    display: none;
+}
+#cv .tabs .inputs input {
+    border: none;
+    width: 135px;
+    padding: 7px 8px;
+}
+
+/*** CONTENT ***/
+@navigatorWidth: 200px;
+@tipsWidth: 420px;
+@inputsWidth: 360px;
+@boxSeparatorWidth: 6px;
+#cv .content, #editProfile .content {
+    background-color: @bgGray;
+}
+#cv .content > div.navigator, #editProfile .content > div.navigator {
+    float: left;
+}
+#cv .content > .box.tips {
+    float: right;
+    width: @tipsWidth;
+}
+#cv .content > .box.inputs, #editProfile .content > .box.inputs {
+    margin: 0 @tipsWidth+@boxSeparatorWidth 0 @navigatorWidth;
+}
+#cv .box, #editProfile .box {
+    padding-right: @boxSeparatorWidth;
+}
+#cv .navigator, #editProfile .navigator {
+    width: @navigatorWidth;
+    padding: 40px 0px;
+    padding-right: @boxSeparatorWidth;
+}
+
+/*** NAVIGATOR ***/
+#cv .navigator ul li a, #editProfile .navigator ul li a {
+    color: @darkGray;
+    font-size: @fontSizeMiddle;
+    text-transform: uppercase;
+    display: block;
+    line-height: @fontSizeMiddle + 2;
+    padding: 15px;
+    padding-right: 25px;
+    text-decoration: none;
+    background-color: transparent;
+    background-position: @navigatorWidth - 20 center;
+    background-repeat: no-repeat;
+    background-image: url('@{pathImages}blank.png');
+    border-color: @bgGray;
+    border-width: 1px 0px 2px 0px;
+    border-style: solid;
+}
+#cv .navigator ul li.active a,
+#cv .navigator ul li a:hover, 
+#editProfile .navigator ul li.active a,
+#editProfile .navigator ul li a:hover {
+    color: @green;
+    background-color: @white;
+    background-image: url('@{pathImages}comeback_arrow_small.png');
+    border-color: #e9e9e9;
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+/*** INPUTS ***/
+#cv .box .controls, #editProfile .box .controls {
+    padding: 0px 1px;
+    padding-top: 18px;
+    padding-bottom: 3px;
+}
+#cv .box.inputs .controls, #editProfile .box.inputs .controls {
+    height: 20px;
+	position: relative;
+	.default {
+		width: 130px;
+		float: right;
+		position: absolute;
+		right: 0px;
+		form {
+			&.styled {
+				margin-bottom: 0px;
+			}
+			table {
+				th {
+					width: 0px;
+					min-width: 0px;
+				}
+			}
+		}
+	}
+}
+#cv .box .controls ul li, #editProfile .box .controls ul li {
+    float: left;
+}
+#cv .box .controls ul li a, #editProfile .box .controls ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 4px 6px;
+    margin-right: 4px;
+    color: @white;
+    background: #858585;
+    .rounded();
+}
+#cv .box .controls ul li a:hover, #editProfile .box .controls ul li a:hover {
+    color: @white;
+    background-color: #3556A5;
+}
+
+#cv .box .contain, #editProfile .box .contain {
+    border: 1px @borderGray solid;
+    background-color: @white;
+    min-height: 594px;
+    overflow: hidden;
+    h2 {
+        font-size: @fontSizeBiger;
+        color: @labelGray;
+        padding: 15px;
+    }
+    .preview {
+        padding: 0px;
+        height: 594px;
+        overflow-y: hidden;
+    }
+    form {
+        padding: 6px;
+    }
+    .group {
+        h3 {
+            border: 1px #C9C9C9 solid;
+            background-color: #F6F6F6;
+            margin-bottom: 10px;
+            padding: 10px;
+            padding-left: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center right;
+            background-position-x: 5px;
+            background-image: url('@{pathImages}arrow_right.png');
+        }
+        .items {
+            th {
+                width: 106px;
+                min-width: 106px;
+                label {
+                    font-weight: bold;
+                }
+            }
+            position: relative;
+            display: none;
+            margin-bottom: 20px;
+            h4.headline {
+                font-size: 16px;
+            }
+            div.select {
+                display: inline-block;
+            }
+            div.number {
+                width: 100px;
+                position: relative;
+                display: inline-block;
+                text-align: left;
+                label {
+                    display: inline-block;
+                }
+                input {
+                    display: inline-block;
+                    border: 1px solid #DFDFDF;
+                    background: #FFF;
+                    padding: 5px 10px 5px 10px;
+                    font-size: 13px;
+                    color: #4F4F4F;
+                    .boxShadow(2px, 5px, -1px, rgba(0, 0, 0, 0.15));
+                    &.number {
+                        width: 30px;
+                    }
+                }
+            }
+        }
+        &.active {
+            h3 {
+                background-image: url('@{pathImages}arrow_down.png'); 
+            }
+        }
+    }
+    .skills {
+        dl {
+            padding: 10px;
+            dt {
+                font-size: 14px;
+                padding-bottom: 5px;
+                padding-left: 3px;
+            }
+            dd {
+                textarea {
+                    width: 96%;
+                }
+            }
+        }
+    }
+}
+
+@widthLimit: 1174px;
+@media (max-width : @widthLimit) {  /* small */ 
+    #cv .box .contain {
+        .group {
+            .items {
+                div.number {
+                    padding: 5px 0px 5px 10px;
+                    margin: 0px;
+                    input {
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width : @widthLimit) {  /* big */ 
+    #cv .box .contain {
+        .group {
+            .items {
+                div.select {
+                    margin-bottom: 5px;
+                }
+                div.number {
+                    padding: 0px 0px 15px 8px;
+                    margin: 0px;
+                    label {
+                        margin-left: 14px;
+                    }
+                    input {
+                        position: absolute;
+                        top: 15px;
+                        left: 0px;
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#cv .box .subscript {
+    padding: 6px 20px;
+    &.icons {
+        text-align: center;
+        ul {
+            display: inline-block;
+            li {
+                float: left;
+                &.separator {
+                    width: 30px;
+                    height: 20px;
+                }
+                a {
+                    display: block;
+                    width: 30px;
+                    height: 20px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    opacity: .7;
+                    &.inactive {
+                        opacity: .4;
+                        cursor: default;
+                    }
+                    &:hover:not(.inactive){
+                        opacity: 1;
+                    }
+                    &.next{
+                        background-image: url('@{pathImages}control_next.png');
+                    }
+                    &.prev{
+                        background-image: url('@{pathImages}control_prev.png');
+                    }
+                    &.email{
+                        background-image: url('@{pathImages}control_email.png');
+                    }
+                    &.share{
+                        background-image: url('@{pathImages}control_share.png');
+                    }
+                    &.print{
+                        background-image: url('@{pathImages}control_print.png');
+                    }
+                }
+            }
+        }
+        .paginator {
+            margin: 0px;
+            span {
+                display: block;
+                color: @green;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+/* LIST on bottom after inputs form */
+#cv .list {
+    border-top: 1px solid @lightGray;
+    background-color: @bgGray;
+    .title {
+        padding: 10px;
+        padding-left: 20px;
+        font-weight: bold;
+    }
+    .item {
+        padding: 10px;
+        padding-left: 25px;
+        line-height: 20px;
+        &:hover {
+            background-color: @bgGray - 10;
+        }
+        .info {
+            float: left;
+            &:hover {
+                cursor: default;
+            }
+        }
+        .service {
+            float: right;
+            a {
+                display: block;
+                float: left;
+                width: 20px;
+                height: 20px;
+                background-color: transparent;
+                background-position: center center;
+                background-repeat: no-repeat;
+                opacity: .5;
+                &:hover {
+                    opacity: 1;
+                }
+                &.edit {
+                    background-image: url('@{pathImages}edit.png');
+                }
+                &.delete {
+                    background-image: url('@{pathImages}remove.png');
+                }
+            }
+        }
+    }
+}
+
+#cv .inputs form #frmstep3-sector {
+    width: 270px;
+}
+
+#cv .hints {
+    padding: 25px 20px;
+    h1 {
+        font-size: 20px;
+        color: #7f7f7f;
+        padding-bottom: 15px;
+    }
+}
+
+#editProfile {
+	margin-top: 40px;
+	.content {
+		width: 980px;
+		margin-right: 0px !important;
+		.box {
+			&.inputs {
+				margin-right: 0px;
+				padding-right: 0px;
+			}
+		}
+		.navigator {
+			padding-top: 10px;
+		}
+	}
+	.candidates .candidate {
+		border: none;
+	}
+	.settings {
+		font-size: 14px;
+		.first, .url {
+			padding-left: 20px;
+		}
+		.first {
+			padding-bottom: 10px;
+		}
+		.url {
+			p {
+				padding-bottom: 5px;
+			}
+			form {
+				padding: 0px;
+			}
+		}
+	}
+	form.styled .form-error-message {
+		display: inline;
+	}
+	.form-control-error {
+		background-color: #FFC2C2 !important;
+	}
+	.photo {
+		table {
+			th {
+				width: 100px;
+			}
+		}
+	}
+}
+.requiredInfo {
+	h1 {
+		text-align: center;
+	}
+	form {
+		margin: 0px auto;
+		width: 500px;
+	}
+	.form-error-message {
+		display: inline !important;
+	}
+	.form-control-error {
+		background-color: #FFC2C2 !important;
+	}
+}

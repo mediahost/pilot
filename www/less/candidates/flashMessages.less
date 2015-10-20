@@ -1,0 +1,55 @@
+#flashMessages {
+    position: absolute;
+    left: 41%;
+    //top: 100px;
+    top: 0px;
+    z-index: 123456;
+    .flash {
+        .text {
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+#flashMessages div.flash {
+    font-size: @fontSizeNormal;
+    color: @flashWhite;
+    background: @flashBlack;
+    padding: 1.5em;
+    margin: 1em 0;
+    width: 400px;
+    position: relative;
+    //opacity: @flashOpacity;
+    .boxShadow(-1px, 1px, 2px, #ffffff);
+    .textShadow();
+}
+
+#flashMessages div.flash.success {
+    background-color: @green;
+}
+
+#flashMessages div.flash.warning {
+    background-color: #FFA540;
+}
+
+#flashMessages div.flash.error {
+    background-color: #FF4040;
+}
+
+#flashMessages div.flash a.close {
+    display: block;
+    .boxSize(16px);
+    padding: 4px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: transparent url('@{pathImages}white-x.png') center center no-repeat;
+    opacity: .5;
+}
+
+#flashMessages div.flash a.close:hover {
+    opacity: 1;
+}

@@ -1,0 +1,13 @@
+{define #restContent}
+<div class="restContent">
+    <h1>Video profile</h1>
+    {if $step == 'fill identity'}
+        <p class="message">For continue, you must fill your name.</p>
+        {control fillIdentityForm}
+    {elseif $step == 'do interview'}
+        Interview link: <a href="{$link}">{$link}</a>
+    {elseif $step == 'review interview'}
+        <iframe src="{$reviewLink}" style="width: 940px; height: 500px;" border="0"></iframe>
+    {/if}
+</div>
+{/define}

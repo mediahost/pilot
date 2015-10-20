@@ -1,0 +1,140 @@
+{layout none}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<meta name=robots content=noindex>
+
+        <title>{_"Error"} {$number}</title>
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/jquery-ui/comeback/jquery-ui-1.10.1.custom.min.css">
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/simple-line-icons/simple-line-icons.min.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/css/components.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/css/plugins.css">
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/front.css">
+        <link rel="stylesheet" type="text/css" media="print" href="{$basePath}/css/print.css">
+        <link rel="stylesheet/less" type="text/css" n:if="$pageInfo->jsLessCompile" media="screen,projection,tv" href="{$basePath}/less/compile/front.less" />
+
+        <link rel="shortcut icon" href="{$basePath}/favicon.png" type="image/x-icon">
+
+        <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+    </head>
+
+    <body id="front-module-body">
+
+        <div id="container">
+
+			<!-- HEAD -->
+			<div id="head" class="cleaner">
+				<div class="container">
+					<div id="logo">
+						<a n:href=":Front:Homepage:" class="logo"></a>
+					</div>
+
+					<div id="menu">
+					</div> 
+				</div>
+			</div>
+			<!-- /HEAD -->
+
+			<!-- CONTENT -->
+			<div id="content">
+
+				<!-- PAGE -->
+				<div id="page">
+					<div class="container" id="dashboard">
+						<div class="rest">
+							<div class="rest">
+								<div class="restContent chat chat-thread">
+									<h1>{$title}</h1>
+
+									<p>{$content}</p>
+									<p>&nbsp;</p>
+
+									<h2><small>{_"error"} {$number}</small></h2>
+								</div>
+							</div>
+
+							<div class="cleaner"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /PAGE -->
+
+				<div class="push"></div>
+			</div>
+			<!-- /CONTENT -->
+
+
+			<!-- SITEMAP -->
+			<div id="sitemap">
+				<div class="container">
+					<div class="sitemap cleaner">
+						<div class="socials">
+							<ul class="cleaner">
+								<li><a n:href=":Front:Content:page 66"><img src="{$basePath}/images/socials/comeback_arrow.png" alt="comeback" /></a></li>
+								<li><a href="https://www.facebook.com/sourcecodeireland"><img src="{$basePath}/images/socials/facebook_m.png" alt="facebook" /></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /SITEMAP -->
+
+			<footer>
+				<div class="container logo"></div>
+			</footer>
+		</div>
+
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="{$basePath}/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.localization.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.livequery.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.slidesjs.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.selectToUISlider.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.transit.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.maxlength.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.powertip-1.1.0.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.colorbox.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.chosen.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.nette.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.ajaxform.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/jssc/include.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/watermark.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/google/google-jsapi.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/timeline/timeline-min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/timeline/timeline-locales.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/live-form-validation.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/appFunctions.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/common.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/previewFunctions.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/candidates.js"></script>
+
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/select2/select2.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/jstree/dist/jstree.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/metronic.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/table-managed.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/init.js"></script>
+
+        <script>
+			var basePath = {$basePath};
+			var lang = {$lang};
+			$Spelling.SpellCheckAsYouType('textareas');
+        </script>
+        <script type="text/javascript" n:if="$pageInfo->jsLessCompile" src="{$basePath}/js/less-1.3.3.min.js"></script>
+        <script type="text/javascript" n:if="$pageInfo->jsLessCompile">
+			less = {
+				env: "development",
+				poll: 500
+			};
+        </script>
+        <!-- /SCRIPTS -->
+    </body>
+</html>

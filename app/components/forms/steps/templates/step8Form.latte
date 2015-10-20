@@ -1,0 +1,17 @@
+<div n:snippet="formInsert">
+    {control step8Form}
+</div>
+<div n:snippet="formList">
+    <div n:if="$languages !== array()" class="list languages">
+        <div class="title">{_"List of your languages"}:</div>
+        <ul>
+            <li n:foreach="$languages as $lang" class="item language cleaner">
+                <div class="info">{$lang->lang|CvLanguage}</div>
+                <div class="service cleaner">
+                    <a n:href="editLang! $lang->id" class="ajax-silent edit" title="{_"edit"}"></a>
+                    <a n:href="deleteLang! $lang->id" class="ajax-silent delete" title="{_"delete"}"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

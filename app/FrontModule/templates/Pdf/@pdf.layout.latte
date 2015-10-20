@@ -1,0 +1,32 @@
+{layout none}
+{**
+ * CV layout template.
+ *
+ * @param string   $basePath web base path
+ * @param CvEntity $cv CV for print
+ * @param array    $pageInfo informations about page
+ *}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="{_$pageInfo->author}" />
+        <meta name="robots" content="noindex, nofollow">
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv,print" href="{$basePath}/css/pdf-templates/{$theme}/pdf.css">
+
+        <link rel="shortcut icon" href="{$basePath}/favicon.png" type="image/x-icon">
+
+        <meta property="og:title" content="{_$pageInfo->title}" />
+        <meta property="og:description" content="{_$pageInfo->description}" />
+        <meta property="og:url" content="{link //this}" />
+        <meta property="og:locale" content="{$pageInfo->locale}" />
+        <meta property="og:image" content="{$pageInfo->url->hostUrl}{$basePath}/{$pageInfo->logoOg}" />
+    </head>
+
+    <body>
+        <div id="pdf">
+            {include $templateName}
+        </div>
+    </body>
+</html>

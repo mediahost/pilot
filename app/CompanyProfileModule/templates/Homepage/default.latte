@@ -1,0 +1,120 @@
+{block styles}
+    <link href="{$basePath}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{$basePath}/css/homepage.css" rel="stylesheet" type="text/css" media="screen,projection,tv">
+{/block}
+{block scripts}
+    <script src="{$basePath}/assets/scripts/custom/login-popup.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function() {    
+            LoginPopup.init();
+        });
+    </script>
+{/block}
+{define #head}
+<div id="logo">
+    {if $user->isCompany()}
+        <a n:href=":Company:Homepage:" class="logo"></a>
+    {elseif $user->isLoggedIn()}
+        <a n:href=":Front:Dashboard:" class="logo"></a>
+    {else}
+        <a n:href=":Front:Homepage:" class="logo"></a>
+    {/if}
+</div>
+<div id="menu" class="menu">
+    {if $user->isCompany() || $user->isLoggedIn()}
+        {include #menu}
+    {else}
+        <ul>
+            <li>
+                <a n:href=":Company:Homepage:" class="btn btn-link">{_"For Employers"}</a>
+            </li>
+            <li class="login">
+                <a href="#" class="btn btn-default login" id="login">{_"Login"}</a>
+                <div class="login-popup">
+                    <div class="form">
+                        {control signInForm}
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li>
+                                <a class="facebook" n:href=":Front:Sign:facebook, 'backlink' => $backlink"><span>{_"Sign In with"} Facebook</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    {/if}
+</div> 
+{/define}
+
+{block content}
+<div class="container">
+
+    <div class="company-profile">
+        <div class="intro">
+            <div class="picture">
+                <a href="{$basePath}/foto/original/company/{$company->id}.png" class="cboxElement imagesGroup">
+                    <img src="{$basePath}/foto/150-150/company/{$company->id}.png?{? echo time()}" alt="" />
+                </a>
+            </div>
+            <div class="info">
+                <h3>{$company->company_name}</h3>
+                <p>{$company->description}</p>
+            </div>
+        </div>
+
+        <div class="offers">
+            <h2>{_"Our offers"}</h2>
+            <div class="offer" n:foreach="$jobs as $job">
+                {if $user->isLoggedIn()}
+                    <h3>
+                        <a n:href=":Front:Jobs:show $job->code">{$job->name}</a>
+                    </h3>
+
+                    <a n:href=":Front:Inner:jobApply $job->id" class="apply button innerPage cboxElement" n:if="isset($cv) && $cv->isCompleted()">{_"Apply"}</a>
+
+                    <table>
+                        <tr>
+                            <th>{_"Location"}:</th>
+                            <td>{foreach $job->locations as $l}{$l}{if !$iterator->isLast()}, {/if}{/foreach}</td>
+                        </tr>
+                        <tr>
+                            <th>{_"Category"}:</th>
+                            <td>{$job->category}</td>
+                        </tr>
+                        <tr>
+                            <th>{_"Salary"}:</th>
+                            <td>
+                                {if $job->salary_from}{_"from"} {$job->salary_from|number:'0':',':' '} €{/if}
+                                {if $job->salary_to}{_"to_"} {$job->salary_to|number:'0':',':' '} €{/if}
+                            {if !$job->salary_from && !$job->salary_to}{_"not inserted"}{/if}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{_"Date added"}:</th>
+                        <td>{$job->datecreated|date:'d/m/Y'}</td>
+                    </tr>
+                </table>
+            {else}
+                <h3>
+                    {$job->name}
+                </h3>
+                <p class="info">
+                    <a n:href=":Front:Jobs:show $job->code" class="login">{_"Sign in for more info"}</a>
+                </p>
+            {/if}
+        </div>
+        </div>
+
+        <div class="images">
+            <h2>{_"More pictures"}</h2>
+            <div class="image" n:foreach="$company->getPictures() as $picture">
+                <a href="{$basePath}/foto/original/companypicture/{$picture}.png" class="cboxElement imagesGroup">
+                    <img src="{$basePath}/foto/100-100/companypicture/{$picture}.png" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

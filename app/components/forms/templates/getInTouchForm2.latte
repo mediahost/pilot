@@ -1,0 +1,15 @@
+{snippet}
+    {form getInTouchForm2, class=>'form-email touch'}
+		{input name, class => 'name'}
+		{input sender, class => 'sender'}
+		{input message, class => 'message', rows => '4'}
+
+		{input $form['send']}
+
+		<ul class="form-error" n:if="$form->errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+		<iframe srcdoc="" class="mail-list-form">
+		</iframe>
+	{/form}
+{/snippet}

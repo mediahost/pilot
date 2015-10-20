@@ -1,0 +1,14 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Users:">{_"Candidates"}</a>
+</li>
+{/block}
+
+{block content}
+<div class="pageContent">
+    {snippet taglist}
+        <div class="hidden" id="tag-list" data-tags="{$tags}"></div>
+    {/snippet}
+    {control usersGrid}
+</div>

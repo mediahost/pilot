@@ -1,0 +1,115 @@
+{block scripts}
+<script type="text/javascript" src="{$basePath}/js/activity/previewFunctions.js"></script>
+<script type="text/javascript" src="{$basePath}/js/activity/cv.js"></script>
+<script type="text/javascript">
+    initMyTimeline("works", {$cv->id});
+</script>
+{/block}
+
+{block content}
+<div class="container" id="cv">
+
+    <div id="timeline">
+        <div n:snippet="timeline">
+            <div id="mytimeline"></div>
+        </div>
+    </div>
+
+    <div class="tabs cleaner" n:snippet="tabs">
+        <ul>
+            <li n:foreach="$cvs as $cvShort">
+                <div n:class="tab, $cv->id == $cvShort->id ? active">
+                    <div class="show">
+                        <div class="name"><a n:href="this, cv => $cvShort->id">{$cvShort->name|truncate:14}</a></div>
+                        <div class="controls">
+                            <a n:href="this" class="edit"><span></span></a>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        {control $changeNameForm[$cvShort->id]}
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="add">
+                    <a n:href="Inner:addCv, $cv->id" class="innerPage"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content cleaner">
+        <div class="navigator">
+            <ul n:snippet="navigator" class="reactivate">
+                <li n:foreach="$steps as $stepId => $stepName" n:class="$step == $stepId ? active">
+                    <a n:href="this, $cv->id, $stepId" class="ajax"><span>{_$stepName}</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="box tips">
+            <div class="controls cleaner">
+                <ul>
+                    <li><a n:href="Inner:changeCvTemplate $cv->id" class="innerPage"><span>{_"Change CV Template"}</span></a></li>
+                </ul>
+            </div>
+            <div class="contain">
+                <div class="section snippetSpinner" n:snippet="preview">
+                    {if $preview == "tips"}
+                    <div class="hints">
+                        {!$hint}
+                    </div>
+                    {elseif $preview == "preview"}
+                    <div class="preview" preview-step="{$step}">
+                        {include $cvTemplatePath}
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            <div class="subscript icons cleaner" n:snippet="preview-control">
+                {if $preview == "preview"}
+                <ul>
+                    <li><a n:href="Inner:sendCvByMail, $cv->id" title="{_"send by email"}" class="email innerPage"><span></span></a></li>
+                    <li><a n:href="Pdf:cv, $cv->id, print => TRUE" title="{_"print"}" class="print"{if $cv->hasPhoto()} target="_blank"{/if}><span></span></a></li>
+                    <li><a n:href="Pdf:share, $cv->id" title="{_"share"}" class="share"><span></span></a></li>
+                    <li class="separator"></li>
+                    <li class="separator"></li>
+                    <li><a n:href="this" title="{_"previous page"}" class="prev"><span></span></a></li>
+                    <li class="paginator"><span></span></li>
+                    <li><a n:href="this" title="{_"next page"}" class="next"><span></span></a></li>
+                </ul>
+                {/if}
+            </div>
+        </div>
+
+        <div class="box inputs">
+            <div class="controls">
+                <ul>
+                    <li><a n:href="Pdf:cv, $cv->id, print => TRUE"{if $cv->hasPhoto()} target="_blank"{/if}><span>{_"Print CV"}</span></a></li>
+                    <li><a n:href="Pdf:cv, $cv->id"{if $cv->hasPhoto()} target="_blank"{/if}><span>{_"Save CV"}</span></a></li>
+                    <li><a n:href="Inner:sendCvByMail, $cv->id" class="innerPage"><span>{_"Email CV"}</span></a></li>
+                    <li><a n:href="Pdf:share, $cv->id"><span>{_"Share on FB"}</span></a></li>
+                    <li><a href="#" onclick="if (confirm({_"Are you sure? This CV will be deleted."})) window.location={link delete $cv->id}; return false"><span>{_"Delete CV"}</span></a></li>
+                </ul>
+				<div class="default">
+					{control default}
+				</div>
+            </div>
+            <div class="contain">
+                <div class="section snippetRoll" n:snippet="forms">
+                    <h2>{_$headline}</h2>
+                    {control $form}
+                    {ifset $form2}
+                        <h2>{_$headline2}</h2>
+                        {control $form2}
+                    {/ifset}
+                </div>
+            </div>
+            <div class="subscript">
+            </div>
+        </div>
+    </div>
+
+</div>
+{/block}

@@ -1,0 +1,32 @@
+{define rest}
+<div class="restContent">
+    <div class="filter">
+        <div class="main">
+            <div class="pull-right">
+                Show:
+                <a n:href="this category => NULL" n:class="empty($category) ? strong">matched</a> |
+                <a n:href="this category => \Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_SHORTLISTED" n:class="green, $category == \Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_SHORTLISTED ? strong">shortlisted</a> |
+                <a n:href="this category => \Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_REJECTED" n:class="red, $category == \Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_REJECTED ? strong">rejected</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <a class="pull-right" n:href=":Company:Homepage:jobs">&Lt; {_'BACK TO JOBS'}</a>
+            </div>
+            <h4>Matched candidates for job <a class="underline" n:href=":Front:Jobs:show $job->code">{$job->name}</a></h4>
+        </div>
+    </div>
+
+    <div class="cleaner"></div>
+
+    {if $matchedCandidates}
+    <div class="list">
+        {includeblock "blocks.latte"}
+        {include #candidates, candidates => $matchedCandidates, isFavorite => false, showStatusUpdate => TRUE}
+    </div>
+    {else}
+    <div class="noItems">
+        {_"No matched candidates."}
+    </div>
+    {/if}
+</div>
+{/define}

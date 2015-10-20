@@ -1,0 +1,33 @@
+<div n:snippet="formInsert">
+    {form step5Form}
+    {$form->render('errors')}
+    <table>
+        <tbody>
+            <tr n:foreach="$form->getControls() as $control" 
+                n:if="!$control->getOption('rendered') && !$control instanceof \Nette\Forms\Controls\HiddenField">
+                {if $control->getHtmlName() === "work_from"}
+                    <th>{label $control /}</th>
+                    <td>{input $control} {label work_to /} {input work_to} {input till_now} {label till_now /}</td>
+                {else}
+                    <th>{label $control /}</th>
+                    <td>{input $control}</td>
+                {/if}
+            </tr>
+        </tbody>
+    </table>
+    {/form}
+</div>
+<div n:snippet="formList">
+    <div n:if="$works !== array()" class="list works">
+        <div class="title">{if $step == 5}{_"Work experience history"}{else}{_"Other experience history"}{/if}:</div>
+        <ul>
+            <li n:foreach="$works as $work" class="item work cleaner">
+                <div class="info tip-s" title="{$work|CvWorkDates,$translator}"><strong>{$work->company}</strong> - {$work->position}</div>
+                <div class="service cleaner">
+                    <a n:href="editWork! $work->id" id="editWork-{$work->id}" class="ajax-silent edit" title="{_"edit"}"></a>
+                    <a n:href="deleteWork! $work->id" class="ajax-silent delete" title="{_"delete"}"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

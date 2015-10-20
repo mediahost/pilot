@@ -1,0 +1,35 @@
+{layout '@emailLayout.latte'}
+
+{block content}                       
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>{_"Dear %s", $company},<br></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    {_"%s has applied for your open %s position.", $candidate, $job}
+                    {_"Please log in to Source-Code to review this candidate and shortlist or reject them."} 
+                    {_"You can also review their profile here:"}
+                    <br/>
+                    <br/>
+                    <a href="{$link}">{$link}</a>
+                </p>
+                <p>
+                    {_"Best regards"},
+                    <br/>
+                    Source-Code
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{/block}

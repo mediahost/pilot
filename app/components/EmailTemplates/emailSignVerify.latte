@@ -1,0 +1,29 @@
+{layout '@emailLayout.latte'}
+
+{block content}                       
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>{_"Dear Customer"},<br></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    {_"your account is waiting for verification."}
+                </p>
+                <p>
+                    {_"Please visit this link and activate your account"}: <br>
+                    <a href="{$link}" target="_blank"><font color="#00275A">{$link}</font></a>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{/block}

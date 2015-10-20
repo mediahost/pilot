@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Capriola);
+
+/* Menu CSS */
+
+@menuHeight: 109px;
+
+#menu nav {
+    height: @menuHeight;
+    background: url('@{pathImages}menu/bottom-bg.png') repeat-x center bottom;
+}
+
+#menu nav > ul {
+    background: url('@{pathImages}menu/nav-bg.png') repeat-x 0px 4px;
+    height: @menuHeight;
+    padding: 0px 20px;
+}
+
+#menu nav > ul > li {
+    float: left;
+    font-size: 17px;
+    height: 59px;
+    line-height: 59px;
+    padding: 4px 30px 0;
+    margin-right: 3px;
+    .roundedTop();
+}
+#menu nav > ul > li > a {
+    display: block;
+    color: @white;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
+    opacity: .9;
+}
+#menu nav > ul > li:hover, #menu nav > ul > li.active {
+    background: url('@{pathImages}menu/color.png') center top;
+}
+#menu nav > ul > li:hover > a, #menu nav > ul > li.active > a {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
+    opacity: 1;
+}
+
+#menu nav ul.submenu {
+    display: none;
+    width: 90%;
+    position: absolute;
+    left: 0px;
+    padding: 0 30px;
+}
+#menu nav ul.submenu > li {
+    height: 46px;
+    float: left;
+}
+#menu nav ul.submenu > li > a {
+    display: block;
+    line-height: 46px;
+    padding: 0px 20px;
+    color: @black;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .35);
+}
+#menu nav ul.submenu > li.active > a,
+#menu nav ul.submenu > li > a:hover {
+    color: @white;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
+}
+#menu nav > ul > li.active ul.submenu {
+    display: block;
+}

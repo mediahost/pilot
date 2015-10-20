@@ -1,0 +1,18 @@
+{define rest}
+<div class="restContent chat chat-thread">
+    <div class="list">
+        <div class="candidates">
+            {includeblock "../Homepage/blocks.latte"}
+            {include #candidate, candidate => $candidate, isFavorite => FALSE, showSendMessage => TRUE, showSaveFavorite => TRUE}
+        </div>
+    </div>
+    <br>
+    <a class="pull-right" n:href=":Company:Homepage:matched $job->id">&Lt; {_'back to matched candidates'}</a>
+    <h1>{_'Notes for candidate'} <a class="underline" n:href=":Company:Profile:show $candidateUser->id">{$candidate->cv->fullName}</a> {_'and job'} <a class="underline" n:href=":Front:Jobs:show $job->code">{$job->name}</a></h1>
+    {control generalNotes}
+    <br>
+    <br>
+    <h1>Aditional notes</h1>
+    {control notes}
+</div>
+{/define}

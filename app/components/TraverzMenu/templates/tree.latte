@@ -1,0 +1,26 @@
+{define #item}
+    <a href='#'><span>{$item->deep}:{$item->name}</span></a>
+{/define}
+
+<nav>
+    <ul>
+    {var prevDeep => 0}    
+    {foreach $items as $item}
+        {var $move => $item->deep - $prevDeep}
+
+        {if $move === 0}
+            {if !$iterator->first}</li>{/if}
+            <li>{include #item}
+        {elseif $move > 0}
+                <ul>
+                    <li>{include #item}
+        {elseif $move < 0}
+                    </li>
+                {for $i=0; $i < abs($move); $i++}</ul>{/for}
+            <li>{include #item}</li>
+        {/if}
+
+        {var prevDeep => $item->deep}
+    {/foreach}
+    </ul>
+</nav>

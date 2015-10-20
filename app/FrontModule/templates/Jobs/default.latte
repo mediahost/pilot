@@ -1,0 +1,71 @@
+{block content}
+{control filter}
+<div class="container" id="jobs">
+    {snippet jobs}
+        <div class="paginator-frame">{control jobs}</div>
+
+        {if count($jobs)}
+            <div class="list">
+                <table style="border: 1px solid black; width:98%; margin:0 auto 0;">
+                    {var $i=0}
+                    {foreach $jobs as $job}
+                        {if $iterator->isFirst() || $i %3 == 0}<tr>{/if}
+                            <td>
+                                <table style="width:250px; height: 100px; background: #C0C0C0; border: 1px solid black;">
+                                    <tr><td><a n:href="show $job->id">{$job->name}</a></td><td></td></tr>
+                                    <tr>
+                                        <td>{$job->company}</td>
+                                        <td>
+                                            {_"Type:"}&nbsp;
+                                            {if $job->type == 1}
+                                                {_"Full-Time"}
+                                            {elseif $job->type == 2}
+                                                {_"Part-Time"}
+                                            {else}
+                                                {_"Contract"}
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{$job->category}</td>
+                                        <td>
+                                            {$job->salary_from}&nbsp;-&nbsp;{$job->salary_to}&nbsp
+                                            {if $job->currency == 1}
+                                                &euro;
+                                            {elseif $job->currency == 2}
+                                                $
+                                            {elseif $job->currency == 3}
+                                                CZK
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {foreach $job->locations as $l}
+                                                {$l}{if !$iterator->isLast()}, {/if} 
+                                            {/foreach}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <a n:if="$job->ref_email" n:href="Inner:jobApply $job->id" class="innerPage">{_"Apply"}</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>					
+                            {if $iterator->isLast() || $i %3 == 2}</tr>{/if}
+                            {var $i++}
+                        {/foreach}
+                </table>
+            </div>
+        {else}
+            <div class="noItems">
+                {_"No offers for this filter."}
+            </div>
+        {/if}    
+        <div class="paginator-frame">{control jobs}</div>
+    {/snippet}
+</div>
+
+{/block}

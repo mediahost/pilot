@@ -1,0 +1,19 @@
+{snippet}
+    {form createAccountForm, class=>'form-email row'}
+		<h6 class="text-white">{_'Accounts are free and always will be'}</h6>
+		<div>{input mail, class => 'mail', placeholder => 'Email'}</div>
+		<div>{input password, class => 'password', placeholder => 'Password'}</div>
+		<div>{input password2, class => 'password2', placeholder => 'Password again'}</div>
+
+		{input $form['send']}
+
+		<ul class="form-error" n:if="$form->errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+		<p class="sub">
+			{!$privacy}
+		</p>
+		<iframe srcdoc="" class="mail-list-form">
+		</iframe>
+	{/form}
+{/snippet}

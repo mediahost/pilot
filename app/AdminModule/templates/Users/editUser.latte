@@ -1,0 +1,28 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Users:">{_"Candidates"}</a>
+</li>
+{/block}
+
+{block breadcrumbActions}
+<a n:href="default">
+    <button class="btn yellow">{_"Back to List"} <i class="fa fa-undo"></i></button>
+</a>
+{/block}
+
+{block content}
+<div class="row">
+    <div class="col-md-6">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i> {_"Banner"}
+                </div>
+            </div>
+            <div class="portlet-body form">
+                {control editUserForm}
+            </div>
+        </div>
+    </div>
+</div>

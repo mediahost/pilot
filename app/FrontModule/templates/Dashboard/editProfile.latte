@@ -1,0 +1,16 @@
+{block content}
+{includeblock 'editProfileBlocks.latte'}
+<div class="container" id="editProfile">
+	<div class="content cleaner">
+        {include #navigator}
+        <div class="box inputs">
+            <div class="contain">
+                <div class="section">
+                    <h2>{_'Personal Details'}</h2>
+					{control personalDetails}
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

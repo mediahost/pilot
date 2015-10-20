@@ -1,0 +1,22 @@
+{block content}
+
+<div id="module" class="container sign">
+    
+    {if $showForm}
+    <h2>{_"Insert Your Verication Code"}</h2>
+    
+    <div class="message">
+        {_"Insert your code and we will activate your account."}
+    </div>
+
+    <div class="form">
+        {control verifyAccountForm}
+    </div>
+    {else}
+    <h2>{_"Activate Your Account"}</h2>
+    
+    <div class="message">
+        {_"A link has been sent to your email."} {_"Please click on this link to verify and launch your account."}
+    </div>
+    {/if}
+</div>

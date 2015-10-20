@@ -1,0 +1,92 @@
+{block scripts}
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ff85dc5200d926"></script>
+
+<script n:if="$canEditContent" type="text/javascript" src="{$basePath}/js/ckeditor/ckeditor.js"></script>
+<script n:if="$canEditContent">
+    CKEDITOR.on( 'instanceCreated', function( event ) {
+            var editor = event.editor,
+                    element = editor.element;
+
+            editor.on( 'blur', function( event ) {
+                var contentid = event.editor.name;
+                var data = event.editor.getData();
+                $.post(
+                    {link Ajax:editContentBlog}, 
+                    { blogid: {$page->id}, contentid: contentid, data: data }, 
+                    "html" 
+                );
+            });
+    });
+</script>
+{/block}
+
+{block content}
+
+{includeblock 'socials.latte'}
+{includeblock 'modules.latte'}
+
+<div class="container" id="blog">
+    <div id="module">
+        
+        <div class="blogList">
+            <div class="blog">
+                {include #blog, blog => $page}
+            </div>
+        </div>
+
+        <div class="moduleList">
+            {include #modules, back => TRUE}
+        </div>
+
+    </div>
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:0px;top:105px;">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <a class="addthis_button_compact"></a>
+    </div>
+    <!-- AddThis Button END -->
+
+</div>
+
+{include #socialScript}
+
+{/block}
+
+
+{define #blog}
+<h2{if $canEditContent} id="ckeditor-title" contenteditable="true"{/if}>{!$blog->nameNoTags}</h2>
+<div class="social">
+    <div class="date">
+        <span class="posted">{_"Posted"}:</span>
+        <span>{_$blog->date|date:'l'}, {$blog->date|date:'j.'} {_$blog->date|date:'F'} {$blog->date|date:'Y'}</span>
+    </div>
+    <div class="buttons">
+        {include #socialFbButton, id => $blog->url}
+        {include #socialTwitterButton, id => $blog->url}
+        {include #socialGplusButton, id => $blog->url}
+    </div>
+</div>
+<div class="image" n:if="$blog->image">
+    <img src="{$basePath}/foto/590-350/blog/{$blog->image}" alt="{$blog->nameNoTags}"/>
+</div>
+<div class="perex"{if $canEditContent} id="ckeditor-perex" contenteditable="true"{/if}>
+    {!$blog->perex}
+</div>
+<div class="text"{if $canEditContent} id="ckeditor-content" contenteditable="true"{/if}>
+    {!$blog->text}
+</div>
+<div class="social last">
+    <div class="buttons">
+        {include #socialFbButton, id => $blog->url}
+        {include #socialTwitterButton, id => $blog->url}
+        {include #socialGplusButton, id => $blog->url}
+    </div>
+</div>
+<div class="comments">
+    {include #socialFbComments}
+</div>
+{/define}

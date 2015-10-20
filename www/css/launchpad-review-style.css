@@ -1,0 +1,37 @@
+.text_s1, .text_s9 {
+    color: #3454a4;
+}
+.shared_interview_container .video_list_container > .video_list_item.active_video a,
+.shared_interview_container .video_list_container > .video_list_item.active_video span {
+    color: #3454a4;
+}
+.shared_interview_container .video_list_container > .video_list_item:first-child.active_video {
+    border-top-color: #3454a4;
+    border-bottom-color: #3454a4;
+}
+.video_pointleft {
+    visibility: hidden;
+}
+.main_simple, 
+.main_simple #main_container, 
+.main_simple #content_inner, 
+body .span-24, 
+.main_simple .content_box_container_full {
+	width: 940px;
+}
+.main_simple .content_box_container_full {
+    border-color: white !important;
+    border: none !important;
+}
+.main_simple .content_box_full {
+	width: 877.5px;
+}
+body .span-23 {
+	width: 908.75px;
+}
+body .span-7 {
+	width: 408.75px;
+}
+body .span-6 {
+	width: 377.5px !important;
+}

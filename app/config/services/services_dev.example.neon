@@ -1,0 +1,14 @@
+services:
+	sessionPanel:
+		class: Zeleznypa\Nette\Diagnostics\SessionPanel
+		arguments:
+			- @application
+			- @session
+	translator:
+		factory: NetteTranslator\Gettext::getTranslator
+		setup:
+			- addFile(%appDir%/lang/front, front)
+			- addFile(%appDir%/lang/admin, admin)
+			- NetteTranslator\Panel::register
+	nette.mailer:
+		class: JanDrabek\MailPanel\SessionDumpMailer

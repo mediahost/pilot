@@ -1,0 +1,160 @@
+#job {
+    padding-top: 30px;
+    h2 {
+        font-size: 18px;
+        padding-bottom: 20px;
+        text-align: right;
+        font-variant: small-caps;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+        font-variant: small-caps;
+        padding-bottom: 5px;
+    }
+    .applyed,
+    a.back,
+    a.apply {
+        display: block;
+        float: right;
+        min-width: 95px;
+        padding: 10px;
+        text-align: center;
+        font-size: 15px;
+        text-transform: uppercase;
+        border: 2px @green solid;
+        text-decoration: none;
+		clear: right;
+    }
+	a.apply {
+        color: @white;
+        background-color: @green;
+        &:hover {
+            color: @green;
+            background-color: @white;
+        }
+	}
+    .applyed {
+        border-color: #000; 
+    }
+	a.back {
+        color: @green;
+        background-color: @white;
+        &:hover {
+            color: @white;
+            background-color: @green;
+        }
+		margin-bottom: 10px;
+	}
+    .subtitle {
+        color: @textLightGray;
+        padding-left: 12px;
+        padding-bottom: 15px;
+    }
+    .description {
+        font-size: @fontSizeMiddle;
+        padding-left: 12px;
+        padding-bottom: 15px;
+        p {
+            padding-bottom: 10px;
+        }
+        ul {
+            line-height: 18px;
+            list-style-type: disc;
+            list-style-position: inside;
+        }
+    }
+    .info {
+        border: 1px @lightGray solid;
+        padding: 20px;
+        > table {
+            width: 100%;
+            text-align: left;
+            font-size: @fontSizeMiddle;
+            tr {
+                line-height: 20px;
+                &:nth-child(odd) {
+                    background: @verylightGray;
+                }
+                th {
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+#jobs {
+    .noItems {
+        text-align: center;
+        line-height: 40px;
+        background: @verylightGray;
+    }
+    .list table {
+        td {
+            width: 333px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            h3 {
+                font-size: 16px;
+                font-variant: small-caps;
+                padding-bottom: 5px;
+            }
+            dl {
+                padding-left: 10px;
+                color: @textLightGray;
+                    line-height: 16px;
+                dd {
+                    margin-top: -15px;
+                    padding-left: 65px;
+                }
+            }
+        }
+    }
+
+    .finder {
+        .main {
+            text-align: center;
+            padding: 20px 0px;
+            .text {
+                font-size: 16px;
+                width: 500px;
+                padding: 10px 20px;
+                margin-right: 10px;
+                border: 2px @lightGray solid;
+            }
+            .button {
+                font-size: 16px;
+                padding: 10px 20px;
+                color: white;
+                background-color: @green;
+                .rounded(0);
+            }
+        }
+        table {
+            th, td {
+                padding-left: 20px;
+            }
+            th {
+                padding-left: 27px;
+                padding-top: 10px;
+                padding-bottom: 3px;
+                font-size: 16px;
+                text-align: left;
+                font-variant: small-caps;
+            }
+            select {
+                color: @fontColor;
+                border: 2px @lightGray solid;
+                padding: 5px;
+                width: 300px;
+                &.inline {
+                }
+                &.multiple {
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,171 @@
+{block sidebar}
+
+
+<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+
+            <li class="start{ifCurrent Default:*} active{/ifCurrent}">
+                <a n:href="Default:">
+                    <i class="fa fa-home"></i>
+                    <span class="title">
+                        {_"Dashboard"}
+                    </span>
+                    <span class="selected">
+                    </span>
+                </a>
+            </li>
+
+            <li{ifCurrent Content:*} class="active"{/ifCurrent}>
+                <a href="javascript:;">
+                    <i class="fa fa-sitemap"></i>
+                    <span class="title">
+                        {_"CMS"}
+                    </span>
+                    <span class="arrow ">
+                    </span>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li{ifCurrent Content:banners} class="active"{/ifCurrent}>
+                        <a n:href="Content:banners">
+                            <i class="fa fa-th-large"></i>
+                            {_"Banners"}
+                        </a>
+                    </li>
+                    <li{ifCurrent Content:modules} class="active"{/ifCurrent}>
+                        <a n:href="Content:modules">
+                            <i class="fa fa-sitemap"></i>
+                            {_"Modules"}
+                        </a>
+                    </li>
+                    <li{ifCurrent Content:informations} class="active"{/ifCurrent}>
+                        <a n:href="Content:informations">
+                            <i class="fa fa-info-circle"></i>
+                            {_"Informations"}
+                        </a>
+                    </li>
+                    <li{ifCurrent Content:tips} class="active"{/ifCurrent}>
+                        <a n:href="Content:tips">
+                            <i class="fa fa-lightbulb-o"></i>
+                            {_"Hints & Tips"}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li{ifCurrent Blog:*} class="active"{/ifCurrent}>
+                <a href="javascript:;">
+                    <i class="fa fa-bullhorn"></i>
+                    <span class="title">
+                        {_"Blog"}
+                    </span>
+                    <span class="arrow ">
+                    </span>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li{ifCurrent Blog:default} class="active"{/ifCurrent}>
+                        <a n:href="Blog:default">
+                            <i class="fa fa-file-text-o"></i>
+                            {_"Manage Articles"}
+                        </a>
+                    </li>
+                    <li{ifCurrent Blog:category} class="active"{/ifCurrent}>
+                        <a n:href="Blog:category">
+                            <i class="fa fa-list"></i>
+                            {_"Categories"}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li{ifCurrent Jobs:*} class="active"{/ifCurrent}>
+                <a href="javascript:;">
+                    <i class="fa fa-suitcase"></i>
+                    <span class="title">
+                        {_"Jobs"}
+                    </span>
+                    <span class="arrow ">
+                    </span>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li{ifCurrent Jobs:default} class="active"{/ifCurrent}>
+                        <a n:href="Jobs:default">
+                            <i class="fa fa-file-text-o"></i>
+                            {_"Manage Jobs"}
+                        </a>
+                    </li>
+                    <li{ifCurrent Jobs:category} class="active"{/ifCurrent}>
+                        <a n:href="Jobs:category">
+                            <i class="fa fa-list"></i>
+                            {_"Categories"}
+                        </a>
+                    </li>
+					<li{ifCurrent Jobs:locations} class="active"{/ifCurrent}>
+                        <a n:href="Jobs:locations">
+                            <i class="fa fa-map-marker"></i>
+                            {_"Locations"}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li{ifCurrent Company:*} class="active"{/ifCurrent}>
+                <a n:href="Company:default">
+                    <i class="fa fa-building-o"></i>
+                    <span class="title">
+                        {_"Companies"}
+                    </span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            
+            <li{ifCurrent Users:*} class="active"{/ifCurrent}>
+                <a n:href="Users:default">
+                    <i class="fa fa-users"></i>
+                    <span class="title">
+                        {_"Candidates"}
+                    </span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            
+            <li n:if="$allowedFakeAccount" {ifCurrent Fake:*} class="active"{/ifCurrent}>
+                <a n:href="Fake:default">
+                    <i class="fa fa-key"></i>
+                    <span class="title">
+                        {_"Fake Account"}
+                    </span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            
+            <li n:if="$allowedService" {ifCurrent Service:*} class="active"{/ifCurrent}>
+                <a n:href="Service:default">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">
+                        {_"Service"}
+                    </span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            
+            <li class="last">
+                <a n:href=":Front:Homepage: lang => 'en'">
+                    <i class="fa fa-code"></i>
+                    <span class="title">
+                        {_"Front End"}
+                    </span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+</div>
+<!-- END SIDEBAR -->

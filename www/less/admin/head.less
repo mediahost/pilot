@@ -1,0 +1,67 @@
+#head {
+    height: 100px;
+    background: @background;
+}
+
+#head #logo {
+    float: left;
+}
+
+#head #logo a {
+    display: block;
+    background: transparent url('@{pathImages}logo.png') center left no-repeat;
+    width: 400px;
+    height: 100px;
+}
+
+#head #langs {
+    float: right;
+    padding: 10px;
+}
+
+#head #langs ul li {
+    float: left;
+}
+
+#head #langs ul li a {
+    display: block;
+    height: 48px;
+    width: 48px;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    .grayscaleOn();
+    &.english {
+        background-image: url('@{pathImages}flags/english_big.png');
+    }
+    &.czech {
+        background-image: url('@{pathImages}flags/czech_big.png');
+    }
+    &.slovakia {
+        background-image: url('@{pathImages}flags/slovakia_big.png');
+    }
+    &:hover, &.active {
+        .grayscaleOff();
+    }
+}
+
+#head #menu nav > ul > li span {
+    display: block;
+    padding: 5px 15px 5px 15px;
+    text-decoration: none;
+}
+#head #menu nav > ul > li:first-child > span {
+    border: none;
+}
+#head #menu nav > ul > li a {
+    color: @linkColor;
+}
+#head #menu nav > ul > li a:hover {
+}
+
+#head #menu nav > ul li ul.submenu {
+    position: absolute;
+    margin-top: 19px;
+    padding: 10px 30px 30px 0;
+    display: none;
+}

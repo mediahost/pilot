@@ -1,0 +1,15 @@
+{form profileTokenForm class => styled}
+    {_"Choose public profile url"}: 
+    {*
+    <a href="{plink //:Profile:Homepage: token => 'a'}">
+        {plink //:Profile:Homepage: token => 'a'}
+    </a>
+    *}
+    
+    {var link = $presenter->link('//:Profile:Homepage:', [token => x])}
+    <span>{$link|trim:'x'}</span>
+    {input profile_token}
+    &nbsp;
+    {input save  class => button}
+    <div class="error" n:foreach="$form->getErrors() as $error">{$error}</div>
+{/form}

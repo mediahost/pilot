@@ -1,0 +1,61 @@
+{block scripts}
+<script>
+$(document).ready(function() {
+    
+    // init light ckeditor
+    initLightEditor();
+    
+});
+</script>
+{/block}
+
+{block content}
+<div class="container" id="forum">
+    
+    <div class="breadcrumbs">
+        <span><a n:href="Forum:">{_"Forum"}</a></span>
+        <span class="separator">&raquo;</span>
+        <span><a n:href="Forum:topics $topic->forumId">{$forum->name}</a></span>
+        <span class="separator">&raquo;</span>
+        <span>{$topic->name}</span>
+    </div>
+
+    <div class="posts">
+        <h2>{$topic->name}</h2>
+        <div class="list">
+            <div class="post" n:foreach="$posts as $post" id="post-{$post->id}">
+                {var ownPost => $post->userId === $userId}
+                <div class="headline">
+                    <div class="time">{$post->date|timeAgoInWords}</div>
+                    <div class="number">{$iterator->counter}.</div>
+                </div>
+                <div class="user">
+                    <p>{$post->username}</p>
+                </div>
+                <div class="text">
+                    {!$post->body}
+                    {var showEditButt => $canAdd && $ownPost}
+                    {var showDelButt => $canDelete || ($canAdd && $ownPost)}
+                    <div class="links" n:if="$showEditButt || $showDelButt">
+                        {if $showEditButt}
+                        <a href="{link this 'editPost' => $post->id}#editor" class="button">{_"edit"}</a>
+                        {/if}
+                        {if $showDelButt && !$iterator->isFirst()} 
+                        <a n:href="deletePost! $post->id" class="button" onClick="javascript:return confirm({_"Are you sure? This post will be deleted."})">{_"delete"}</a>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post new" id="editor">
+            <h3>{_"Write your message and submit"}</h3>
+            {if $canAdd}
+                {control postForm}
+            {else}
+                <p class="signIn">{_"You can't write."} {_"Please"} <a n:href="Sign:in">{_"sign in"}</a>.</p>
+            {/if}
+        </div>
+    </div>
+
+</div>
+{/block}

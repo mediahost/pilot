@@ -1,0 +1,185 @@
+{block styles}
+<link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/assets/plugins/dropzone/css/dropzone.css">
+{/block}
+
+{block scripts}
+<script src="{$basePath}/assets/plugins/dropzone/dropzone.min.js"></script>
+<script src="{$basePath}/assets/scripts/custom/form-dropzone.js"></script>
+<script type="text/javascript">
+    {ifset $timelineType}
+    initMyTimeline({$timelineType});
+    {/ifset}
+    $(document).ready(function() {
+        initTaggedMultiselect();
+        initMultiselectPlus();
+        initChosen();
+        initSlideToggle(".finder .main a.toggle", '.finder .advanced'); 
+        initRangeSlider("jobFinder");
+        $("td.filled .box").each(function () {
+            $(this).css("height", $(this).parent().css("height"));
+        });
+        FormDropzone.init();
+    });
+    initGroupTimeline("timeline", "works");
+</script>
+{/block}
+
+
+
+{block content}
+
+<div class="container" id="dashboard">
+
+    <div id="timeline" n:ifset="$timelineType">
+        <div n:snippet="timeline">
+            <div id="mytimeline"></div>
+        </div>
+    </div>
+
+    <div class="rest">
+        <div id="list">
+            
+        </div>
+
+        <div class="rest">
+            <div class="restContent profile">
+                <div class="candidates">
+                    {if $isCompleted}
+                        {includeblock "../../../CompanyModule/templates/Homepage/blocks.latte"}
+                        {include #candidate, candidate => $candidate, isFavorite => FALSE, showSendMessage => FALSE, showSaveFavorite => FALSE}
+                    {else}
+                        {_'Candidate has not completed profile'}
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+        <div class="cleaner"></div>
+    </div>
+</div>
+{/block}
+
+{define #blocks}
+
+<table id="blocks">
+    <tr>
+        <td>
+            <div class="block">
+                <h3>{_"CV Generator"}</h3>
+                <div class="list">
+                    <ul n:if="!empty($cvs)">
+                        <li n:foreach="$cvs as $cv">
+                            <a n:href="Cv: $cv->id">
+                                <span>{if empty($cv->name)}<i>{_"no name"}</i>{else}{$cv->name|truncate:50}{/if}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li n:if="count($cvs) > ($listCount-1)"><a n:href="Cv:"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block">
+                <h3>{_"Video Profile"}</h3>
+                <div class="list">
+                    <ul>
+                        <li>
+                            {if $step == 'fill identity'}
+                                <a n:href="videoProfile">Create your video profile</a>
+                            {elseif $step == 'do interview'}
+                                <a href="{$link}">Create your video profile</a>
+                            {elseif $step == 'review interview'}
+                                <a n:href="videoProfile">View your video profile</a>
+                            {/if}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="block">
+                <h3>{_"Job Feed"}</h3>
+                <div class="list" n:snippet="jobsList">
+                    <ul>
+                        <li n:foreach="$jobs as $job"><a n:href="Jobs:show $job->code"><span>{$job->name|truncate:60}</span></a></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li>
+                            <a n:href="Dashboard:jobs"><span>{_"show all"}...</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block">
+                <h3>{_"My recent actions"}</h3>
+                <div class="list">
+                    <ul n:if="!empty($recentActions)">
+                        <li n:foreach="$recentActions as $recentAction">
+                            <span class="date">{$recentAction->datetime|date:"d/m/Y H:i"}</span> 
+                            {if $recentAction->link}<a href="{$recentAction->link}">{/if}
+                                <span>{_$recentAction->action}{if $recentAction->name} ({!$recentAction->name}){/if}</span>
+                            {if $recentAction->link}</a>{/if}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li n:if="count($recentActions) > ($listCount-1)"><a n:href="Dashboard:recentActions"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="block">
+                <h3>{_"Employer Messages"}</h3>
+                <div class="list">
+                    <ul>
+                        <li>
+					    {_"We are developing this section for you"}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block">
+                <h3>{_"Saved Career docs"}</h3>
+                <div class="list">
+                    <ul n:if="count($docs)">
+                        <li n:foreach="$docs as $doc">
+                            <a href="{$basePath}/docs/{$doc->name}" target="_blank">{$doc->originalName}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><a n:href="Dashboard:docs"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div class="cleaner"></div>
+{/define}

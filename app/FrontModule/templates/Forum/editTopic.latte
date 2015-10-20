@@ -1,0 +1,28 @@
+{block scripts}
+<script>
+$(document).ready(function() {
+    
+    // init light ckeditor
+    initLightEditor();
+    
+});
+</script>
+{/block}
+
+{block content}
+<div class="container" id="forum">
+    
+    <div class="breadcrumbs">
+        <span><a n:href="Forum:">{_"Forum"}</a></span>
+        <span class="separator">&raquo;</span>
+        <span><a n:href="Forum:topics $forum->id">{$forum->name}</a></span>
+        <span class="separator">&raquo;</span>
+        <span>{if $topic->id !== NULL}<a n:href="Forum:topic $topic->id">{$topic->name}</a>{else}{_"New Topic"}{/if}</span>
+    </div>
+
+    <div class="topic new" id="editor">
+        {control topicForm}
+    </div>
+
+</div>
+{/block}

@@ -1,0 +1,119 @@
+services:
+
+	- Model\Service\CompanyService
+	- Model\Service\CandidateService
+	- Model\Mapper\Dibi\CompanyDibiMapper
+	- Model\Mapper\Dibi\CandidateDibiMapper
+	routerFactory: RouterFactory
+	router: @routerFactory::createRouter
+	facebook:
+		class: \Illagrenan\Facebook\FacebookConnect([appId: %facebook.app_id%, secret: %facebook.app_secret%], @container)
+		setup:
+			- setHeaders()
+
+	google:
+		class: Google([id: %google.id%, secret: %google.secret%])
+
+	mail:
+		class: \Model\Service\MailService
+		arguments:
+			- @session
+			- @translator
+
+	users:
+		class: \Model\Service\UserService
+		arguments:
+			- Model\Mapper\Dibi\UserDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\AuthDibiMapper(@dibi.connection)
+			- @mail
+			- @session
+			- %KCFinder%
+			- @Model\Service\UserDocService
+		autowired: no
+	cv:
+		class: \Model\Service\CvService
+		arguments:
+			- Model\Mapper\Dibi\CvDibiMapper(@dibi.connection)
+	langs:
+		class: \Model\Service\LangService
+		arguments:
+			- Model\Mapper\Dibi\LangDibiMapper(@dibi.connection)
+	pages:
+		class: \Model\Service\PageService
+		arguments:
+			- Model\Mapper\Dibi\PageDibiMapper(@dibi.connection)
+	blogs:
+		class: \Model\Service\BlogService
+		arguments:
+			- Model\Mapper\Dibi\BlogDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\BlogCategoryDibiMapper(@dibi.connection)
+	blogcategories:
+		class: \Model\Service\BlogCategoryService
+		arguments:
+			- Model\Mapper\Dibi\BlogCategoryDibiMapper(@dibi.connection)
+	hints:
+		class: \Model\Service\HintService
+		arguments:
+			- Model\Mapper\Dibi\HintDibiMapper(@dibi.connection)
+	skills:
+		class: \Model\Service\SkillService
+		arguments:
+			- @dibi.connection
+	profesia:
+		class: \Model\Service\ProfesiaService
+		arguments:
+			- Model\Mapper\Dibi\ProfesiaLoadDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\ProfesiaJobDibiMapper(@dibi.connection)
+	actionlogs:
+		class: \Model\Service\ActionLogService
+		arguments:
+			- Model\Mapper\Dibi\ActionLogDibiMapper(@dibi.connection)
+	jobapplys:
+		class: \Model\Service\JobApplyService
+		arguments:
+			- Model\Mapper\Dibi\JobApplyDibiMapper(@dibi.connection)
+	forum:
+		class: \Model\Service\ForumService
+		arguments:
+			- Model\Mapper\Dibi\ForumDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\ForumCategoryDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\ForumTopicDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\ForumPostDibiMapper(@dibi.connection)
+	jobs:
+		class: \Model\Service\JobService
+		arguments:
+			- Model\Mapper\Dibi\JobsDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\LocationDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\JobCategoryDibiMapper(@dibi.connection)
+	jobscategory:
+		class: \Model\Service\JobCategoryService
+		arguments:
+			- Model\Mapper\Dibi\JobCategoryDibiMapper(@dibi.connection)
+			- Model\Mapper\Dibi\JobsDibiMapper(@dibi.connection)
+	location:
+		class: \Model\Service\LocationService
+		arguments:
+			- Model\Mapper\Dibi\LocationDibiMapper(@dibi.connection)
+	logger:
+		factory: \Nette\Logger\FileLogger::createFileLogger
+		arguments:
+			- %logParams%
+	- Model\Security\User
+	user:
+		autowired: off
+	launchpad: App\Model\Launchpad\LaunchpadApi(%launchpadApi.url%, %launchpadApi.username%, %launchpadApi.pass%)
+	userDoc:
+		class: Model\Service\UserDocService
+		arguments:
+			- Model\Mapper\Dibi\UserDocDibiMapper(@dibi.connection)
+			- %wwwDir%/docs
+	chat:
+		class: Model\Service\ChatService
+		arguments:
+			- Model\Mapper\Dibi\ChatDibiMapper(@dibi.connection)
+	tag:
+		class: Model\Service\TagService
+		arguments:
+			- Model\Mapper\Dibi\TagDibiMapper(@dibi.connection)
+
+	- App\Components\JobUserNotesFactory

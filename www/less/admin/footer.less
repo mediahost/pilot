@@ -1,0 +1,20 @@
+@footerHeight: 40px;
+#container {
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto -@footerHeight;
+}
+
+footer, .push {
+    height: @footerHeight;
+}
+
+footer {
+    background: @red url('@{pathImages}noisy.png') repeat top left;
+    color: @white;
+}
+footer div {
+    text-align: right;
+    padding: 0px 20px;
+    line-height: @footerHeight;
+}

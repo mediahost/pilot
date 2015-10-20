@@ -1,0 +1,160 @@
+// source-code.com - candidates
+
+@pathImages: "../../images/";
+//@pathImages: "../images/";
+@import "../../css/reset.css";
+//@import "reset.css";
+
+//@green: #4aa046;
+@green: #3454a4; // footer
+@darkGreen: #5B8DF3; // dark green - input border
+@fontGreen: #3454a4; // fontGreen
+@lightGreen: #51AA4B; // bottom links
+@signInFormGreen: #40853D; // form green
+@gray: #6f6f6f; // menu font
+@lightGray: #dfdfdf; // head bottom line
+@textLightGray: #909090; // gray for job list
+@verylightGray: #f6f6f6; // cv tabs
+@darkGray: #3f3f3f; // font
+@blueGray: #cbeafb; // references
+@panelGray: #f6f6f6; // gray for panels
+@paginatorGray: #999a9a; // gray for paginator
+@linkGray: #555555; // gray for sitemap tree links
+@borderGray: #c9c9c9; // gray for cv borders
+@bgGray: #f0f0f0; // gray for cv background
+@labelGray: #7f7f7f; // cv label gray
+@white: #ffffff;
+@black: #222222;
+@red: #9F0013;
+@redLight: #F2ADB5;
+
+@fontSizeNormal: 12px;
+@fontSizeMiddle: 14px;
+@fontSizeUpper: 16px;
+@fontSizeBig: 18px;
+@fontSizeBiger: 20px;
+@fontSizeLarge: 38px;
+@fontColor: @darkGray;
+@background: #ffffff;
+@font: "Trebuchet MS", Helvetica, Arial;
+
+@timeTransitionLink: 200ms;
+
+@containerWidth: 1000px;
+@footerWidth: @containerWidth;
+@headWidth: @containerWidth;
+
+@linkColor: @gray;
+@headLine: @lightGray;
+
+@flashBlack: @black;
+@flashWhite: @white;
+@flashOpacity: .9;
+
+// FUNCTIONS /////
+@import "../functions.less";
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    font-family: @font;
+    background: @background;
+    color: @fontColor;
+    font-size: @fontSizeNormal;
+    width: 100%;
+    height: 100%;
+}
+strong,
+.strong {
+    font-weight: bold;
+}
+a {
+    color: @fontGreen;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:not(.ui-slider-handle):not(.search-choice-close) {
+    .transition(@timeTransitionLink, ~"padding|opacity|color|background");
+}
+a.button, input.button {
+    border: none;
+    display: inline-block;
+    padding: 5px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    .rounded();
+}
+a[href^="error:"] {
+    background: red;
+    color: white;
+}
+textarea {
+    font-family: @font;
+}
+
+.cleaner:after {
+    .cleaner();
+}
+
+.container {
+    margin: 0px auto;
+}
+
+/*** CONTENT ***/
+#page .container,
+#sitemap .container {
+    width: @containerWidth;
+}
+#page p {
+    font-size: @fontSizeMiddle;
+    line-height: @fontSizeMiddle+2;
+}
+a.underline {
+    text-decoration: underline;
+}
+
+/*** HEAD ***/
+@import "../candidates/head.less";
+
+/*** FLASH MESSAGES ***/
+@import "../candidates/flashMessages.less";
+
+/*** PAGINATOR ***/
+@import "../candidates/paginator.less";
+
+/*** AJAX ***/
+@import "../candidates/ajax.less";
+
+/*** FOOTER ***/
+@import "../candidates/footer.less";
+
+/*** MAIN PAGE ***/
+@import "../candidates/mainPage.less";
+@import "../candidates/modules.less";
+@import "../candidates/sign.less";
+
+/*** DASHBOARD ***/
+@import "../candidates/dashboard.less";
+
+/*** CANDIDATES ***/
+@import "../candidates/candidates.less";
+
+/*** CV GENERATOR ***/
+@import "../candidates/forms.less";
+
+/*** INNER PAGES ***/
+@import "../candidates/inner.less";
+
+/*** PLUGINS ***/
+@import "../candidates/multiSelectTag.less";
+@import "../candidates/multiSelectPlus.less";
+
+@import "../candidates/jobs.less";
+@import "../chat.less";
+@import "../general-notes.less";
+@import "../settings.less";

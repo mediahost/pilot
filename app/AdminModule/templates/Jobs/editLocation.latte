@@ -1,0 +1,31 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Jobs:">{_"Jobs"}</a>
+</li>
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Jobs:locations">{_"Locations"}</a>
+</li>
+{/block}
+
+{block breadcrumbActions}
+<a n:href="locations">
+    <button class="btn yellow">{_"Back to List"} <i class="fa fa-undo"></i></button>
+</a>
+{/block}
+{block content}
+<div class="row">
+    <div class="col-md-6">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i> {_"Location"}
+                </div>
+            </div>
+            <div class="portlet-body form">
+                {control editLocationForm}
+            </div>
+        </div>
+    </div>
+</div>

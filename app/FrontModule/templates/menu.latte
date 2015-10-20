@@ -1,0 +1,160 @@
+{define #menu}
+
+<!-- BEGIN TOP NAVIGATION MENU -->
+<div class="bootstrap">
+    <div class="top-menu">
+        <ul n:if="!$user->isLoggedIn() && count($topMenuItems)"
+            class="nav navbar-nav pull-right">
+            <li n:foreach="$topMenuItems as $menuItem"
+                class="dropdown">
+                <a n:href=":Front:Content:page $menuItem->id">{$menuItem->name}</a>
+            </li>
+        </ul>
+        <ul n:if="$user->isLoggedIn()"
+            class="nav navbar-nav pull-right">
+			
+            <li class="dropdown">
+                <a n:href="Dashboard:">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+
+            <!-- BEGIN NOTIFICATION DROPDOWN -->
+            <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <i class="icon-bell"></i>
+                    <span n:if="$defaultCv->getRequirmentsUncompletedCount()"
+                          class="badge badge-red">{$defaultCv->getRequirmentsUncompletedCount()}</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <p n:if="$defaultCv->getRequirmentsUncompletedCount()">
+                            {_'You have %s new notifications', $defaultCv->getRequirmentsUncompletedCount()}
+                        </p>
+                        <p n:if="!$defaultCv->getRequirmentsUncompletedCount()">
+                            {_'You have completed profile'}
+                        </p>
+                    </li>
+                    <li>
+                        <ul class="dropdown-menu-list scroller" style="height: 164px;">
+                            <li n:foreach="$defaultCv->getRequirementsList() as $reqId => $req">
+                                <a href="{if $reqId === 5}{link :Front:Cv:, 'cv' => $defaultCv->id, 'step' => 11}{else}{link :Front:Dashboard:profile}{/if}">
+                                    <i n:if="$req[1]" class="icon-like success"></i>
+                                    <i n:if="!$req[1]" class="icon-dislike danger"></i>
+                                    {$req[0]}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="external">
+                        <a n:href=":Front:Dashboard:profile">
+                            {_"See your profile"}
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END NOTIFICATION DROPDOWN -->
+
+            <!-- BEGIN INBOX DROPDOWN -->
+            <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar" n:if="$defaultCv->isCompleted()">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <i class="icon-envelope-open"></i>
+                    <span class="badge badge-red" n:if="$unreadMessagesCount"> {$unreadMessagesCount} </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <p>{_'You have %s new messages', $unreadMessagesCount}</p>
+                    </li>
+                    <li>
+                        <ul class="dropdown-menu-list scroller" style="height: 250px;">
+                            <li n:foreach="$lastChats as $lastChat"
+                                n:class="$lastChat->isUnreedByUser() ? unread">
+                                <a n:href=":Front:Dashboard:chat $lastChat->id">
+                                    <span class="photo">
+                                        <img src="{$basePath}/foto/40-40/company/{$lastChat->companyId}.png" alt="company avatar"/>
+                                    </span>
+                                    <span class="subject">
+                                        <span class="from">{$lastChat->companyName|truncate:15}</span>
+                                        <span class="time">{if $lastChat->isLastUpdateToday()}{$lastChat->lastUpdate|date:'H:i'}{else}{$lastChat->lastUpdate|date:'d.m.'}{/if}</span>
+                                    </span>
+                                    <span class="message">{$lastChat->lastMessage|truncate:65}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="external">
+                        <a n:href=":Front:Dashboard:messages">
+                            {_"See all messages"} 
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END INBOX DROPDOWN -->
+            <li n:if="$user->isAllowed('backend', 'access')" class="dropdown">
+                <a n:href=":Admin:Default:">
+                    <i class="icon-settings"></i>
+                    {_"Admin"}
+                </a>
+            </li>
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown dropdown-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="{$basePath}/foto/20-20/cvImages/{if $defaultCv->photo}{$defaultCv->photo}{else}default.png{/if}" />
+                    <span class="username">{$user->getIdentity()->mail}</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a n:href="Dashboard:profile">
+                            <i class="icon-eye"></i>
+                            {_"View My Page"}
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href="Dashboard:editProfile">
+                            <i class="icon-user"></i>
+                            {_"Personal Details"}
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href="Dashboard: showGuide => TRUE">
+                            <i class="icon-question"></i>
+                            {_"Show me the guide"}
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href=":Front:Account:changePassword">
+                            <i class="icon-key"></i>
+                            {_"Change Password"}
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href=":Front:Account:delete">
+                            <i class="icon-shield"></i>
+                            {_"Delete Account"}
+                        </a>
+                    </li>
+                    <li class="divider">
+                    </li>
+                    <li>
+                        <a n:href=":Front:Sign:out">
+                            <i class="icon-logout"></i> 
+                            {_"Log Out"} 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+            <li class="dropdown">
+                <a n:href=":Front:Sign:out" class="dropdown-toggle">
+                    <i class="icon-logout"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- END TOP NAVIGATION MENU -->
+{/define}

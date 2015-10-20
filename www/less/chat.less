@@ -1,0 +1,153 @@
+.dropdown-menu {
+    .scroller {
+        padding-right: 0px;
+    }
+}
+.chat {
+    .notifications-setting {
+        text-align: left !important;
+        input[type=radio] {
+            margin: 0;
+            vertical-align: middle;
+        }
+        label {
+            margin-left: 20px;
+        }
+    }
+    h1 {
+        font-size: 18px !important;
+        color: #3454A4;
+        margin-bottom: 20px !important;
+    }
+    &.chat-list {
+        .items {
+            a.item {
+                display: block;
+                height: 50px;
+                padding: 10px 0px;
+                text-decoration: none;
+                position: relative;
+                .name {
+                    font-size: 15px;
+                    font-weight: bold;
+                    padding-bottom: 7px;
+                    padding-top: 5px;
+                }
+                .text {
+                    color: black;
+                }
+                .time {
+                    position: absolute;
+                    top: 18px;
+                    right: 10px;
+                    color: #919191;
+                }
+                &:not(:last-child) {
+                    border-bottom: 1px #D1D1D1 solid;
+                }
+                &:hover {
+                    background-color: rgba(52, 84, 164, 0.1);
+                }
+                .photo {
+                    float: left;
+                    margin: 0px 10px;
+                    height: 50px;
+                    img {
+                        background-color: white;
+                    }
+                }
+                .box {
+                    float: left;
+                }
+                &.unread {
+                    background-color: #3454A4;
+                    color: white;
+                    &:not(:last-child) {
+                        border-bottom: 1px white solid;
+                    }
+                    .text {
+                        color: white;
+                    }
+                    .time {
+                        color: white;
+                    }
+                }
+                .cleaner();
+            }
+        }
+    }
+    &.chat-thread {
+        .messages {
+            .items {
+                overflow: auto;
+                min-height: 250px;
+                max-height: 450px;
+                .item {
+                    .photo {
+                        float: left;
+                        width: 32px;
+                    }
+                    .box {
+                        margin-left: 10px;
+                        float: left;
+                        width: 875px;
+                        padding-bottom: 15px;
+                        min-height: 32px;
+                        position: relative;
+                        .name {
+                            font-size: 15px;
+                            color: #3454A4;
+                            padding-bottom: 6px;
+                        }
+                        .time {
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            line-height: 18px;
+                            color: #c1c1c1;
+                        }
+                        .text {
+                            width: 600px;
+                        }
+                    }
+                    .cleaner();
+                }
+            }
+            textarea {
+                width: 659px;
+                height: 100px;
+                border: 1px #D1D1D1 solid;
+                padding: 5px;
+                font-size: 14px;
+            }
+            .window {
+                padding-top: 20px;
+                table {
+                    tr {
+                        th {
+                            display: none;
+                        }
+                    }
+                    td {
+                        text-align: right;
+                        textarea {
+                            width: 924px;
+                        }
+                        input.button {
+                            .rounded(0px);
+                            background-color: #3454A4;
+                            color: white;
+                            text-transform: uppercase;
+                        }
+                        label, strong {
+                            color: #b1b1b1;
+                        }
+                        a {
+                            color: #6A8BDD;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

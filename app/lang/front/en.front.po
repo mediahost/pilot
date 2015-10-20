@@ -1,0 +1,42 @@
+# Gettext keys exported by GettextTranslator and Translation Panel
+# Created: 2013-05-17 12:42:08
+msgid ""
+msgstr ""
+"Project-Id-Version: Source-code\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-02-26 16:08+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Petr Poupě <pupe.dupe@gmail.com>\n"
+"Language: en\n"
+"X-Generator: Poedit 1.6.3\n"
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Nome"
+msgstr "Name"
+
+msgid "Other language"
+msgid_plural "Other languages"
+msgstr[0] "Other language"
+msgstr[1] "Other languages"
+
+msgid "year"
+msgid_plural "years"
+msgstr[0] "year"
+msgstr[1] "years"
+
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s year"
+msgstr[1] "%s years"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "to_"
+msgstr "to"

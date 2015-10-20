@@ -1,0 +1,45 @@
+#editor {
+    form {
+        margin: 20px;
+        table {
+            th, td {
+                padding: 3px 0px;
+            }
+            th {
+                text-align: right;
+                padding-right: 10px;
+            }
+            input.text, input.date, textarea, select {
+                padding: 5px;
+                border: 2px #e8e8e8 solid;
+                &.form-control-error {
+                    color: @red;
+                }
+            }
+            input.date {
+                padding-left: 27px;
+                width: 68px;
+                background: white url('@{pathImages}calendar.png') no-repeat center left;
+                background-position-x: 5px;
+            }
+            .form-error-message {
+                color: @white;
+                background-color: @red;
+                padding: 5px;
+            }
+            .button {
+                cursor: pointer;
+                display: inline-block;
+                border: none;
+                background-color: @black;
+                color: @white;
+                padding: 5px 11px;
+                min-width: 100px;
+                &:hover {
+                    background-color: @red;
+                    color: @white;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+#sign {
+    padding: 50px;
+    padding-top: 30px;
+    min-height: 300px;
+    &  > h2 {
+        font-size: @fontSizeLarge;
+        padding-bottom: 20px;
+    }
+    ul.error {
+        color: red;
+        padding: 10px;
+    }
+    form {
+        table {
+            width: 500px;
+            tr {
+                th {
+                    width: 100px;
+                }
+                td {
+                    .form-error-message {
+                        color: red;
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

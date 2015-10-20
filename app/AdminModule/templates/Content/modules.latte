@@ -1,0 +1,21 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Content:">{_"CMS"}</a>
+</li>
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Content:banners">{_"Modules"}</a>
+</li>
+{/block}
+
+{block breadcrumbActions}
+<a n:href="editModule">
+    <button class="btn green">{_"Add item"} <i class="fa fa-plus"></i></button>
+</a>
+{/block}
+
+{block content}
+<div class="pageContent">
+    {control modulesGrid}
+</div>

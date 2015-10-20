@@ -1,0 +1,35 @@
+{form socialLinksForm class => 'styled social-links-form'}
+    <table>
+        <tbody>
+            <tr>
+                <th><a href="https://github.com/" target="_blank"><img src="{$basePath}/images/socials/circle/github.png" alt="GitHub" title="GitHub" /></a></th>
+                <td>{input url_github tabindex => 1}</td>
+            </tr>
+
+            <tr>
+                <th><a href="http://stackoverflow.com/" target="_blank"><img src="{$basePath}/images/socials/circle/stackoverflow.png" alt="Stack Overflow" title="Stack Overflow" /></a></th>
+                <td>{input url_stackoverflow tabindex => 2}</td>
+            </tr>
+
+            <tr>
+                <th><a href="https://www.linkedin.com/" target="_blank"><img src="{$basePath}/images/socials/circle/linkedin.png" alt="LinkedIn" title="LinkedIn" /></a></th>
+                <td>{input url_linkedin tabindex => 3}</td>
+            </tr>
+
+            <tr>
+                <th><a href="https://www.facebook.com/" target="_blank"><img src="{$basePath}/images/socials/circle/facebook.png" alt="Facebook" title="Facebook" /></a></th>
+                <td>{input url_facebook tabindex => 4}</td>
+            </tr>
+
+            <tr>
+                <th><a href="https://twitter.com/" target="_blank"><img src="{$basePath}/images/socials/circle/twitter.png" alt="Twitter" title="Twitter" /></a></th>
+                <td>{input url_twitter tabindex => 5}</td>
+            </tr>
+
+            <tr>
+                <th>&nbsp;</th>
+                <td>{input save class => button, tabindex => 6}</td>
+            </tr>
+        </tbody>
+    </table>
+{/form}

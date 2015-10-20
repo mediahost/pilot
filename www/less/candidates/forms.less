@@ -1,0 +1,186 @@
+form.styled ul.error li {
+    padding: 10px;
+    color: @red;
+}
+form.styled {
+    margin-bottom: 20px;
+}
+form.styled table {
+    width: 98%;
+    margin: 0 1%;
+}
+form.styled table th {
+    text-align: right;
+    padding-right: 6px;
+    min-width: 108px;
+    width: 150px;
+}
+form.styled table th,
+form.styled table td {
+    vertical-align: baseline;
+    padding-bottom: 5px;
+}
+
+form.styled input[type=text],
+form.styled textarea,
+form.styled select,
+form.styled input.date {
+    border: 1px solid #dfdfdf;
+    background: #ffffff;
+    padding: 5px 10px 5px 10px;
+    font-size: 13px;
+    color: #4f4f4f;
+    margin-left: 0px;
+    .boxShadow(2px, 5px, -1px, rgba(0, 0, 0, 0.15));
+    &.small {
+        width: 50px;
+    }
+}
+form.styled input[type=text],
+form.styled select,
+form.styled input.date,
+form.styled textarea {
+    width: 197px;
+}
+form.styled textarea {
+    vertical-align: text-top;
+    height: 55px;
+    min-width: 197px;
+    width: 90%;
+    &.middle { 
+        height: 150px;
+    }
+    &.bigger { 
+        height: 320px;
+    }
+}
+form.styled select {
+    vertical-align: text-top;
+    width: 219px;
+    &.small {
+        width: 72px;
+    }
+    &.bigger {
+        height: 150px;
+    }
+}
+form.styled input.button {
+    background-color: @green;
+    color: @white;
+}
+
+form.styled label {
+    color: @darkGray;
+    &.required {
+        font-weight: 600;
+    }
+}
+
+form.styled fieldset legend {
+    padding: 15px;
+    font-size: 16px;
+    color: #4f4f4f;
+}
+
+form input.date.hasDatepicker {
+    min-width: 82px;
+    width: 82px;
+    background: transparent url('@{pathImages}calendar.png') no-repeat 82px center;
+}
+
+form.styled input.form-control-error {
+    color: @red;
+}
+
+form.styled .form-error-message {
+    display: block;
+    color: @red;
+    padding-left: 10px;
+}
+
+form.styled .maxlength-feedback {
+    margin-top: 5px;
+    display: block;
+}
+
+form.styled div#rangeSlider {
+    margin-top: 10px;
+    margin-left: -40px;
+    width: 200px;
+}
+
+form.styled .ui-slider {
+    width: 200px;
+    margin-left: 10px;
+}
+form.styled .sliderVal {
+    padding: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+form.styled#frm-step8 {
+    th {
+        width: 90px;
+    }
+}
+
+form.styled div.radioFeelingsLabel {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    //margin-left: 10px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: top left;
+    cursor: pointer;
+    &.frmgetInTouchForm-feelings-0, &.frmgetInTouchForm-feelings-1, &.frmgetInTouchForm-feelings-2 {
+        background-image: url('@{pathImages}smileys.png');
+        &:hover {
+            background-position-y: -32px;
+            opacity: .8;
+        }
+    }
+    &.frmgetInTouchForm-feelings-0 {
+    }
+    &.frmgetInTouchForm-feelings-1 {
+        background-position-x: -32px;
+    }
+    &.frmgetInTouchForm-feelings-2 {
+        background-position-x: -64px;
+    }
+}
+form.styled label.active div.radioFeelingsLabel,
+form.styled label.active div.radioFeelingsLabel:hover {
+    background-position-y: -32px;
+    opacity: 1;
+}
+
+
+
+form.front table th, form.front table td {
+    padding-bottom: 10px;
+}
+form.front table th {
+    text-align: right;
+    padding-right: 6px;
+    min-width: 80px;
+}
+form.front input[type=text],
+form.front input[type=password],
+form.front textarea,
+form.front select,
+form.front input.date {
+    border: 1px solid #dfdfdf;
+    background-color: #ffffff;
+    padding: 5px 10px 5px 10px;
+    font-size: 13px;
+    color: #4f4f4f;
+    margin-left: 0px;
+    .boxShadow(2px, 5px, -1px, rgba(0, 0, 0, 0.15));
+    &.small {
+        width: 50px;
+    }
+}

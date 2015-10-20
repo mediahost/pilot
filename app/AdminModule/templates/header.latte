@@ -1,0 +1,80 @@
+{block header}
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="header-inner">
+        
+        <!-- BEGIN LOGO -->
+        <a class="navbar-brand" n:href="this">
+            <img src="{$basePath}/assets/img/logo.png" alt="logo" class="img-responsive"/>
+        </a>
+        <!-- END LOGO -->
+        
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="sidebar-toggler hidden-phone">
+        </div>
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <img src="{$basePath}/assets/img/menu-toggler.png" alt=""/>
+        </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+            
+            <!-- BEGIN LANGUAGES DROPDOWN -->
+            <li class="dropdown language">                
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" src="{$basePath}/assets/img/flags/{$lang}.png">
+                    <span class="username">
+                        {$lang|upper}
+                    </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li n:foreach="$langs as $language">
+                        <a n:href="this, lang => $language->key" >
+                            <img alt="{_$language->name}" src="{$basePath}/assets/img/flags/{$language->key}.png"> {_$language->name}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END LANGUAGES DROPDOWN -->
+            
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="user" src="{$basePath}/assets/img/avatar_small.png"/>
+                    <span class="username">
+                        {$user->identity->mail}
+                    </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="javascript:;" id="trigger_fullscreen">
+                            <i class="fa fa-arrows"></i> Full Screen
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href=":Front:sign:out">
+                            <i class="fa fa-key"></i> Log Out
+                        </a>
+                    </li>
+                </ul>
+                
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+            
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+        
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>

@@ -1,0 +1,33 @@
+{block scripts}
+<script n:if="$canEditContent" type="text/javascript" src="{$basePath}/js/ckeditor/ckeditor.js"></script>
+<script n:if="$canEditContent">
+    CKEDITOR.on( 'instanceCreated', function( event ) {
+            var editor = event.editor,
+                    element = editor.element;
+
+            editor.on( 'blur', function( event ) {
+                var contentid = event.editor.name;
+                var data = event.editor.getData();
+                $.post(
+                    {link Ajax:editContentPage}, 
+                    { pageid: {$page->id}, contentid: contentid, data: data }, 
+                    "html" 
+                );
+            });
+    });
+</script>
+{/block}
+
+{block content}
+<div class="container">
+    <div id="module">
+
+        <h2{if $canEditContent} id="ckeditor-title" contenteditable="true"{/if}>
+            {!$page->name}
+        </h2>
+        <div class="adminContent"{if $canEditContent} id="ckeditor-content" contenteditable="true"{/if}>
+            {!$page->getText()}
+        </div>
+
+    </div>
+</div>

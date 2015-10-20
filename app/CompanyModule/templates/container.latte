@@ -1,0 +1,76 @@
+{includeblock 'menu.latte'}
+
+{define #container}
+    <div id="container">
+
+        <!-- HEAD -->
+        <div id="head" class="cleaner">
+            <div class="container">
+                {include #head}
+            </div>
+        </div>
+        <!-- /HEAD -->
+
+        <!-- CONTENT -->
+        <div id="content">
+            <!-- MESSAGES -->
+            <div id="flashMessages">
+                <div n:snippet="flash">
+                    {include #flashMessages}
+                </div>
+            </div>
+            <!-- /MESSAGES -->
+
+            <!-- PAGE -->
+            <div id="page">
+                {include #content}
+            </div>
+            <!-- /PAGE -->
+
+            <div class="push"></div>
+        </div>
+        <!-- /CONTENT -->
+
+    </div>
+
+    <!-- FOOTER -->
+    {include #footer}
+    <!-- /FOOTER -->
+{/define}
+
+{** DEFINE *******************************************************************}
+
+{define #head}
+<div id="logo">
+    {if $user->isLoggedIn()}
+    <a class="logo" n:href="Homepage:jobs"></a>
+    {else}
+    <a class="logo" n:href=":Front:Homepage:"></a>
+    {/if}
+</div>
+
+<!-- BEGIN TOP NAVIGATION MENU -->
+<div id="menu">
+    {include #menu}
+</div>
+<!-- END TOP NAVIGATION MENU -->
+{/define}
+
+{define #flashMessages}
+<div n:foreach="$flashes as $flash" class="flash {$flash->type}">
+    <span class="text">{!$flash->message}</span>
+    <a n:href="this" class="close"></a>
+</div>
+{/define}
+
+
+{define #footer}
+<footer>
+    <div class="container logo"></div>
+</footer>
+
+<div id="bottomlinks">
+    <div class="container bottomLinks">
+    </div>
+</div>
+{/define}

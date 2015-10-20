@@ -1,0 +1,13 @@
+{layout none}
+[
+{foreach $events as $event}
+    [
+        {$event->start->format("U") * 1000},
+        {if $event->end !== NULL} {$event->end->format("U") * 1000} {/if},
+        "{$event->name}",
+        "{$event->class}",
+        {$event->id}
+     ]
+    {if !$iterator->isLast()},{/if}
+{/foreach}
+]

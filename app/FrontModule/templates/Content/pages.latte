@@ -1,0 +1,12 @@
+{block content}
+
+<div class="container">
+    <div n:foreach="$pages as $page" id="module">
+        
+        <h2 id="{$page->name."-".$page->id|webalize}">{$page->name}</h2>
+        <div class="adminContent">
+            <p>{!$page->getText()}</p>
+        </div>
+        
+    </div>
+</div>

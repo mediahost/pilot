@@ -1,0 +1,72 @@
+{snippet}
+{form jobFilterForm}
+{$form->render('errors')}
+
+<div class="finder">
+    <div class="main">
+        <h4>{label text /}</h4>
+        <p>{input text} {input fast_search}</p>
+        <p>
+			<a href="#" class="toggle">{_"Advanced Search"}</a> 
+			<a class="reset" href="{plink resetFilter!}" class="button"><span>Reset Filter</span></a>
+		</p>
+    </div>
+    <div class="advanced">
+        <table>
+            <tr>
+                <th>{_"IT Skills"}</th>
+                <th>{label location/}</th>
+                <th colspan="2">{_"Salary"}</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="skills">
+                        <div n:foreach="$skills as $skillCategory => $skillItems" class="group">
+                            <h3 class="headline">{$skillCategory}</h3>
+                            <div class="items">
+                                <table>
+                                    <tbody>
+                                        {foreach $skillItems as $skillGroupName => $skillGroup}
+                                            <tr n:if="$skillGroupName">
+                                                <td colspan="2"><h4 class="headline">{$skillGroupName}</h4></td>
+                                            </tr>
+                                            {foreach $skillGroup as $skillId => $skillName}
+                                                <tr>
+                                                    {var $container => $form['skills'][$skillId]}
+                                                    {var $scale => $container->components['scale']}
+                                                    {var $number => $container->components['number']}
+                                                    <th>{label $scale }{$skillName}{/label}</th>
+                                                    <td>
+                                                        <div class="pair">
+                                                            <div class="select">
+                                                                {input $scale}
+                                                            </div>
+                                                            <div class="number">
+                                                                {label $number /}
+                                                                {input $number}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {/foreach}
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>{input location}</td>
+                <td colspan="2" class="salary">
+                    <div class="checkbox">{input salary}{label salary/}</div>
+                    <div id="sallaryBox">
+                        <div>{input min}<span class="separator">-</span>{input max} {_"€"}</div>
+                        <div><div id="rangeSlider" data-max="{$maxSalary}"></div></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{/form}
+{/snippet}

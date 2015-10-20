@@ -1,0 +1,10 @@
+.sidebar-toggler {
+    margin-bottom: 10px;
+}
+.footer a {
+    color: #E02222;
+}
+.form-action-no-bg .form-actions {
+    background: transparent;
+    border: none;
+}

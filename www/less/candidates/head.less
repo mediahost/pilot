@@ -1,0 +1,171 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic-ext);
+
+#head {
+    border-bottom: 1px solid @headLine;
+    padding-top: 20px;
+    font-family: 'PT Sans', sans-serif;
+    .container {
+        width: @headWidth;
+    }
+    #logo { 
+        a.logo {
+            float: left;
+            display: block;
+            background: transparent url('@{pathImages}logo/logo3.png') top left no-repeat;
+            width: 387px;
+            height: 80px;
+        }
+    }
+    
+    #menu {
+        float: right;
+        padding-top: 13px;
+        padding-right: 15px;
+        .top-menu {
+            font-size: 15px;
+            .nav {
+                margin: 0px;
+                & > li {
+                    height: 40px;
+                    float: left;
+                    & > a {
+                        padding: 0px 15px;
+                        line-height: 41px;
+                        height: 40px;
+                        color: #3454A4;
+                        &:hover {
+                            background-color: #F0F0F0
+                        }
+                    }
+                    &.dropdown {
+                        & > .dropdown-toggle { 
+                            & > .badge {
+                                position: absolute;
+                                top: 3px;
+                                right: 5px;
+                                padding: 3px 6px;
+                            }
+                        }
+                    }
+                } 
+                .badge {
+                    &.badge-red {
+                        background-color: #D64635;
+                        color: #FFF;
+                    }
+                }
+                & > li.dropdown-extended {
+                    .dropdown-menu {
+                        margin: 0px;
+                        padding: 0px;
+                        min-width: 160px;
+                        max-width: 300px;
+                        width: 233px;
+                        background-color: #FFF;
+                        & > li  {
+                            p {
+                                padding: 10px;
+                                background-color: #F0F0F0;
+                                margin: 0px;
+                                font-size: 14px;
+                                color: #444;
+                                border-bottom: 1px solid #F5F5F5;
+                            }
+                            li.unread {
+                                background-color: #F0F0F0;
+                            }
+                            a {
+                                display: block;
+                                clear: both;
+                                line-height: 20px;
+                                font-size: 13px;
+                                padding: 10px;
+                                padding: 7px 10 5px 10px;
+                                border-bottom: 1px solid #F4F4F4;
+                                color: #666;
+                                text-decoration: none;
+                                &:hover {
+                                    background-color: #F5F5F5;
+                                    color: #000;
+                                }
+                                i {
+                                    padding-right: 5px;
+                                    &.success {
+                                        color: #45B6AF;
+                                    }
+                                    &.danger {
+                                        color: #F3565D;
+                                    }
+                                }
+                            }
+                            .photo {
+                                float: left;
+                                padding-right: 6px;
+                            }
+                            .subject {
+                                display: block;
+                                .from {
+                                    font-size: 14px;
+                                    color: #3454A4;
+                                }
+                                .time {
+                                    font-size: 12px;
+                                    font-style: italic;
+                                    position: relative;
+                                    float: right;
+                                    opacity: 0.8;
+                                    padding-right: 2px;
+                                }
+                            }
+                            .message {
+                                display: block;
+                                font-size: 12px;
+                                line-height: 14px;
+                            }
+                            &.external {
+                                a {
+                                    padding: 10px;
+                                    i {
+                                        margin-top: 3px;
+                                        float: right;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #langs {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 10px;
+        ul li {
+            float: left;
+            a {
+                display: block;
+                height: 24px;
+                width: 24px;
+                background-color: transparent;
+                background-position: center center;
+                background-repeat: no-repeat;
+                opacity: .6;
+                &:hover, &.active {
+                    opacity: 1;
+                }
+                &.english {
+                    background-image: url('@{pathImages}flags/english.png');
+                }
+                &.czech {
+                    background-image: url('@{pathImages}flags/czech.png');
+                }
+                &.slovakia {
+                    background-image: url('@{pathImages}flags/slovakia.png');
+                }
+            }
+        }
+    }
+}

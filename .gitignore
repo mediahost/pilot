@@ -1,0 +1,25 @@
+tmp/
+purge/
+www/foto/
+www/video_files/
+www/news/
+www/kcfinder/upload/
+www/tmp/
+www/pivotal/
+app/config/dibi/dibi_dev.neon
+app/config/facebook/facebook_dev.neon
+app/config/google/google_dev.neon
+app/config/services/services_dev.neon
+app/config/twitter/twitter_dev.neon
+app/config/config.local.neon
+doc/
+
+#################
+## NetBeans
+################
+nbproject/
+
+#################
+## PhpStorm
+################
+.idea

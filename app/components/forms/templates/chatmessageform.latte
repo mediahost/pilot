@@ -1,0 +1,36 @@
+{form $formName}
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    {if $form['text']->errors}
+                        {foreach $form['text']->errors as $error}
+                            <span class="error">{$error}</span>
+                        {/foreach}
+                    {/if}
+                    {input text}
+                </td>
+            </tr>
+            <tr>
+                <td class="notifications-setting">
+                    {if $showNotifySettings}
+                        {var $notify = $form['notification']->value}
+                        <strong>{_"Notifications"}:</strong>
+                        <label for="frmchatmessageform-notification-0">{_"disabled"}</label>
+                        <input type="radio" name="notification" id="frmchatmessageform-notification-0" class="chat-settings" value="0"{if $notify == 0} checked="checked"{/if}>
+                        <label for="frmchatmessageform-notification-1">{_"enabled"}</label>
+                        <input type="radio" name="notification" id="frmchatmessageform-notification-1" class="chat-settings" value="1"{if $notify == 1} checked="checked"{/if}>
+                        <label for="frmchatmessageform-notification-2">{_"by global setting"}</label>
+                        <input type="radio" name="notification" id="frmchatmessageform-notification-2" class="chat-settings" value="2"{if $notify == 2} checked="checked"{/if}>
+                        {if $globalSettingDestination}
+                            <a href="{plink $globalSettingDestination}">{_"global setting"}</a>
+                        {/if}
+                    {/if}
+                </td>
+                <td>
+                    {input send class => button}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{/form}

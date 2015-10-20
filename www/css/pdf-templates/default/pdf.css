@@ -1,0 +1,188 @@
+body {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+}
+table {
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+table.main tr th {
+    vertical-align: baseline;
+    width: 190px;
+    text-align: right;
+    padding-right: 15px;
+    font-weight: normal;
+}
+
+table.main tr th.headline {
+    color: #204f9b;
+}
+table.main tr th.headlineBig {
+    font-size: 14px;
+    color: #204f9b;
+    text-transform: uppercase;
+}
+table.main tr td.info {
+    vertical-align: baseline;
+    padding-top: 5px;
+}
+table.main tr td.photo {
+    width: 150px;
+    max-height: 150px;
+    vertical-align: top;
+    text-align: right;
+    padding: 0px;
+}
+table.main tr td table.address tr td.name {
+    font-size: 16px;
+    padding-top: -5px;
+    padding-bottom: 10px;
+}
+table.main tr td table.address tr td.nameSmall {
+    font-size: 14px;
+    padding-top: -1px;
+    padding-bottom: 2px;
+}
+table.main tr td table.address tr td.address {
+    background-image: url("/css/pdf-templates/default/address.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 22px;
+    height: 28px;
+}
+table.main tr td table.address tr td.phone {
+    background-image: url("/css/pdf-templates/default/phone.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 22px;
+    height: 28px;
+}
+table.main tr td table.address tr td.mail {
+    background-image: url("/css/pdf-templates/default/mail.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 22px;
+    height: 28px;
+}
+
+table.main tr td table.company {
+    margin-top: -2px;
+}
+table.main tr td table.company tr td.position {
+    color: #204f9b;
+    font-size: 14px;
+}
+
+table.main tr.separator td {
+    border-color: #032bdf;
+    border-width: 0px;
+    border-style: solid;
+    border-bottom-width: 2px;
+    text-align: right;
+    padding: 0px;
+    vertical-align: bottom;
+}
+table.main tr.separator td table {
+    width: 15px;
+}
+table.main tr.separator td table.block tr td {
+    margin: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #032bdf;
+    border-bottom-width: 0px;
+}
+table.main tr.emptySeparator td, table.main tr.emptySeparator th {
+    padding-bottom: 12px;
+}
+
+table.main tr.mainGrid td {
+    color: #204f9b;
+    text-transform: uppercase;
+    padding: 5px 0px;
+    text-align: center;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 1px;
+}
+table.main tr.subGrid td {
+    color: #204f9b;
+    padding: 5px 0px;
+    text-align: center;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 1px;
+}
+table.main tr.mainGrid td.left, table.main tr.subGrid td.left {
+    border-left-width: 0px;
+}
+table.main tr.mainGrid td.right, table.main tr.subGrid td.right {
+    border-right-width: 0px;
+}
+table.main tr.oddGrid td {
+    padding: 3px 0px;
+    text-align: center;
+}
+table.main tr.evenGrid td {
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 0px;
+    background-color: #eee;
+    text-transform: uppercase;
+    text-align: center;
+}
+table.main tr.notice td {
+    color: #204f9b;
+    font-size: 10px;
+}
+table.header td {
+    vertical-align: bottom;
+}
+table.header td.left {
+    background-image: url("/css/pdf-templates/default/title.png");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    width: 190px;
+}
+table.header td.middle {
+    color: #204f9b;
+    font-size: 12px;
+}
+table.header td.right1 {
+    height: 30px;
+    width: 30px;
+    background-color: #0000d5;
+}
+table.header td.right2 {
+    width: 3px;
+}
+table.header td.right3 {
+    height: 30px;
+    width: 30px;
+    background-color: #051878;
+}
+table.footer td.left1 {
+    height: 30px;
+    width: 30px;
+    background-color: #051878;
+}
+table.footer td.left2 {
+    width: 3px;
+}
+table.footer td.left3 {
+    height: 30px;
+    width: 30px;
+    background-color: #0000d5;
+}
+table.footer td.middle {
+}
+table.footer td.right {
+    height: 30px;
+    width: 30px;
+    background-color: #051878;
+}

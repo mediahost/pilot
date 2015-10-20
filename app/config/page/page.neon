@@ -1,0 +1,19 @@
+parameters:
+	lang:
+		default: en
+	pageInfo:
+		title: "source-code.com"
+		author: "Mediahost"
+		keywords: ""
+		description: ""
+		logoOg: "images/logo/logo-og.png"
+		robots: "index, follow"
+	KCFinder:
+		disabled: FALSE
+		uploadURL: "/kcfinder/upload/"
+		uploadDir: "upload"
+	logParams:
+		logDir: "../log"
+		filenameMask: "log-%%Y-%%m-%%d.log"
+		granularity: 604800 # 7 days
+		defaultLogLevel: INFO

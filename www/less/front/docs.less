@@ -1,0 +1,94 @@
+#docs {
+    .files {
+        padding-top: 20px;
+        .file {
+            display: block;
+            float: left;
+            width: 154px;
+            min-height: 100px;
+            margin-right: 20px;
+            margin-left: 20px;
+            &:nth-child(4n + 1) {
+                margin-left: 0px;
+            }
+            &:nth-child(4n) {
+                margin-right: 0px;
+            }
+            .thumbnail {
+                display: block;
+                .icon {
+                    display: block;
+                    margin: 0px auto;
+                    height: 64px;
+                    width: 64px;
+                    background-color: transparent;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+            }
+            .name {
+                display: block;
+                text-align: center;
+                padding-top: 5px;
+                font-size: 14px;
+            }
+            .actions {
+                margin: 0px auto;
+                width: 70px;
+                margin-bottom: 20px;
+                a {
+                    display: block;
+                    float: left;
+                    width: 30px;
+                    height: 30px;
+                    background-color: transparent;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    &.switch {
+                        &.public {
+                            background-image: url('@{pathImages}visible.png');
+                        }
+                        &.private {
+                            background-image: url('@{pathImages}invisible.png');
+                        }
+                        padding-right: 10px;
+                    }
+                    &.delete {
+                        background-image: url('@{pathImages}close.png');
+                    }
+                }
+                &:after {
+                    .cleaner();
+                }
+            }
+            &.jpg {
+                .thumbnail .icon {
+                    background-image: url('@{pathImages}files/jpg.png');
+                }
+            }
+            &.png {
+                .thumbnail .icon {
+                    background-image: url('@{pathImages}files/png.png');
+                }
+            }
+            &.pdf {
+                .thumbnail .icon {
+                    background-image: url('@{pathImages}files/pdf.png');
+                }
+            }
+        }
+        &:after {
+            .cleaner();
+        }
+    }
+    .actions-all {
+        text-align: right;
+        .delete-all {
+            display: inline-block;
+            padding-right: 21px;
+            background: transparent url('@{pathImages}erase.png') center right no-repeat;
+            height: 16px;
+            line-height: 16px;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+{snippet}
+    {form createAccountForm}
+        <div class="register">
+            
+            <ul class=error n:if="$form->errors">
+                <li n:foreach="$form->errors as $error">{$error}</li>
+            </ul>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    {input mail, class => 'form-control'}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    {input password, class => 'form-control'}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    {input password2, class => 'form-control'}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        {label terms}{input terms}{!$form['terms']->getLabel()->getHtml()}{/label}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 submit">
+                    {input $form['send'], class => 'btn btn-lg red'} {_"or"} <a href="{$loginLink}" class="button login-remote">{_"login"}</a> {_"if already a member"}
+                </div>
+            </div>
+
+        </div>
+    {/form}
+{/snippet}

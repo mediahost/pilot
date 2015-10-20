@@ -1,0 +1,62 @@
+.pageContent {
+    padding: 50px;
+    h2 {
+        font-size: @fontSizeH2;
+        padding-bottom: 20px;
+    }
+    .actions {
+        padding-bottom: 30px;
+        ul {
+            &:after {
+                .cleaner();
+            }
+            li {
+                float: left;
+                a {
+                    display: block;
+                    text-decoration: none;
+                    padding: 10px;
+                    color: @white;
+                    background-color: @black;
+                    margin-right: 10px;
+                    &.add, &.edit, &.undo {
+                        background-color: @black;
+                        background-repeat: no-repeat;
+                        background-position-x: 5px;
+                        background-position-y: center;
+                        padding-left: 35px;
+                    }
+                    &.add {
+                        background-image: url('@{pathImages}add.png');
+                    }
+                    &.edit {
+                        background-image: url('@{pathImages}edit.png');
+                    }
+                    &.undo {
+                        background-image: url('@{pathImages}undo.png');
+                    }
+                    &:hover {
+                        background-color: @red;
+                        text-shadow: 0 1px 1px rgba(0, 0, 0, .75);
+                    }
+                }
+            }
+        }
+    }
+    #editor {
+        //display: none;
+        border: 1px #e8e8e8 solid;
+        padding: 10px;
+        margin-bottom: 20px;
+        .close a {
+            float: right;
+            background: transparent url('@{pathImages}close.png') no-repeat center center;
+            display: block;
+            width: 24px;
+            height: 24px;
+        }
+        fieldset {
+            border: 1px #e8e8e8 solid;
+        }
+    }
+}

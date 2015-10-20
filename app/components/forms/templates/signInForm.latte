@@ -1,0 +1,45 @@
+{snippet}
+    {form signInForm}
+        <ul class=error n:if="$form->errors">
+            <li n:foreach="$form->errors as $error">{$error}</li>
+        </ul>
+
+        <div>
+
+            <div class="form-group">
+                <span class="help-block lost">
+                    <a class="lost" href="{$lostLink}">{_"Lost password?"}</a>
+                </span>
+            </div>
+
+            <div class="form-group">
+                {input username, class => 'form-control'}
+                <span class="help-block error" n:if="$form['username']->errors">
+                    {$input->errors|implode:' '}
+                </span>
+            </div>
+
+            <div class="form-group">
+                {input password, class => 'form-control'}
+                <span class="help-block error" n:if="$form['username']->errors">
+                    {$input->errors|implode:' '}
+                </span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-list">
+                    {label remember, class => 'checkbox-inline'}
+                        {input remember} {!$form['remember']->getLabel()->getHtml()}
+                    {/label}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="submit">
+                    {input $form['send'], class => 'btn green'} {_"or"} <a href="{$createLink}">{_"Create an account"}</a>
+                </div>
+            </div>
+
+        </div>
+    {/form}
+{/snippet}

@@ -1,0 +1,32 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Content:">{_"CMS"}</a>
+</li>
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Content:tips">{_"Hints & Tips"}</a>
+</li>
+{/block}
+
+{block breadcrumbActions}
+<a n:href="tips">
+    <button class="btn yellow">{_"Back to List"} <i class="fa fa-undo"></i></button>
+</a>
+{/block}
+
+{block content}
+<div class="row">
+    <div class="col-md-6">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i> {_"Hint"}
+                </div>
+            </div>
+            <div class="portlet-body form">
+                {control tipsForm}
+            </div>
+        </div>
+    </div>
+</div>

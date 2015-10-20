@@ -1,0 +1,44 @@
+@colorBasic: #3454a4;
+@colorBasicBorder: #3454a4;
+@colorCurrent: #3454a4;
+@colorShadow: #999999;
+@colorShadowBorder: #DDDDDD;
+
+.paginator-frame {
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.paginator {
+    margin: 1em 0;
+    font-size: 90%;
+}
+
+.paginator a, .paginator span {
+    margin-right: 0.1em;
+    padding: 0.2em 0.5em;
+    color: @colorShadow;
+    display: inline-block;
+    line-height: 16px;
+}
+
+.paginator a {
+    border: 1px solid @colorBasicBorder;
+    text-decoration: none;
+    color: @colorBasic;
+}
+
+.paginator span.button {
+    border: 1px solid @colorShadowBorder;
+}
+
+.paginator .end {
+    width: 70px;
+}
+
+.paginator .current, .paginator a:hover {
+    background: @colorCurrent;
+    border: 1px solid @colorCurrent;
+    color: white;
+    font-weight: bold;
+}

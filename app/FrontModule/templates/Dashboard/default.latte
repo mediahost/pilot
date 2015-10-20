@@ -1,0 +1,306 @@
+{block styles}
+<link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/assets/plugins/dropzone/css/dropzone.css">
+<link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/jquery.pagewalkthrough.min.css">
+{/block}
+
+{block scripts}
+<script src="{$basePath}/js/jqueryPlugins/jquery.pagewalkthrough.min.js"></script>
+<script src="{$basePath}/assets/plugins/dropzone/dropzone.min.js"></script>
+<script src="{$basePath}/assets/scripts/custom/form-dropzone.js"></script>
+<script type="text/javascript">
+    {ifset $timelineType}
+    initMyTimeline({$timelineType});
+    {/ifset}
+    $(document).ready(function() {
+        initTaggedMultiselect();
+        initMultiselectPlus();
+        initChosen();
+        initSlideToggle(".finder .main a.toggle", '.finder .advanced');
+        initRangeSlider("jobFinder");
+        $("td.filled .box").each(function () {
+            $(this).css("height", $(this).parent().css("height"));
+        });
+        FormDropzone.init();
+    });
+    initGroupTimeline("timeline", "works");
+</script>
+<script type="text/javascript" n:if="isset($showWalkThrough) && $showWalkThrough">
+	$(document).ready(function() {
+		// Set up tour
+		$('body').pagewalkthrough({
+			name: 'introduction',
+			buttons: {
+				jpwFinish: {
+					i18n: 'Try it &#10004;'
+				}
+			},
+			steps: [
+				{
+			   popup: {
+				   content: '#walkthrough-1',
+				   type: 'modal'
+			   }
+			}, {
+				wrapper: '#guide-1',
+				popup: {
+					content: '#walkthrough-2',
+					type: 'tooltip',
+					position: 'right'
+				}
+			}, {
+				wrapper: '#guide-4',
+				popup: {
+					content: '#walkthrough-3',
+					type: 'tooltip',
+					position: 'left',
+				}
+			}, {
+				wrapper: '#guide-profile',
+				popup: {
+					content: '#walkthrough-4',
+					type: 'tooltip',
+					position: 'bottom'
+				}
+			}, {
+				wrapper: '#guide-6',
+				popup: {
+					content: '#walkthrough-5',
+					type: 'tooltip',
+					position: 'top'
+				}
+			}, {
+				wrapper: '#guide-2',
+				popup: {
+					content: '#walkthrough-6',
+					type: 'tooltip',
+					position: 'left'
+				}
+			}, {
+				wrapper: '#guide-3',
+				popup: {
+					content: '#walkthrough-7',
+					type: 'tooltip',
+					position: 'right'
+				}
+			}, {
+				wrapper: '#guide-5',
+				popup: {
+					content: '#walkthrough-8',
+					type: 'tooltip',
+					position: 'top'
+				}
+			}]
+		});
+
+		// Show the tour
+		$('body').pagewalkthrough('show');
+	});
+</script>
+{/block}
+
+
+
+{block content}
+
+<div class="container" id="dashboard">
+
+    <div id="timeline" n:ifset="$timelineType">
+        <div n:snippet="timeline">
+            <div id="mytimeline"></div>
+        </div>
+    </div>
+
+    <div class="rest">
+        <div class="rest">
+            {ifset $action}
+                {if $action === "default"}
+                {include #blocks}
+                {else}
+                {includeblock ($action.".latte")}
+                {include #restContent}
+                {/if}
+            {/ifset}
+        </div>
+
+        <div class="cleaner"></div>
+    </div>
+</div>
+{/block}
+
+{define #blocks}
+
+<table id="blocks">
+    <tr>
+        <td>
+            <div class="block" id="guide-1">
+                <h3><a n:href="Cv:">{_"CV Generator"}</a></h3>
+                <div class="list">
+                    <ul n:if="!empty($cvs)">
+                        <li n:foreach="$cvs as $cv">
+                            <a n:href="Cv: $cv->id">
+                                <span>{if empty($cv->name)}<i>{_"no name"}</i>{else}{$cv->name|truncate:50}{/if}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li n:if="count($cvs) > ($listCount-1)"><a n:href="Cv:"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block" id="guide-2">
+                <h3><a n:href="Dashboard:videoProfile">{_"Video Profile"}</a></h3>
+                <div class="list">
+                    <ul>
+                        <li>
+                            {if $step == 'fill identity'}
+                                <a n:href="videoProfile">Create your video profile</a>
+                            {elseif $step == 'do interview'}
+                                <a href="{$link}">Create your video profile</a>
+                            {elseif $step == 'review interview'}
+                                <a n:href="videoProfile">View your video profile</a>
+                            {/if}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="block" id="guide-3">
+                <h3><a n:href="Dashboard:jobs">{_"Matched Jobs"}</a></h3>
+                {var $jobsCount = count($jobs)}
+				<div class="list" n:if="$jobsCount == 0">
+					{_'You will be notified of live positions matching your profile here.'}
+				</div>
+                <div class="list" n:snippet="jobsList" n:if="$jobsCount > 0">
+                    <ul>
+                        <li n:foreach="$jobs as $job"><a n:href="Jobs:show $job->code"><span>{$job->name|truncate:60}</span></a></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li>
+                            <a n:href="Dashboard:jobs"><span>{_"show all"}...</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block" id="guide-4">
+	            {*
+                <h3><a n:href="Dashboard:recentActions">{_"My Recent Actions"}</a></h3>
+                <div class="list">
+                    <ul n:if="!empty($recentActions)">
+                        <li n:foreach="$recentActions as $recentAction">
+                            <span class="date">{$recentAction->datetime|date:"d/m/Y H:i"}</span>
+                            {if $recentAction->link}<a href="{$recentAction->link}">{/if}
+                                <span>{_$recentAction->action}{if $recentAction->name} ({!$recentAction->name}){/if}</span>
+                            {if $recentAction->link}</a>{/if}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li n:if="count($recentActions) > ($listCount-1)"><a n:href="Dashboard:recentActions"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+                *}
+                <h3><a n:href="Dashboard:recentActions">{_"Your social network profile"}</a></h3>
+                <div class="social-links-form">
+	                {control socialLinksForm}
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="block" id="guide-5">
+                <h3><a n:href=":Front:Dashboard:messages">{_"Employer Messages"}</a></h3>
+                <div class="list">
+                    <ul n:if="$defaultCv->isCompleted()">
+                        <li n:foreach="$lastChats as $lastChat">
+                            <a n:href="Dashboard:chat $lastChat->id">{$lastChat->companyName|truncate:30}</a>
+                            <span>{$lastChat->lastMessage|truncate:35}</span>
+                        </li>
+                    </ul>
+                    <ul n:if="!$defaultCv->isCompleted()">
+                        <li>
+                            {_"You have incompleted profile"}
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li n:if="$defaultCv->isCompleted()"><a n:href="Dashboard:messages"><span>{_"show all"}...</span></a></li>
+                        <li n:if="!$defaultCv->isCompleted()"><a n:href="Dashboard:profile"><span>{_"visit profile"}</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="block" id="guide-6">
+                <h3><a n:href="Dashboard:docs">{_"Saved Career Docs"}</a></h3>
+                <div class="list">
+                    <ul n:if="count($docs)">
+                        <li n:foreach="$docs as $doc">
+                            <a href="{$basePath}/docs/{$doc->name}" target="_blank">{$doc->originalName}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><a n:href="Dashboard:docs"><span>{_"show all"}...</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div class="cleaner"></div>
+
+<div id="walkthrough-content" style="display:none;" n:if="isset($showWalkThrough) && $showWalkThrough">
+	<div id="walkthrough-1">
+        <p>{_'Welcome to your Source-Code Dashboard, your career management tool to help match you with great opportunities around Europe. '}</p>
+	</div>
+
+	<div id="walkthrough-2">
+        <p>{_'First, create your ‘Europass formatted’ CV here so companies can review and contact you'}</p>
+	</div>
+
+	<div id="walkthrough-3">
+        <p>{_'Then, add your Stack Overflow. Github, LinkedIn, Twitter or Facebook links here to bring more depth to your profile.'}</p>
+	</div>
+
+	<div id="walkthrough-4">
+        <p>{_'Click here to see your Source-Code profile link. This is what employers on Source-Code see.'}</p>
+	</div>
+
+	<div id="walkthrough-5">
+        <p>{_'If you want to upload any other documents (references, certifications etc.) you can add them here for the employer to review.'}</p>
+	</div>
+
+	<div id="walkthrough-6">
+        <p>{_'You can upload your video profile here to attract more interest from companies.'}</p>
+	</div>
+
+	<div id="walkthrough-7">
+        <p>{_'This is the job centre where you can click and apply directly to employers around Europe.'}</p>
+	</div>
+
+	<div id="walkthrough-8">
+        <p>{_'Here you can respond to messages from interested employers.'}</p>
+	</div>
+</div>
+{/define}

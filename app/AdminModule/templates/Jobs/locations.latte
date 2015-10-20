@@ -1,0 +1,21 @@
+{block breadcrumbThis}
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Jobs:">{_"Jobs"}</a>
+</li>
+<li>
+    <span class="fa fa-angle-right"></span>
+    <a n:href="Jobs:category">{_"Categories"}</a>
+</li>
+{/block}
+
+{block breadcrumbActions}
+<a n:href="editLocation">
+    <button class="btn green">{_"Add item"} <i class="fa fa-plus"></i></button>
+</a>
+{/block}
+
+{block content}
+<div class="pageContent">
+    {control locationsGrid}
+</div>

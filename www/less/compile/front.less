@@ -1,0 +1,185 @@
+// source-code.com - front
+
+@pathImages: "../../images/";
+//@pathImages: "../images/";
+@import "../../css/reset.css";
+//@import "reset.css";
+
+//@green: #4aa046;
+@green: #3454a4; // footer
+@darkGreen: #5B8DF3; // dark green - input border
+@fontGreen: #3454a4; // fontGreen
+@lightGreen: #51AA4B; // bottom links
+@signInFormGreen: #40853D; // form green
+@gray: #6f6f6f; // menu font
+@lightGray: #dfdfdf; // head bottom line
+@textLightGray: #909090; // gray for job list
+@verylightGray: #f6f6f6; // cv tabs
+@darkGray: #3f3f3f; // font
+@blueGray: #cbeafb; // references
+@panelGray: #f6f6f6; // gray for panels
+@paginatorGray: #999a9a; // gray for paginator
+@linkGray: #555555; // gray for sitemap tree links
+@borderGray: #c9c9c9; // gray for cv borders
+@bgGray: #f0f0f0; // gray for cv background
+@labelGray: #7f7f7f; // cv label gray
+@white: #ffffff;
+@black: #222222;
+@red: #9F0013;
+@redLight: #F2ADB5;
+
+@fontSizeNormal: 12px;
+@fontSizeMiddle: 14px;
+@fontSizeUpper: 16px;
+@fontSizeBig: 18px;
+@fontSizeBiger: 20px;
+@fontSizeLarge: 38px;
+@fontColor: @darkGray;
+@background: #ffffff;
+@font: "Trebuchet MS", Helvetica, Arial;
+
+@timeTransitionLink: 200ms;
+
+@containerWidth: 1000px;
+@footerWidth: @containerWidth;
+@headWidth: @containerWidth;
+
+@linkColor: @gray;
+@headLine: @lightGray;
+
+@flashBlack: @black;
+@flashWhite: @white;
+@flashOpacity: .9;
+
+// FUNCTIONS /////
+@import "../functions.less";
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    font-family: @font;
+    background: @background;
+    color: @fontColor;
+    font-size: @fontSizeNormal;
+    width: 100%;
+    height: 100%;
+}
+a {
+    color: @fontGreen;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:not(.ui-slider-handle):not(.search-choice-close) {
+    .transition(@timeTransitionLink, ~"padding|opacity|color|background");
+}
+a.button, input.button {
+    border: none;
+    display: inline-block;
+    padding: 5px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    .rounded();
+}
+a[href^="error:"] {
+    background: red;
+    color: white;
+}
+textarea {
+    font-family: @font;
+}
+
+.cleaner:after {
+    .cleaner();
+}
+
+.container {
+    margin: 0px auto;
+}
+
+/*** CONTENT ***/
+#page .container,
+#sitemap .container {
+    width: @containerWidth;
+}
+#page p {
+    font-size: @fontSizeMiddle;
+    line-height: @fontSizeMiddle+2;
+}
+
+.multilevel-list {
+    > li {
+        > ul {
+            > li {
+                list-style-type: circle;
+                margin-left: 15px;
+            }
+            > li:last-child {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+/*** HEAD ***/
+@import "../front/head.less";
+
+/*** FLASH MESSAGES ***/
+@import "../front/flashMessages.less";
+
+/*** PAGINATOR ***/
+@import "../front/paginator.less";
+
+/*** AJAX ***/
+@import "../front/ajax.less";
+
+/*** FOOTER ***/
+@import "../front/footer.less";
+
+/*** MAIN PAGE ***/
+@import "../front/mainPage.less";
+@import "../front/modules.less";
+
+/*** JOBS ***/
+@import "../front/jobs.less";
+
+/*** FORUM ***/
+@import "../front/forum.less";
+
+/*** BLOG ***/
+@import "../front/blog.less";
+
+/*** DASHBOARD ***/
+@import "../front/dashboard.less";
+
+/*** VIDEO PROFILE ***/
+@import "../front/videoProfile.less";
+
+/*** CV GENERATOR ***/
+@import "../front/cv.less";
+@import "../front/forms.less";
+
+/*** INNER PAGES ***/
+@import "../front/inner.less";
+
+/*** PLUGINS ***/
+@import "../front/multiSelectTag.less";
+@import "../front/multiSelectPlus.less";
+
+/*** MESSAGES ***/
+@import "../front/messages.less";
+
+/*** DOCS ***/
+@import "../front/docs.less";
+
+@import "../front/profile.less";
+
+@import "../chat.less";
+@import "../general-notes.less";
+@import "../settings.less";
+
+@import "../candidates/candidates.less";

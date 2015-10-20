@@ -1,0 +1,20 @@
+{snippet}
+    {form addCompanyPicsForm}
+    {$form->render('errors')}
+    {/form}
+
+    {snippet pics}
+        <ul n:if="count($company->getPictures())" class="pics">
+            <li n:foreach="$company->getPictures() as $pic">
+                <div>
+                    <img src="{$basePath}/foto/150-150/companypicture/{$pic}.png" alt="">
+                    <a class="delete"
+                       href="{$presenter->link('deleteCompanyPicture!', $pic)}" 
+                       title="{_"delete"}">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    {/snippet}
+
+{/snippet}

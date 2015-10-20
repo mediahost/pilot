@@ -1,0 +1,21 @@
+parameters:
+	disableJsLessCompiler: FALSE
+
+dibi:
+	host: 127.0.0.1
+	database: comeback_ie
+	username: root
+	password: ''
+
+includes:
+	- facebook/facebook_dev.neon
+	- twitter/twitter_dev.neon
+	- google/google_dev.neon
+	- services/services_dev.neon
+	
+nette:
+	debugger:
+		strictMode: true
+		bar:
+			- JanDrabek\MailPanel\MailPanel
+			- @sessionPanel

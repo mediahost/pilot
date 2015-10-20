@@ -1,0 +1,17 @@
+{layout '@emailLayout.latte'}
+
+{block content}
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    {_"You have a new message on SOURCE-CODE from"} {$from}:
+                </p>
+                <p n:if="$jobLink">THIS IS APPLY FOR A JOB NAMED: {$jobLink}</p>
+                <p>{$text}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{/block}

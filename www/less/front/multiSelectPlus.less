@@ -1,0 +1,20 @@
+.tagged-multiselect-replace {
+    overflow-y: scroll;
+    border: 1px #d1d1d1 solid;
+    padding: 5px;
+    ul li {
+        line-height: 16px;
+        &.tagged-multiselect-item {
+            cursor: default;
+            &.selected {
+                background-color: #d1d1d1;
+            }
+        }
+        label {
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 15px;
+        }
+    }
+}

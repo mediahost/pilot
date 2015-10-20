@@ -1,0 +1,28 @@
+{define #restContent}
+<div class="restContent chat chat-list">
+    <h1>{_"Messages"}</h1>
+    <div class="items" n:if="count($chats)">
+        <a n:foreach="$chats as $chat" 
+           n:class="item, $chat->isUnreedByUser() ? unread" 
+           n:href="chat $chat->id">
+            <div class="photo">
+                <img src="{$basePath}/foto/50-50/company/{$chat->companyId}.png" alt="company avatar" />
+            </div>
+            <div clas="box">
+                <div class="name">
+                    {$chat->companyName}
+                </div>
+                <div class="text">
+                    {$chat->lastMessage|truncate:75}
+                </div>
+                <div class="time">
+                    {$chat->lastUpdate|date:'d.m.Y H:i'}
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="noItems" n:if="!count($chats)">
+        {_"No messages"}
+    </div>
+</div>
+{/define}

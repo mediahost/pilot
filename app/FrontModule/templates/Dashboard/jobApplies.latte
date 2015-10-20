@@ -1,0 +1,27 @@
+{define #restContent}
+<div class="restContent">
+    {ifset $list}
+    <ul>
+        <li n:foreach="$list as $item">
+            <div n:class="jobApply, $item->id == $activeId ? active">
+                <h3>
+                    {if $item->jobId}<a n:href="Jobs:show $item->jobId">{$item->position}</a>
+                    {else}{$item->position}{/if}
+                </h3>
+                
+                <p class="info">
+                    <span class="date">{$item->datetime->format("d.m.Y")}</span>
+                    {*| 
+                    <span class="reciever"><a href="mailto:{$item->reciever}">{$item->reciever}</a></span>*}
+                </p>
+                
+                <p><span class="subject">{$item->subject}</span></p>
+                <p class="text">{$item->text}</p>
+            </div>
+        </li>
+    </ul>
+    {else}
+        
+    {/ifset}
+</div>
+{/define}

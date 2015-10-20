@@ -1,0 +1,13 @@
+<div>
+    {form step12Form}
+        {if $cv->photo}
+            <table>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td><img src="{$basePath}/foto/150-150/cvImages/{$cv->photo}?{? echo time()}" alt="{$cv->name}" /></td>
+                </tr>
+            </table>
+        {/if}
+        {$form->render()}
+    {/form}
+</div>

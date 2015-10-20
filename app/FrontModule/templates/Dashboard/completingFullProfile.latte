@@ -1,0 +1,19 @@
+{define #restContent}
+<div class="restContent completing">
+    <h1>{_"Required CV items for displaying in company section"}</h1>
+    {if $cv}
+        <ul>
+            <li n:foreach="$cv->getRequirementsList() as $requirement"
+                n:class="$requirement[1] ? yes : no">
+                {$requirement[0]}: <span class="icon"></span>
+            </li>
+        </ul>
+    {else}
+        <ul>
+            <li class="no">
+                {_"At least one CV is required"}: <span class="icon"></span>
+            </li>
+        </ul>
+    {/if}
+</div>
+{/define}

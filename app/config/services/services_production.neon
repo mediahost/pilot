@@ -1,0 +1,14 @@
+services:
+	translator:
+		factory: NetteTranslator\Gettext::getTranslator
+		setup: 
+			- addFile(%appDir%/lang/front, front)
+			- addFile(%appDir%/lang/admin, admin)
+
+nette:
+	mailer:
+		smtp: true
+		host: mail.source-code.com
+		username: info@source-code.com
+		password: mediahost567glen
+		secure: ssl

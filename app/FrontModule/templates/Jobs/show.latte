@@ -1,0 +1,121 @@
+{block content}
+
+<div class="container" id="job">
+
+    <h2>{_"Position offer"}</h2>
+
+    <div class="offer" n:if="$job->id">
+        <h3>{$job->name}</h3>
+        {if $user->isLoggedIn()}
+            {if $user->isCompany()}
+                <a n:href=":Company:Homepage:matched $job->id" class="back">{_"Back"}</a>
+            {else}
+                <a n:href=":Front:Dashboard:jobs" class="back">{_"Back"}</a>
+            {/if}
+        {/if}
+        {if $cv && $cv->isCompleted()}
+            {if $job->applyed}
+                <div class="applyed">{_"Applied"}</div>
+            {else}
+                <a n:href="Inner:jobApply $job->id" class="apply innerPage" data-text-after-click="{_"Applied"}">{_"Apply"}</a>
+            {/if}
+        {/if}
+        <p class="subtitle">
+            {$job->company} | {$job->locations|implodeMy:", "}
+            {if $job->salary_from || $job->salary_to}
+                |
+                {if $job->salary_from}{_"from"} {$job->salary_from|currency:$job->currencySymbol}{/if}
+                {if $job->salary_to}{_"to_"} {$job->salary_to|currency:$job->currencySymbol}{/if}
+            {/if}
+        </p>
+
+        <div n:if="$job->description != ''" class="description">{!$job->description}</div>
+
+        <h4>{_"Offer"}</h4>
+        <div class="description">
+            <ul>
+                <li n:foreach="$offers as $o">{$o}</li>
+            </ul>
+        </div>
+
+        <h4>{_"Requirements"}</h4>
+        <div class="description">
+            <ul>
+                <li n:foreach="$requirments as $r">{$r}</li>
+            </ul>
+        </div>
+
+        <h4>{_"Required IT skills"}</h4>
+        <div class="description">
+            <ul class="multilevel-list">
+                {var last => NULL}
+                {foreach $skills as $category => $categorySkills}
+                    <li>
+                        <b>{$category}</b>
+                        <ul>
+                            <li n:foreach="$categorySkills as $skill">
+                                {$skill->name} <small>({$skill->scale} - {$skill->years} {_"year", $skill->years})</small>
+                            </li>
+                        </ul>
+                    </li>
+                {/foreach}
+            </ul>
+        </div>
+
+        {if $job->summary != ''}
+        <h4>{_"Summary"}</h4>
+        <div class="description">{!$job->summary}</div>
+        {/if}
+        
+        {if $job->hasQuestions()}
+        <h4>{_"Pre-Screening Questions"}</h4>
+        <div class="description">
+            <ul>
+                <li n:foreach="$job->getQuestions() as $questions">{$questions}</li>
+            </ul>
+        </div>
+        {/if}
+
+        <div class="info">
+            <table>
+                <tr>
+                    <th>{_"Reference number"}:</th>
+                    <td>{$job->ref_num}</td>
+                </tr>
+                <tr>
+                    <th>{_"Salary"}:</th>
+                    <td>
+                        {if $job->salary_from && $job->salary_to}
+                            {$job->salary_from|currency:$job->currencySymbol} - {$job->salary_to|currency:$job->currencySymbol}
+                        {elseif $job->salary_from}
+                            {_"from"} {$job->salary_from|currency:$job->currencySymbol}
+                        {elseif $job->salary_to}
+                            {_"to"} {$job->salary_to|currency:$job->currencySymbol}
+                        {else}
+                            {_"not inserted"}
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{_"Location"}:</th>
+                    <td>{$job->locations|implodeMy:", "}</td>
+                </tr>
+                <tr>
+                    <th>{_"Work type"}:</th>
+                    <td>{$job->getJobType()}</td>
+                </tr>
+                <tr>
+                    <th>{_"Category"}:</th>
+                    <td>{$job->category}</td>
+                </tr>
+                <tr>
+                    <th>{_"Date added"}:</th>
+                    <td>{$job->datecreated|dateLang:$lang}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div n:if="!$job->id">{_"Requested offer is no longer available."}</div>
+
+</div>

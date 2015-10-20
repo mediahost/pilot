@@ -1,0 +1,47 @@
+{snippet}
+{form jobFilterForm}
+{$form->render('errors')}
+
+<div class="finder">
+    <div class="main">
+        <h4>{label text /}</h4>
+        <p>{input text} {input fast_search}</p>
+        <h4>{_"Your Presets for Smart Searcher"}</h4>
+        <p><a href="#" class="toggle">{_"edit smart criterion"}</a> {input smart_search}</p>
+    </div>
+    <div class="advanced">
+        <table>
+            <tr>
+                <th>{label location/}</th>
+                <th>{label tag/}</th>
+                <th>{label education/}</th>
+                <th>{label jobtype/}</th>
+            </tr>
+            <tr>
+                <td>{input location}</td>
+                <td>{input tag}</td>
+                <td>{input education}</td>
+                <td>{input jobtype}</td>
+            </tr>
+            
+            <tr>
+                <th>{label category/}</th>
+                <th>{label position/}</th>
+                <th colspan="2">{_"Salary"}</th>
+            </tr>
+            <tr>
+                <td>{input category}</td>
+                <td>{input position}</td>
+                <td colspan="2" class="salary">
+                    <div class="checkbox">{input salary}{label salary/}</div>
+                    <div id="sallaryBox">
+                        <div>{input min}<span class="separator">-</span>{input max} {_"€"}</div>
+                        <div><div id="rangeSlider"></div></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{/form}
+{/snippet}

@@ -1,0 +1,74 @@
+{snippet filter}
+{form candidatesFilterForm}
+{$form->render('errors')}
+
+<div class="finder">
+    
+    <div class="main">
+        <h4>{label text /}</h4>
+        <p>{input text} {input search}</p>
+    </div>
+    
+    <div class="langs">
+        <div n:foreach="$skills as $skillCategory => $skillItems" class="group">
+            <h3 class="headline">{$skillCategory}</h3>
+            <div class="items">
+                <table>
+                    <tbody>
+                    {foreach $skillItems as $skillGroupName => $skillGroup}
+                        <tr n:if="$skillGroupName">
+                            <td colspan="2"><h4 class="headline">{$skillGroupName}</h4></td>
+                        </tr>
+                        {foreach $skillGroup as $skillId => $skillName}
+                        <tr>
+                            {var $container => $form["skills"][$skillId]}
+                            {var $scale => $container->components["scale"]}
+                            {var $number => $container->components["number"]}
+                            <th>{label $scale }{$skillName}{/label}</th>
+                            <td>
+                                <div class="pair">
+                                    <div class="select">
+                                        {input $scale}
+                                    </div>
+                                    <div class="number">
+                                        {label $number /}
+                                        {input $number}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+                    
+    {snippet selected}
+    <div class="chosen-container chosen-container-multi selected" n:if="count($selectedSkills) || isset($selectedText)">
+        <ul class="chosen-choices">
+            <li class="search-choice" n:ifset="$selectedText">
+                <span><span class="capital">{_"Contain"}</span>: {$selectedText|truncate:20}</span>
+                <a n:href="removeCriterion! 'text'" class="ajax search-choice-close"></a>
+            </li>
+            <li class="search-choice" n:foreach="$selectedSkills as $selectedId => $selectedValue">
+                <span>{$selectedValue->name|truncate:25}: 
+                    {$selectedValue->level|truncate:6:'.'}{if $selectedValue->year > 0} ({_"%s year", $selectedValue->year}){/if}</span>
+                <a n:href="removeCriterion! $selectedId" class="ajax search-choice-close"></a>
+            </li>
+        </ul>
+    </div>
+    {/snippet}
+    
+    <div class="reset">
+        <a n:href="resetCriterion!" class="ajax button"><span>{_"Reset"}</span></a>
+    </div>
+    
+    
+    <div class="cleaner"></div>
+    
+</div>
+{/form}
+{/snippet}

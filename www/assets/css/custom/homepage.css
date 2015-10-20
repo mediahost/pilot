@@ -1,0 +1,6 @@
+.btn.red {	
+    background-color: #df4747;
+    :hover {
+        background-color: #d83131 !important;
+    }
+}

@@ -1,0 +1,22 @@
+{define rest}
+<div class="restContent">
+    <div class="filter">
+    </div>
+    
+    <div class="cleaner"></div>
+
+    {if $favorites}
+    <div class="list">
+        {includeblock "blocks.latte"}
+        {include #candidates, candidates => $favorites, isFavorite => TRUE}
+    </div>
+
+    <div class="paginator-frame">{control vp}</div>
+    
+    {else}
+    <div class="noItems">
+        {_"No favourites candidates."}
+    </div>
+    {/if}  
+</div>
+{/define}

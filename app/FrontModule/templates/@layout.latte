@@ -1,0 +1,128 @@
+{**
+ * Source Code layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ * @param array    $pageInfo informations about page
+ *}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="{_$pageInfo->author}" />
+        <meta name="keywords" content="{_$pageInfo->keywords}" />
+        <meta name="description" content="{_$pageInfo->description}">
+        <meta name="robots" content="{$robots}" n:ifset="$robots">
+
+        <title>{block title|striptags|upper}{_$pageInfo->title}{/block}</title>
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/jquery-ui/comeback/jquery-ui-1.10.1.custom.min.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/jquery-ui/jquery.powertip.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/colorbox/theme2/colorbox.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/chosen/chosen.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/timeline/timeline.css">
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/simple-line-icons/simple-line-icons.min.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/select2/select2.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/plugins/jstree//dist/themes/default/style.min.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/css/components.css">
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/fassets/css/plugins.css">
+
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/front.css?{? echo time()}">
+        <link rel="stylesheet" type="text/css" media="print" href="{$basePath}/css/print.css">
+        <link rel="stylesheet/less" type="text/css" n:if="$pageInfo->jsLessCompile" media="screen,projection,tv" href="{$basePath}/less/compile/front.less" />
+        <link rel="stylesheet" type="text/css" media="screen,projection,tv" href="{$basePath}/css/pdf-templates/{$cvTemplateName}/preview.css" n:ifset="$cvTemplateName">
+	{block styles}{/block}
+
+        <link rel="shortcut icon" href="{$basePath}/favicon.png" type="image/x-icon">
+
+        <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+
+        <meta property="og:title" content="{_$pageInfo->title}" />
+        <meta property="og:description" content="{_$pageInfo->description}" />
+        <meta property="og:url" content="{link //this}" />
+        <meta property="og:locale" content="{$pageInfo->locale}" />
+        <meta property="og:image" content="{$pageInfo->url->hostUrl}{$basePath}/{$pageInfo->logoOg}" />
+    </head>
+
+    <body id="front-module-body">
+        {includeblock 'container.latte'}
+
+        <!-- CONTAINER -->
+        {include #container}
+        <!-- /CONTAINER -->
+
+        <!-- SCRIPTS -->
+	{block mainScripts}
+        <script type="text/javascript" src="{$basePath}/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.localization.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.livequery.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.slidesjs.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.selectToUISlider.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.transit.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.maxlength.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.powertip-1.1.0.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.colorbox.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.chosen.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.nette.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.ajaxform.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/jssc/include.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/watermark.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/google/google-jsapi.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/timeline/timeline-min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/timeline/timeline-locales.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/live-form-validation.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/appFunctions.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/common.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/previewFunctions.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/activity/candidates.js"></script>
+
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/select2/select2.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/plugins/jstree/dist/jstree.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/metronic.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/table-managed.js"></script>
+        <script type="text/javascript" src="{$basePath}/fassets/scripts/init.js"></script>
+
+        <script>
+            var basePath = {$basePath};
+            var lang = {$lang};
+             $Spelling.SpellCheckAsYouType('textareas');
+        </script>
+        <script type="text/javascript" n:if="$pageInfo->jsLessCompile" src="{$basePath}/js/less-1.3.3.min.js"></script>
+        <script type="text/javascript" n:if="$pageInfo->jsLessCompile">
+        less = {
+            env: "development",
+            poll: 500
+        };
+        </script>
+        <script>
+            (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=309752529162370&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+		<!-- Start of Async HubSpot Analytics Code -->
+		<script type="text/javascript">
+			(function(d,s,i,r) {
+				if (d.getElementById(i)){ return;}
+				var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+				n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/511667.js';
+				e.parentNode.insertBefore(n, e);
+			})(document,"script","hs-analytics",300000);
+		</script>
+		<!-- End of Async HubSpot Analytics Code -->
+	{/block}
+	{block scripts}{/block}
+        <!-- /SCRIPTS -->
+    </body>
+</html>

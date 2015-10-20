@@ -1,0 +1,53 @@
+<div class="messages">
+    <div class="items" n:if="count($notes)" n:snippet="notes">
+        <div n:foreach="$notes as $note" class="item">
+            <div class="photo">
+                {if $note->admin_id} {*send by admin or company*}
+                    <img src="{$basePath}/foto/32-32/photo/{$note->admin_id}.png" alt="company avatar" />
+                {else}
+                    <img src="{$basePath}/foto/32-32/company/{$company->id}.png" alt="company avatar" />
+                {/if}
+            </div>
+            <div class="box">
+                <div class="name">
+                    {if $note->admin_id}
+                        {ifset $admins[$note->admin_id]}{$admins[$note->admin_id]}{else}{_'SourceCode admin'}{/ifset}
+                    {else}
+                        <a href="{plink :CompanyProfile:Homepage:default $company->slug}">{$job->company}</a>
+                    {/if}
+                </div>
+                <div class="time">
+                    {if $adminId || !$note->admin_id}
+                        <a n:href="edit! $note->id" class="ajax">edit</a>
+                        <a n:href="delete! $note->id" onclick="javascript:return confirm({_"Are you sure? This note will be deleted."});">delete</a>
+                    {/if}
+                    {$note->created|date:'d.m.Y H:i'}
+                </div>
+                <div class="text">
+                    {if $editNoteId == $note->id}
+                        {control editForm-$note->id}
+                    {else}
+                        {!$note->note|escape|nl2br}
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="noItems" n:if="!count($notes)">
+        {_"No notes"}
+    </div>
+    <div class="window">
+        {form addForm}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{input note}</td>
+                    </tr>
+                    <tr>
+                        <td>{input add}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {/form}
+    </div>
+</div>

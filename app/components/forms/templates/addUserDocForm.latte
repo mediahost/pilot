@@ -1,0 +1,31 @@
+{snippet}
+    {form addUserDocForm}
+    {$form->render('errors')}
+    {/form}
+
+    {snippet files}
+        <ul n:if="count($docs)" class="files">
+            <li n:foreach="$docs as $doc" n:class="file, $doc->type">
+                <a href="{$basePath}/docs/{$doc->name}" target="_blank" class="thumbnail">
+                    <span class="icon"></span>
+                </a>
+                <span class="name">{$doc->filename|truncate:15}{$doc->ext|truncate:5:''}</span>
+                <div class="actions">
+                    <a href="{$presenter->link('switchDocVisibility!', $doc->id)}" 
+                       title="{if $doc->public}{_"public"}{else}{_"private"}{/if} - {_"switch to"} {if $doc->public}{_"private"}{else}{_"public"}{/if}" 
+                       n:class="switch, $doc->public ? public : private"
+                       ></a>
+                    <a class="delete"
+                       href="{$presenter->link('deleteDoc!', $doc->id)}"
+                       title="{_"delete"}"
+                       ></a>
+                </div>
+            </li>
+        </ul>
+
+        <div n:if="count($docs)" class="actions-all">
+            <a class="delete-all" href="{$presenter->link('deleteAllDocs!')}">delete all</a>
+        </div>
+    {/snippet}
+
+{/snippet}

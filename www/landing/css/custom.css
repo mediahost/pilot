@@ -1,0 +1,165 @@
+/*!---------- PLACE YOUR CUSTOM STYLES AND OVERRIDES HERE ----------*/
+
+#flashMessages {
+	position: absolute;
+	width: 100%;
+}
+
+form .form-control-error {
+	border-color: #A83A3A !important;
+	color: #A83A3A;
+}
+.form-error-message {
+	color: white;
+	background-color: #A83A3A;
+}
+
+form.inline .mail, form.inline .password, form.inline .password2 {
+	border-radius: 0px;
+}
+form.inline .mail {
+}
+form.inline .password {
+	line-height: 50px;
+	padding-left: 16px;
+	border: 1px solid #EEE;
+	background: #FFF;
+	font-size: 16px;
+	color: #888;
+	font-weight: 400;
+	border-left: 1px solid #eee;
+	margin-right: 1px;
+	margin-left: 4px;
+}
+form.inline .password2 {
+	line-height: 50px;
+	padding-left: 16px;
+	border: 1px solid #EEE;
+	background: #FFF;
+	font-size: 16px;
+	color: #888;
+	font-weight: 400;
+}
+form.inline .form-error-message {
+	display: block;
+	margin: 2px 3px;
+	border-radius: 3px;
+}
+form.inline .form-error-message:nth-of-type(1) {
+	margin-top: 5px;
+}
+
+form.row .password {
+	margin-bottom: 10px;
+}
+form.row .password2 {
+	margin-bottom: 10px;
+}
+form.row .form-control-error {
+	margin-bottom: 0px;
+}
+form.row .form-error-message {
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 0px 5px;
+}
+
+form.touch .form-error {
+	margin-left: -40px;
+	width: 100%;
+	margin-bottom: 5px;
+}
+form.touch .form-error-message {
+	display: block;
+	color: #A83A3A;
+	background-color: transparent;
+}
+
+@media all and (max-width: 767px) {
+	form.inline input.password {
+		margin-left: 0px;
+	}
+	form.row input.mail {
+		margin-bottom: 10px;
+	}
+}
+
+#login-popup {
+	display: none;
+	width: 100%;
+	background-color: white;
+	border-radius: 3px !important;
+	position: relative;
+	z-index: 1234;
+}
+#login-popup form {
+	width: 100%;
+}
+#login-popup input {
+	border-radius: 0px;
+	margin-right: 2px;
+}
+#login-popup ul.error {
+	display: block;
+	padding-bottom: 3px;
+	color: #A83A3A;
+}
+#login-popup ul.error li {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+#login-popup form .form {
+	text-align: center;
+	padding-top: 25px;
+}
+#login-popup form .input {
+	display: inline-block;
+}
+#login-popup .form-error-message {
+	display: block;
+	color: #A83A3A;
+	background-color: white;
+}
+#login-popup .links {
+	width: 508px;
+	margin: 0px auto;
+	padding-top: 8px;
+	padding-bottom: 15px;
+}
+#login-popup .links .extra {
+	display: inline-block;
+	width: 200px;
+}
+#login-popup .links .extra a {
+	display: block;
+}
+#login-popup .links .social {
+	display: inline-block;
+	width: 304px;
+	text-align: right;
+	vertical-align: top;
+}
+
+@media all and (max-width: 577px) {
+	#login-popup {
+	}
+	#login-popup form .form {
+		padding-top: 0px;
+		text-align: left;
+	}
+	#login-popup form .input {
+		width: 100%;
+	}
+	#login-popup form .input input {
+		display: block;
+		width: 100%;
+	}
+	#login-popup .links {
+		width: 100%;
+		margin: 0px;
+	}
+	#login-popup .links .extra, #login-popup .links .social {
+		width: 49%;
+	}
+}

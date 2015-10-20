@@ -1,0 +1,31 @@
+{layout none}
+<html>
+    <head>
+        <link href="{$basePath}/video-js/video-js.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <script src="{$basePath}/video-js/video.js"></script>
+        <script>
+            videojs.options.flash.swf = "video-js.swf";
+        </script>
+
+        <video id="video_{$index}" 
+               class="video-js vjs-default-skin" 
+               controls 
+               autoplay
+               preload="auto"
+               width="{$width}" 
+               height="{$height}"
+               poster="{$image}"
+               data-setup="{}">
+            <source src="{$file}.m4v" type='video/x-m4v' />
+            <source src="{$file}.mp4" type='video/mp4' />
+            <source src="{$file}.webm" type='video/webm' />
+            <source src="{$file}.ogv" type='video/ogg' />
+            <p class="vjs-no-js">
+                {_"To view this video please enable JavaScript, and consider upgrading to a web browser that"} 
+                <a href="http://videojs.com/html5-video-support/" target="_blank">{_"supports HTML5 video"}</a>
+            </p>
+        </video>
+    </body>
+</html>

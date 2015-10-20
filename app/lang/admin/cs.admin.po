@@ -1,0 +1,308 @@
+# Gettext keys exported by GettextTranslator and Translation Panel
+# Created: 2013-05-30 12:45:22
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-05-30 12:45+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4 ? 1 : 2));\n"
+
+
+msgid "---"
+msgstr "---"
+
+msgid "--- none ---"
+msgstr "--- žádná ---"
+
+msgid "--- nowhere ---"
+msgstr "--- neumístěno ---"
+
+msgid "Action"
+msgstr "Akce"
+
+msgid "Activate"
+msgstr "Aktivovat"
+
+msgid "Active"
+msgstr "Aktivita"
+
+msgid "Add item"
+msgstr "Nová položka"
+
+msgid "Are you sure to delete all selected banners?"
+msgstr "Opravdu chcete smazat všechny vybrané banery?"
+
+msgid "Are you sure to delete all selected pages?"
+msgstr "Opravdu smazat všechny vybrané stránky?"
+
+msgid "Are you sure to delete hint with ID '%s'?"
+msgstr "Opravdu chcete odstranit nápovědu s ID '%s'?"
+
+msgid "Are you sure to delete page '%s'?"
+msgstr "Jste si jisti smazáním stránky '%s'?"
+
+msgid "Ascending"
+msgstr "Řadit vzestupně"
+
+msgid "Back to list"
+msgstr "Zpět na seznam"
+
+msgid "Banner was succesfully saved"
+msgstr "Baner byl uložen"
+
+msgid "Banners"
+msgstr "Banery"
+
+msgid "Cancel filter"
+msgstr "Zrušit filtr"
+
+msgid "Code"
+msgstr "Kód"
+
+msgid "Comment"
+msgstr "Komentář"
+
+msgid "Confirm"
+msgstr "Potvrdit"
+
+msgid "Content"
+msgstr "Obsah"
+
+msgid "Czech"
+msgstr "Česky"
+
+msgid "Deactivate"
+msgstr "Deaktivovat"
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Descending"
+msgstr "Řadit sestupně"
+
+msgid "Down"
+msgstr "Dolu"
+
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "Edit All"
+msgstr "Upravit vše"
+
+msgid "English"
+msgstr "English"
+
+msgid "Fast edit"
+msgstr "Rychlá editace"
+
+msgid "Fill code without spaces and special characters (example: code-without-spaces)."
+msgstr "Zadejte kód bez mezer a speciálních znaků (např: kod-bez-mezer)"
+
+msgid "Filter"
+msgstr "Filtrovat"
+
+msgid "Footer"
+msgstr "Patička"
+
+msgid "Form must be number form %d to %d"
+msgstr "Číslo formuláře musí být číslo od %d do %d"
+
+msgid "Form number"
+msgstr "Číslo formuláře"
+
+msgid "Front Page"
+msgstr "Úvodní strana"
+
+msgid "Get link for this site"
+msgstr "Získat odkaz na tuto stránku"
+
+msgid "Hint was succesfully saved"
+msgstr "Nápověda byla úspěšně uložena"
+
+msgid "Hints & Tips"
+msgstr "Rady & Tipy"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Icon"
+msgstr "Ikona"
+
+msgid "Id"
+msgstr "Id"
+
+msgid "Image"
+msgstr "Obrázek"
+
+msgid "In sum"
+msgstr "Celkem"
+
+msgid "Informations"
+msgstr "Informace"
+
+msgid "Invert sort"
+msgstr "Obrátit řazení"
+
+msgid "Item (ID = %s) was activated"
+msgstr "Položka (ID = %s) byla aktivována"
+
+msgid "Item (ID = %s) was deactivated"
+msgstr "Položka (ID = %s) byla deaktivována"
+
+msgid "Item (ID = %s) was moved down"
+msgstr "Položka (ID = %s) byla posunuta dolu"
+
+msgid "Item (ID = %s) was moved up"
+msgstr "Položka (ID = %s) byla posunuta nahoru"
+
+msgid "Items per page:"
+msgstr "Záznamů na stranu:"
+
+msgid "Link"
+msgstr "Odkaz"
+
+msgid "Module '%s'  wasn't deleted"
+msgstr "Modul '%s' se nepodařilo smazat"
+
+msgid "Module '%s' was succesfull deleted"
+msgstr "Modul '%s' byl úspěšně smazán"
+
+msgid "Module '%s' was succesfully saved"
+msgstr "Modul '%s' byl úspěšně uložen"
+
+msgid "Modules"
+msgstr "Moduly"
+
+msgid "Move is not possible. This is the lowest item in this list"
+msgstr "Posun není možný. Tato položka je nejníže v seznamu."
+
+msgid "Move is not possible. This is the top item in this list"
+msgstr "Posun není možný. Tato položka je nejvýše v seznamu."
+
+msgid "Name"
+msgstr "Název"
+
+msgid "Name is required"
+msgstr "Název je povinný"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "No records"
+msgstr "Žádné záznamy"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Order"
+msgstr "Pořadí"
+
+msgid "Page '%s' was succesfull deleted"
+msgstr "Stránka '%s' byla úspěšně smazána"
+
+msgid "Page '%s' was succesfully saved"
+msgstr "Stránka '%s' byla úspěšně uložena"
+
+msgid "Page '%s' wasn't deleted"
+msgstr "Stránka '%s' nebyla smazána"
+
+msgid "Page was succesfully saved"
+msgstr "Stránka byla úspěšně uložena"
+
+msgid "Pages were succesfully saved"
+msgstr "Stránky byly úspěšně uloženy"
+
+msgid "Parent"
+msgstr "Nadřazená stránka"
+
+msgid "Parent page"
+msgstr "Nadřazená stránka"
+
+msgid "Perex"
+msgstr "Popis"
+
+msgid "Perex is required"
+msgstr "Popis je povinný"
+
+msgid "Please select some section from menu..."
+msgstr "Vyberte si některou ze sekcí v menu"
+
+msgid "Select/deselect all items"
+msgstr "Označit/odznačit všechny položky"
+
+msgid "Selected:"
+msgstr "Označené:"
+
+msgid "Shown"
+msgstr "Zobrazeno"
+
+msgid "Slovak"
+msgstr "Slovensky"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Text is required"
+msgstr "Text je povinný"
+
+msgid "Top Menu"
+msgstr "Vrchní menu"
+
+msgid "Undo"
+msgstr "Zrušit"
+
+msgid "Up"
+msgstr "Nahoru"
+
+msgid "View"
+msgstr "Náhled"
+
+msgid "Welcome in administration"
+msgstr "Vítejte v administraci"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "You are already logged in. Please signed out."
+msgstr "Již jste přihlášeni. Prosím, odhlašte se."
+
+msgid "You have not permission to this section"
+msgstr "Nemáte oprávnění k přístupu do této sekce"
+
+msgid "active"
+msgstr "aktivní"
+
+msgid "close"
+msgstr "zavřít"
+
+msgid "inactive"
+msgstr "neaktivní"
+
+msgid "result"
+msgid_plural "results"
+msgstr[0] "záznam"
+msgstr[1] "záznamy"
+msgstr[2] "záznamů"
+
+msgid "to"
+msgstr "až"
+
+msgid "Save All"
+msgstr "Uložit vše"
+
+msgid "Admin"
+msgstr ""
+
+msgid "20"
+msgstr ""
+
+msgid "50"
+msgstr ""
+
+msgid "100"
+msgstr ""
+

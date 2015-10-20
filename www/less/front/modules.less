@@ -1,0 +1,35 @@
+#module {
+    padding: 50px;
+    min-height: 300px;
+    & > h2 {
+        font-size: @fontSizeLarge;
+    }
+    & > .info {
+        text-align: right;
+        color: #c9c9c9;
+    }
+    & > .img {
+        float: left;
+    }
+    & > .perex {
+        float: left;
+        padding-left: 20px;
+        width: 400px;
+        p {
+            font-size: 18px;
+        }
+    }
+    & .adminContent, & .content {
+        padding-top: 30px;
+    }
+    &.sign {
+        .message {
+            padding: 20px;
+            margin: 10px 0px;
+            background-color: #f0f0f0;
+        }
+        .form {
+            margin-top: 20px;
+        }
+    }
+}

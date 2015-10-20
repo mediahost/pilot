@@ -1,0 +1,6 @@
+<div class="traverz breadscrumbs">
+    {foreach $items as $item}
+        <span class="item">{$item->name}</span>
+        <span n:if="!$iterator->last" class="separator">{$separator}</span>
+    {/foreach}
+</div>

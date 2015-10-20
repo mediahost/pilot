@@ -1,0 +1,8 @@
+{define #restContent}
+<div class="restContent profile">
+    <div class="candidates">
+        {includeblock "../../../CompanyModule/templates/Homepage/blocks.latte"}
+        {include #candidate, candidate => $candidate, isFavorite => FALSE, showSendMessage => FALSE, showSaveFavorite => FALSE}
+    </div>
+</div>
+{/define}

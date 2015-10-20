@@ -1,0 +1,949 @@
+# Gettext keys exported by GettextTranslator and Translation Panel
+# Created: 2013-08-09 10:10:49
+msgid ""
+msgstr ""
+"Project-Id-Version: Source-code\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-02-26 15:59+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4 ? 1 : 2));\n"
+"Last-Translator: Petr Poupě <pupe.dupe@gmail.com>\n"
+"Language: cs_CZ\n"
+"X-Generator: Poedit 1.6.3\n"
+
+msgid " - select - "
+msgstr "- zvolte -"
+
+msgid "%s day ago"
+msgid_plural "%s days ago"
+msgstr[0] "před %s dnem"
+msgstr[1] "před %s dny"
+msgstr[2] "před %s dny"
+
+msgid "%s hour ago"
+msgid_plural "%s hours ago"
+msgstr[0] "před %s hodinou"
+msgstr[1] "před %s hodinami"
+msgstr[2] "před %s hodinami"
+
+msgid "%s minute ago"
+msgid_plural "%s minutes ago"
+msgstr[0] "před %s minutou"
+msgstr[1] "před %s minutami"
+msgstr[2] "před %s minutami"
+
+msgid "%s year ago"
+msgid_plural "%s years ago"
+msgstr[0] "před %s rokem"
+msgstr[1] "před %s lety"
+msgstr[2] "před %s lety"
+
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s rok"
+msgstr[1] "%s roky"
+msgstr[2] "%s let"
+
+msgid "- words separated by commas"
+msgstr "- slova oddělujte čárkou"
+
+msgid "--- all ---"
+msgstr "--- všechny ---"
+
+msgid "--- doesn't mather ---"
+msgstr "--- nerozhoduje ---"
+
+msgid "1 day"
+msgstr "1 den"
+
+msgid "1 month"
+msgstr "1 měsíc"
+
+msgid "1 week"
+msgstr "1 týden"
+
+msgid "2 days"
+msgstr "2 dny"
+
+msgid "2 months"
+msgstr "2 měsíce"
+
+msgid "2 weeks"
+msgstr "2 týdny"
+
+msgid "3 days"
+msgstr "3 dny"
+
+msgid "@"
+msgstr "@"
+
+msgid "About Source Code"
+msgstr "O nás"
+
+msgid "About Us"
+msgstr "O nás"
+
+msgid "Account Info"
+msgstr "Osobní informace"
+
+msgid "Achievement"
+msgstr "Získané zkušenosti"
+
+msgid "Add Category"
+msgstr "Přidat kategorii"
+
+msgid "Additional Information"
+msgstr "Doplňující informace"
+
+msgid "Additional information"
+msgstr "Doplňující informace"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Admin"
+msgstr "Administrace"
+
+msgid "Append CV"
+msgstr "Připojit CV"
+
+msgid "Apply"
+msgstr "Reagovat na pozici"
+
+msgid "Are you sure? This CV will be deleted."
+msgstr "Toto CV bude trvale odstraněno. Opravdu chcete vymazat?"
+
+msgid "Are you sure? This category will be deleted."
+msgstr "Opravdu chcete smazat tuto kategorii?"
+
+msgid "Are you sure? This forum will be deleted."
+msgstr "Opravdu chcete smazat toto fórum?"
+
+msgid "Are you sure? This post will be deleted."
+msgstr "Opravdu chcete smazat tento příspěvek?"
+
+msgid "Are you sure? This topic will be deleted."
+msgstr "Opravdu chcete smazat toto téma?"
+
+msgid "Artistic skills and competences"
+msgstr "Umělecké schopnosti a dovednosti"
+
+msgid "Attachement"
+msgstr "Příloha"
+
+msgid "Available from"
+msgstr "Dostupnost od"
+
+msgid "Benefits"
+msgstr "Benefity"
+
+msgid "Bithday"
+msgstr "Datum narození"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Blog - some useful informations for You"
+msgstr "Blog - užitečné informace pro Vás"
+
+msgid "CV Generator"
+msgstr "CV Generátor"
+
+msgid "Career"
+msgstr "Kariéra"
+
+msgid "Career Objective"
+msgstr "Cíle kariéry"
+
+msgid "Career Summary"
+msgstr "Shrnutí kariéry"
+
+msgid "Career Tips"
+msgstr "Tipy"
+
+msgid "Career summary"
+msgstr "Shrnutí kariéry"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Category was succesfully saved"
+msgstr "Kategorie byla uložena"
+
+msgid "Change CV Template"
+msgstr "Změnit šablonu"
+
+msgid "Change Password"
+msgstr "Změnit heslo"
+
+msgid "City"
+msgstr "Město"
+
+msgid "Clone CV"
+msgstr "Kopie CV"
+
+msgid "Source Code"
+msgstr "Source Code"
+
+msgid "Community"
+msgstr "Komunita"
+
+msgid "Company name"
+msgstr "Název společnosti"
+
+msgid "Computer skills and competences"
+msgstr "Počítačové schopnosti a dovednosti"
+
+msgid "Contact Us"
+msgstr "Kontakt"
+
+msgid "Contact e-mail"
+msgstr "Kontaktní e-mail"
+
+msgid "Contact name"
+msgstr "Kontaktní osoba"
+
+msgid "Contact number"
+msgstr "Kontaktní telefon"
+
+msgid "Contact phone"
+msgstr "Kontaktní telefon"
+
+msgid "Contain"
+msgstr "Obsahuje"
+
+msgid "Country"
+msgstr "Země"
+
+msgid "County"
+msgstr "Kraj"
+
+msgid "Create"
+msgstr "Vytvořit"
+
+msgid "Create an account"
+msgstr "Vytvořit účet"
+
+msgid "Current job"
+msgstr "Nynější pozice"
+
+msgid "Current study"
+msgstr "Současné studium"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Date from"
+msgstr "Datum začátku"
+
+msgid "Date of Birth"
+msgstr "Datum narození"
+
+msgid "Date of insertion"
+msgstr "Datum vložení"
+
+msgid "Date to"
+msgstr "Datum konce"
+
+msgid "Degree"
+msgstr "Titul"
+
+msgid "Delete Account"
+msgstr "Smazat účet"
+
+msgid "Delete CV"
+msgstr "Smazat CV"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Desired Employment / Sector"
+msgstr "Požadované zaměstnání / oblast"
+
+msgid "Desired job position"
+msgstr "Ideální pracovní pozice"
+
+msgid "Discusions and forum about Source Code"
+msgstr "Diskuze o Source Code"
+
+msgid "Discussions/Forum"
+msgstr "Fórum"
+
+msgid "Domains"
+msgstr "Obory"
+
+msgid "Driving licenses"
+msgstr "Řidičské oprávnění"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Edit Category"
+msgstr "Upravit kategorii"
+
+msgid "Edit Forum"
+msgstr "Upravit fórum"
+
+msgid "Education"
+msgstr "Vzdělání"
+
+msgid "Education & Training"
+msgstr "Vzdělání a kurzy"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Email CV"
+msgstr "odeslat CV"
+
+msgid "Email us below and we'll get back to you quickly."
+msgstr "Napište nám a my Vás co nejrychleji kontaktujeme zpět."
+
+msgid "Enter city!"
+msgstr "Zadejte město!"
+
+msgid "Enter company name!"
+msgstr "Vložte název společnosti!"
+
+msgid "Enter country!"
+msgstr "Zadejte zemi!"
+
+msgid "Enter institution name!"
+msgstr "Zadejte název vzdělávacího zařízení!"
+
+msgid "Enter your position!"
+msgstr "Zadejte vaši pozici!"
+
+msgid "Entered date is not within allowed range."
+msgstr "Vložené datum není v povoleném rozsahu"
+
+msgid "Entered value is not email!"
+msgstr "Zadaný údaj není e-mail!"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Female"
+msgstr "Žena"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "First Name"
+msgstr "Křestní jméno"
+
+msgid "First Name(s)"
+msgstr "Křestní jméno"
+
+msgid "Forgotten password"
+msgstr "Zapomenuté heslo"
+
+msgid "Forum"
+msgstr "Fórum"
+
+msgid "Forum was succesfully saved"
+msgstr "Forum bylo uloženo"
+
+msgid "From"
+msgstr "Od"
+
+msgid "Gender"
+msgstr "Pohlaví"
+
+msgid "Get In Touch"
+msgstr "Buďte v dosahu!"
+
+msgid "Get in Touch"
+msgstr "Buďte v dosahu"
+
+msgid "House No."
+msgstr "Číslo popisné"
+
+msgid "How are you feeling?"
+msgstr "Jak se cítíte?"
+
+msgid "I'm happy!"
+msgstr "Jsem šťastný!"
+
+msgid "I'm okay"
+msgstr "Vše je v pořádku"
+
+msgid "I'm unhappy"
+msgstr "Nejsem spokojen"
+
+msgid "Inserted"
+msgstr "Vloženo"
+
+msgid "Institution"
+msgstr "Instituce"
+
+msgid "Job Available"
+msgstr "Pracovní nabídky"
+
+msgid "Job type"
+msgstr "Typ úvazku"
+
+msgid "Jobs available"
+msgstr "Pracovní nabídky"
+
+msgid "Jobs available through Source Code"
+msgstr "Pracovní pozice pomocí Source Code"
+
+msgid "Keep me signed in"
+msgstr "Neodhlašovat"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Language Skills"
+msgstr "Jazykové schopnosti"
+
+msgid "Last Post"
+msgstr "Poslední příspěvek"
+
+msgid "List of your education & training"
+msgstr "Seznam vzdělání a kurzů"
+
+msgid "List of your languages"
+msgstr "Seznam vašich jazyků"
+
+msgid "Listening"
+msgstr "Poslech"
+
+msgid "Location"
+msgstr "Místo"
+
+msgid "Login was successful"
+msgstr "Byli jste přihlášeni"
+
+msgid "Logout"
+msgstr "Odhlásit"
+
+msgid "Main activities and responsibilities"
+msgstr "Hlavní činnost / zodpovědnosti"
+
+msgid "Male"
+msgstr "Muž"
+
+msgid "Mediahost"
+msgstr "Mediahost"
+
+msgid "Mention salary"
+msgstr "Uvádět plat"
+
+msgid "Message"
+msgstr "Zpráva"
+
+msgid "Middle Name"
+msgstr "Prostřední jméno"
+
+msgid "Mother tongue"
+msgstr "Mateřský jazyk"
+
+msgid "Mr."
+msgstr "pan"
+
+msgid "Mrs."
+msgstr "paní"
+
+msgid "Ms."
+msgstr "slečna"
+
+msgid "My CV's"
+msgstr "Moje životopisy"
+
+msgid "My Career Summary"
+msgstr "Souhrn"
+
+msgid "My Recent Actions"
+msgstr "Poslední činnosti"
+
+msgid "My account"
+msgstr "Můj účet"
+
+msgid "My job Applications"
+msgstr "Odpovědi na inzeráty"
+
+msgid "Nationality"
+msgstr "Národnost"
+
+msgid "New CV was cloned"
+msgstr "Nové CV bylo zkopírováno"
+
+msgid "New CV was created"
+msgstr "Bylo vytvořeno nové CV"
+
+msgid "New Forum"
+msgstr "Nové fórum"
+
+msgid "New Topic"
+msgstr "Nové téma"
+
+msgid "New category"
+msgstr "Nová kategorie"
+
+msgid "New forum"
+msgstr "Nové fórum"
+
+msgid "Next"
+msgstr "Další"
+
+msgid "No post yet."
+msgstr "Zatím není žádný příspěvek"
+
+msgid "Nome"
+msgstr "Jméno"
+
+msgid "Not disclosed"
+msgstr "nezadáno"
+
+msgid "Offers in last"
+msgstr "Nabídky za poslední"
+
+msgid "Organisational skills and competences"
+msgstr "Organizační schopnosti a dovednosti"
+
+msgid "Original offer"
+msgstr "Zdroj nabídky"
+
+msgid "Other Personal Experience"
+msgstr "Ostatní osobní zkušenosti"
+
+msgid "Other experience history"
+msgstr "Historie mimopracovních zkušeností"
+
+msgid "Other informations"
+msgstr "Další informace"
+
+msgid "Other languages"
+msgstr "Ostatní jazyky"
+
+msgid "Other skills and competences"
+msgstr "Ostatní schopnosti a dovednosti"
+
+msgid "Our Blog"
+msgstr "Naše články"
+
+msgid "Our Philosophy"
+msgstr "Naše názory"
+
+msgid "Partners"
+msgstr "Partneři"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Personal Details"
+msgstr "Osobní údaje"
+
+msgid "Personal Skills and Competence"
+msgstr "Schopnosti a dovednosti"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Pleas fill valid email."
+msgstr "Zadejte správný e-mail"
+
+msgid "Please don't send empty messages!"
+msgstr "Prosím, vyplňte text zprávy"
+
+msgid "Please don't send us empty messages!"
+msgstr "Prosíme, neposílejte nám prázdné zprávy! Děkujeme."
+
+msgid "Please enter subject!"
+msgstr "Zadejte předmět zprávy"
+
+msgid "Please enter your first name."
+msgstr "Zadejte vaše křestní jméno"
+
+msgid "Please enter your name!"
+msgstr "Zadejte Vaše jméno"
+
+msgid "Please enter your password."
+msgstr "Zadejte prosím heslo"
+
+msgid "Please enter your surname."
+msgstr "Zadejte vaše příjmení"
+
+msgid "Please enter your username."
+msgstr "Zadejte prosím přihlašovací jméno"
+
+msgid "Please fill description"
+msgstr "Zadejte popis"
+
+msgid "Please fill name"
+msgstr "Zadejte název"
+
+msgid "Please fill some message"
+msgstr "Zadejte zprávu"
+
+msgid "Please fill something"
+msgstr "Zadejte nějaký text"
+
+msgid "Position"
+msgstr "Pozice"
+
+msgid "Position held"
+msgstr "Pracovní pozice"
+
+msgid "Position offer"
+msgstr "Pracovní nabídka"
+
+msgid "Post"
+msgstr "Příspěvek"
+
+msgid "Post new topic"
+msgstr "Založit nové téma"
+
+msgid "Post was succesfully saved"
+msgstr "Příspěvek byl uložen"
+
+msgid "Postal code"
+msgstr "PSČ"
+
+msgid "Posts"
+msgstr "Příspěvky"
+
+msgid "Prerequisites"
+msgstr "Požadavky"
+
+msgid "Previous"
+msgstr "Předchozí"
+
+msgid "Principal subjects / occupational skills covered"
+msgstr "Stěžejní předměty / obsažené profesní dovednosti"
+
+msgid "Print CV"
+msgstr "Tisk CV"
+
+msgid "Privacy Policy"
+msgstr "Ochrana osobních údajů"
+
+msgid "Reading"
+msgstr "Četba"
+
+msgid "Ref. number"
+msgstr "Ref. číslo"
+
+msgid "Referee name"
+msgstr "Kontaktní osoba"
+
+msgid "Reference number"
+msgstr "Referenční číslo"
+
+msgid "Refree name"
+msgstr "Kontaktní osoba"
+
+msgid "Region"
+msgstr "Místo"
+
+msgid "Replies"
+msgstr "Odpovědi"
+
+msgid "Required education"
+msgstr "Požadované vzdělání"
+
+msgid "Required languages"
+msgstr "Požadovaný jazyk"
+
+msgid "Salary"
+msgstr "Plat"
+
+msgid "Salary expectations"
+msgstr "Požadovaná výše platu"
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Save PDF"
+msgstr "Uložit PDF"
+
+msgid "Search"
+msgstr "Hledat"
+
+msgid "Sector"
+msgstr "Obory"
+
+msgid "Select sector"
+msgstr "Vyberte sektor"
+
+msgid "Send"
+msgstr "Odeslat"
+
+msgid "Share on FB"
+msgstr "Sdílet na FB"
+
+msgid "Show CV"
+msgstr "Zobrazit CV"
+
+msgid "Show CV Info"
+msgstr "Informace o CV"
+
+msgid "Show Tips & Hints"
+msgstr "Tipy & Rady"
+
+msgid "Sign In with"
+msgstr "Přihlásit přes"
+
+msgid "Sign in"
+msgstr "Přihlásit"
+
+msgid "Slovaks Abroud"
+msgstr "Slovaks Abroud"
+
+msgid "Social skills and competences"
+msgstr "Sociální schopnosti a dovednosti"
+
+msgid "Spoken interaction"
+msgstr "Ústní interakce"
+
+msgid "Spoken production"
+msgstr "Samostatný ústní projev"
+
+msgid "Street address"
+msgstr "Ulice"
+
+msgid "Subject"
+msgstr "Předmět"
+
+msgid "Submit an Idea"
+msgstr "Poslat nápad"
+
+msgid "Submit an idea"
+msgstr "Poslat nápad"
+
+msgid "Support"
+msgstr "Podpora"
+
+msgid "Surname"
+msgstr "Příjmení"
+
+msgid "Surname(s)"
+msgstr "Příjmení"
+
+msgid "Technical skills and competences"
+msgstr "Technické schopnosti a dovednosti"
+
+msgid "Terms of Use"
+msgstr "Podmínky použití"
+
+msgid "The Team"
+msgstr "Náš tým"
+
+msgid "This category wasn't find."
+msgstr "Tato kategorie nebyla nalezena."
+
+msgid "This forum wasn't find."
+msgstr "Toto fórum nebylo nalezeno."
+
+msgid "This post cannot be deleted."
+msgstr "Tento příspěvek nelze smazat."
+
+msgid "This topic wasn't find for this forum."
+msgstr "Toto téma neexistuje pro dané fórum."
+
+msgid "This topic wasn't find."
+msgstr "Téma nebylo nalezeno."
+
+msgid "Title"
+msgstr "Oslovení"
+
+msgid "Title of qualification awarded"
+msgstr "Získaný titul"
+
+msgid "To"
+msgstr "Do"
+
+msgid "Topic"
+msgstr "Téma"
+
+msgid "Topic name"
+msgstr "Název tématu"
+
+msgid "Topic was succesfully saved"
+msgstr "Téma bylo uloženo"
+
+msgid "Topics"
+msgstr "Témata"
+
+msgid "Tutorials"
+msgstr "Návody"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Use Source Code Account"
+msgstr "Source Code účet"
+
+msgid "Views"
+msgstr "Zobrazeno"
+
+msgid "We are very sorry! Forum is empty for this language."
+msgstr "Velice se omlouváme! Fórum je pro tento jazyk zcela prázdné."
+
+msgid "What I was doing recently on Source Code"
+msgstr "Moje činnost na Source Code"
+
+msgid "What Our Users Say"
+msgstr "Co o nás říkají uživatelé"
+
+msgid "What is Source Code?"
+msgstr "Co je Source Code?"
+
+msgid ""
+"Whether you're after some help or just want to say hello, we would love to "
+"hear from you!"
+msgstr ""
+"Ať už potřebujete pomoc, nebo chcete jen pozdravit, budeme rádi za Vaši "
+"zprávu!"
+
+msgid "Work Experience"
+msgstr "Pracovní zkušenosti"
+
+msgid "Work experience history"
+msgstr "Historie pracovních zkušeností"
+
+msgid "Work type"
+msgstr "Typ úvazku"
+
+msgid "Write your message and submit"
+msgstr "Napište a odešlete vaši zprávu"
+
+msgid "Writing"
+msgstr "Psaní"
+
+msgid "You can write your"
+msgstr "Můžete napsat své"
+
+msgid "You have been signed in"
+msgstr "Byli jste úspěšně přihlášeni"
+
+msgid "You have been signed out"
+msgstr "Byli jste úspěšně odhlášeni"
+
+msgid "Your career objective"
+msgstr "Vaše kariérní cíle"
+
+msgid "Your category was succesful deleted."
+msgstr "Kategorie byla uložena"
+
+msgid "Your email"
+msgstr "Váš e-mail"
+
+msgid "Your name"
+msgstr "Vaše jméno"
+
+msgid "Your post was succesful deleted."
+msgstr "Příspěvek byl úspěšně smazán"
+
+msgid "Your topic was succesful deleted."
+msgstr "Téma bylo úspěšně uloženo"
+
+msgid "a minute ago"
+msgstr "před minutou"
+
+msgid "a moment ago"
+msgstr "před chvílí"
+
+msgid "and"
+msgstr "a"
+
+msgid "before hour"
+msgstr "před hodinou"
+
+msgid "by"
+msgstr "od"
+
+msgid "copy from current CV"
+msgstr "kopii otevřeného CV"
+
+msgid "delete"
+msgstr "smazat"
+
+msgid "delete cv"
+msgstr "smazané CV"
+
+msgid "edit"
+msgstr "upravit"
+
+msgid "first post"
+msgstr "nový příspěvek"
+
+msgid "first topic"
+msgstr "první téma"
+
+msgid "forum post"
+msgstr "příspěvek fóru"
+
+msgid "from"
+msgstr "od"
+
+msgid "job apply"
+msgstr "odpověď na inzerát"
+
+msgid "month"
+msgstr "měs"
+
+msgid "new cv"
+msgstr "nové CV"
+
+msgid "new from scratch"
+msgstr "zcela nové CV"
+
+msgid "next page"
+msgstr "další strana"
+
+msgid "no name"
+msgstr "bez názvu"
+
+msgid "not inserted"
+msgstr "neuvedeno"
+
+msgid "or"
+msgstr "nebo"
+
+msgid "previous page"
+msgstr "předchozí strana"
+
+msgid "print"
+msgstr "tisknout"
+
+msgid "read blog"
+msgstr "přečtení blogu"
+
+msgid "save cv"
+msgstr "uložení CV"
+
+msgid "send by email"
+msgstr "odeslat e-mailem"
+
+msgid "share"
+msgstr "sdílet"
+
+msgid "show all"
+msgstr "zobrazit vše"
+
+msgid "show more"
+msgstr "zobrazit více"
+
+msgid "till now"
+msgstr "doposud"
+
+msgid "to_"
+msgstr "do"
+
+msgid "yesterday"
+msgstr "včera"
+
+msgid "€ per annum"
+msgstr "€ ročně"
+
+msgid "read job"
+msgstr "Přečtení pozice"

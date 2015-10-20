@@ -1,0 +1,64 @@
+{block content}
+
+{includeblock 'socials.latte'}
+{includeblock 'modules.latte'}
+
+<div class="container" id="blog">
+
+    <div id="module">
+
+        <div class="blogList">
+            {if count($blogs)}
+            <div class="blogs">
+                <div class="blog" n:foreach="$blogs as $blog">
+                    {include #blog, blog => $blog}
+                </div>
+            </div>
+
+            <div class="paginatorFrame">
+                {control blog}
+            </div>
+            {else}
+            <div class="noItems">
+                {_"There isn't find any blogs."}
+            </div>
+            {/if}
+        </div>
+
+        <div class="moduleList">
+            {include #modules}
+        </div>
+
+    </div>
+    
+
+</div>
+
+{include #socialScript}
+{/block}
+
+{define #blog}
+<h2><a n:href="Blog: $blog->url">{!$blog->nameNoTags}</a></h2>
+<div class="social">
+    <div class="date">
+        <span class="posted">{_"Posted"}:</span>
+        <span>{_$blog->date|date:'l'}, {$blog->date|date:'j.'} {_$blog->date|date:'F'} {$blog->date|date:'Y'}</span>
+    </div>
+    <div class="buttons">
+        {include #socialFbButton, id => $blog->url}
+        {include #socialTwitterButton, id => $blog->url}
+        {include #socialGplusButton, id => $blog->url}
+    </div>
+</div>
+<div class="image" n:if="$blog->image">
+    <a n:href="Blog: $blog->url">
+        <img src="{$basePath}/foto/290-180/blog/{$blog->image}" alt="{$blog->nameNoTags}"/>
+    </a>
+</div>
+<div class="perex">
+    {!$blog->perex}
+</div>
+<div class="more">
+    <a n:href="Blog: $blog->url" class="button">{_"read more"}</a>
+</div>
+{/define}

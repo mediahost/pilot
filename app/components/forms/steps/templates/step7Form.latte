@@ -1,0 +1,33 @@
+<div n:snippet="formInsert">
+    {form step7Form}
+    {$form->render('errors')}
+    <table>
+        <tbody>
+            <tr n:foreach="$form->getControls() as $control" 
+                n:if="!$control->getOption('rendered') && !$control instanceof \Nette\Forms\Controls\HiddenField">
+                {if $control->getHtmlName() === "edu_from"}
+                    <th>{label $control /}</th>
+                    <td>{input $control} {label edu_to /} {input edu_to} {input till_now} {label till_now /}</td>
+                {else}
+                    <th>{label $control /}</th>
+                    <td>{input $control}</td>
+                {/if}
+            </tr>
+        </tbody>
+    </table>
+    {/form}
+</div>
+<div n:snippet="formList">
+    <div n:if="$educations !== array()" class="list educations">
+        <div class="title">{_"List of your education & training"}:</div>
+        <ul>
+            <li n:foreach="$educations as $educ" class="item education cleaner">
+                <div class="info tip-s" title="{$educ|CvEducDates,$translator}">{$educ|CvEducBasicView}</div>
+                <div class="service cleaner">
+                    <a n:href="editEduc! $educ->id" class="ajax-silent edit" title="{_"edit"}"></a>
+                    <a n:href="deleteEduc! $educ->id" class="ajax-silent delete" title="{_"delete"}"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{block content}
+{includeblock 'editProfileBlocks.latte'}
+<div class="container" id="editProfile">
+	<div class="content cleaner">
+        {include #navigator}
+
+        <div class="box inputs">
+            <div class="contain">
+				<div class="candidates">
+					<div class="candidate">
+						<h2>{_"Link your social network profile"}</h2>
+						{control socialLinksForm}
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

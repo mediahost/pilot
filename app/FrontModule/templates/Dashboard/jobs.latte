@@ -1,0 +1,105 @@
+{define #restContent}
+<div class="restContent">
+	<h1>{_"Matched Jobs"}</h1>
+    {if $itemCountWithoutFilter == 0}
+        {_'You will be notified of live positions matching your profile here.'}
+	{else}
+        <div class="filter">
+            {control filter}
+        </div>
+
+        <div class="sorter">
+            <div>
+                <label>{_"Show added"}:</label>
+                <a n:href="this, last => 'day'"{ifCurrent this, last => 'day'} class="active"{/ifCurrent}>{_"today"}</a>
+                <span class="separator">|</span>
+                <a n:href="this, last => 'week'"{ifCurrent this, last => 'week'} class="active"{/ifCurrent}>{_"last 7 days"}</a>
+                <span class="separator">|</span>
+                <a n:href="this, last => 'month'"{ifCurrent this, last => 'month'} class="active"{/ifCurrent}>{_"last 30 days"}</a>
+                <span class="separator">|</span>
+                <a n:href="this, last => NULL"{ifCurrent this, last => NULL} class="active"{/ifCurrent}>{_"all"}</a>
+            </div>
+            <div n:if="$jobsCount">
+                <label>{_"Sort by"}:</label>
+                <a n:href="this, sort => 'time'"{ifCurrent this, sort => 'time'} class="active"{/ifCurrent}>{_"date added"}</a>
+                <span class="separator">|</span>
+                <a n:href="this, sort => 'location'"{ifCurrent this, sort => 'location'} class="active"{/ifCurrent}>{_"location"}</a>
+                <span class="separator">|</span>
+                <a n:href="this, sort => 'salary'"{ifCurrent this, sort => 'salary'} class="active"{/ifCurrent}>{_"salary"}</a>
+            </div>
+        </div>
+        <div class="cleaner"></div>
+
+        {if $jobsCount}
+        <div class="list">
+            <table>
+                {foreach $jobs as $job}
+                {var mod => $iterator->counter % $columns}
+                {var start => $mod === 1}
+                {var end => !($mod)}
+
+                {if $start}
+                <tr>
+                {/if}
+                    <td class="filled">
+                        <div class="box">
+                            <div class="item">
+                                <h3><a n:href="Jobs:show $job->code">{$job->name}</a></h3>
+                                <dl>
+                                    <dt>{_"Company"}:</dt>
+                                    <dd><b>{$job->company}</b></dd>
+                                </dl>
+                                <dl>
+                                    <dt>{_"Location"}:</dt>
+                                    <dd>{foreach $job->locations as $l}{$l}{if !$iterator->isLast()}, {/if}{/foreach}</dd>
+                                </dl>
+                                <dl>
+                                    <dt>{_"Category"}:</dt>
+                                    <dd>{$job->category}</dd>
+                                </dl>
+                                <dl>
+                                    <dt>{_"Salary"}:</dt>
+                                    <dd>
+                                        {var currency => $job->currency == 1 ? "EUR" : ($job->currency == 2 ? "USD" : "CZK")}
+                                        {if $job->salary_from}{_"from"} {$job->salary_from|currency:$currency}{/if}
+                                        {if $job->salary_to}{_"to_"} {$job->salary_to|currency:$currency}{/if}
+                                        {if !$job->salary_from && !$job->salary_to}{_"not inserted"}{/if}
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>{_"Date added"}:</dt>
+                                    <dd>{$job->datecreated|dateLang:$lang}</dd>
+                                </dl>
+                            </div>
+                            <div class="links">
+                                <a n:href="Jobs:show $job->code">{_"Job detail"}</a>
+                                {if $cv && $cv->isCompleted()}
+                                <span class="separator">|</span>
+                                {if $job->applyed}{_"Applied"}{else}<a n:href="Inner:jobApply $job->id" class="innerPage">{_"Apply"}</a>{/if}
+                                {/if}
+                            </div>
+                        </div>
+                    </td>
+
+                {if $mod && $iterator->isLast()}
+                    {for $i = 0; $i < $columns - $mod; $i++}
+                <td class="empty"></td>
+                    {/for}
+                {/if}
+                {if $end || $iterator->isLast()}
+                </tr>
+                {/if}
+
+                {/foreach}
+            </table>
+        </div>
+
+        <div class="paginator-frame">{control job}</div>
+        {else}
+        <div class="noItems">
+            {_"No offers for this filter."}
+        </div>
+        {/if}
+    {/if}
+</div>
+{/define}

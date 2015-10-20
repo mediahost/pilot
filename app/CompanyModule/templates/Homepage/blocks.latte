@@ -1,0 +1,232 @@
+{define candidates, candidates => array(), isFavorite => FALSE, showSendMessage => TRUE, showSaveFavorite => TRUE, showStatusUpdate => FALSE}
+{if !isset($showSendMessage)}{var showSendMessage = TRUE}{/if}
+{if !isset($showStatusUpdate)}{var showStatusUpdate = FALSE}{/if}
+{if !isset($showSaveFavorite)}{var showSaveFavorite = TRUE}{/if}
+<div class="candidates">
+    {foreach $candidates as $candidate}
+        {include #candidate, candidate => $candidate, isFavorite => $isFavorite, showSendMessage => $showSendMessage, showSaveFavorite => $showSaveFavorite, showStatusUpdate => $showStatusUpdate}
+    {/foreach}
+</div>
+{/define}
+
+{define candidate}
+{if !isset($showStatusUpdate)}{var showStatusUpdate = FALSE}{/if}
+<div class="candidate" id="can-{$candidate->id}">
+    <div class="data">
+        <div class="main">
+            <div class="info">
+                <div class="right-top-corner">
+                    <div class="social-links">
+                        {if $candidate->url_github}<a href="{$candidate->url_github}" target="_blank"><img src="{$basePath}/images/socials/circle/github.png" /></a>{/if}
+                        {if $candidate->url_stackoverflow}<a href="{$candidate->url_stackoverflow}" target="_blank"><img src="{$basePath}/images/socials/circle/stackoverflow.png" /></a>{/if}
+                        {if $candidate->url_linkedin}<a href="{$candidate->url_linkedin}" target="_blank"><img src="{$basePath}/images/socials/circle/linkedin.png" /></a>{/if}
+                        {if $candidate->url_facebook}<a href="{$candidate->url_facebook}" target="_blank"><img src="{$basePath}/images/socials/circle/facebook.png" /></a>{/if}
+                        {if $candidate->url_twitter}<a href="{$candidate->url_twitter}" target="_blank"><img src="{$basePath}/images/socials/circle/twitter.png" /></a>{/if}
+                        <a n:ifset="$jobUserInfo" class="notes" n:href=":Company:Homepage:notes $jobUserInfo[$candidate->id]['id']">
+                            <img src="{$basePath}/images/notes.png"/>
+                            <div class="count">{$jobUserInfo[$candidate->id]['count']}</div>
+                        </a>
+                    </div>
+                    <div class="links">
+                        <a n:href=":Front:Pdf:cv $candidate->cv->id" target="_blank" class="button">{_"Download CV"}</a>
+                        <a n:href="this"
+                            class="switch hide button"
+                            data-text-hide="{_"Show CV"}"
+                            data-text-show="{_"Hide CV"}"
+                            data-linked-cv="{$candidate->cv->id}">{_"Show CV"}</a>
+                        <a n:if="count($candidate->userDocs)" n:href="this"
+                            class="switch hide button"
+                            data-text-hide="{_"Show docs"}"
+                            data-text-show="{_"Hide docs"}"
+                            data-linked-doc="{$candidate->id}">{_"Show docs"}</a>
+                    </div>
+                </div>
+                <h2>{$candidate->cv->getFullName()}</h2>
+                <table>
+                    <tr n:if="count($candidate->cv->itSkills)" class="skills">
+                        {*
+                        <th>{_"IT Skills"}:</th>
+                        <td>
+                            <ul>
+                                <li n:foreach="$candidate->cv->itSkills as $skill">
+                                    - {$skill->name} ({$skill->scale}{if $skill->years}, {$skill->years} {_"year", $skill->years}{/if})
+                                    {if $iterator->getCounter() >= 3}{? break}{/if}
+                                </li>
+                            </ul>
+                        </td>
+                        *}
+                        <td colspan="2">
+                            {var progLanguages = $candidate->cv->getSortedProgramingLanguages(5)}
+                            <div class="skill-category" n:if="count($progLanguages)">
+                                <h3>{_'Programing languages'}</h3>
+                                <ul class="skill-list">
+                                    {foreach $progLanguages as $skill}
+                                    <li style="clear: both">
+                                        {foreach [1,2,3,4,5] as $quality}
+                                            <div n:class="$quality <= $skill->quality ? qualified"></div>
+                                        {/foreach}
+                                        &nbsp; {$skill->name}
+                                    </li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+                            {var frameworks = $candidate->cv->getSortedFrameworks(5)}
+                            <div class="skill-category" n:if="count($frameworks)">
+                                <h3>{_'Frameworks'}</h3>
+                                <ul class="skill-list">
+                                    {foreach $frameworks as $skill}
+                                        <li style="clear: both">
+                                            {foreach [1,2,3,4,5] as $quality}
+                                                <div n:class="$quality <= $skill->quality ? qualified"></div>
+                                            {/foreach}
+                                            &nbsp; {$skill->name}
+                                        </li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+                        </td>
+
+
+                    </tr>
+                    <tr n:if="isset($jobUserInfo) && count($jobUserInfo[$candidate->id]['history'])">
+                        <td colspan="2">
+                            <br>
+                            <strong>{_"Last action"}:</strong>
+                            {var last = $jobUserInfo[$candidate->id]['history'][0]}
+                            {if $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_REJECTED} {_"Rejected"}
+                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_SHORTLISTED} {_"Shortlisted"}
+                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_MESSAGE} {_"Message sent"}
+                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_STATUS} {_"Status changed"} ({$last->text})
+                            {/if}
+                            on {$last->date|date:'j M Y'}. <a href="javascript:$('#actions-u'+{$candidate->id}).dialog({ title:'{$candidate->cv->getFullName()}' })">See all</a>
+                            <div id="actions-u{$candidate->id}" class="display-none">
+                                <ul>
+                                    <li n:foreach="$jobUserInfo[$candidate->id]['history'] as $info">
+                                        {if $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_REJECTED} {_"Rejected"}
+                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_SHORTLISTED} {_"Shortlisted"}
+                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_MESSAGE} {_"Message sent"}
+                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_STATUS} {_"Status changed"} ({$info->text})
+                                        {/if}
+                                        on {$info->date|date:'j M Y'}.
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="links" n:if="isset($jobUserInfo) && $jobUserInfo[$candidate->id]['category'] == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_SHORTLISTED">
+
+                <a n:href="this" n:if="$showSendMessage"
+                    class="switch hide button"
+                    data-text-hide="{_"Send message"}"
+                    data-text-show="{_"Send message"}"
+                    data-linked-chat="{$candidate->id}">{_"Send message"}</a>
+                {*if $user->isCompany() || $user->id != $candidate->id}
+				<a n:href="this, itTests => TRUE" class="button">
+					{_"IT tests"}
+				</a>
+				<a n:href=":Front:Demo:" target="_blank" class="button">
+					{_"Video Interview"}
+				</a>
+                {/if*}
+                <a n:href="this" class="switch hide button" n:if="$showStatusUpdate"
+                    data-linked-chat="status-{$candidate->id}">{_"Status Update"}</a>
+            </div>
+        </div>
+        <div class="foto">
+            {if $candidate->launchpadVideoUrl}
+            <a n:href=":Front:Inner:videoProfile $candidate->id" class="innerPage cboxElement">
+                <img src="{$basePath}/foto/250-150/cvImages/{$candidate->cv->photo}" alt="{$candidate->cv->getFullName()}" class="video-watermark" />
+            </a>
+            {elseif $candidate->cv->video}
+            <a n:href=":Front:Video: video => ($baseUri . '/video_files/candidates/' . $candidate->cv->video),
+                                     image => ($baseUri . '/foto/640-360/cvImages/' . $candidate->cv->photo),
+                                     title => $candidate->cv->getFullName()"
+               class="innerPage cboxElement">
+                <img src="{$basePath}/foto/250-150/cvImages/{$candidate->cv->photo}" alt="{$candidate->cv->getFullName()}" class="video-watermark" />
+            </a>
+            {else}
+                <img src="{$basePath}/foto/250-150/cvImages/{$candidate->cv->photo}" alt="{$candidate->cv->getFullName()}" />
+            {/if}
+        </div>
+        {ifset $jobUserInfo}
+            <div class="category-change" n:if="$jobUserInfo[$candidate->id]['category'] != Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_NONE">
+                {if $jobUserInfo[$candidate->id]['category'] == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_REJECTED}
+                <a n:href="shortlist! $jobUserInfo[$candidate->id]['id']" class="confirm">
+                    <img src="{$basePath}/images/confirm.png" alt="Shotlist" title="Shotlist">
+                </a>
+                <span class="reject" atl="Rejected" title="Rejected">
+                    <img src="{$basePath}/images/reject.png" atl="Rejected" title="Rejected">
+                    <span>Rejected</span>
+                    <span n:if="$jobUserInfo[$candidate->id]['category_change_date']" class="grey">on {$jobUserInfo[$candidate->id]['category_change_date']|date:'j M Y'}</span>
+                </span>
+                {elseif $jobUserInfo[$candidate->id]['category'] == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_SHORTLISTED}
+                <span class="confirm" alt="Shotlisted" title="Shotlisted">
+                    <img src="{$basePath}/images/confirm.png" alt="Shotlisted" title="Shotlisted">
+                    <span>Shortlisted</span>
+                    <span n:if="$jobUserInfo[$candidate->id]['category_change_date']" class="grey">on {$jobUserInfo[$candidate->id]['category_change_date']|date:'j M Y'}</span>
+                </span>
+                <a n:href="reject! $jobUserInfo[$candidate->id]['id']" class="reject">
+                    <img src="{$basePath}/images/reject.png" atl="Reject" title="Reject">
+                </a>
+                {/if}
+            </div>
+            <div class="category-chose" n:if="$jobUserInfo[$candidate->id]['category'] == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_NONE">
+                <a n:href="shortlist! $jobUserInfo[$candidate->id]['id']" class="confirm" alt="Shotlist" title="Shotlist">
+                    <img src="{$basePath}/images/confirm.png" alt="Shotlist">
+                    <span>Shortlist</span>
+                </a>
+                <a n:href="reject! $jobUserInfo[$candidate->id]['id']" class="reject" atl="Reject" title="Reject">
+                    <img src="{$basePath}/images/reject.png" atl="Reject" title="Reject">
+                    <span>Reject</span>
+                </a>
+            </div>
+        {/ifset}
+        <div style="clear: both"></div>
+    </div>
+
+    <div class="more chat chat-{$candidate->id}" n:if="$showSendMessage">
+        {control histChatMessageForm-$candidate->id}
+    </div>
+
+    <div class="more chat chat-status-{$candidate->id}" n:if="$showStatusUpdate">
+        <br>
+        <br>
+        {control statusUpdateForm-$candidate->id}
+    </div>
+
+    <div n:if="count($candidate->userDocs)" class="more docs doc-{$candidate->id}">
+        <ul class="files">
+            <li n:foreach="$candidate->userDocs as $doc"
+                n:class="file, $doc->type">
+                <a href="{$basePath}/docs/{$doc->name}" target="_blank" class="thumbnail">
+                    <span class="icon"></span>
+                </a>
+                <span class="name">{$doc->filename|truncate:15}{$doc->ext|truncate:5:''}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="more cv-{$candidate->cv->id}">
+        <div class="contain">
+            <div class="previewBox">
+                <div class="preview">
+                    {var templateStyle => $candidate->cv->templateName ? $candidate->cv->templateName : "default"}
+                    {include "../../../FrontModule/templates/Pdf/templates/$templateStyle.latte", cv => $candidate->cv}
+                </div>
+            </div>
+        </div>
+        <div class="previewControls">
+            <div class="leftPrev"><a n:href="this" title="{_"previous page"}" class="prev"><span></span></a></div>
+            <div class="paginator">1 / n</div>
+            <div class="rightNext"><a n:href="this" title="{_"next page"}" class="next"><span></span></a></div>
+        </div>
+    </div>
+
+    <div class="timelineBox">
+        <div class="timeline loading" data-timeline-id="{$candidate->cv->id}"></div>
+    </div>
+
+</div>
+{/define}

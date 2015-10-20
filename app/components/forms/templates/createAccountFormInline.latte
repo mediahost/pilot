@@ -1,0 +1,21 @@
+{snippet}
+    {form createAccountForm, class=>'contained-form form-email inline'}
+		<h6 class="text-white"> </h6>
+		
+		<div>
+			{input mail, class => 'mail', placeholder => 'Email'}
+			{input password, class => 'password', placeholder => 'Password'}
+			{input password2, class => 'password2', placeholder => 'Password again'}
+
+			{input $form['send']}
+		</div>
+		
+		<ul class="form-error" n:if="$form->errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+		<p class="sub">
+			{!$privacy}
+		</p>
+		<iframe srcdoc="" class="mail-list-form"></iframe>
+	{/form}
+{/snippet}

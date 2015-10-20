@@ -1,0 +1,19 @@
+{define #restContent}
+<div class="restContent settings">
+    <h1>{_"Settings"}</h1>
+    <table>
+        <tbody>
+            <tr>
+                <th>Global chat notifications:</th>
+                <td>
+                    {if $userEntity->chat_notifications}
+                        {_'enabled'} (<a n:href="switchNotifications!">{_'disable'}</a>)
+                    {else}
+                        {_'disabled'}  (<a n:href="switchNotifications!">{_'enable'}</a>)
+                    {/if}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{/define}

@@ -1,0 +1,192 @@
+.jobs {
+    position: relative;
+    h1 {
+        font-size: 18px;
+        color: #3454A4;
+        margin-bottom: 20px;
+    }
+    input, select {
+        padding: 3px;
+        border: 1px #D1D1D1 solid;
+    }
+    .mainActions {
+        position: absolute;
+        top: 20px;
+        right: 0px;
+        list-style: none;
+        li {
+            float: left;
+            display: block;
+            a {
+                display: block;
+                padding: 5px 10px;
+                text-decoration: none;
+                line-height: 14px;
+                background-color: #3454A4;
+                color: #FFF;
+                font-size: 12px;
+                text-transform: uppercase;
+                margin-right: 10px;
+            }
+        }
+        &:after {
+            .cleaner();
+        }
+    }
+    #jobsTable_wrapper {
+        margin-top: -20px;
+        .row {
+            .col-sm-12:first-child {
+                display: none;
+            }
+            #jobsTable_filter, #jobsTable_length {
+                display: none;
+            }
+        }
+    }
+    .table-scrollable {
+        border: none;
+    }
+    #jobsTable {
+        padding-top: 20px;
+        font-size: 14px;
+        tr {
+            th {
+                text-transform: uppercase;
+                text-align: left;
+            }
+            td {
+                &.actions {
+                    padding: 2px;
+                    padding-bottom: 2px;
+                    vertical-align: middle;
+                    padding-left: 20px;
+                }
+                a {
+                    &.action {
+                        display: inline-block;
+                        width: 24px;
+                        height: 24px;
+                        padding-right: 5px;
+                        background-color: transparent;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        opacity: .6;
+                        &.edit {
+                            background-image: url('@{pathImages}edit.png');
+                        }
+                        &.delete {
+                            background-image: url('@{pathImages}remove.png');
+                        }
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            &:nth-child(even) {
+                background-color: #F9F9F9;
+            }
+            &:hover {
+                td {
+                    background-color: #F5F5F5;
+                }
+            }
+        }
+    }
+    .pagination {
+        margin-top: -3px;
+        li {
+            display: block;
+            float: left;
+            width: 20px;
+            text-align: center;
+            margin-right: 2px;
+            a {
+                border: 1px solid #3454A4;
+                display: block;
+                text-decoration: none;
+                line-height: 20px;
+                color: #3454A4;
+            }
+            &.active, &:hover:not(.disabled) {
+                a {
+                    background: #3454A4;
+                    color: #FFF;
+                }
+            }
+            &.disabled {
+                a {
+                    border: 1px solid #DDD;
+                    color: #999;
+                    cursor: default;
+                }
+            }
+            &:after {
+                .cleaner();
+            }
+        }
+    }
+}
+.job {
+    .nav-tabs {
+        margin-bottom: 10px;
+    }
+    .form-body {
+        padding: 10px 25px;
+        .control-label {
+            float: left;
+            width: 150px;
+            font-weight: normal;
+            padding-right: 5px;
+        }
+        .form-control {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+            &.input-inline {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .col-sm-10 {
+            float: left;
+            width: 566px;
+        }
+        .col-sm-9 {
+            float: left;
+            width: 366px;
+            .ui-slider {
+                width: 100px;
+                float: left;
+                .ui-slider-handle {
+                    margin-top: 2px;
+                }
+            }
+            .sliderVal {
+                width: 100px !important;
+                margin: 0px;
+                padding-bottom: 2px;
+            }
+            label {
+                font-weight: normal;
+                padding-left: 20px;
+                margin-top: -10px;
+            }
+        }
+        .form-error-message {
+            padding-top: 5px;
+            display: inline-block;
+            color: #E02222;
+        }
+        .select2-search-choice {
+            a {
+                background: url('@{pathImages}select2.png') right top no-repeat;
+            }
+        }
+    }
+}

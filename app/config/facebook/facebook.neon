@@ -1,0 +1,5 @@
+parameters:
+	facebook:
+		app_name: 'Source-Code.com'
+		description: 'Source-Code.com'
+		scope: 'email,user_birthday'

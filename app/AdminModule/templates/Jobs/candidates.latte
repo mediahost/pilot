@@ -1,0 +1,16 @@
+{block content}
+<div class="pageContent">
+    <div class="row">
+        <div style="width: 724px">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">{$job->name}</div>
+                </div>
+                {control addCandidateToJobForm}
+                <br>
+                <br>
+                {control jobCandidatesGrid}
+            </div>
+        </div>
+    </div>
+</div>

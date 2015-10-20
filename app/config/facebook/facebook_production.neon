@@ -1,0 +1,7 @@
+parameters:
+	facebook:
+		app_id: '309752529162370'
+		app_secret: '77e523a44822b156f0fbfd86b8e39eeb'
+		app_namespace: 'source-code-com'
+		canvas_url: 'https://source-code.com/'
+		tab_url: null

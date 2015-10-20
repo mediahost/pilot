@@ -1,0 +1,27 @@
+# Gettext keys exported by GettextTranslator and Translation Panel
+# Created: 2013-12-04 19:54:47
+msgid ""
+msgstr ""
+"Project-Id-Version: Source-code\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-02-26 16:01+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4 ? 1 : 2));\n"
+"Last-Translator: Petr Poupě <pupe.dupe@gmail.com>\n"
+"Language: sk_SK\n"
+"X-Generator: Poedit 1.6.3\n"
+
+msgid "year"
+msgid_plural "years"
+msgstr[0] "year"
+msgstr[1] "years"
+msgstr[2] "years"
+
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s year"
+msgstr[1] "%s years"
+msgstr[2] "%s years"

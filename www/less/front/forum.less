@@ -1,0 +1,244 @@
+#forum {
+
+    padding-top: 20px;
+
+    .breadcrumbs {
+        padding-bottom: 30px;
+        font-size: 13px;
+    }
+
+    .paginator {
+        text-align: center;
+    }
+
+    .category {
+        padding-bottom: 20px;
+        .handle {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-image: url('@{pathImages}move.png');
+            cursor: pointer;
+        }
+    }
+    h2 {
+        font-size: 20px;
+        font-variant: small-caps;
+        padding-left: 20px;
+        line-height: 40px;
+        border-left: 5px @green solid;
+        border-bottom: 1px @lightGray solid;
+    }
+    a.edit, a.delete {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: bottom center;
+    }
+    a.edit {
+        background-image: url('@{pathImages}editor.png');
+    }
+    a.delete {
+        background-image: url('@{pathImages}delete.png');
+    }
+    .links {
+        font-size: 13px;
+        padding: 5px;
+        text-align: center;
+    }
+    .links a.button, form .button {
+        border: 1px @green solid;
+        background-color: @green;
+        color: @white;
+        &:hover {
+            background-color: @white;
+            color: @green;
+        }
+    }
+    .noposts {
+        padding: 30px;
+        text-align: center;
+    }
+
+    #editor, .editor {
+        th {
+            font-size: 14px;
+            padding-right: 10px;
+            .required {
+                font-weight: bold;
+            }
+        }
+        .text {
+            padding: 5px;
+            border: 2px #dfdfdf solid;
+        }
+        .form-error-message {
+            background-color: @red;
+            color: @white;
+            padding: 5px 10px;
+        }
+    }
+    .topic.new {
+        font-size: 14px;
+        th {
+            padding-right: 10px;
+            .required {
+                font-weight: bold;
+            }
+        }
+        td {
+            padding-bottom: 10px;
+        }
+    }
+
+    .list table {
+        width: 100%;
+        thead {
+            th {
+                padding: 8px;
+            }
+            .int {
+                width: 80px;
+            }
+            .author {
+                width: 120px;
+            }
+        }
+        tbody {
+            .int {
+                text-align: center;
+            }
+            .name {
+                padding: 10px;
+                padding-left: 25px;
+                .title {
+                    font-size: 17px;
+                    padding-bottom: 4px;
+                }
+            }
+            .author {
+                padding-left: 15px;
+            }
+            tr {
+                td {
+                    border-right: 1px @lightGray solid;
+                    border-bottom: 1px @lightGray solid;
+                    vertical-align: middle;
+                    padding: 5px;
+                }
+                td:last-child {
+                    border-right: none;
+                }
+                td.name > div {
+                    padding-left: 30px;
+                    background-repeat: no-repeat;
+                    background-position: center left;
+                }
+            }
+            tr:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+    .category {
+        tbody .name > div {
+            background-image: url('@{pathImages}comeback_arrow_small.png');
+        }
+    }
+    .topics {
+        tbody .name > div {
+            background-image: url('@{pathImages}forum_topic.png');
+        }
+    }
+
+    .posts {
+        h2 {
+            margin-bottom: 20px;
+        }
+        .post {
+            background-color: @verylightGray;
+            overflow: hidden;
+            .headline {
+                background-color: @lightGreen;
+                color: white;
+                font-size: 14px;
+                padding: 5px;
+                .time {
+                    float: left;
+                    font-weight: bold;
+                }
+                .number {
+                    float: right;
+                }
+                &:after {
+                    .cleaner();
+                }
+            }
+            .user {
+                float: left;
+                padding: 20px 10px;
+                font-weight: bold;
+            }
+            .text {
+                float: right;
+                background-color: @white;
+                width: 810px;
+                padding: 20px;
+            }
+            .links {
+                text-align: left;
+                border-top: 1px @green solid;
+                margin-top: 20px;
+                padding-top: 10px;
+            }
+            &:after {
+                .cleaner();
+            }
+        }
+        .post.new {
+            background-color: @verylightGray;
+            margin-top: 20px;
+            h3 {
+                background-color: @green;
+                color: white;
+                font-size: 16px;
+                padding: 10px;
+            }
+            p.signIn {
+                padding: 30px;
+                text-align: center;
+            }
+            form {
+                background-color: @white;
+                float: right;
+                padding-bottom: 10px;
+                width: 850px;
+                .error li {
+                    background-color: #D45F5F;
+                    color: @white;
+                    padding: 10px;
+                    display: block;
+                }
+            }
+            &:after {
+                .cleaner();
+            }
+        }
+    }
+    
+}
+
+.ck-text {
+    font-size: 14px;
+    padding-left: 20px;
+    padding-top: 20px;
+    width: 800px;
+    height: 100px;
+}

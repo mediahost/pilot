@@ -1,0 +1,238 @@
+#cvcontent {
+    padding: 30px 20px;
+    font-size: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+#cvcontent th {
+    text-align: right;
+    padding-right: 5px;
+    width: 95px;
+}
+#cvcontent td,
+#cvcontent td {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+#cvcontent .headline1 th {
+    font-size: 1.3em;
+    border-right: none;
+    border-bottom: #3454A4 1px solid;
+    text-align: left;
+    padding-bottom: 5px;
+    color: #3454A4;
+}
+#cvcontent .headline2 th {
+    color: #6f6f6f;
+    font-size: 1.2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#cvcontent .bold {
+    font-weight: bold;
+}
+#cvcontent .italic {
+    font-style: italic;
+}
+
+table {
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+table.main tr th {
+    vertical-align: baseline;
+    text-align: right;
+    padding-right: 15px;
+    font-weight: normal;
+}
+
+table.main tr th.headline {
+    color: #204f9b;
+}
+table.main tr th.headlineBig {
+    color: #204f9b;
+    text-transform: uppercase;
+    font-size: 8px;
+}
+table.main tr td.info {
+    vertical-align: baseline;
+    padding-top: 5px;
+}
+table.main tr td.photo {
+    vertical-align: top;
+    text-align: right;
+    padding: 0px;
+}
+table.main tr td.photo img {
+    max-width: 80px;
+    max-height: 80px;
+}
+table.main tr td table.address tr td.name {
+    font-size: 10px;
+    padding-top: -5px;
+    padding-bottom: 10px;
+}
+table.main tr td table.address tr td.address {
+    background-image: url("/css/pdf-templates/default/address.png");
+    background-repeat: no-repeat;
+    background-size:8px 8px;
+    background-position: center left;
+    padding-left: 9px;
+    height: 8px;
+}
+table.main tr td table.address tr td.phone {
+    background-image: url("/css/pdf-templates/default/phone.png");
+    background-repeat: no-repeat;
+    background-size:8px 8px;
+    background-position: center left;
+    padding-left: 9px;
+    height: 8px;
+}
+table.main tr td table.address tr td.mail {
+    background-image: url("/css/pdf-templates/default/mail.png");
+    background-repeat: no-repeat;
+    background-size:8px 8px;
+    background-position: center left;
+    padding-left: 9px;
+    height: 8px;
+}
+
+table.main tr td table.company {
+    margin-top: -2px;
+}
+table.main tr td table.company tr td.position {
+    color: #204f9b;
+    font-size: 10px;
+}
+
+#cvcontent table.main tr.separator > td {
+    border-color: #032bdf;
+    border-width: 0px;
+    border-style: solid;
+    border-bottom-width: 1px;
+    vertical-align: bottom;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#cvcontent table.main tr.separator td table.block {
+    float: right;
+    width: 8px;
+}
+#cvcontent table.main tr.separator td table.block tr td {
+    width: 8px;
+    height: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #032bdf;
+}
+table.main tr.emptySeparator td, table.main tr.emptySeparator th {
+    padding-bottom: 6px;
+}
+
+table.main tr.mainGrid td {
+    color: #204f9b;
+    text-transform: uppercase;
+    padding: 5px 0px;
+    text-align: center;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 1px;
+}
+table.main tr.subGrid td {
+    color: #204f9b;
+    padding: 5px 0px;
+    text-align: center;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 1px;
+}
+table.main tr.mainGrid td.left, table.main tr.subGrid td.left {
+    border-left-width: 0px;
+}
+table.main tr.mainGrid td.right, table.main tr.subGrid td.right {
+    border-right-width: 0px;
+}
+table.main tr.oddGrid td {
+    padding: 3px 0px;
+    text-align: center;
+}
+table.main tr.evenGrid td {
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px 0px;
+    background-color: #eee;
+    text-transform: uppercase;
+    text-align: center;
+}
+table.main tr.notice td {
+    color: #204f9b;
+    font-size: 5px;
+}
+
+.preview div.header {
+    width: 377px;
+    position: absolute;
+    top: 0px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: white;
+}
+table.header td {
+    vertical-align: bottom;
+}
+table.header td.left {
+    background-image: url("/css/pdf-templates/default/title.png");
+    background-repeat: no-repeat;
+    background-size: 50px 20px;
+    background-position: bottom left;
+    width: 100px;
+    height: 12px;
+}
+table.header td.middle {
+    color: #204f9b;
+    font-size: 8px;
+}
+table.header td.right1 {
+    width: 18px;
+    background-color: #0000d5;
+}
+table.header td.right2 {
+    width: 3px;
+}
+table.header td.right3 {
+    height: 12px;
+    width: 18px;
+    background-color: #051878;
+}
+
+div.footer {
+    width: 377px;
+    position: absolute;
+    padding-top: 4px;
+    padding-bottom: 10px;
+    background-color: white;
+}
+table.footer td.left1 {
+    height: 12px;
+    width: 18px;
+    background-color: #051878;
+}
+table.footer td.left2 {
+    width: 3px;
+}
+table.footer td.left3 {
+    height: 12px;
+    width: 18px;
+    background-color: #0000d5;
+}
+table.footer td.middle {
+}
+table.footer td.right {
+    height: 12px;
+    width: 18px;
+    background-color: #051878;
+}

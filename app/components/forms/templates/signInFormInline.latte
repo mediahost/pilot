@@ -1,0 +1,14 @@
+{snippet}
+    {form signInForm}
+        <div class="form">
+			<ul class="error" n:if="$form->errors">
+				<li n:foreach="$form->errors as $error">{$error}</li>
+			</ul>
+            <div class="input">
+                {input username, class => 'name'}
+                {input password, class => 'password'}
+                {input $form['send']}
+            </div>
+        </div>
+    {/form}
+{/snippet}

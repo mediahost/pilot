@@ -1,0 +1,222 @@
+form {
+    &.styled {
+        margin-bottom: 20px;
+        ul.error {
+            li {
+                padding: 10px;
+                color: @red;
+            }
+        }
+        table {
+            width: 98%;
+            margin: 0 1%;
+        }
+        th {
+            text-align: right;
+            padding-right: 6px;
+            min-width: 108px;
+            width: 150px;
+			padding-top: 6px;
+        }
+        th, td {
+            vertical-align: top;
+            padding-bottom: 5px;
+        }
+        input[type=text], input[type=password], input.date,
+        textarea, select {
+            border: 1px solid #dfdfdf;
+            background: #ffffff;
+            padding: 5px 10px 5px 10px;
+            font-size: 13px;
+            color: #4f4f4f;
+            margin-left: 0px;
+            .boxShadow(2px, 5px, -1px, rgba(0, 0, 0, 0.15));
+            &.small {
+                width: 50px;
+            }
+        }
+        input[type=text], input[type=password], input.date,
+        select, textarea {
+            width: 197px;
+        }
+        textarea {
+            vertical-align: text-top;
+            height: 55px;
+            min-width: 197px;
+            width: 90%;
+            &.middle {
+                height: 150px;
+            }
+            &.bigger {
+                height: 320px;
+            }
+        }
+        select {
+            width: 219px;
+            &.small {
+                width: 72px;
+            }
+            &.bigger {
+                height: 150px;
+            }
+            &.labelTop {
+                vertical-align: text-top;
+            }
+        }
+        input.button {
+            background-color: @green;
+            color: @white;
+        }
+        label {
+            color: @darkGray;
+            &.required {
+                font-weight: 600;
+            }
+        }
+        fieldset {
+            legend {
+                padding: 15px;
+                font-size: 16px;
+                color: #4f4f4f;
+            }
+        }
+        input.form-control-error {
+            color: @red;
+        }
+        .form-error-message {
+            display: block;
+            color: @red;
+            padding-left: 10px;
+        }
+        .maxlength-feedback {
+            margin-top: 5px;
+            display: block;
+        }
+        div#rangeSlider {
+            margin-top: 10px;
+            margin-left: -40px;
+            width: 200px;
+        }
+        .ui-slider {
+            width: 200px;
+            margin-left: 10px;
+        }
+        .sliderVal {
+            padding: 10px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+        }
+        &#frm-step8 {
+            th {
+                width: 90px;
+            }
+        }
+        div.radioFeelingsLabel {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            //margin-left: 10px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: top left;
+            cursor: pointer;
+            &.frmgetInTouchForm-feelings-0, &.frmgetInTouchForm-feelings-1, &.frmgetInTouchForm-feelings-2 {
+                background-image: url('@{pathImages}smileys.png');
+                &:hover {
+                    background-position-y: -32px;
+                    opacity: .8;
+                }
+            }
+            &.frmgetInTouchForm-feelings-0 {
+            }
+            &.frmgetInTouchForm-feelings-1 {
+                background-position-x: -32px;
+            }
+            &.frmgetInTouchForm-feelings-2 {
+                background-position-x: -64px;
+            }
+        }
+        label.active div.radioFeelingsLabel,
+        label.active div.radioFeelingsLabel:hover {
+            background-position-y: -32px;
+            opacity: 1;
+        }
+    }
+    input.date.hasDatepicker {
+        min-width: 92px;
+        width: 92px;
+        background: transparent url('@{pathImages}calendar.png') no-repeat 92px center;
+    }
+    &.front {
+        ul.error {
+            background-color: #FFC7C7;
+            padding: 20px;
+            margin-bottom: 20px;
+            li {
+                color: red;
+            }
+        }
+        table {
+            .form-error-message {
+                color: red;
+                padding-left: 8px;
+            }
+            th, td {
+                padding-bottom: 10px;
+            }
+            th {
+                text-align: right;
+                padding-right: 10px;
+                min-width: 100px;
+                font-size: 13px;
+                label {
+                    &.required {
+                        font-weight: bold;
+                    }
+                }
+            }
+            input[type=text], input[type=password], input.date,
+            textarea, select {
+                border: 1px solid #dfdfdf;
+                background-color: #ffffff;
+                padding: 5px 10px 5px 10px;
+                font-size: 13px;
+                color: #4f4f4f;
+                margin-left: 0px;
+                .boxShadow(2px, 5px, -1px, rgba(0, 0, 0, 0.15));
+                &.small {
+                    width: 50px;
+                }
+                &.disabled {
+                    border-color: #F5F5F5;
+                    background-color: #F7F7F7;
+                    color: #9C9C9C;
+                }
+            }
+            input {
+                &.date {
+                    cursor: pointer;
+                }
+                &.button {
+                    margin-top: 10px;
+                    padding: 5px 8px;
+                    min-width: 100px;
+                    font-size: 15px;
+                    color: #666;
+                    &.positive {
+
+                    }
+                    &.negative {
+                        background-color: #FF8686;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+.form {
+    .terms {
+        margin-left: 110px;
+    }
+}

@@ -1,0 +1,40 @@
+{block content}
+{includeblock 'editProfileBlocks.latte'}
+<div class="container" id="editProfile">
+	<div class="content cleaner">
+        {include #navigator}
+
+        <div class="box inputs">
+            <div class="contain settings">
+				<h2>{_'Settings'}</h2>
+
+				<div class="first">
+					<p n:if="$userEntity->is_profile_public">
+						<a class="unshare"
+						   n:href="unShareProfile!">
+							{_'You profile is public.'} {_"Unshare profile."}
+						</a>
+					</p>
+					<p n:if="!$userEntity->is_profile_public">
+						<a class="share"
+						   n:href="shareProfile!">
+							{_"You profile isn't public."} {_"Make this profile public"}
+						</a>
+					</p>
+				</div>
+
+				<div class="url" n:if="$userEntity->is_profile_public">
+					<p n:if="$userEntity->profile_token != ''">
+						{_"Your public profile"}: 
+						<a n:href="//:Profile:Homepage: $userEntity->profile_token">
+							{link //:Profile:Homepage: $userEntity->profile_token|truncate:60}
+						</a>
+					</p>
+					{control profileTokenForm}
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

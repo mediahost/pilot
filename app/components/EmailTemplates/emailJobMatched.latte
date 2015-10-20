@@ -1,0 +1,28 @@
+{layout '@emailLayout.latte'}
+
+{block content}
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    Dear {$candidateName},
+                </p>
+                <p>
+                    {$companyName} have an open {$jobName} position that matches your professional background.
+                </p>
+                <p>
+                    If this role is interesting for you please click on the link below to review and apply:
+                </p>
+                <p>
+                    <a href="{$jobLink}">{$jobName}</a>
+                </p>
+                <p>
+                    Best regards,</br>
+                    Source-Code
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{/block}

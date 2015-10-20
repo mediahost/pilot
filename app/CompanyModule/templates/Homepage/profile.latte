@@ -1,0 +1,28 @@
+{define rest}
+<div class="restContent profile">
+
+    <div class="link" n:if="$company->slug">
+        <div class="url">
+            {_"Public profile"}: 
+            <a n:href=":CompanyProfile:Homepage:default $company->slug">
+                {link //:CompanyProfile:Homepage:default $company->slug}
+            </a>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend>{_"Company info"}</legend>
+        {control companyProfileForm}
+    </fieldset>
+
+    <fieldset>
+        <legend>{_"Logo"} | <a n:href="deleteLogo!">remove</a></legend>
+        <img src="{$basePath}/foto/150-150/company/{$company->id}.png?{? echo time()}">
+    </fieldset>
+
+    <fieldset id="pictures">
+        <legend>{_"Pictures"} | <a n:href="deleteCompanyPictures!">remove all</a></legend>
+        {control picsForm}
+    </fieldset>
+</div>
+{/define}

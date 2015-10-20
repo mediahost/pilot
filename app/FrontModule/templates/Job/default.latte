@@ -1,0 +1,104 @@
+{block content}
+
+<div class="container" id="job">
+    
+    <h2>{_"Position offer"}</h2>
+
+    <div class="offer" n:if="$job->id">
+        <h3>{$job->position}</h3>
+        
+        <a n:if="$job->contactemail" n:href="Inner:jobApply $job->externalid" class="apply innerPage">{_"Apply"}</a>
+        
+        <p class="subtitle">
+            {$job->offerLocationNames|implodeMy:", "} {if $job->offerlocationDescription}({$job->offerlocationDescription}){/if}
+            {if $job->minsalary || $job->maxsalary}
+            | 
+            {if $job->minsalary}{_"from"} {$job->minsalary|currency:$job->currency}{/if}
+            {if $job->maxsalary}{_"to_"} {$job->maxsalary|currency:$job->currency}{/if}
+            / {_"month"}
+            {/if}
+        </p>
+        
+        <div class="description">{!$job->jobtasks|br2nl|texy}</div>
+        
+        <h4>{_"Prerequisites"}</h4>
+        <div class="description">{!$job->prerequisites|br2nl|texy}</div>
+        
+        <h4>{_"Benefits"}</h4>
+        <div class="description">{!$job->otherbenefits|br2nl|texy}</div>
+        
+        <h4>{_"Other informations"}</h4>
+        <div class="description">{!$job->noteforcandidate|br2nl|texy}</div>
+        
+        {if $canEdit}
+            {control tagsForm}
+        {/if}
+        <div class="info">
+            <table>
+                <tr>
+                    <th>{_"Reference number"}:</th>
+                    <td>{$job->refnr}</td>
+                </tr>
+                {*<tr n:if="$job->contactname">
+                    <th>{_"Contact name"}:</th>
+                    <td>{$job->contactname}</td>
+                </tr>
+                <tr n:if="$job->contactemail">
+                    <th>{_"Contact e-mail"}:</th>
+                    <td><a href="mailto:{$job->contactemail}">{$job->contactemail}</a></td>
+                </tr>
+                <tr n:if="$job->contactphone">
+                    <th>{_"Contact phone"}:</th>
+                    <td>{$job->contactphone}</td>
+                </tr>*}
+                <tr>
+                    <th>{_"Salary"}:</th>
+                    <td>
+                        {if $job->minsalary && $job->maxsalary}
+                            {$job->minsalary|currency:$job->currency} - {$job->maxsalary|currency:$job->currency} / {_"month"}
+                        {elseif $job->minsalary}
+                            {_"od"} {$job->minsalary|currency:$job->currency} / {_"month"}
+                        {elseif $job->maxsalary}
+                            {_"do"} {$job->maxsalary|currency:$job->currency} / {_"month"}
+                        {else}
+                            {_"not inserted"}
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{_"Location"}:</th>
+                    <td>{$job->offerLocationNames|implodeMy:", "} {if $job->offerlocationDescription}({$job->offerlocationDescription}){/if}</td>
+                </tr>
+                <tr>
+                    <th>{_"Work type"}:</th>
+                    <td>{$job->jobTypeNames|implodeMy:", "}</td>
+                </tr>
+                <tr>
+                    <th>{_"Required languages"}:</th>
+                    <td>{$skills}</td>
+                </tr>
+                <tr>
+                    <th>{_"Required education"}:</th>
+                    <td>{$job->educationLevelNames|implodeMy:", "}</td>
+                </tr>
+                <tr>
+                    <th>{_"Sector"}:</th>
+                    <td>{$job->offerCategoryNames|implodeMy:", "}</td>
+                </tr>
+                <tr>
+                    <th>{_"Date of insertion"}:</th>
+                    <td>{$job->datecreated|dateLang:$lang}</td>
+                </tr>
+                <tr>
+                    <th>{_"Original offer"}:</th>
+                    <td><a href="{$origLink}">{$job->position}</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div n:if="!$job->id">{_"Requested offer is no longer available."}</div>
+    
+</div>
+
+{/block}

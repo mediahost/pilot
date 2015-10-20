@@ -1,0 +1,125 @@
+{define #container}
+<div id="container">
+
+    <!-- HEAD -->
+    <div id="head" class="cleaner">
+        <div class="container">
+            {include #head}
+        </div>
+    </div>
+    <!-- /HEAD -->
+
+    <!-- CONTENT -->
+    <div id="content">
+        <!-- MESSAGES -->
+        <div id="flashMessages">
+            <div n:snippet="flash">
+                {include #flashMessages}
+            </div>
+        </div>
+        <!-- /MESSAGES -->
+
+        <!-- PAGE -->
+        <div id="page">
+            {include #content}
+        </div>
+        <!-- /PAGE -->
+
+        <div class="push"></div>
+    </div>
+    <!-- /CONTENT -->
+
+</div>
+
+<!-- FOOTER -->
+{include #footer}
+<!-- /FOOTER -->
+{/define}
+
+{** DEFINE *******************************************************************}
+
+{define #head}
+<div id="logo">
+    <a n:href=":Front:Homepage:" class="logo"></a>
+</div>
+
+<div id="menu">
+</div> 
+
+{*<div id="langs">
+    <ul class="cleaner">
+        <li n:foreach="$langs as $language">
+            <a n:href="this, lang => $language->key" 
+               title="{_$language->name}"
+               class="{$language->class} tip-se{ifCurrent this, lang => $language->key} active{/ifCurrent}">
+                <span></span>
+            </a>
+        </li>
+    </ul>
+</div>*}
+{/define}
+
+{define #flashMessages}
+<div n:foreach="$flashes as $flash" class="flash {$flash->type}">
+    <span class="text">{!$flash->message|nl2br}</span>
+    <a n:href="this" class="close"></a>
+</div>
+<!--<div class="flash info"><span class="text">Demo message</span><a n:href="this" class="close"></a></div>-->
+<!--<div class="flash success"><span class="text">Demo message</span><a n:href="this" class="close"></a></div>-->
+<!--<div class="flash warning"><span class="text">Demo message</span><a n:href="this" class="close"></a></div>-->
+<!--<div class="flash error"><span class="text">Demo message</span><a n:href="this" class="close"></a></div>-->
+{/define}
+
+{define #sitemap}
+<div class="container">
+    <div class="sitemap cleaner">
+        <div class="fb-like" data-href="https://www.facebook.com/sourcecodeireland" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        {*<ul class="tree">
+            <li n:foreach="$sitemapTree as $sitemapName => $sitemapList">
+                <span>{$sitemapName}</span>
+                <ul class="links">
+                    <li n:foreach="$sitemapList as $sitemapItem">
+                        <a {if $sitemapItem->link === NULL}n:href="Content: $sitemapItem->id"{else}href="{$sitemapItem->link}"{/if}>
+                            <span>{$sitemapItem->name}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>*}
+
+        <div class="socials">
+            <ul class="cleaner">
+                <li><a n:href=":Front:Content:page 66"><img src="{$basePath}/images/socials/comeback_arrow.png" alt="comeback" /></a></li>
+                <!--<li><a n:href="this"><img src="{$basePath}/images/socials/twitter_m.png" alt="twitter" /></a></li>-->
+                <li><a href="https://www.facebook.com/sourcecodeireland"><img src="{$basePath}/images/socials/facebook_m.png" alt="facebook" /></a></li>
+                <!--<li><a n:href="this"><img src="{$basePath}/images/socials/linkedin_m.png" alt="linked in" /></a></li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+{/define}
+
+{define #bottomLinks}
+<div class="container bottomLinks">
+    <ul>
+        <!--<li><a n:href="this"><span>{_"Submit an idea"}</span></a></li>-->
+        <li><a n:href="Inner:getInTouch" class="innerPage"><span>{_"Get in Touch"}</span></a></li>
+    </ul>
+</div>
+{/define}
+
+{define #footer}
+<!-- SITEMAP -->
+<div id="sitemap">
+    {include #sitemap}
+</div>
+<!-- /SITEMAP -->
+
+<footer>
+    <div class="container logo"></div>
+</footer>
+
+<div id="bottomlinks">
+    {include #bottomLinks}
+</div>
+{/define}

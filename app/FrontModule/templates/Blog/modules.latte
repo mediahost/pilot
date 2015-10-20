@@ -1,0 +1,61 @@
+{define modules}
+<div n:ifset="$back" class="back">
+    <a n:href="Blog:" class="button">{_"Back to List"}</a>
+</div>
+<div class="module" n:ifset="$recentBlogs" n:if="count($recentBlogs)">
+    <h3>{_"Recent articles"}</h3>
+    <ul>
+        <li n:foreach="$recentBlogs as $modItem">
+            <a n:href="Blog: $modItem->url"><span>{!$modItem->name|striptags}</span></a>
+        </li>
+    </ul>
+</div>
+<div class="module" n:ifset="$mostRead" n:if="count($mostRead)">
+    <h3>{_"Most read aticles"}</h3>
+    <ul>
+        <li n:foreach="$mostRead as $modItem">
+            <a n:href="Blog: $modItem->url"><span>{!$modItem->name|striptags}</span></a>
+        </li>
+    </ul>
+</div>
+<div class="module" n:ifset="$categories" n:if="count($categories)">
+    <h3>{_"Categories"}</h3>
+    <ul>
+        <li n:foreach="$categories as $id => $modItem">
+            <a n:href="Blog:list category => $id"><span>{$modItem}</span></a>
+        </li>
+    </ul>
+</div>
+<div class="module">
+    <h3>{_"Tag cloud"}</h3>
+    <div class="cloud">
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+        <a n:href="this"><span class="level5">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+        <a n:href="this"><span class="level5">item</span></a>
+        <a n:href="this"><span class="level4">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+        <a n:href="this"><span class="level3">item</span></a>
+        <a n:href="this"><span class="level2">item</span></a>
+        <a n:href="this"><span class="level1">item</span></a>
+    </div>
+</div>
+{/define}

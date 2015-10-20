@@ -1,0 +1,60 @@
+{block content}
+<div class="container" id="forum">
+    
+    <div class="breadcrumbs">
+        <span><a n:href="Forum:">{_"Forum"}</a></span>
+        <span class="separator">&raquo;</span>
+        <span>{$forum->name}</span>
+    </div>
+
+    <div class="topics">
+        <h2>{$forum->name}</h2>
+        <a n:href="Forum:editTopic $forum->id" class="button" n:if="$canAdd">{_"Post new topic"}</a>
+        <div class="list">
+            <table n:if="count($topics)">
+                <thead>
+                    <tr>
+                        <th class="name">{_"Topic"}</th>
+                        <th class="int">{_"Replies"}</th>
+                        <th class="int">{_"Views"}</th>
+                        <th class="author">{_"Last Post"}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr n:foreach="$topics as $topic">
+                        {var ownTopic => $topic->firstPost->userId === $userId}
+                        <td class="name">
+                            <div>
+                                <p class="title">
+                                    <a n:href="Forum:topic $topic->id"><span>{$topic->name}</span></a>
+                                    {if $canAdd && $ownTopic}
+                                        <a n:href="Forum:editTopic $forum->id, $topic->id" class="edit"></a>
+                                    {/if}
+                                    {if $canDelete || ($canAdd && $ownTopic)} 
+                                        <a n:href="deleteTopic! $topic->id" class="delete" onClick="javascript:return confirm({_"Are you sure? This topic will be deleted."})"></a>
+                                    {/if}
+                                </p>
+                                <p class="subscr" n:if="$topic->firstPost->username">{_"by"} {$topic->firstPost->username}</p>
+                            </div>
+                        </td>
+                        <td class="int">{$topic->countPosts}</td>
+                        <td class="int">{$topic->countViews}</td>
+                        <td class="author">
+                            <div>
+                                <p class="link"><a n:href="Forum:post $topic->lastPostId"><span>{$topic->lastPost->date|timeAgoInWords}</span></a></p>
+                                <p class="author" n:if="$topic->lastPost->username">{_"by"} {$topic->lastPost->username}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div n:if="!count($topics)" class="noposts">
+                {_"No post yet."}
+                {if $canAdd}{_"You can write your"} <a n:href="Forum:editTopic $forum->id">{_"first topic"}</a>.{/if}
+            </div>
+        </div>
+        {control topic}
+    </div>
+
+</div>
+{/block}

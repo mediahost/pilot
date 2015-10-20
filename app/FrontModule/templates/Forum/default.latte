@@ -1,0 +1,84 @@
+{block scripts}
+<script n:if="$canCategoryEdit">
+$(document).ready(function() {
+    $("#category-list").sortable({
+        handle : '.handle',
+        update : function () {
+            var order = $('#category-list').sortable('serialize');
+            $.get({link Ajax:orderCategories}+"?"+order);
+        }
+    });
+    
+});
+</script>
+{/block}
+
+{block content}
+<div class="container" id="forum">
+
+    <div class="breadcrumbs">
+        <span>{_"Forum"}</span>
+    </div>
+
+    <ul n:if="count($categories)" id="category-list">
+        <li n:foreach="$categories as $category" id="listItem_{$category->id}" class="category">
+        <h2 n:if="$canCategoryShow">
+                <span n:if="$canCategoryEdit && count($categories) > 1" class="handle"></span>
+                {$category->name}
+                {if $canCategoryEdit} 
+                <a n:href="Inner:editForumCategory $category->id" class="edit innerPage"></a>
+                <a n:href="deleteCategory! $category->id" class="delete" onClick="javascript:return confirm({_"Are you sure? This category will be deleted."})"></a>
+                {/if}
+        </h2>
+        <div class="list">
+            <table n:if="count($category->forums)">
+                <thead>
+                    <tr>
+                        <th class="name">{_"Forum"}</th>
+                        <th class="int">{_"Topics"}</th>
+                        <th class="int">{_"Posts"}</th>
+                        <th class="author">{_"Last Post"}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr n:foreach="$category->forums as $forum">
+                        <td class="name">
+                            <div>
+                                <p class="title">
+                                    <a n:href="Forum:topics $forum->id"><span>{$forum->name}</span></a>
+                                        {if $canForumEdit}
+                                    <a n:href="Inner:editForum $category->id, $forum->id" class="edit innerPage"></a>
+                                    <a n:href="deleteForum! $forum->id" class="delete" onClick="javascript:return confirm({_"Are you sure? This forum will be deleted."})"></a>
+                                        {/if}
+                                </p>
+                                <p class="subscr">{$forum->description|truncate:50}</p>
+                            </div>
+                        </td>
+                        <td class="int">{$forum->countTopics}</td>
+                        <td class="int">{$forum->countPosts}</td>
+                        <td class="author">
+                            <div n:if="$forum->lastPostId">
+                                <p class="link"><a n:href="Forum:post $forum->lastPostId"><span>{$forum->lastPost->date|timeAgoInWords}</span></a></p>
+                                <p class="author">{_"by"} {$forum->lastPost->username}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="links" n:if="$canForumEdit">
+                <a n:href="Inner:editForum $category->id" class="button innerPage">{_"New forum"}</a>
+            </div>
+        </div>
+        </li>
+    </ul>
+
+    <div n:if="!count($categories)" class="noposts">
+        {_"We are very sorry! Forum is empty for this language."}
+    </div>
+
+    <div class="links editor" n:if="$canCategoryEdit">
+        {control categoryForm}
+    </div>
+
+</div>
+{/block}

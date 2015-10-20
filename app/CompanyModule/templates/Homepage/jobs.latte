@@ -1,0 +1,43 @@
+{define rest}
+<div class="restContent jobs">
+    <h1>{_"Jobs"}</h1>
+
+    <ul class="mainActions">
+        <li><a n:href="job">{_"New job"}</a></li>
+    </ul>
+
+    <table id="jobsTable" class="data-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>{_"Job title"}</th>
+                <th style="text-align:center;">{_"Job Admin"}</th>
+                <th style="text-align:center;">{_"Applied"}</th>
+                <th style="text-align:center;">{_"Shortlisted"}</th>
+                <th style="text-align:center; width: 54px;">{_"Invited for IV"}</th>
+                <th style="text-align:center; width: 80px;">{_"IV Process Completed"}</th>
+                <th style="text-align:center; width: 44px;">{_"Offer Made"}</th>
+                <th style="width: 90px;">&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr n:foreach="$jobs as $job">
+                <td><a n:href=":Company:Homepage:matched $job->id">{$job->name}</a></td>
+                <td style="text-align:center;">{$job->ref}</td>
+                <td style="text-align:center;"><a n:href=":Company:Homepage:matched $job->id">{(int)$job->applyed_completed_count}</a></td>
+                <td style="text-align:center;"><a n:href=":Company:Homepage:matched $job->id, \Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_CATEGORY_SHORTLISTED">{(int)$job->shortlisted_count}</a></td>
+                <td style="text-align:center;">{$job->invited_count}</td>
+                <td style="text-align:center;">{$job->process_completed_count}</td>
+                <td style="text-align:center;">{$job->offer_made_count}</td>
+                <td class="actions">
+                    <a n:href="Export:jobCandidates $job->id" class="action" style="vertical-align: top; padding-top: 6px;">xlsx</a>
+                    <a n:href="job, $job->id" class="action edit" title="{_"Edit"}"></a>
+                    <a n:href="deleteJob! $job->id" class="action delete" title="{_"Delete"}"
+                       onClick="javascript:return confirm({_"Are you sure? This job will be deleted."})"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+{/define}

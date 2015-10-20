@@ -1,0 +1,88 @@
+{define #menu}
+{? $user->setCompanyNamespace()}
+<div class="bootstrap">
+    <div class="top-menu">
+        <ul n:if="$user->isLoggedIn()"
+            class="nav navbar-nav pull-right">
+			
+            <li class="dropdown">
+                <a n:href=":Company:Homepage:jobs" class="dropdown-toggle">
+                    <i class="icon-briefcase"></i>
+					{_'Jobs'}
+                </a>
+            </li>
+            <li class="dropdown">
+                <a n:href=":Company:Homepage:favorites" class="dropdown-toggle">
+                    <i class="icon-star"></i>
+                </a>
+            </li>
+            <!-- BEGIN INBOX DROPDOWN -->
+            <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <i class="icon-envelope-open"></i>
+                    <span class="badge badge-red" n:if="$unreadMessagesCount"> {$unreadMessagesCount} </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <p>{_'You have %s new messages', $unreadMessagesCount}</p>
+                    </li>
+                    <li>
+                        <ul class="dropdown-menu-list scroller" style="height: 250px;">
+                            <li n:foreach="$lastChats as $lastChat"
+                                n:if="$lastChat->is_completed"
+                                n:class="$lastChat->isUnreedByCompany() ? unread">
+                                <a n:href=":Company:Homepage:chat $lastChat->id">
+                                    <span class="photo">
+                                        <img src="{$basePath}/foto/40-40/cvImages/{if $lastChat->cv_photo}{$lastChat->cv_photo}{else}default{/if}" alt="candidate avatar"/>
+                                    </span>
+                                    <span class="subject">
+                                        <span class="from">{$lastChat->userName|truncate:15}</span>
+                                        <span class="time">{if $lastChat->isLastUpdateToday()}{$lastChat->lastUpdate|date:'H:i'}{else}{$lastChat->lastUpdate|date:'d.m.'}{/if}</span>
+                                    </span>
+                                    <span class="message">{$lastChat->lastMessage|truncate:65}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="external">
+                        <a n:href=":Company:Homepage:messages">
+                            {_"See all messages"} 
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END INBOX DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown dropdown-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="{$basePath}/foto/20-20/company/default.png" />
+                    <span class="username">{$user->identity->data['username']}</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a n:href=":Company:Homepage:profile">
+                            <i class="icon-user"></i> 
+                            {_"Profile"} 
+                        </a>
+                    </li>
+                    <li>
+                        <a n:href=":Company:Sign:out">
+                            <i class="icon-logout"></i> 
+                            {_"Log Out"} 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+            <li class="dropdown">
+                <a n:href=":Company:Sign:out" class="dropdown-toggle">
+                    <i class="icon-logout"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+{/define}

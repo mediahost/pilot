@@ -1,0 +1,154 @@
+#blog { 
+    .blogList {
+        float: left;
+        width: 600px;
+        overflow: hidden;
+        .paginatorFrame {
+            text-align: center;
+        }
+        .noItems {
+            font-size: 14px;
+            line-height: 25px;
+            padding: 10px;
+            text-align: center;
+            background-color: #DFDFDF;
+            margin: 20px;
+        }
+        .blogs .blog .image {
+            float: left;
+        }
+        .blog {
+            padding-bottom: 15px;
+            margin-right: 5px;
+            &:not(:last-child) {
+                border-bottom: 1px #DFDFDF solid;
+                margin-bottom: 20px;
+            }
+            h2 {
+                min-height: 20px;
+                font-size: 20px;
+                font-weight: normal;
+                padding-left: 20px;
+                padding-bottom: 3px;
+                background: transparent url('@{pathImages}comeback_arrow_small.png') top left no-repeat;
+                background-position-y: 3px;
+            }
+            .image {
+                padding: 3px 5px;
+                padding-right: 15px;
+            }
+            .perex {
+                padding: 5px;
+                padding-top: 2px;
+                text-align: justify;
+                &:after {
+                    .cleaner();
+                }
+            }
+            .text {
+                padding: 20px 5px;
+                text-align: justify;
+            }
+            .more {
+                padding-top: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                text-align: right;
+                a {
+                    display: inline-block;
+                    background-color: @green;
+                    color: white;
+                }
+            }
+            .comments {
+                padding-top: 10px;
+            }
+            .social {
+                line-height: 22px;
+                height: 22px;
+                overflow: hidden;
+                padding: 2px 0px;
+                padding-left: 5px;
+                &.last {
+                    border-top: 1px #DFDFDF solid;
+                    border-bottom: 1px #DFDFDF solid;
+                }
+                .date {
+                    float: left;
+                    .posted {
+                        font-weight: bold;
+                    }
+                }
+                .buttons {
+                    float: right;
+                    .fb-like {
+                        width: 80px;
+                    }
+                    .twitter-share-button {
+                        width: 90px !important;
+                    }
+                }
+                &:after {
+                    .cleaner();
+                }
+            }
+        }
+    }
+
+    .moduleList {
+        @leftBorder: 1px;
+        @leftPadding: 20px;
+        float: left;
+        width: 300px - @leftBorder - @leftPadding;
+        padding-top: 10px;
+        padding-left: @leftPadding;
+        padding-bottom: 20px;
+        border-left: @leftBorder #DFDFDF solid;
+        h3 {
+            font-size: 19px;
+            padding-bottom: 5px;
+        }
+        ul {
+            padding-bottom: 20px;
+            li {
+                line-height: 20px;
+                font-size: 14px;
+            }
+        }
+        .back {
+            margin-top: -5px;
+            padding-bottom: 20px;
+            font-size: 15px;
+            a {
+                display: inline-block;
+                background-color: @green;
+                color: white;
+            }
+        }
+        .cloud {
+            overflow: hidden;
+            text-align: center;
+            span {
+                padding: 0px 2px;
+                &.level1 {
+                    font-size: 12px;
+                }
+                &.level2 {
+                    font-size: 15px;
+                }
+                &.level3 {
+                    font-size: 18px;
+                }
+                &.level4 {
+                    font-size: 23px;
+                }
+                &.level5 {
+                    font-size: 32px;
+                }
+            }
+        }
+    }
+    &:after {
+        .cleaner();
+    }
+}

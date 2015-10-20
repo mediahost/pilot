@@ -1,0 +1,137 @@
+{form $formName}
+    <table>
+        <tbody>
+            <tr>
+                <th style="vertical-align: top; padding-top: 6px;">{_'What are you most qualified for?'}</th>
+				<td>
+					<div id="skillTree"></div>
+					<div id="skillInputs" style="display: none;">
+						{foreach $skills as $skillId => $skillName}
+							{input "skills-$skillId" }{$skillName}
+						{/foreach}
+					</div>
+				</td>
+            </tr>
+            <tr>
+				<td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top; padding-top: 6px;">{_'Where do you want to work?'}</th>
+                <td>
+					<div id="countryTree"></div>
+					<div id="countryInputs" style="display: none;">
+						{foreach $countries as $countryId => $countryName}
+							{input "countries-$countryId" }{$countryName}
+						{/foreach}
+					</div>
+				</td>
+            </tr>
+            <tr>
+				<td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <th>{_'I am also interested in freelance or remote work'}</th>
+                <td>
+					<div id="freelancerTree"></div>
+					<div id="freelancerInputs" style="display: none;">
+						{input freelancer}{label freelancer /}
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+				<td>
+					{$form->render('errors')}
+				</td>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <td style="padding-left: 30px;">{input send, class => button}</td>
+            </tr>
+        </tbody>
+    </table>
+{/form}
+
+<script n:syntax="double">
+
+	$(document).ready(function () {
+		$('#skillTree').jstree({
+			'plugins': ["wholerow", "checkbox", "types"],
+			'core': {
+				"dblclick_toggle": true,
+				"themes": {
+					"responsive": false,
+					"icons": false
+				},
+				'data': {{? echo json_encode($jsonSkills); }}
+			}
+		}).on('changed.jstree', function (e, data) {
+			var i, j, r = [];
+			for (i = 0, j = data.selected.length; i < j; i++) {
+				r.push(data.instance.get_node(data.selected[i]).id);
+			}
+			$('input.inSkillTree').attr('checked', false);
+			$.each(r, function (i, value) {
+				$("#frmpreferencesForm-skills-" + value).attr('checked', true);
+			});
+		}).on('select_node.jstree', function (e, data) {
+			var id = data.node.id;
+			if (id !== undefined) {
+				if (!$("li[id=" + id + "]").hasClass("jstree-open")) {
+					$(this).jstree("open_node", "#" + id);
+				}
+			}
+		});
+
+		$('#countryTree').jstree({
+			'plugins': ["wholerow", "checkbox", "types"],
+			'core': {
+				"dblclick_toggle": true,
+				"themes": {
+					"responsive": false,
+					"icons": false
+				},
+				'data': {{? echo json_encode($jsonCountries); }}
+			}
+		}).on('changed.jstree', function (e, data) {
+			var i, j, r = [];
+			for (i = 0, j = data.selected.length; i < j; i++) {
+				r.push(data.instance.get_node(data.selected[i]).id);
+			}
+			$('input.inCountryTree').attr('checked', false);
+			$.each(r, function (i, value) {
+				$("#frmpreferencesForm-countries-" + value).attr('checked', true);
+			});
+		}).on('select_node.jstree', function (e, data) {
+			var id = data.node.id;
+			if (id !== undefined) {
+				if (!$("li[id=" + id + "]").hasClass("jstree-open")) {
+					$(this).jstree("open_node", "#" + id);
+				}
+			}
+		});
+
+		$('#freelancerTree').jstree({
+			'plugins': ["wholerow", "checkbox", "types"],
+			'core': {
+				"dblclick_toggle": true,
+				"themes": {
+					"responsive": false,
+					"icons": false
+				},
+				'data': {{? echo json_encode($jsonFreelancer); }}
+			}
+		}).on('changed.jstree', function (e, data) {
+			var i, j, r = [];
+			for (i = 0, j = data.selected.length; i < j; i++) {
+				r.push(data.instance.get_node(data.selected[i]).id);
+			}
+			$('#frmpreferencesForm-freelancer').attr('checked', false);
+			$.each(r, function (i, value) {
+				$("#" + value.substring(4)).attr('checked', true);
+			});
+		});
+
+	});
+
+</script>

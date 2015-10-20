@@ -1,0 +1,24 @@
+{define navigator}
+<div class="navigator">
+	<ul class="reactivate">
+		<li n:class="$editProfileLink === 1 ? active">
+			<a n:href="editProfile"><span>{_'Personal Details'}</span></a>
+		</li>
+		<li n:class="$editProfileLink === 2 ? active">
+			<a n:href="editProfileAddress"><span>{_'Address'}</span></a>
+		</li>
+		<li n:class="$editProfileLink === 3 ? active">
+			<a n:href="editProfileLinks"><span>{_'Social Links'}</span></a>
+		</li>
+		<li n:class="$editProfileLink === 4 ? active">
+			<a n:href="editProfilePhoto"><span>{_'Photo'}</span></a>
+		</li>
+		<li n:class="$editProfileLink === 5 ? active">
+			<a n:href="editProfileSettings"><span>{_'Settings'}</span></a>
+		</li>
+		<li n:class="$editProfileLink === 6 ? active">
+			<a n:href="editProfilePreferences"><span>{_'Job Preferences'}</span></a>
+		</li>
+	</ul>
+</div>
+{/define}

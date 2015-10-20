@@ -1,0 +1,39 @@
+{block scripts}
+<script type="text/javascript">
+    initGroupTimeline("timeline", "works");
+</script>
+{/block}
+
+{block content}
+<div class="container" id="dashboard">
+
+    <div class="rest">
+        <div id="list">
+            <ul>
+                <li><a{ifCurrent Homepage:default} class="active"{/ifCurrent} n:href="Homepage:default"><span>{_"Candidates"}</span></a></li>
+                <li><a{ifCurrent Homepage:favorites} class="active"{/ifCurrent} n:href="Homepage:favorites"><span>{_"Favourites"}</span></a></li>
+                <li><a{ifCurrentIn 'Homepage:messages','Homepage:chat'} class="active"{/ifCurrentIn} n:href="Homepage:messages"><span>{_"Messages"}</span></a></li>
+                <li><a{ifCurrentIn 'Homepage:jobs','Homepage:job'} class="active"{/ifCurrentIn} n:href="Homepage:jobs"><span>{_"Jobs"}</span></a></li>
+                <li><a{ifCurrent Homepage:profile} class="active"{/ifCurrent} n:href="Homepage:profile"><span>{_"Profile"}</span></a></li>
+            </ul>
+        </div>
+
+        <div class="rest">
+            <div class="restContent">
+                {snippet candidates}
+                    <div class="list">
+                        <div class="candidates">
+                            {includeblock "../Homepage/blocks.latte"}
+                            {include #candidate, candidate => $candidate, isFavorite => FALSE, showSendMessage => TRUE, showSaveFavorite => TRUE}
+                        </div>
+                    </div>
+                {/snippet}
+            </div>
+        </div>
+
+        <div class="cleaner"></div>
+    </div>
+    
+</div>
+{/block}
+

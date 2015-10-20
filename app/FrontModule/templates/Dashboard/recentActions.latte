@@ -1,0 +1,25 @@
+{define #restContent}
+<div class="restContent">
+	<h1>{_"My Recent Actions"}</h1>
+	<br />
+    {ifset $list}
+    <ul>
+        <li n:foreach="$list as $item">
+            <div n:class="recentAction, $item->id == $activeId ? active">
+                <h3>
+                    {if $item->link}<a href="{$item->link}">{/if}
+                        {_$item->action|firstUpper}{if $item->name} ({!$item->name}){/if}
+                    {if $item->link}</a>{/if}
+                </h3>
+                
+                <p class="info">
+                    <span class="date">{$item->datetime->format("d.m.Y H:i:s")}</span>
+                </p>
+            </div>
+        </li>
+    </ul>
+    {else}
+        
+    {/ifset}
+</div>
+{/define}

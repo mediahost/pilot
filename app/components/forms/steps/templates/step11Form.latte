@@ -1,0 +1,45 @@
+<div n:snippet="formInsert" class="skills">
+    {form step11Form}
+    {$form->render('errors')}
+        <div n:foreach="$skills as $skillCategory => $skillItems" class="group">
+            <h3 class="headline">{$skillCategory}</h3>
+            <div class="items">
+                <table>
+                    <tbody>
+                    {foreach $skillItems as $skillGroupName => $skillGroup}
+                        <tr n:if="$skillGroupName">
+                            <td colspan="2"><h4 class="headline">{$skillGroupName}</h4></td>
+                        </tr>
+                        {foreach $skillGroup as $skillId => $skillName}
+                        <tr>
+                            {var $container => $form[$skillId]}
+                            {var $scale => $container->components['scale']}
+                            {var $number => $container->components['number']}
+                            <th>{label $scale }{$skillName}{/label}</th>
+                            <td>
+                                <div class="pair">
+                                    <div class="select">
+                                        {input $scale}
+                                    </div>
+                                    <div class="number">
+                                        {label $number /}
+                                        {input $number}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                    
+        <div>
+            <dl>
+                <dt>{label other_it_skills /}:</dt>
+                <dd>{input other_it_skills}</dd>
+            </dl>
+        </div>
+    {/form}
+</div>

@@ -1,0 +1,33 @@
+{define rest}
+<div class="restContent chat chat-list">
+    <h1>{_"Conversations"}</h1>
+    <div class="items" n:if="count($chats)">
+        {foreach $chats as $chat}
+            {if $chat->is_completed}
+                <a n:class="item, $chat->isUnreedByCompany() ? unread" n:href="chat $chat->id">
+                    <div class="photo">
+                        <img src="{$basePath}/foto/50-50/cvImages/{if $chat->cv_photo}{$chat->cv_photo}{else}default{/if}" alt="candidate avatar" />
+                    </div>
+                    <div class="box">
+                        <div class="name">{$chat->userName}</div>
+                        <div class="text">{$chat->lastMessage|truncate:75}</div>
+                        <div class="time">{$chat->lastUpdate|date:'d.m.Y H:i'}</div>
+                    </div>
+                </a>
+            {else}
+                <a n:class="item">
+                    <div class="photo">
+                        <img src="{$basePath}/foto/50-50/cvImages/default" alt="company avatar" />
+                    </div>
+                    <div class="box">
+                        <div class="name">candidate profile deleted</div>
+                    </div>
+                </a>
+            {/if}
+        {/foreach}
+    </div>
+    <div class="noItems" n:if="!count($chats)">
+        {_"No converstation"}
+    </div>
+</div>
+{/define}

@@ -1,0 +1,68 @@
+{define socialScript}
+<script n:syntax="double">
+    !function(d, s, id) {
+        var js, 
+                fjs = d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){
+            js = d.createElement(s); 
+            js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=420372668055230";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'facebook-jssdk');
+        
+    !function(d, s, id){
+        var js, 
+                fjs=d.getElementsByTagName(s)[0],
+                p = /^http:/.test(d.location) ? 'http' : 'https';
+        if(!d.getElementById(id)){
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    } (document, 'script', 'twitter-wjs');
+    
+    
+    window.___gcfg = {lang: 'en-GB'};
+    (function() {
+        var po = document.createElement('script'); 
+        po.type = 'text/javascript'; 
+        po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+    })();
+</script>
+{/define}
+
+{define socialFbButton}
+<div class="fb-like"
+     data-href="{link //Blog: $id}"
+     data-width="50"
+     data-layout="button_count"
+     data-show-faces="false"
+     data-send="false"></div>
+{/define}
+
+{define socialTwitterButton}
+<a class="twitter-share-button" 
+   data-url="{link //Blog: $id}"
+   data-text="{_"Check out this page"}"
+   data-hashtags="comeback"
+   href="https://twitter.com/share">Tweet</a>
+{/define}
+
+{define socialGplusButton}
+<div class="g-plusone"
+     data-href="{link //Blog: $id}"
+     data-size="medium"></div>
+{/define}
+
+{define socialFbComments}
+<div class="fb-comments" 
+     data-href="{link //this}" 
+     data-width="600"></div>
+{/define}
+
+        
