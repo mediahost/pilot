@@ -108,7 +108,7 @@ class DashboardPresenter extends BasePresenter
 		foreach ($this->template->recentActions as &$item) {
 			$this->generateRecentLogLink($item);
 		}
-		
+
 		$this->template->showWalkThrough = $showGuide;
 	}
 
@@ -692,7 +692,7 @@ class DashboardPresenter extends BasePresenter
 
 	protected function createComponentPreferences()
 	{
-		$form = new \AppForms\PreferencesForm($this, $this->context->users, $this->context->skills);
+		$form = new \AppForms\PreferencesForm($this, $this->context->users, $this->context->skills, $this->context->getByType('Model\Service\AircraftService'));
 
 		return $form;
 	}

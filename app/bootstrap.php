@@ -31,6 +31,8 @@ if (preg_match('/source-code\.com$/i', $host)) {
     $configurator->addConfig(__DIR__ . '/config/config.local.neon', FALSE);
 }
 
+\Kdyby\Replicator\Container::register();
+
 // Extensions
 require __DIR__ . '/extensions.php';
 

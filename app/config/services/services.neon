@@ -117,3 +117,5 @@ services:
 			- Model\Mapper\Dibi\TagDibiMapper(@dibi.connection)
 
 	- App\Components\JobUserNotesFactory
+	- Model\Mapper\Dibi\AircraftDibiMapper(@dibi.connection)
+	- Model\Service\AircraftService

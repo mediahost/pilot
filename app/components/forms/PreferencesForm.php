@@ -3,10 +3,13 @@
 namespace AppForms;
 
 use Model\Entity\UserEntity;
+use Model\Service\AircraftService;
 use Model\Service\SkillService;
 use Model\Service\UserService;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
+use Nette\Forms\Container;
+use Nette\Forms\Controls\SubmitButton;
 
 /**
  * Required step 2
@@ -44,7 +47,10 @@ class PreferencesForm extends AppForms
 	/** @var UserEntity */
 	protected $userEntity;
 
-	public function __construct(Presenter $presenter, UserService $userService, SkillService $skillService)
+	/** @var AircraftService */
+	private $aircraftService;
+
+	public function __construct(Presenter $presenter, UserService $userService, SkillService $skillService, AircraftService $aircraftService)
 	{
 		parent::__construct(get_class($this), $presenter, FALSE);
 
@@ -52,7 +58,9 @@ class PreferencesForm extends AppForms
 		$this->skillService = $skillService;
 		$this->userEntity = $userService->find($this->user->id);
 		$this->setDefaults();
-		$this->setSkills();
+//		$this->setSkills();
+		$this->setCountries();
+		$this->aircraftService = $aircraftService;
 	}
 
 	private function setDefaults()
@@ -105,7 +113,10 @@ class PreferencesForm extends AppForms
 				'children' => $skillChildren,
 			);
 		}
+	}
 
+	private function setCountries()
+	{
 		$this->flatCountries = UserEntity::helperGetLocalities(TRUE);
 		$this->jsonCountries = array();
 		foreach (UserEntity::helperGetLocalities() as $countryId => $country) {
@@ -138,13 +149,39 @@ class PreferencesForm extends AppForms
 
 	public function createComponent($name)
 	{
-		$this->form->getElementPrototype()->class = "styled";
+		$this->form->getElementPrototype()->class = "styled ajax";
 
-		$skillsContainer = $this->form->addContainer('skills');
-		foreach ($this->flatSkills as $skillId => $skillName) {
-			$skillsContainer->addCheckbox($skillId, $skillName)
-							->getControlPrototype()->class = 'inSkillTree';
-		}
+		$this->form->addRadioList('english_level', 'English level', [
+			'native',
+			'L6',
+			'L5',
+			'L4',
+		])
+			->setDefaultValue(0)
+			->setRequired();
+
+		$this->form->addRadioList('medical', 'Medical', [1 => 'Yes', 0 => 'No'])
+			->setDefaultValue(1)
+			->addCondition(Form::EQUAL, 0)
+			->toggle('frmpreferencesForm-medical_text');
+
+		$this->form->addTextArea('medical_text');
+
+		$experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], 1);
+		$experiences->addSubmit('add', 'Add plane')
+			->setValidationScope(FALSE)
+			->onClick[] = [$this, 'addExperience'];
+
+		$copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], 1);
+		$copilotExperiences->addSubmit('add', 'Add plane')
+			->setValidationScope(FALSE)
+			->onClick[] = [$this, 'addExperience'];
+
+//		$skillsContainer = $this->form->addContainer('skills');
+//		foreach ($this->flatSkills as $skillId => $skillName) {
+//			$skillsContainer->addCheckbox($skillId, $skillName)
+//							->getControlPrototype()->class = 'inSkillTree';
+//		}
 
 		$countryContainer = $this->form->addContainer('countries');
 		foreach ($this->flatCountries as $countryId => $countryName) {
@@ -157,13 +194,123 @@ class PreferencesForm extends AppForms
 		$this->form->addSubmit('send', 'Save')
 						->getControlPrototype()->class = "button";
 
-		$this->form->onSuccess[] = $this->processForm;
+		$this->form['send']->onClick[] = $this->processForm;
+		$this->invalidateControl('form_content_captain');
+		$this->invalidateControl('form_content_copilot');
 
 		return $this->form;
 	}
 
-	public function processForm(Form $form)
+	public function experienceContainerFactory(Container $container)
 	{
+		$manufacturers = $this->aircraftService->getManufacturers();
+		$models = $this->aircraftService->getModels();
+
+		$container->addSelect('type', NULL, [
+			AircraftService::TYPE_JET => 'Jet',
+			AircraftService::TYPE_TURBO => 'Turbo',
+		])
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 85px']);
+		$container->addSelect('manufacturer', NULL, $manufacturers)
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 200px']);
+		$container->addSelect('model', NULL, $models)
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 240px']);
+		$container->addText('hours')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 50px']);
+		$container->addText('pic')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 50px']);
+
+		$container->addSubmit('remove', 'Remove')
+			->setValidationScope(FALSE)
+			->onClick[] = [$this, 'removeExperience'];
+
+		if ($this->form->isSubmitted()) {
+			$type = $container->values->type;
+			$manufacturers = $this->aircraftService->getManufacturers($type);
+
+			$manufacturer = $container->values->manufacturer;
+			if (!isset($manufacturers[$manufacturer])) {
+			    $manufacturer = NULL;
+			}
+
+			$models = $this->aircraftService->getModels($type, $manufacturer);
+
+			$container['manufacturer']->setItems($manufacturers);
+			$container['model']->setItems($models);
+		}
+	}
+
+	public function experienceCopilotContainerFactory(Container $container)
+	{
+		$manufacturers = $this->aircraftService->getManufacturers();
+		$models = $this->aircraftService->getModels();
+
+		$container->addSelect('type', NULL, [
+			AircraftService::TYPE_JET => 'Jet',
+			AircraftService::TYPE_TURBO => 'Turbo',
+		])
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 85px']);
+		$container->addSelect('manufacturer', NULL, $manufacturers)
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 200px']);
+		$container->addSelect('model', NULL, $models)
+			->setPrompt('---')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 240px']);
+		$container->addText('hours')
+			->getControlPrototype()
+			->addAttributes(['style' => 'width: 50px']);
+
+		$container->addSubmit('remove', 'Remove')
+			->setValidationScope(FALSE)
+			->onClick[] = [$this, 'removeExperience'];
+
+		if ($this->form->isSubmitted()) {
+			$type = $container->values->type;
+			$manufacturers = $this->aircraftService->getManufacturers($type);
+
+			$manufacturer = $container->values->manufacturer;
+			if (!isset($manufacturers[$manufacturer])) {
+			    $manufacturer = NULL;
+			}
+
+			$models = $this->aircraftService->getModels($type, $manufacturer);
+
+			$container['manufacturer']->setItems($manufacturers);
+			$container['model']->setItems($models);
+		}
+	}
+
+	public function removeExperience(SubmitButton $submitButton)
+	{
+		$container = $submitButton->parent->parent;
+		$container->remove($submitButton->parent, TRUE);
+		$this->invalidateControl('form_content_captain');
+		$this->invalidateControl('form_content_copilot');
+	}
+
+	public function addExperience(SubmitButton $submitButton)
+	{
+		$submitButton->parent->createOne();
+		$this->invalidateControl('form_content_captain');
+		$this->invalidateControl('form_content_copilot');
+	}
+
+	public function processForm(SubmitButton $button)
+	{
+		return;
+		$form = $button->form;
 		$this->userEntity->skills = array();
 		foreach ($form->values->skills as $skillId => $is) {
 			if ($is) {
@@ -173,7 +320,7 @@ class PreferencesForm extends AppForms
 		if (!count($this->userEntity->skills)) {
 			$form->addError('Enter at least one skill.');
 		}
-		
+
 		$this->userEntity->work_countries = array();
 		foreach ($form->values->countries as $countryId => $is) {
 			if ($is) {
@@ -186,10 +333,10 @@ class PreferencesForm extends AppForms
 		if ($form->hasErrors()) {
 			return;
 		}
-		
+
 		$this->userEntity->freelancer = $form->values->freelancer;
 		$this->userService->save($this->userEntity);
-		
+
 		$this->onSuccess($this->userEntity);
 	}
 
