@@ -148,28 +148,6 @@
 				}
 			}
 		});
-
-		$('#freelancerTree').jstree({
-			'plugins': ["wholerow", "checkbox", "types"],
-			'core': {
-				"dblclick_toggle": true,
-				"themes": {
-					"responsive": false,
-					"icons": false
-				},
-				'data': {{? echo json_encode($jsonFreelancer); }}
-			}
-		}).on('changed.jstree', function (e, data) {
-			var i, j, r = [];
-			for (i = 0, j = data.selected.length; i < j; i++) {
-				r.push(data.instance.get_node(data.selected[i]).id);
-			}
-			$('#frmpreferencesForm-freelancer').attr('checked', false);
-			$.each(r, function (i, value) {
-				$("#" + value.substring(4)).attr('checked', true);
-			});
-		});
-
 	});
 
 </script>
