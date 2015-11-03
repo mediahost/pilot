@@ -25,7 +25,6 @@ $configurator->addConfig(__DIR__ . '/config/config.neon', FALSE);
 
 $host = $_SERVER['HTTP_HOST'];
 if (preg_match('/source-code\.com$/i', $host)) {
-    Nette\Application\Routers\Route::$defaultFlags = Nette\Application\Routers\Route::SECURED;
     $configurator->addConfig(__DIR__ . '/config/config.master.neon', FALSE);
 } else {
     $configurator->addConfig(__DIR__ . '/config/config.local.neon', FALSE);
