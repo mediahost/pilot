@@ -120,36 +120,7 @@
 {/form}
 
 <script n:syntax="double">
-
 	$(document).ready(function () {
-		$('#skillTree').jstree({
-			'plugins': ["wholerow", "checkbox", "types"],
-			'core': {
-				"dblclick_toggle": true,
-				"themes": {
-					"responsive": false,
-					"icons": false
-				},
-				'data': {{? echo json_encode($jsonSkills); }}
-			}
-		}).on('changed.jstree', function (e, data) {
-			var i, j, r = [];
-			for (i = 0, j = data.selected.length; i < j; i++) {
-				r.push(data.instance.get_node(data.selected[i]).id);
-			}
-			$('input.inSkillTree').attr('checked', false);
-			$.each(r, function (i, value) {
-				$("#frmpreferencesForm-skills-" + value).attr('checked', true);
-			});
-		}).on('select_node.jstree', function (e, data) {
-			var id = data.node.id;
-			if (id !== undefined) {
-				if (!$("li[id=" + id + "]").hasClass("jstree-open")) {
-					$(this).jstree("open_node", "#" + id);
-				}
-			}
-		});
-
 		$('#countryTree').jstree({
 			'plugins': ["wholerow", "checkbox", "types"],
 			'core': {

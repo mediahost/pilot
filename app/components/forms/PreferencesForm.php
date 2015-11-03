@@ -157,11 +157,10 @@ class PreferencesForm extends AppForms
 			'L5',
 			'L4',
 		])
-			->setDefaultValue(0)
 			->setRequired();
 
 		$this->form->addRadioList('medical', 'Medical', [1 => 'Yes', 0 => 'No'])
-			->setDefaultValue(1)
+			->setRequired()
 			->addCondition(Form::EQUAL, 0)
 			->toggle('frmpreferencesForm-medical_text');
 
@@ -221,14 +220,14 @@ class PreferencesForm extends AppForms
 			->setPrompt('---')
 			->getControlPrototype()
 			->addAttributes(['style' => 'width: 240px']);
-		$container->addText('hours')
+		$container->addSelect('hours', NULL, $this->getHoursItems())
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 50px']);
-		$container->addText('pic')
+			->addAttributes(['style' => 'width: 82px']);
+		$container->addSelect('pic', NULL, $this->getHoursItems())
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 50px']);
+			->addAttributes(['style' => 'width: 82px']);
 
-		$container->addSubmit('remove', 'Remove')
+		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
 
@@ -268,11 +267,11 @@ class PreferencesForm extends AppForms
 			->setPrompt('---')
 			->getControlPrototype()
 			->addAttributes(['style' => 'width: 240px']);
-		$container->addText('hours')
+		$container->addSelect('hours', NULL, $this->getHoursItems())
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 50px']);
+			->addAttributes(['style' => 'width: 82px']);
 
-		$container->addSubmit('remove', 'Remove')
+		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
 
@@ -290,6 +289,15 @@ class PreferencesForm extends AppForms
 			$container['manufacturer']->setItems($manufacturers);
 			$container['model']->setItems($models);
 		}
+	}
+
+	public function getHoursItems()
+	{
+		$items = [];
+		for ($i = 0; $i <= 50000; $i = $i+500) {
+			$items[$i] = $i;
+		}
+		return $items;
 	}
 
 	public function removeExperience(SubmitButton $submitButton)
