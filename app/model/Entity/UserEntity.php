@@ -10,6 +10,19 @@ namespace Model\Entity;
 class UserEntity extends Entity
 {
 
+	const ENGLISH_LEVEL_NATIVE = 1;
+	const ENGLISH_LEVEL_L6 = 2;
+	const ENGLISH_LEVEL_L5 = 3;
+	const ENGLISH_LEVEL_L4 = 4;
+
+	/** @var array */
+	static $englishLevelOptions = [
+		self::ENGLISH_LEVEL_NATIVE => 'native',
+		self::ENGLISH_LEVEL_L6 => 'L6',
+		self::ENGLISH_LEVEL_L5 => 'L5',
+		self::ENGLISH_LEVEL_L4 => 'L4',
+	];
+
 	/** @var int */
 	protected $id;
 
@@ -91,6 +104,21 @@ class UserEntity extends Entity
 	/** @var bool */
 	protected $visitGuide = FALSE;
 
+	/** @var int */
+	protected $englishLevel;
+
+	/** @var int */
+	protected $medical;
+
+	/** @var string */
+	protected $medicalText;
+
+	/** @var array */
+	protected $pilotExperiences = array();
+
+	/** @var array */
+	protected $copilotExperiences = array();
+
 	public function __construct($user = NULL)
 	{
 		if ($user !== NULL) {
@@ -162,8 +190,10 @@ class UserEntity extends Entity
 
 	public function isFinished()
 	{
-		return count($this->skills) &&
-				count($this->work_countries);
+		return count($this->work_countries) &&
+			(count($this->pilotExperiences) + count($this->copilotExperiences)) &&
+			$this->medical !== NULL &&
+			$this->englishLevel !== NULL;
 	}
 
 	/**

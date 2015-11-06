@@ -2,6 +2,7 @@
 
 namespace AppForms;
 
+use Model\Entity\UserAircraft;
 use Model\Entity\UserEntity;
 use Model\Service\AircraftService;
 use Model\Service\SkillService;
@@ -65,10 +66,37 @@ class PreferencesForm extends AppForms
 
 	private function setDefaults()
 	{
+		$pilotExperiences = [];
+		/** @var UserAircraft $item */
+		foreach ($this->userEntity->pilotExperiences as $item) {
+			$pilotExperiences[] = [
+				'type' => $item->aircraftType,
+				'manufacturer' => $item->manufacturerId,
+				'model' => $item->aircraftId,
+				'hours' => $item->hours,
+				'pic' => $item->pic,
+			];
+		}
+		$copilotExperiences = [];
+		/** @var UserAircraft $item */
+		foreach ($this->userEntity->copilotExperiences as $item) {
+			$copilotExperiences[] = [
+				'type' => $item->aircraftType,
+				'manufacturer' => $item->manufacturerId,
+				'model' => $item->aircraftId,
+				'hours' => $item->hours,
+			];
+		}
+
 		$this->defaults = array(
 			'skills' => $this->userEntity->skills,
 			'countries' => $this->userEntity->work_countries,
-			'freelancer' => $this->userEntity->freelancer
+			'freelancer' => $this->userEntity->freelancer,
+			'medical' => $this->userEntity->medical,
+			'medical_text' => $this->userEntity->medicalText,
+			'english_level' => $this->userEntity->englishLevel,
+			'pilotExperiences' => $pilotExperiences,
+			'copilotExperiences' => $copilotExperiences,
 		);
 	}
 
@@ -151,36 +179,26 @@ class PreferencesForm extends AppForms
 	{
 		$this->form->getElementPrototype()->class = "styled ajax";
 
-		$this->form->addRadioList('english_level', 'English level', [
-			'native',
-			'L6',
-			'L5',
-			'L4',
-		])
-			->setRequired();
+		$this->form->addRadioList('english_level', 'English level', UserEntity::$englishLevelOptions)
+			->setDefaultValue($this->defaults['english_level']);
 
 		$this->form->addRadioList('medical', 'Medical', [1 => 'Yes', 0 => 'No'])
-			->setRequired()
+			->setDefaultValue($this->defaults['medical'])
 			->addCondition(Form::EQUAL, 0)
 			->toggle('frmpreferencesForm-medical_text');
 
-		$this->form->addTextArea('medical_text');
+		$this->form->addTextArea('medical_text')
+			->setDefaultValue($this->defaults['medical_text']);
 
-		$experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], 1);
+		$experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], count($this->defaults['pilotExperiences']));
 		$experiences->addSubmit('add', 'Add plane')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'addExperience'];
 
-		$copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], 1);
+		$copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], count($this->defaults['copilotExperiences']));
 		$copilotExperiences->addSubmit('add', 'Add plane')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'addExperience'];
-
-//		$skillsContainer = $this->form->addContainer('skills');
-//		foreach ($this->flatSkills as $skillId => $skillName) {
-//			$skillsContainer->addCheckbox($skillId, $skillName)
-//							->getControlPrototype()->class = 'inSkillTree';
-//		}
 
 		$countryContainer = $this->form->addContainer('countries');
 		foreach ($this->flatCountries as $countryId => $countryName) {
@@ -244,6 +262,10 @@ class PreferencesForm extends AppForms
 
 			$container['manufacturer']->setItems($manufacturers);
 			$container['model']->setItems($models);
+		} else {
+			if (isset($this->defaults['pilotExperiences'][$container->name])) {
+				$container->setDefaults($this->defaults['pilotExperiences'][$container->name]);
+			}
 		}
 	}
 
@@ -288,6 +310,10 @@ class PreferencesForm extends AppForms
 
 			$container['manufacturer']->setItems($manufacturers);
 			$container['model']->setItems($models);
+		} else {
+			if (isset($this->defaults['copilotExperiences'][$container->name])) {
+				$container->setDefaults($this->defaults['copilotExperiences'][$container->name]);
+			}
 		}
 	}
 
@@ -317,20 +343,24 @@ class PreferencesForm extends AppForms
 
 	public function processForm(SubmitButton $button)
 	{
-		return;
 		$form = $button->form;
-		$this->userEntity->skills = array();
-		foreach ($form->values->skills as $skillId => $is) {
-			if ($is) {
-				$this->userEntity->skills[] = $skillId;
-			}
+		$values = $form->values;
+
+		if ($values->english_level === NULL) {
+			$form->addError('Enter your english level.');
 		}
-		if (!count($this->userEntity->skills)) {
-			$form->addError('Enter at least one skill.');
+		if ($values->medical === NULL) {
+			$form->addError('Enter medical.');
 		}
+		if ($values->medical === "0" && empty($values->medical_text)) {
+		    $form->addError('Enter medical description');
+		}
+		$this->userEntity->englishLevel = $values->english_level;
+		$this->userEntity->medical = $values->medical;
+		$this->userEntity->medicalText = $values->medical_text;
 
 		$this->userEntity->work_countries = array();
-		foreach ($form->values->countries as $countryId => $is) {
+		foreach ($values->countries as $countryId => $is) {
 			if ($is) {
 				$this->userEntity->work_countries[] = $countryId;
 			}
@@ -338,11 +368,34 @@ class PreferencesForm extends AppForms
 		if (!count($this->userEntity->work_countries)) {
 			$form->addError('Enter at least one country.');
 		}
+		$this->userEntity->pilotExperiences = [];
+		foreach ($values->experiences as $key => $pilotExperience) {
+			if ($pilotExperience->model) {
+			    $userAircraft = new UserAircraft();
+				$userAircraft->aircraftId = $pilotExperience->model;
+				$userAircraft->hours = $pilotExperience->hours;
+				$userAircraft->pic = $pilotExperience->pic;
+				$this->userEntity->pilotExperiences[] = $userAircraft;
+			}
+		}
+		$this->userEntity->copilotExperiences = [];
+		foreach ($values->copilot_experiences as $key => $pilotExperience) {
+			if ($pilotExperience->model) {
+			    $userAircraft = new UserAircraft();
+				$userAircraft->aircraftId = $pilotExperience->model;
+				$userAircraft->hours = $pilotExperience->hours;
+				$userAircraft->pic = NULL;
+				$this->userEntity->copilotExperiences[] = $userAircraft;
+			}
+		}
+		if (!(count($this->userEntity->pilotExperiences)+count($this->userEntity->copilotExperiences))) {
+			$form->addError('Enter at least one flying experience.');
+		}
 		if ($form->hasErrors()) {
+			$this->invalidateControl('errors');
 			return;
 		}
 
-		$this->userEntity->freelancer = $form->values->freelancer;
 		$this->userService->save($this->userEntity);
 
 		$this->onSuccess($this->userEntity);

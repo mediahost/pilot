@@ -31,7 +31,12 @@
 	            <th style="vertical-align: top; padding-top: 6px;">
 		            {_'Captain'}:
 	            </th>
-	            <td n:snippet="form_content_captain">
+	            <td>
+
+	            </td>
+            </tr>
+            <tr>
+	            <td n:snippet="form_content_captain" colspan="2">
 		            {var $_form = $form = $control[$formName]}
 		            <table style="width: auto">
 			            {var count = count($form['experiences']->containers)}
@@ -63,7 +68,10 @@
 	            <th style="vertical-align: top; padding-top: 6px;">
 		            {_'Co-pilot'}:
 	            </th>
-	            <td n:snippet="form_content_copilot">
+	            <td></td>
+            </tr>
+            |<tr>
+	            <td n:snippet="form_content_copilot" colspan="2">
 		            {var $_form = $form = $control[$formName]}
 		            <table style="width: auto">
 			            {var count = count($form['copilot_experiences']->containers)}
@@ -107,8 +115,8 @@
 
             <tr>
                 <th>&nbsp;</th>
-				<td>
-					{$form->render('errors')}
+				<td n:snippet="errors">
+					{$control[$formName]->render('errors')}
 				</td>
             </tr>
             <tr>

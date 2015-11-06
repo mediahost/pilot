@@ -28,4 +28,12 @@ class AircraftService
 		return $this->aircraftDibiMapper->getModels($type, $manufacturer);
 	}
 
+	public static function getTypeName($id)
+	{
+		switch ($id) {
+			case self::TYPE_JET: return 'jet';
+			case self::TYPE_TURBO: return 'turbo';
+		}
+	}
+
 }

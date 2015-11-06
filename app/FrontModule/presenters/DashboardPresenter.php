@@ -2,6 +2,8 @@
 
 namespace FrontModule;
 
+use Model\Entity\UserAircraft;
+
 /**
  * Dashboard Presenter
  *

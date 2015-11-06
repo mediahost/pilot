@@ -2,7 +2,9 @@
 
 namespace Model\Mapper\Dibi;
 
+use Model\Entity\UserAircraft;
 use Model\Entity\UserEntity;
+use Model\Service\AircraftService;
 
 /**
  * User DibiMapper
@@ -15,6 +17,7 @@ class UserDibiMapper extends DibiMapper
     private $primary = "users";
     private $auth = "auth";
     private $cv = "cv_main";
+	private $userAircraft = "user_aircraft";
 
     /**
      * Vrací celou tabulku
@@ -72,6 +75,9 @@ class UserDibiMapper extends DibiMapper
             'url_twitter' => $item->url_twitter,
             'freelancer' => (bool) $item->freelancer,
             'work_countries' => json_encode($item->work_countries),
+			'english_level' => $item->englishLevel,
+			'medical' => $item->medical,
+			'medical_text' => $item->medicalText,
         );
         return $data;
     }
@@ -88,7 +94,9 @@ class UserDibiMapper extends DibiMapper
                     'last_sign' => 'lastSign',
                     'visit_guide' => 'visitGuide',
                     'cv_main_last_opened' => 'lastCvOpened',
-                    'launchpad_video_url' => 'launchpadVideoUrl'
+                    'launchpad_video_url' => 'launchpadVideoUrl',
+                    'english_level' => 'englishLevel',
+                    'medical_text' => 'medicalText',
                 );
                 if (array_key_exists($prop, $rename)) {
 					$prop = $rename[$prop];
@@ -110,10 +118,10 @@ class UserDibiMapper extends DibiMapper
             }
         }
 		$item->skills = $this->loadSkills($item->id);
-
+		$this->loadAircrafts($item);
         return $item;
     }
-	
+
 	private function loadSkills($userId)
 	{
 		$skills = $this->conn->select('skill_id')
@@ -140,10 +148,65 @@ class UserDibiMapper extends DibiMapper
                         ->execute();
             }
         }
-		$this->saveSkills($item->id, $item->skills);
+		$this->saveAircrafts($item);
         return $item;
     }
-	
+
+	public function saveAircrafts(UserEntity $user)
+	{
+		$this->conn->delete('user_aircraft')
+			->where('user_id = %i', $user->id)
+			->execute();
+		/** @var UserAircraft $pilotExperience */
+		foreach ($user->pilotExperiences as $pilotExperience) {
+			$this->conn->insert('user_aircraft', [
+				'user_id' => $user->id,
+				'aircraft_id' => $pilotExperience->aircraftId,
+				'hours' => $pilotExperience->hours,
+				'pic' => $pilotExperience->pic,
+			])->execute();
+		}
+		/** @var UserAircraft $copilotExperience */
+		foreach ($user->copilotExperiences as $copilotExperience) {
+			$this->conn->insert('user_aircraft', [
+				'user_id' => $user->id,
+				'aircraft_id' => $copilotExperience->aircraftId,
+				'hours' => $copilotExperience->hours,
+				'pic' => NULL,
+			])->execute();
+		}
+		$this->loadAircrafts($user);
+	}
+
+	private function loadAircrafts(UserEntity $user)
+	{
+		$aircrafts = $this->conn->select('user_aircraft.*, aircraft.name AS aname, aircraft_manufacturer.name AS mname, aircraft.aircraft_manufacturer_id AS manufacturerid, aircraft.type')
+			->from('user_aircraft')
+			->join('aircraft')->on('aircraft.id = user_aircraft.aircraft_id')
+			->join('aircraft_manufacturer')->on('aircraft_manufacturer.id = aircraft.aircraft_manufacturer_id')
+			->where('user_id = %i', $user->id)
+			->fetchAll();
+		$user->pilotExperiences = [];
+		$user->copilotExperiences = [];
+		foreach ($aircrafts as $aircraft) {
+			$userAircraft = new UserAircraft();
+			$userAircraft->aircraftId = $aircraft->aircraft_id;
+			$userAircraft->aircraftName = $aircraft->aname;
+			$userAircraft->aircraftTypeName = AircraftService::getTypeName($aircraft->type);
+			$userAircraft->aircraftType = $aircraft->type;
+			$userAircraft->manufacturerId = $aircraft->manufacturerid;
+			$userAircraft->manufacturerName = $aircraft->mname;
+			$userAircraft->hours = $aircraft->hours;
+			$userAircraft->pic = $aircraft->pic;
+
+			if ($aircraft->pic === NULL) {
+				$user->copilotExperiences[] = $userAircraft;
+			} else {
+				$user->pilotExperiences[] = $userAircraft;
+			}
+		}
+	}
+
 	private function saveSkills($userId, $skills)
 	{
 		$this->conn->delete('user_skill')
@@ -254,7 +317,7 @@ class UserDibiMapper extends DibiMapper
         }
         return !((bool) $query->count());
     }
-    
+
     public function isUniqeProfileToken($token, $userId = NULL)
     {
         $query = $this->conn->select("id")->from($this->primary)->where("profile_token = %s", $token);
