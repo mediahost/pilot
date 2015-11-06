@@ -190,12 +190,12 @@ class PreferencesForm extends AppForms
 		$this->form->addTextArea('medical_text')
 			->setDefaultValue($this->defaults['medical_text']);
 
-		$experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], count($this->defaults['pilotExperiences']));
+		$experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], count($this->defaults['pilotExperiences'])?:1);
 		$experiences->addSubmit('add', 'Add plane')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'addExperience'];
 
-		$copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], count($this->defaults['copilotExperiences']));
+		$copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], count($this->defaults['copilotExperiences'])?:1);
 		$copilotExperiences->addSubmit('add', 'Add plane')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'addExperience'];
