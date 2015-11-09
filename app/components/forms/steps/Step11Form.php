@@ -2,11 +2,17 @@
 
 namespace AppForms;
 
+use Model\Entity\UserAircraft;
+use Model\Entity\UserEntity;
+use Model\Service\AircraftService;
+use Model\Service\UserService;
 use \Nette\Application\UI\Form,
     Model\Entity\CvItScaleEntity,
     Nette\Application\UI\Presenter,
     Model\Service\CvService,
     Model\Entity\CvEntity;
+use Nette\Forms\Container;
+use Nette\Forms\Controls\SubmitButton;
 
 /**
  * Step11 Form
@@ -20,10 +26,66 @@ class Step11Form extends StepsForm
     /** @var mixed  */
     protected $skills;
 
+    /** @var array */
+    protected $defaults = [];
+
+    /** @var AircraftService */
+    protected $aircraftService;
+
+    /** @var UserEntity */
+    protected $userEntity;
+
+    /** @var UserService */
+    protected $userService;
+
     public function __construct(Presenter $presenter, CvService $service, CvEntity $cv, $step)
     {
         parent::__construct($presenter, $service, $cv, $step);
         $this->skills = $this->service->buildSkills();
+    }
+
+    public function loadAircrafts()
+    {
+        /** @var UserService $userService */
+        $this->userService = $userService  = $this->presenter->context->users;
+        $this->aircraftService  = $this->presenter->context->getByType('Model\Service\AircraftService');
+
+        $this->userEntity = $userService->find($this->cv->userId);
+
+        $pilotExperiences = [];
+        /** @var UserAircraft $item */
+        foreach ($this->userEntity->pilotExperiences as $item) {
+            $pilotExperiences[] = [
+                'type' => $item->aircraftType,
+                'manufacturer' => $item->manufacturerId,
+                'model' => $item->aircraftId,
+                'hours' => $item->hours,
+                'pic' => $item->pic,
+                'current' => $item->current,
+            ];
+        }
+        $copilotExperiences = [];
+        /** @var UserAircraft $item */
+        foreach ($this->userEntity->copilotExperiences as $item) {
+            $copilotExperiences[] = [
+                'type' => $item->aircraftType,
+                'manufacturer' => $item->manufacturerId,
+                'model' => $item->aircraftId,
+                'hours' => $item->hours,
+                'current' => $item->current,
+            ];
+        }
+
+        $this->defaults = array(
+            'skills' => $this->userEntity->skills,
+            'countries' => $this->userEntity->work_countries,
+            'freelancer' => $this->userEntity->freelancer,
+            'medical' => $this->userEntity->medical,
+            'medical_text' => $this->userEntity->medicalText,
+            'english_level' => $this->userEntity->englishLevel,
+            'pilotExperiences' => $pilotExperiences,
+            'copilotExperiences' => $copilotExperiences,
+        );
     }
 
     /**
@@ -33,26 +95,19 @@ class Step11Form extends StepsForm
      */
     protected function createComponent($name)
     {
-        $skills = $this->skills;
-        $scale = CvItScaleEntity::scale();
-        foreach ($skills as $skillCategory => $skillGroups) {
-            foreach ($skillGroups as $skillGroup) {
-                foreach ($skillGroup as $skillId => $skillName) {
-                    $container = $this->form->addContainer($skillId);
-                    $container->addSelect('scale', 'Scale', $scale)
-                            ->setAttribute("class", "slider live");
-                    $container->addText('number', "Years")
-                            ->setAttribute("type", "number")
-                            ->setAttribute("min", "0")
-                            ->setAttribute("class", "number")
-                            ->setDefaultValue(0);
-                }
-            }
-        }
-        
-        $this->form->addTextArea("other_it_skills", "Any other IT skills");
+        $this->loadAircrafts();
+        $experiences = $this->form->addDynamic('experiences', [$this, 'experienceContainerFactory'], count($this->defaults['pilotExperiences'])?:1);
+        $experiences->addSubmit('add', 'Add plane')
+            ->setValidationScope(FALSE)
+            ->onClick[] = [$this, 'addExperience'];
 
-        $this->setDefaults();
+        $copilotExperiences = $this->form->addDynamic('copilot_experiences', [$this, 'experienceCopilotContainerFactory'], count($this->defaults['copilotExperiences'])?:1);
+        $copilotExperiences->addSubmit('add', 'Add plane')
+            ->setValidationScope(FALSE)
+            ->onClick[] = [$this, 'addExperience'];
+
+        $this->form->addSubmit('send', 'Save')
+            ->getControlPrototype()->class = "button";
 
         $this->form->onSuccess[] = $this->onSuccess;
 
@@ -64,22 +119,14 @@ class Step11Form extends StepsForm
      */
     public function onSuccess(Form $form)
     {
+        if ($form->submitted === TRUE || in_array($form->submitted->name, ['add', 'remove'])) {
+            $this->invalidateControl('form_content_captain');
+            $this->invalidateControl('form_content_copilot');
+            return;
+        }
         parent::onSuccess($form);
     }
 
-    /**
-     * Sets default form values for skills section
-     */
-    private function setDefaults()
-    {
-        $defaults = [];
-        foreach ($this->cv->itSkills as $skill) {
-            $defaults[$skill->skill_id]['scale'] = $skill->scale;
-            $defaults[$skill->skill_id]['number'] = $skill->years;
-        }
-        $defaults["other_it_skills"] = $this->cv->otherItSkills;
-        $this->form->setDefaults($defaults);
-    }
 
     /**
      * Fill entity from form
@@ -90,14 +137,172 @@ class Step11Form extends StepsForm
      */
     protected function formToEntity(\Nette\ArrayHash $values, \Model\Entity\CvEntity &$entity, $submByBtn = FALSE)
     {
-        $entity->addSkill((array) $values);
-        $entity->otherItSkills = $values->other_it_skills;
+        $form = $this->form;
+        $this->userEntity->pilotExperiences = [];
+        $currentSet = FALSE;
+        foreach ($values->experiences as $key => $pilotExperience) {
+            if ($pilotExperience->model) {
+                $userAircraft = new UserAircraft();
+                $userAircraft->aircraftId = $pilotExperience->model;
+                $userAircraft->hours = $pilotExperience->hours;
+                $userAircraft->pic = $pilotExperience->pic;
+                $userAircraft->current = $pilotExperience->current && !$currentSet;
+                $this->userEntity->pilotExperiences[] = $userAircraft;
+                if ($pilotExperience->current) {
+                    $currentSet = TRUE;
+                }
+            }
+        }
+        $this->userEntity->copilotExperiences = [];
+        $currentSet = FALSE;
+        foreach ($values->copilot_experiences as $key => $pilotExperience) {
+            if ($pilotExperience->model) {
+                $userAircraft = new UserAircraft();
+                $userAircraft->aircraftId = $pilotExperience->model;
+                $userAircraft->hours = $pilotExperience->hours;
+                $userAircraft->pic = NULL;
+                $userAircraft->current = $pilotExperience->current && !$currentSet;
+                $this->userEntity->copilotExperiences[] = $userAircraft;
+                if ($pilotExperience->current) {
+                    $currentSet = TRUE;
+                }
+            }
+        }
+        if (!(count($this->userEntity->pilotExperiences)+count($this->userEntity->copilotExperiences))) {
+            $form->addError('Enter at least one flying experience.');
+        }
+        if ($form->hasErrors()) {
+            $this->invalidateControl('errors');
+            return;
+        }
+
+        $this->userService->save($this->userEntity);
+        $this->redirect('this');
     }
 
-    public function render()
+    public function experienceContainerFactory(Container $container)
     {
-        $this->template->skills = $this->skills;
-        parent::render();
+        $manufacturers = $this->aircraftService->getManufacturers();
+        $models = $this->aircraftService->getModels();
+
+        $container->addSelect('type', NULL, [
+            AircraftService::TYPE_JET => 'Jet',
+            AircraftService::TYPE_TURBO => 'Turbo',
+        ])
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 80px']);
+        $container->addSelect('manufacturer', NULL, $manufacturers)
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 180px']);
+        $container->addSelect('model', NULL, $models)
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 210px']);
+        $container->addSelect('hours', NULL, $this->getHoursItems())
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 82px']);
+        $container->addSelect('pic', NULL, $this->getHoursItems())
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 82px']);
+        $container->addCheckbox('current');
+
+        $container->addSubmit('remove', '❌')
+            ->setValidationScope(FALSE)
+            ->onClick[] = [$this, 'removeExperience'];
+
+        if ($this->form->isSubmitted()) {
+            $type = $container->values->type;
+            $manufacturers = $this->aircraftService->getManufacturers($type);
+
+            $manufacturer = $container->values->manufacturer;
+            if (!isset($manufacturers[$manufacturer])) {
+                $manufacturer = NULL;
+            }
+
+            $models = $this->aircraftService->getModels($type, $manufacturer);
+
+            $container['manufacturer']->setItems($manufacturers);
+            $container['model']->setItems($models);
+        } else {
+            if (isset($this->defaults['pilotExperiences'][$container->name])) {
+                $container->setDefaults($this->defaults['pilotExperiences'][$container->name]);
+            }
+        }
+    }
+
+    public function experienceCopilotContainerFactory(Container $container)
+    {
+        $manufacturers = $this->aircraftService->getManufacturers();
+        $models = $this->aircraftService->getModels();
+
+        $container->addSelect('type', NULL, [
+            AircraftService::TYPE_JET => 'Jet',
+            AircraftService::TYPE_TURBO => 'Turbo',
+        ])
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 80px']);
+        $container->addSelect('manufacturer', NULL, $manufacturers)
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 180px']);
+        $container->addSelect('model', NULL, $models)
+            ->setPrompt('---')
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 210px']);
+        $container->addSelect('hours', NULL, $this->getHoursItems())
+            ->getControlPrototype()
+            ->addAttributes(['style' => 'width: 82px']);
+        $container->addCheckbox('current');
+
+        $container->addSubmit('remove', '❌')
+            ->setValidationScope(FALSE)
+            ->onClick[] = [$this, 'removeExperience'];
+
+        if ($this->form->isSubmitted()) {
+            $type = $container->values->type;
+            $manufacturers = $this->aircraftService->getManufacturers($type);
+
+            $manufacturer = $container->values->manufacturer;
+            if (!isset($manufacturers[$manufacturer])) {
+                $manufacturer = NULL;
+            }
+
+            $models = $this->aircraftService->getModels($type, $manufacturer);
+
+            $container['manufacturer']->setItems($manufacturers);
+            $container['model']->setItems($models);
+        } else {
+            if (isset($this->defaults['copilotExperiences'][$container->name])) {
+                $container->setDefaults($this->defaults['copilotExperiences'][$container->name]);
+            }
+        }
+    }
+
+    public function getHoursItems()
+    {
+        $items = [];
+        for ($i = 0; $i <= 50000; $i = $i+500) {
+            $items[$i] = $i;
+        }
+        return $items;
+    }
+
+    public function removeExperience(SubmitButton $submitButton)
+    {
+        $container = $submitButton->parent->parent;
+        $container->remove($submitButton->parent, TRUE);
+        $this->invalidateControl('form_content_captain');
+        $this->invalidateControl('form_content_copilot');
+    }
+
+    public function addExperience(SubmitButton $submitButton)
+    {
+        $submitButton->parent->createOne();
+        $this->invalidateControl('form_content_captain');
+        $this->invalidateControl('form_content_copilot');
     }
 
 }

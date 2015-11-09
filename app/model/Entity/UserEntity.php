@@ -119,6 +119,12 @@ class UserEntity extends Entity
 	/** @var array */
 	protected $copilotExperiences = array();
 
+	/** @var UserAircraft|NULL */
+	protected $currentCaptainAircraft;
+
+	/** @var UserAircraft|NULL */
+	protected $currentCopilotAircraft;
+
 	public function __construct($user = NULL)
 	{
 		if ($user !== NULL) {

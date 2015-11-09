@@ -210,8 +210,7 @@ class PreferencesForm extends AppForms
 
 		$this->form->addCheckbox('freelancer', "I am also interested in freelance or remote work");
 
-		$this->form->addSubmit('send', 'Save')
-						->getControlPrototype()->class = "button";
+		$this->form->addSubmit('send', 'Save');
 
 		$this->form['send']->onClick[] = $this->processForm;
 		$this->invalidateControl('form_content_captain');

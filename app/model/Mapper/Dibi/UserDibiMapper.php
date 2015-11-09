@@ -204,8 +204,14 @@ class UserDibiMapper extends DibiMapper
 
 			if ($aircraft->pic === NULL) {
 				$user->copilotExperiences[] = $userAircraft;
+                if ($userAircraft->current) {
+                    $user->currentCopilotAircraft = $userAircraft;
+                }
 			} else {
 				$user->pilotExperiences[] = $userAircraft;
+                if ($userAircraft->current) {
+                    $user->currentCaptainAircraft = $userAircraft;
+                }
 			}
 		}
 	}
