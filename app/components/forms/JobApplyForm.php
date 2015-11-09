@@ -30,10 +30,10 @@ class JobApplyForm extends AppForms
 
     /** @var array */
     private $cvs;
-    
+
     /** @var JobEntity */
     protected $jobEntity;
-    
+
     /** @var UserEntity */
     protected $userEntity;
 
@@ -51,8 +51,8 @@ class JobApplyForm extends AppForms
     {
         $this->jobEntity = $job;
         $this->userEntity = $user;
-        
-        $this->entityToForm($job, $user); 
+
+        $this->entityToForm($job, $user);
     }
 
     protected function createComponent($name)
@@ -88,7 +88,7 @@ class JobApplyForm extends AppForms
             $attachments[] = realpath($filepath);
         }
 
-        $cvPrinter = new \CvPrinter;
+        $cvPrinter = new \CvPrinter($this->presenter->context->users);
         foreach ($form->values->cvs as $cvId) {
             $cv = $this->cvService->getCv($cvId);
             $cvNamePrefix = $this->user->getIdentity()->first_name;
@@ -113,7 +113,7 @@ class JobApplyForm extends AppForms
             'attachmets' => $attachments,
         ));
         $mail->send();
-        
+
         list($name) = explode(' ', $form->values->name);
         $mailToUser = $this->mail->create($this->lang);
         $mailToUser->selectMail(\Model\Service\MailFactory::MAIL_THANKS_FOR_APPLY, array(
@@ -122,7 +122,7 @@ class JobApplyForm extends AppForms
             'refnr' => $this->jobEntity->ref_num,
         ));
         $mailToUser->send();
-        
+
 
         if ($this->user->getId() !== NULL) {
             $apply = $this->jobapplys->apply($this->userEntity->id, $this->jobEntity->id, $this->jobEntity->name, $this->jobEntity->ref_email, $form->values->sender, $subject, $form->values->message);

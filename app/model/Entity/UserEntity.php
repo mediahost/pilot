@@ -113,10 +113,10 @@ class UserEntity extends Entity
 	/** @var string */
 	protected $medicalText;
 
-	/** @var array */
+	/** @var UserAircraft[] */
 	protected $pilotExperiences = array();
 
-	/** @var array */
+	/** @var UserAircraft[] */
 	protected $copilotExperiences = array();
 
 	/** @var UserAircraft|NULL */
@@ -511,5 +511,32 @@ class UserEntity extends Entity
 			return $countries;
 		}
 	}
+
+	public function getTotalCaptainHours()
+	{
+		$total = 0;
+		foreach ($this->pilotExperiences as $userAircraft) {
+			$total = $total + $userAircraft->hours;
+		}
+		return $total;
+    }
+
+	public function getTotalCaptainPic()
+	{
+		$total = 0;
+		foreach ($this->pilotExperiences as $userAircraft) {
+			$total = $total + $userAircraft->pic;
+		}
+		return $total;
+    }
+
+	public function getTotalCopilotHours()
+	{
+		$total = 0;
+		foreach ($this->copilotExperiences as $userAircraft) {
+			$total = $total + $userAircraft->hours;
+		}
+		return $total;
+    }
 
 }

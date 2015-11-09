@@ -408,7 +408,6 @@ class PreferencesForm extends AppForms
 			$this->invalidateControl('errors');
 			return;
 		}
-
 		$this->userService->save($this->userEntity);
 
 		$this->onSuccess($this->userEntity);

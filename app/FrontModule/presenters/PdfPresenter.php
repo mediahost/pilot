@@ -9,7 +9,7 @@ namespace FrontModule;
  */
 class PdfPresenter extends BasePresenter
 {
-    
+
     public function startup()
     {
         parent::startup();
@@ -17,7 +17,7 @@ class PdfPresenter extends BasePresenter
 
     private function createPdf(\Model\Entity\CvEntity $cv, $template = NULL, $theme = NULL)
     {
-        $cvPrinter = new \CvPrinter;
+        $cvPrinter = new \CvPrinter($this->context->users);
         if ($template !== NULL) {
             $cvPrinter->setTemplate($template);
         }
@@ -38,36 +38,36 @@ class PdfPresenter extends BasePresenter
         // load actual CV
         /* @var $cv \Model\Entity\CvEntity */
         $cv = $this->context->cv->getCv($cvId);
-        
+
         if ($cv !== FALSE) {
             $user = $this->userService->find($cv->userId);
         } else {
             $this->noCvError(); // cv neexistuje
         }
-        
+
         if (!$cv->isCompleted()) {
             $this->noCvError($cv);  // cv neni completed
         }
-        
+
         if ($cv->public || $user->is_profile_public) {
             return $cv; // cv je public po sharovani na fb alebo sharovani profilu
         }
-        
+
         if ($cv->userId == $this->user->id) {
             return $cv; // cv si prezera jeho vlastnik
         }
-        
+
         if ($this->user->isCompany() && $this->user->companyAllowedToCv($cv)) {
             return $cv; // cv si prezera company
         }
-        
-        if ($this->user->isInRole('admin') || $this->user->isInRole('superadmin')) {   
+
+        if ($this->user->isInRole('admin') || $this->user->isInRole('superadmin')) {
             return $cv; // cv si prezera admin
         }
-        
+
         $this->noCvError();
     }
-    
+
     private function noCvError(\Model\Entity\CvEntity $cv = NULL)
     {
         if ($cv && $this->user->isLoggedIn() && $this->user->id == $cv->userId) {

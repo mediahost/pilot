@@ -174,7 +174,7 @@ class UserDibiMapper extends DibiMapper
 				'aircraft_id' => $copilotExperience->aircraftId,
 				'hours' => $copilotExperience->hours,
 				'pic' => NULL,
-                'current' => $pilotExperience->current,
+                'current' => $copilotExperience->current,
 			])->execute();
 		}
 		$this->loadAircrafts($user);

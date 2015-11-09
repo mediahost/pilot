@@ -226,35 +226,87 @@
                 <td colspan="{$colspan+1}"></td>
             </tr>
         {/if}
+            <tr class="separator">
+                <th class="headlineBig step11">{_'Pilot`s skills'}</th>
+                <td colspan="{$colspan}"><table class="block"><tr><td></td></tr></table></td>
+            </tr>
+            <tr class="emptySeparator">
+                <td colspan="{$colspan+1}"></td>
+            </tr>
 
-        <!-- ///// IT skills ///// -->
-            {if count($cv->itSkillsForRendering)}
-                <tr class="separator">
-                    <th class="headlineBig step11">{_"IT Skills"}</th>
-                    <td colspan="{$colspan}"><table class="block"><tr><td></td></tr></table></td>
-                </tr>
-                <tr class="emptySeparator">
-                    <td colspan="{$colspan+1}"></td>
-                </tr>
-                {foreach $cv->itSkillsForRendering as $skillsCategory => $skills}
-                    <tr>
-                        <th class="headline">{_"$skillsCategory"}</th>
-                        <td colspan="{$colspan}" n:inner-foreach="$skills as $skill">
-							{if $skill instanceof \DiBiRow}
-								{$skill->name}&nbsp;({$skill->scale}{if $skill->years !== 0}, {$skill->years} {_"Years", $skill->years}{/if}){sep},{/sep}
-							{else}
-								{$skill}{sep},{/sep}
-							{/if}
-                        </td>
-                    </tr>
-                    <tr class="emptySeparator">
-                        <td colspan="{$colspan+1}"></td>
-                    </tr>
-                {/foreach}
-                <tr class="emptySeparator">
-                    <td colspan="{$colspan+1}"></td>
-                </tr>
+            {if count($userEntity->pilotExperiences)}
+            <tr>
+                <th class="headline">Captain</th>
+                <td colspan="{$colspan}">
+                    Total hours: {$userEntity->getTotalCaptainHours()}<br>
+                    Total hours PIC: {$userEntity->getTotalCaptainPic()}<br>
+                    {if $userEntity->currentCaptainAircraft}
+                        {var $ca = $userEntity->currentCaptainAircraft}
+                        Current plane:
+                            {$ca->manufacturerName},
+                            {$ca->aircraftName},
+                            {if $ca->hours}{$ca->hours} hours,{/if}
+                            {if $ca->pic}{$ca->pic} hours PIC{/if}
+                        <br>
+                    {/if}
+                    <br>
+                    <table>
+                        <tr>
+                            <th style="text-align: left; font-weight: bold;">Manufacturer</th>
+                            <th style="text-align: left; font-weight: bold;">Type</th>
+                            <th style="text-align: left; font-weight: bold;">Hours</th>
+                            <th style="text-align: left; font-weight: bold;">PIC</th>
+                        </tr>
+                        <tr n:foreach="$userEntity->pilotExperiences as $userAircraft">
+                            <td style="padding: 0;">{$userAircraft->manufacturerName}</td>
+                            <td style="padding: 0;">{$userAircraft->aircraftName}</td>
+                            <td style="padding: 0;">{$userAircraft->hours}</td>
+                            <td style="padding: 0;">{$userAircraft->pic}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="emptySeparator">
+                <td colspan="{$colspan+1}"></td>
+            </tr>
             {/if}
+
+            {if count($userEntity->copilotExperiences)}
+            <tr>
+                <th class="headline">Co-pilot</th>
+                <td colspan="{$colspan}">
+                    Total hours: {$userEntity->getTotalCopilotHours()}<br>
+                    {if $userEntity->currentCopilotAircraft}
+                        {var $ca = $userEntity->currentCopilotAircraft}
+                        Current plane:
+                        {$ca->manufacturerName},
+                        {$ca->aircraftName},
+                        {if $ca->hours}{$ca->hours} hours{/if}
+                        <br>
+                    {/if}
+                    <br>
+                    <table>
+                        <tr>
+                            <th style="text-align: left; font-weight: bold;">Manufacturer</th>
+                            <th style="text-align: left; font-weight: bold;">Type</th>
+                            <th style="text-align: left; font-weight: bold;">Hours</th>
+                        </tr>
+                        <tr n:foreach="$userEntity->copilotExperiences as $userAircraft">
+                            <td style="padding: 0;">{$userAircraft->manufacturerName}</td>
+                            <td style="padding: 0;">{$userAircraft->aircraftName}</td>
+                            <td style="padding: 0;">{$userAircraft->hours}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="emptySeparator">
+                <td colspan="{$colspan+1}"></td>
+            </tr>
+            {/if}
+
+            <tr class="emptySeparator">
+                <td colspan="{$colspan+1}"></td>
+            </tr>
 
             <!-- ///// Other Personal Experience ///// -->
             {if count($cv->getWorks(\Model\Entity\CvWorkEntity::TYPE_OTHER))}

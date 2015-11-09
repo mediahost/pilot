@@ -7,20 +7,31 @@
  */
 class CvPrinter
 {
-    
+
     private $templateFile = "default";
     private $cssTheme = "default";
-    
+
+    /** @var \Model\Service\UserService */
+    private $userService;
+
+    /**
+     * CvPrinter constructor.
+     */
+    public function __construct(\Model\Service\UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function setTemplate($templateFile)
     {
         $this->templateFile = $templateFile;
     }
-    
+
     public function setCssTheme($theme)
     {
         $this->cssTheme = $theme;
     }
-    
+
     public function generate(Model\Entity\CvEntity $cv, $presenter, $translator, $pageInfo)
     {
         $presenter->setLayout(FALSE);
@@ -28,6 +39,7 @@ class CvPrinter
         $template = $presenter->createTemplate()->setFile($templatePath . "@pdf.layout.latte");
 
         $template->cv = $cv;
+        $template->userEntity = $this->userService->find($cv->userId);
         $template->pageInfo = $pageInfo;
         $templatePath = "templates/" . $this->templateFile . ".latte";
         $template->templateName = $templatePath;
@@ -61,7 +73,7 @@ class CvPrinter
         $pdf->pageMargins = "23,15,16,15,9,9";
         $pdf->getMPDF()->SetHTMLHeader("<table class='header'><tr><td class='left'></td><td class='middle'>Curriculum Vitae</td><td class='right1'></td><td class='right2'></td><td class='right3'></td></tr></table>"); // footer
         $pdf->getMPDF()->SetHTMLFooter("<table class='footer'><tr><td class='left1'></td><td class='left2'></td><td class='left3'></td><td class='middle'></td><td class='right'></td></tr></table>"); // footer
-        
+
         return $pdf;
     }
 }
