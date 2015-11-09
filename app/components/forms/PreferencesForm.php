@@ -75,6 +75,7 @@ class PreferencesForm extends AppForms
 				'model' => $item->aircraftId,
 				'hours' => $item->hours,
 				'pic' => $item->pic,
+				'current' => $item->current,
 			];
 		}
 		$copilotExperiences = [];
@@ -85,6 +86,7 @@ class PreferencesForm extends AppForms
 				'manufacturer' => $item->manufacturerId,
 				'model' => $item->aircraftId,
 				'hours' => $item->hours,
+				'current' => $item->current,
 			];
 		}
 
@@ -229,21 +231,22 @@ class PreferencesForm extends AppForms
 		])
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 85px']);
+			->addAttributes(['style' => 'width: 80px']);
 		$container->addSelect('manufacturer', NULL, $manufacturers)
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 200px']);
+			->addAttributes(['style' => 'width: 180px']);
 		$container->addSelect('model', NULL, $models)
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 240px']);
+			->addAttributes(['style' => 'width: 210px']);
 		$container->addSelect('hours', NULL, $this->getHoursItems())
 			->getControlPrototype()
 			->addAttributes(['style' => 'width: 82px']);
 		$container->addSelect('pic', NULL, $this->getHoursItems())
 			->getControlPrototype()
 			->addAttributes(['style' => 'width: 82px']);
+		$container->addCheckbox('current');
 
 		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
@@ -280,18 +283,19 @@ class PreferencesForm extends AppForms
 		])
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 85px']);
+			->addAttributes(['style' => 'width: 80px']);
 		$container->addSelect('manufacturer', NULL, $manufacturers)
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 200px']);
+			->addAttributes(['style' => 'width: 180px']);
 		$container->addSelect('model', NULL, $models)
 			->setPrompt('---')
 			->getControlPrototype()
-			->addAttributes(['style' => 'width: 240px']);
+			->addAttributes(['style' => 'width: 210px']);
 		$container->addSelect('hours', NULL, $this->getHoursItems())
 			->getControlPrototype()
 			->addAttributes(['style' => 'width: 82px']);
+		$container->addCheckbox('current');
 
 		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
@@ -369,23 +373,33 @@ class PreferencesForm extends AppForms
 			$form->addError('Enter at least one country.');
 		}
 		$this->userEntity->pilotExperiences = [];
+		$currentSet = FALSE;
 		foreach ($values->experiences as $key => $pilotExperience) {
 			if ($pilotExperience->model) {
 			    $userAircraft = new UserAircraft();
 				$userAircraft->aircraftId = $pilotExperience->model;
 				$userAircraft->hours = $pilotExperience->hours;
 				$userAircraft->pic = $pilotExperience->pic;
+				$userAircraft->current = $pilotExperience->current && !$currentSet;
 				$this->userEntity->pilotExperiences[] = $userAircraft;
+				if ($pilotExperience->current) {
+				    $currentSet = TRUE;
+				}
 			}
 		}
 		$this->userEntity->copilotExperiences = [];
+		$currentSet = FALSE;
 		foreach ($values->copilot_experiences as $key => $pilotExperience) {
 			if ($pilotExperience->model) {
 			    $userAircraft = new UserAircraft();
 				$userAircraft->aircraftId = $pilotExperience->model;
 				$userAircraft->hours = $pilotExperience->hours;
 				$userAircraft->pic = NULL;
+				$userAircraft->current = $pilotExperience->current && !$currentSet;
 				$this->userEntity->copilotExperiences[] = $userAircraft;
+				if ($pilotExperience->current) {
+					$currentSet = TRUE;
+				}
 			}
 		}
 		if (!(count($this->userEntity->pilotExperiences)+count($this->userEntity->copilotExperiences))) {

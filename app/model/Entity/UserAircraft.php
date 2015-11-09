@@ -29,4 +29,7 @@ class UserAircraft
 	/** @var int|NULL */
 	public $pic;
 
+	/** @var bool */
+	public $current;
+
 }

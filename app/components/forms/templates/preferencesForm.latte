@@ -46,6 +46,7 @@
 				            <th style="min-width: 0; text-align: left; width: auto;">Model</th>
 				            <th style="min-width: 0; text-align: left; width: auto;">Total hours</th>
 				            <th style="min-width: 0; text-align: left; width: auto;">PIC</th>
+				            <th style="min-width: 0; text-align: left; width: auto;">Current</th>
 				            <th style="min-width: 0; text-align: left; width: auto;"></th>
 			            </tr>
 						{foreach $form['experiences']->containers as $container}
@@ -55,6 +56,7 @@
 							<td style="padding-right: 5px;">{$container['model']->control}</td>
 							<td style="padding-right: 5px;">{$container['hours']->control}</td>
 							<td style="padding-right: 5px;">{$container['pic']->control}</td>
+							<td style="padding-right: 5px;">{$container['current']->control}</td>
 							<td style="padding-right: 5px;">{$container['remove']->control}</td>
 						</tr>
 						{/foreach}
@@ -80,6 +82,7 @@
 				            <th style="min-width: 0; text-align: left; width: auto;">Manufacturer</th>
 				            <th style="min-width: 0; text-align: left; width: auto;">Model</th>
 				            <th style="min-width: 0; text-align: left; width: auto;">Total hours</th>
+				            <th style="min-width: 0; text-align: left; width: auto;">Current</th>
 				            <th style="min-width: 0; text-align: left; width: auto;"></th>
 			            </tr>
 						{foreach $form['copilot_experiences']->containers as $container}
@@ -88,6 +91,7 @@
 							<td style="padding-right: 5px;">{$container['manufacturer']->control}</td>
 							<td style="padding-right: 5px;">{$container['model']->control}</td>
 							<td style="padding-right: 5px;">{$container['hours']->control}</td>
+							<td style="padding-right: 5px;">{$container['current']->control}</td>
 							<td style="padding-right: 5px;">{$container['remove']->control}</td>
 						</tr>
 						{/foreach}
@@ -156,6 +160,20 @@
 				}
 			}
 		});
+
+		$('form#frm-preferences-preferencesForm').on('change', 'input[type=checkbox][name*=current]', function(){
+			var ch = $(this).filter(':checked').length;
+			if ($(this).filter('[name^=copilot_experiences]').length == 1) {
+				$('input[type=checkbox][name*=current][name^=copilot_experiences]').removeAttr('checked');
+			} else {
+				$('input[type=checkbox][name*=current][name^=experiences]').removeAttr('checked');
+			}
+			if (ch == 1) {
+				$(this).attr('checked', 'checked');
+			} else {
+				$(this).removeAttr('checked');
+			}
+		})
 	});
 
 </script>

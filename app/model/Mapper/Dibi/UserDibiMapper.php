@@ -164,6 +164,7 @@ class UserDibiMapper extends DibiMapper
 				'aircraft_id' => $pilotExperience->aircraftId,
 				'hours' => $pilotExperience->hours,
 				'pic' => $pilotExperience->pic,
+                'current' => $pilotExperience->current,
 			])->execute();
 		}
 		/** @var UserAircraft $copilotExperience */
@@ -173,6 +174,7 @@ class UserDibiMapper extends DibiMapper
 				'aircraft_id' => $copilotExperience->aircraftId,
 				'hours' => $copilotExperience->hours,
 				'pic' => NULL,
+                'current' => $pilotExperience->current,
 			])->execute();
 		}
 		$this->loadAircrafts($user);
@@ -198,6 +200,7 @@ class UserDibiMapper extends DibiMapper
 			$userAircraft->manufacturerName = $aircraft->mname;
 			$userAircraft->hours = $aircraft->hours;
 			$userAircraft->pic = $aircraft->pic;
+            $userAircraft->current = $aircraft->current;
 
 			if ($aircraft->pic === NULL) {
 				$user->copilotExperiences[] = $userAircraft;
