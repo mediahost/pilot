@@ -1,0 +1,375 @@
+{layout none}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="{_$pageInfo->author}" />
+        <meta name="keywords" content="{_$pageInfo->keywords}" />
+        <meta name="description" content="{_$pageInfo->description}" />
+        <meta name="robots" content="{$robots}" n:ifset="$robots" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>{block title|striptags|upper}{_$pageInfo->title}{/block}</title>
+
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/icons.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/flexslider.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/theme-business.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/custom.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{$basePath}/landing/css/font-opensans.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700" />
+    </head>
+
+    <body>
+        <div id="flashMessages" style="display: none;">
+            <div n:snippet="flash">
+				<div n:foreach="$flashes as $flash" class="flash {$flash->type}">
+					<span class="text">{!$flash->message|nl2br}</span>
+					<a n:href="this" class="close"></a>
+				</div>
+            </div>
+        </div>
+
+		<div class="nav-container">
+			<nav class="nav-1 fixed shrink">
+				<div class="navbar">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-md-3 col-sm-6 col-xs-4">
+								<a n:href="this">
+									<img class="logo" alt="Logo" src="{$basePath}/images/logo/logo3.png" />
+								</a>
+							</div>
+
+							<div class="col-md-3 text-right col-sm-6 col-md-push-6 col-xs-8">
+								<div class="mobile-toggle">
+									<div class="upper"></div>
+									<div class="middle"></div>
+									<div class="lower"></div>
+								</div>
+							</div>
+
+							<div class="col-md-6 text-center col-md-pull-3 col-sm-12 col-xs-12">
+								<ul class="menu">
+									<li>
+										<a href="#" id="login">{_'CANDIDATE LOGIN'}</a>
+									</li>
+									<li class="has-dropdown">
+										<a n:href=":Company:Homepage:jobs">{_'EMPLOYER LOGIN'}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div id="login-popup">
+									<div class="form">
+										{control signInForm:inline}
+									</div>
+									<div class="links">
+										<div class="extra">
+											<a n:href="this#sign" id="toSign"><span>{_"Create an account"}</span></a>
+											<a n:href="Sign:lostPass"><span>{_"Lost password?"}</span></a>
+										</div>
+										<div class="social">
+											<a class="facebook" n:href="Sign:facebook"><span>{_"Sign In with"} Facebook</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<div class="main-container">
+
+			<section class="header header-10">
+				<div class="fs-video-wrapper">
+					<video autoplay="" loop="">
+						<source src="{$basePath}/landing/video/video.webm" type="video/webm">
+						<source src="{$basePath}/landing/video/video.mp4" type="video/mp4">
+						<source src="{$basePath}/landing/video/video.ogv" type="video/ogg">
+					</video>
+				</div>
+
+				<div class="background-image-holder">
+					<img alt="{_'Source-Code'}" class="background-image" src="{$basePath}/landing/img/hero9.jpg" />
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="text-center col-sm-11">
+							<h3 class="text-white">{_'Looking for a new job in Tech?'}</h3>
+							<h5 class="text-white">{_'Sign up now'}<br><br></h5>
+							{control createAccountForm2:inline}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="cta cta-4">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<img alt="{_'Symbio Business Solutions'}" src="{$basePath}/landing/img/symbio.jpg" />
+							<img alt="{_'Launchpad Recruit'}" src="{$basePath}/landing/img/launchpad.png" />
+							<img alt="{_'Cut-e'}" src="{$basePath}/landing/img/cute.jpeg" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h3>{_"You're in good company"}</h3>
+							<h5>{_'Get a job in the top Tech companies across Europe'}</h5>
+							<a class="btn btn-filled super-action" href="#sign">{_'Apply now'}</a>
+							<p class="sub"><br></p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="cta cta-5">
+				<div class="background-image-holder">
+					<img alt="{_'Background Image'}" class="background-image" src="{$basePath}/landing/img/hero4A.jpg" />
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h2 class="text-white">{_'Your dream job is only 20 minutes away'}</h2>
+							<h5 class="text-white">
+								{_'Start today with your free account.'}<br>
+								{_'Top jobs at the top Tech companies in Europe are at your fingertips.'}
+							</h5>
+							<a class="btn btn-filled super-action" href="#sign">{_'Apply for jobs'}</a>
+							<p class="sub"><br></p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="features features-14">
+				<div class="container">
+					<div class="row v-align-children">
+						<div class="col-sm-6 col-md-6">
+							<h4>{_'Create the perfect IT CV'}</h4>
+							<p class="lead">
+								{_'Create your Europass formatted IT CV in less than 10 minutes using the CV generator feature'}
+							</p>
+							<a class="btn btn-filled super-action" href="#sign">{_'Build my CV now!'}</a>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<img alt="{_'Create the perfect IT CV'}" src="{$basePath}/landing/img/hw.png" />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="header header-8">
+				<div class="header-upper">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<h2 class="text-white">{_'Say hi to the camera'}&nbsp;<b>{_'now'}</b></h2>
+								<h5 class="text-white">
+									{_'Let prospective employers see the real you through your video profile.'}
+									<br>
+									{_'Create your video profile in less than 5 minutes from the comfort of your home.'}
+								</h5>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<img alt="{_'iPad Screenshot'}" src="{$basePath}/landing/img/pic_2.png" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="header-lower">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<h4>{_'All your career documentation safe in one place.'}</h4>
+								<a class="btn" href="#sign">{_'Good idea'}</a>
+								<h6> </h6>
+								<a class="btn btn-filled" href="#sign">{_'Wanna try?'}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="cta cta-7" id="sign">
+				<div class="background-image-holder">
+					<img alt="{_'Background Image'}" class="background-image" src="{$basePath}/landing/img/hero9A.jpg" />
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h2 class="text-white">{_'Filter jobs and apply!'}</h2>
+							<h5 class="text-white">{_'Filter live Tech jobs in Europe based on IT skill requirements, salary and location'}</h5>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							{control createAccountForm3:row}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="features features-6">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h3>{_"That's not all there is..."}</h3>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-browser-streamline-window"></i>
+							<h5>{_'Smart matching algorithm'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-arrow-streamline-target"></i>
+							<h5>{_'Direct contact with employer'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-book-dowload-streamline"></i>
+							<h5>{_'Career dropbox'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-list-thumbnails"></i>
+							<h5>{_'Europass IT CV generator'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-magnet-streamline"></i>
+							<h5>{_'Share your profile outside the platform'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-camera-streamline-video"></i>
+							<h5>{_'Conduct video interviews directly with companies'}<br></h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-map-streamline-user"></i>
+							<h5>{_'24/7 support'}</h5>
+						</div>
+
+						<div class="col-md-3 col-sm-6 text-center feature">
+							<i class="icon-settings-streamline-2"></i>
+							<h5>{_'IT career management tools'}</h5>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<section class="contact contact-1">
+				<div class="map-holder">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d25452.154718621343!2d-6.268273046876168!3d53.34224240655081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!1i0!3e2!4m5!1s0x48670e8c317040d3%3A0x3a2b68e4738028cf!2s2+Exchange+Pl%2C+International+Financial+Services+Centre%2C+Dublin+1!3m2!1d53.3492901!2d-6.2469779!4m0!5e1!3m2!1sen!2sie!4v1424173009829"></iframe>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h2 class="text-white">{_'Our offices are in Dublin and Bratislava'}</h2>
+							<h5 class="text-white">{_'Feel free to pop in for a coffee and chat'}</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="map-toggle">
+					<div class="switch"></div>
+					<h6 class="text-white">{_'Toggle Map'}</h6>
+				</div>
+			</section>
+
+			<section class="contact contact-3">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<h3>{_'Get In Touch'}</h3>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+							{control getInTouch}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<footer class="footer footer-5 bg-dark">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<img alt="{_'Logo'}" src="{$basePath}/landing/img/logo-dark.png" />
+							<p class="lead">
+								{_'Looking for a new job in Tech?'}
+							</p>
+							<a class="btn btn-filled" href="#sign">{_'Start now'}</a>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<div class="lower">
+								<p class="sub">
+									© {_'Copyright 2015 Source-Code Recruitment Ltd. - All Rights Reserved'}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+
+		<script type="text/javascript" src="{$basePath}/landing/js/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/flexslider.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/smooth-scroll.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/placeholders.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/twitterfetcher.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/spectragram.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/scripts.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.livequery.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/jqueryPlugins/jquery.nette.min.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/live-form-validation.js"></script>
+        <script type="text/javascript" src="{$basePath}/landing/js/emailValidateRule.js"></script>
+        <script>
+			var basePath = {$basePath};
+		</script>
+		<!-- Start of Async HubSpot Analytics Code -->
+		<script type="text/javascript">
+			(function(d,s,i,r) {
+				if (d.getElementById(i)){ return;}
+				var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+				n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/511667.js';
+				e.parentNode.insertBefore(n, e);
+			})(document,"script","hs-analytics",300000);
+		</script>
+        <!-- End of Async HubSpot Analytics Code -->
+    </body>
+</html>

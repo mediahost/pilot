@@ -3,6 +3,8 @@
 namespace FrontModule;
 
 use \Nette\Application\UI\Form;
+use Nette\Mail\IMailer;
+use Nette\Mail\Message;
 
 /**
  * Homepage presenter.
@@ -68,7 +70,7 @@ class HomepagePresenter extends BasePresenter
 		$form->setSizes(NULL, NULL);
         return $form;
     }
-	
+
     protected function createComponentCreateAccountForm3()
     {
 		$form = new \AppForms\CreateAccountForm($this, $this->context->users, FALSE);
@@ -76,5 +78,37 @@ class HomepagePresenter extends BasePresenter
 		$form->setSizes(NULL, NULL);
         return $form;
     }
+
+	public function createComponentContact()
+	{
+	    $form = new Form();
+		$form->addText('name');
+		$form->addText('email');
+		$form->addTextArea('message');
+		$form->addSubmit('send');
+		$form->onSuccess[] = [$this, 'processContact'];
+		return $form;
+
+	}
+
+	public function processContact(Form $form)
+	{
+		$values = $form->values;
+		/** @var IMailer $mailer */
+		$mailer = $this->context->getByType('Nette\Mail\IMailer');
+		$message = new Message();
+		$message->addTo('kapicak@gmail.com');
+		$message->setFrom('pilotincommand@info.com');
+		$message->setSubject('Contact');
+		$message->setBody(
+			"Name: {$values->name}".PHP_EOL.
+			"Email: {$values->email}".PHP_EOL.
+			"Message: {$values->message}"
+		);
+		$mailer->send($message);
+
+		$this->flashMessage('Thanks for your submission, we will be in touch shortly.');
+		$this->redirect('this#contact');
+	}
 
 }
