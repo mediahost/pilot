@@ -185,7 +185,7 @@
             <div class="previewBox">
                 <div class="preview">
                     {var templateStyle => $candidate->cv->templateName ? $candidate->cv->templateName : "default"}
-                    {include "../../../FrontModule/templates/Pdf/templates/$templateStyle.latte", cv => $candidate->cv}
+                    {include "../../../FrontModule/templates/Pdf/templates/$templateStyle.latte", cv => $candidate->cv, userEntity => $userEntity}
                 </div>
             </div>
         </div>
