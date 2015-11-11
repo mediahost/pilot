@@ -434,6 +434,7 @@ textarea {
 textarea {
   font-weight: 400;
 }
+input[type="password"],
 input[type="text"] {
   height: 54px;
   line-height: 48px;
@@ -1471,6 +1472,7 @@ nav.dismiss-active {
 .header .contained-form h6 {
   margin-bottom: 16px;
 }
+.header input[type="password"],
 .header input[type="text"] {
   border-color: #fff;
 }
@@ -1526,6 +1528,7 @@ nav.dismiss-active {
 .header-1 form input {
   width: 100%;
 }
+.header-1 form input[type="password"],
 .header-1 form input[type="text"] {
   margin-bottom: 12px;
 }
