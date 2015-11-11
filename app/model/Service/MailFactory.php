@@ -117,7 +117,7 @@ class MailFactory
                         $fromTemplate .= "emailSignVerify.latte";
                         break;
                 }
-                $this->mail->setSubject($this->translator->translate("Source-Code"));
+                $this->mail->setSubject($this->translator->translate("Pilot in Commands"));
 
                 $password = array_key_exists('password', $params) ? $params['password'] : "";
                 $username = array_key_exists('username', $params) ? $params['username'] : "";
