@@ -1,50 +1,43 @@
-<div n:snippet="formInsert" class="skills">
+<div n:snippet="formInsert" class="skills custom">
 	{form step11Form style => "overflow: scroll"}
-		{$form->render('errors')}
-		
-		<h3>{_'Captain'}</h3>
-		<table>
-			<tbody>
-{*			<tr>
-				<th style="vertical-align: top; padding-top: 6px;">
-					{_'Flying experience'}:
-				</th>
-				<td></td>
-			</tr>
-*}
-{*
-			<tr>
-				<th style="vertical-align: top; padding-top: 6px;">
-					{_'Captain'}:
-				</th>
-				<td>
+	{$form->render('errors')}
 
-				</td>
-			</tr>
-*}
+	<h3>{_'Captain'}</h3>
+	<table>
+		<tbody>
 			<tr>
 				<td n:snippet="form_content_captain">
 					{var $_form = $form = $control[$formName]}
 					<table style="width: auto">
 						{var count = count($form['experiences']->containers)}
-						<tr n:if="$count">
-							<th style="min-width: 0; text-align: left; width: auto;">Type</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Manufacturer</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Model</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Total hours</th>
-							<th style="min-width: 0; text-align: left; width: auto;">PIC</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Current</th>
-							<th style="min-width: 0; text-align: left; width: auto;"></th>
-						</tr>
 						{foreach $form['experiences']->containers as $container}
 							<tr>
-								<td style="padding-right: 5px;">{$container['type']->control}</td>
-								<td style="padding-right: 5px;">{$container['manufacturer']->control}</td>
-								<td style="padding-right: 5px;">{$container['model']->control}</td>
-								<td style="padding-right: 5px;">{$container['hours']->control}</td>
-								<td style="padding-right: 5px;">{$container['pic']->control}</td>
-								<td style="padding-right: 5px;">{$container['current']->control}</td>
-								<td style="padding-right: 5px;">{$container['remove']->control}</td>
+								<td>
+									{$container['type']->label}
+									{$container['type']->control}
+								</td>
+								<td>
+									{$container['manufacturer']->label}
+									{$container['manufacturer']->control}
+								</td>
+								<td>
+									{$container['model']->label}
+									{$container['model']->control}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									{$container['current']->label} {$container['current']->control}
+								</td>
+								<td>
+									{$container['hours']->label}
+									{$container['hours']->control}
+								</td>
+								<td>
+									{$container['pic']->label}
+									{$container['pic']->control}
+								</td>
+								<td>{$container['remove']->control}</td>
 							</tr>
 						{/foreach}
 						<tr>
@@ -55,7 +48,7 @@
 			</tr>
 		</tbody>
 	</table>
-			
+
 	<h3>{_'Co-pilot'}</h3>	
 	<table>
 		<tbody>
@@ -65,21 +58,21 @@
 					<table style="width: auto">
 						{var count = count($form['copilot_experiences']->containers)}
 						<tr n:if="$count">
-							<th style="min-width: 0; text-align: left; width: auto;">Type</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Manufacturer</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Model</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Total hours</th>
-							<th style="min-width: 0; text-align: left; width: auto;">Current</th>
-							<th style="min-width: 0; text-align: left; width: auto;"></th>
+							<th>Type</th>
+							<th>Manufacturer</th>
+							<th>Model</th>
+							<th>Total hours</th>
+							<th>Current</th>
+							<th></th>
 						</tr>
 						{foreach $form['copilot_experiences']->containers as $container}
 							<tr>
-								<td style="padding-right: 5px;">{$container['type']->control}</td>
-								<td style="padding-right: 5px;">{$container['manufacturer']->control}</td>
-								<td style="padding-right: 5px;">{$container['model']->control}</td>
-								<td style="padding-right: 5px;">{$container['hours']->control}</td>
-								<td style="padding-right: 5px;">{$container['current']->control}</td>
-								<td style="padding-right: 5px;">{$container['remove']->control}</td>
+								<td>{$container['type']->control}</td>
+								<td>{$container['manufacturer']->control}</td>
+								<td>{$container['model']->control}</td>
+								<td>{$container['hours']->control}</td>
+								<td>{$container['current']->control}</td>
+								<td>{$container['remove']->control}</td>
 							</tr>
 						{/foreach}
 						<tr>
@@ -92,9 +85,9 @@
 				<th>&nbsp;</th>
 				<td style="padding-left: 30px;">{input send, class => button}</td>
 			</tr>
-			</tbody>
-		</table>
+		</tbody>
+	</table>
 
 
 	{/form}
-</div>
+	</div>
