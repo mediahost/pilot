@@ -434,6 +434,7 @@ textarea {
 textarea {
   font-weight: 400;
 }
+input[type="password"],
 input[type="text"] {
   height: 54px;
   line-height: 48px;
@@ -482,6 +483,7 @@ form p {
 form a {
   font-weight: bold;
 }
+.contained-form input[type="password"]:first-of-type,
 .contained-form input[type="text"]:first-of-type {
   border-radius: 3px 0px 0px 3px;
   position: relative;
@@ -1471,6 +1473,7 @@ nav.dismiss-active {
 .header .contained-form h6 {
   margin-bottom: 16px;
 }
+.header input[type="password"],
 .header input[type="text"] {
   border-color: #fff;
 }
@@ -1625,6 +1628,7 @@ nav.dismiss-active {
   color: #fff;
   font-weight: bold;
 }
+.header-2 form input[type="password"],
 .header-2 form input[type="text"] {
   min-width: 224px;
 }
@@ -2816,6 +2820,7 @@ nav.dismiss-active {
 .cta-7 .sub a {
   color: #fff;
 }
+.cta-7 input[type="password"],
 .cta-7 input[type="text"] {
   margin-bottom: 10px;
 }

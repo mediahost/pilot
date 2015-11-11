@@ -1,11 +1,11 @@
-$(document).ready(function() { 
+$(document).ready(function() {
 
-	"use strict";
+    "use strict";
 
-	// Variables
-	
-	var triggerVid;
-	var launchkit_hoverGallery;
+    // Variables
+
+    var triggerVid;
+    var launchkit_hoverGallery;
 
 
     // Disable default click on a with blank href
@@ -15,28 +15,28 @@ $(document).ready(function() {
             return false;
         }
     });
-    
-    // Smooth scroll to inner links
-	
-	$('.inner-link').smoothScroll({
-		offset: -59,
-		speed: 800
-	});
-	
-	// Close mobile menu once link is clicked
-	
-	$('.menu li a').click(function(){
-		if($('nav').hasClass('nav-open')){
-			$('nav').removeClass('nav-open');
-		}
-	});
 
-    
+    // Smooth scroll to inner links
+
+    $('.inner-link').smoothScroll({
+        offset: -59,
+        speed: 800
+    });
+
+    // Close mobile menu once link is clicked
+
+    $('.menu li a').click(function(){
+        if($('nav').hasClass('nav-open')){
+            $('nav').removeClass('nav-open');
+        }
+    });
+
+
     // Set bg of nav container if dark skin
-    
+
     if($('nav').hasClass('dark')){
-    	$('.nav-container').addClass('dark');
-    	$('.main-container').find('section:nth-of-type(1)').css('outline', '40px solid #222');
+        $('.nav-container').addClass('dark');
+        $('.main-container').find('section:nth-of-type(1)').css('outline', '40px solid #222');
     }
 
     $(window).scroll(function() {
@@ -49,13 +49,13 @@ $(document).ready(function() {
     });
 
     if(!$('nav').hasClass('fixed') && !$('nav').hasClass('overlay')){
-           
+
         // Compensate the height of parallax element for inline nav
-        
+
         if($(window).width() > 768){
             $('.parallax:first-child .background-image-holder').css('top', -($('nav').outerHeight(true)));
         }
-        
+
         // Adjust fullscreen elements
         if($(window).width() > 768 && ($('section.parallax:first-child, header.parallax:first-child').outerHeight() == $(window).height()) ){
             $('section.parallax:first-child, header.parallax:first-child').css('height', ($(window).height() - $('nav').outerHeight(true)));
@@ -88,13 +88,13 @@ $(document).ready(function() {
         $(this).children('img').hide();
         $(this).css('background-position', '50% 50%');
     });
-    
+
     // Fade in background images
-	
-	setTimeout(function(){
-		$('.background-image-holder').each(function() {
-			$(this).addClass('fadeIn');
-		});
+
+    setTimeout(function(){
+        $('.background-image-holder').each(function() {
+            $(this).addClass('fadeIn');
+        });
     },200);
 
 
@@ -149,24 +149,24 @@ $(document).ready(function() {
 
     // Hover gallery
     $('.hover-gallery').each(function(){
-    	var that = $(this);
-    	var timerId = setInterval(function(){scrollHoverGallery(that);}, $(this).closest('.hover-gallery').attr('speed'));
-		$(this).closest('.hover-gallery').attr('timerId', timerId );
-		
-		$(this).find('li').bind('hover, mouseover, mouseenter, click', function(e){
-			e.stopPropagation();
-			clearInterval(timerId);
-		});
-	
-	});
-	
+        var that = $(this);
+        var timerId = setInterval(function(){scrollHoverGallery(that);}, $(this).closest('.hover-gallery').attr('speed'));
+        $(this).closest('.hover-gallery').attr('timerId', timerId );
+
+        $(this).find('li').bind('hover, mouseover, mouseenter, click', function(e){
+            e.stopPropagation();
+            clearInterval(timerId);
+        });
+
+    });
+
 
     $('.hover-gallery li').mouseenter(function() {
         clearInterval($(this).closest('.hover-gallery[timerId]').attr('timerId'));
         $(this).parent().find('li.active').removeClass('active');
         $(this).addClass('active');
     });
-    
+
     // Pricing table remove emphasis on hover
 
     $('.pricing-option').mouseenter(function() {
@@ -217,167 +217,132 @@ $(document).ready(function() {
             query: $(this).attr('data-user-name')
         });
     });
-    
+
     // Sort tabs into 2 ul's
-    
+
     $('.tabbed-content').each(function(){
-    	$(this).append('<ul class="content"></ul>');
-    });
-    
-    $('.tabs li').each(function(){
-    	var originalTab = $(this), activeClass = "";
-    	if(originalTab.is('.tabs li:first-child')){
-    		activeClass = ' class="active"';
-    	}
-    	var tabContent = originalTab.find('.tab-content').detach().wrap('<li'+activeClass+'></li>').parent();
-    	originalTab.closest('.tabbed-content').find('.content').append(tabContent);
-    });
-    
-    $('.tabs li').click(function(){
-    	$(this).closest('.tabs').find('li').removeClass('active');
-    	$(this).addClass('active');
-    	var liIndex = $(this).index() + 1;
-    	$(this).closest('.tabbed-content').find('.content li').removeClass('active');
-    	$(this).closest('.tabbed-content').find('.content li:nth-child('+liIndex+')').addClass('active');
+        $(this).append('<ul class="content"></ul>');
     });
 
-    
+    $('.tabs li').each(function(){
+        var originalTab = $(this), activeClass = "";
+        if(originalTab.is('.tabs li:first-child')){
+            activeClass = ' class="active"';
+        }
+        var tabContent = originalTab.find('.tab-content').detach().wrap('<li'+activeClass+'></li>').parent();
+        originalTab.closest('.tabbed-content').find('.content').append(tabContent);
+    });
+
+    $('.tabs li').click(function(){
+        $(this).closest('.tabs').find('li').removeClass('active');
+        $(this).addClass('active');
+        var liIndex = $(this).index() + 1;
+        $(this).closest('.tabbed-content').find('.content li').removeClass('active');
+        $(this).closest('.tabbed-content').find('.content li:nth-child('+liIndex+')').addClass('active');
+    });
+
+
     // Contact form code
 
-    $('form.form-email').submit(function(e) {
-       
-        // return false so form submits through jQuery rather than reloading page.
-        if (e.preventDefault) e.preventDefault();
-        else e.returnValue = false;
+    var validateEmail = function (email) {
+        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return re.test(email);
+    };
 
-        var thisForm = $(this).closest('form.form-email'),
-            error = 0,
-            originalError = thisForm.attr('original-error'),
-            loadingSpinner, iFrame, userEmail, userFullName, userFirstName, userLastName, successRedirect;
+    var addError = function ($form, error) {
+        var $error = $form.find('.form-error');
+        if (!$error.length) {
+            $error = $('<div class="form-error" />').hide().appendTo($form);
+        }
+        $error.text(error).fadeIn();
+        setTimeout(function(){
+            $error.fadeOut();
+        }, 2000);
+    };
 
-		// Mailchimp/Campaign Monitor Mail List Form Scripts
-		iFrame = $(thisForm).find('iframe.mail-list-form');
-		
-        thisForm.find('.form-error, .form-success').remove();
-        thisForm.append('<div class="form-error" style="display: none;">' + thisForm.attr('data-error') + '</div>');
-        thisForm.append('<div class="form-success" style="display: none;">' + thisForm.attr('data-success') + '</div>');
-
-
-		if( (iFrame.length) && (typeof iFrame.attr('srcdoc') !== "undefined") && (iFrame.attr('srcdoc') !== "") ){
-				
-			console.log('Mail list form signup detected.');
-            userEmail = $(thisForm).find('.signup-email-field').val();
-            userFullName = $(thisForm).find('.signup-name-field').val();
-            if ($(thisForm).find('input.signup-first-name-field').length) {
-                userFirstName = $(thisForm).find('input.signup-first-name-field').val();
-            } else {
-                userFirstName = $(thisForm).find('.signup-name-field').val();
-            }
-            userLastName = $(thisForm).find('.signup-last-name-field').val();
-
-			// validateFields returns 1 on error;
-			if (validateFields(thisForm) !== 1) {
-				console.log('Mail list signup form validation passed.');
-				console.log(userEmail);
-				console.log(userLastName);
-				console.log(userFirstName);
-				console.log(userFullName);
-				
-				iFrame.contents().find('#mce-EMAIL, #fieldEmail').val(userEmail);
-				iFrame.contents().find('#mce-LNAME, #fieldLastName').val(userLastName);
-				iFrame.contents().find('#mce-FNAME, #fieldFirstName').val(userFirstName);
-				iFrame.contents().find('#mce-NAME, #fieldName').val(userFullName);
-				iFrame.contents().find('form').attr('target', '_blank').submit();
-                successRedirect = thisForm.attr('success-redirect');
-                // For some browsers, if empty `successRedirect` is undefined; for others,
-                // `successRedirect` is false.  Check for both.
-                if (typeof successRedirect !== typeof undefined && successRedirect !== false && successRedirect !== "") {
-                    window.location = successRedirect;
+    $('form.form-email input[name=email]').on('change', function(){
+        var $form = $(this).closest('form');
+        var $email = $(this);
+        var email = $(this).val();
+        if (!validateEmail(email)) {
+            addError($form, $(this).data('invalid'));
+        } else if (!$form.hasClass('no-reg')) {
+            var url = 'https://source-code.com/ajax/validate-mail?mail=' + encodeURIComponent(email);
+            $.get(url, function (data) {
+                if (!data.valid) {
+                    addError($form, $email.data('already-registered'));
                 }
-			}else {
-                thisForm.find('.form-error').fadeIn(1000);
-                setTimeout(function() {
-                    thisForm.find('.form-error').fadeOut(500);
-                }, 5000);
-            }
-		} else {
-			console.log('Send email form detected.');
-			if (typeof originalError !== typeof undefined && originalError !== false) {
-				thisForm.find('.form-error').text(originalError);
-			}
-
-
-			error = validateFields(thisForm);
-
-
-			if (error === 1) {
-				$(this).closest('form').find('.form-error').fadeIn(200);
-				setTimeout(function() {
-					$(thisForm).find('.form-error').fadeOut(500);
-				}, 3000);
-			} else {
-				// Hide the error if one was shown
-				$(this).closest('form').find('.form-error').fadeOut(200);
-				// Create a new loading spinner while hiding the submit button.
-				loadingSpinner = jQuery('<div />').addClass('form-loading').insertAfter($(thisForm).find('input[type="submit"]'));
-				$(thisForm).find('input[type="submit"]').hide();
-
-				jQuery.ajax({
-					type: "POST",
-					url: "mail/mail.php",
-					data: thisForm.serialize(),
-					success: function(response) {
-						// Swiftmailer always sends back a number representing numner of emails sent.
-						// If this is numeric (not Swift Mailer error text) AND greater than 0 then show success message.
-						$(thisForm).find('.form-loading').remove();
-
-                        successRedirect = thisForm.attr('success-redirect');
-                        // For some browsers, if empty `successRedirect` is undefined; for others,
-                        // `successRedirect` is false.  Check for both.
-                        if (typeof successRedirect !== typeof undefined && successRedirect !== false && successRedirect !== "") {
-                            window.location = successRedirect;
-                        }
-
-						$(thisForm).find('input[type="submit"]').show();
-						if ($.isNumeric(response)) {
-							if (parseInt(response) > 0) {
-								thisForm.find('input[type="text"]').val("");
-                                thisForm.find('textarea').val("");
-                                thisForm.find('.form-success').fadeIn(1000);
-								
-                                thisForm.find('.form-error').fadeOut(1000);
-								setTimeout(function() {
-									thisForm.find('.form-success').fadeOut(500);
-								}, 5000);
-							}
-						}
-						// If error text was returned, put the text in the .form-error div and show it.
-						else {
-							// Keep the current error text in a data attribute on the form
-							thisForm.find('.form-error').attr('original-error', thisForm.find('.form-error').text());
-							// Show the error with the returned error text.
-							thisForm.find('.form-error').text(response).fadeIn(1000);
-							thisForm.find('.form-success').fadeOut(1000);
-						}
-					},
-					error: function(errorObject, errorText, errorHTTP) {
-						// Keep the current error text in a data attribute on the form
-						thisForm.find('.form-error').attr('original-error', thisForm.find('.form-error').text());
-						// Show the error with the returned error text.
-						thisForm.find('.form-error').text(errorHTTP).fadeIn(1000);
-						thisForm.find('.form-success').fadeOut(1000);
-						$(thisForm).find('.form-loading').remove();
-						$(thisForm).find('input[type="submit"]').show();
-					}
-				});
-			}
-		}
-		return false;
+            }, 'json');
+        }
     });
 
+    $('form.form-email').submit(function(e) {
+        var $password = $(this).find('input[name=password]');
+        var $email = $(this).find('input[name=email]');
+        var $form = $(this);
+
+
+        if ($form.hasClass('no-reg')) {
+
+            var error = false;
+            var $name = $(this).find('input[name=name]');
+            var $message = $(this).find('textarea[name=message]');
+            if ($message.val() == '') {
+                addError($form, $message.data('required'));
+                error = true;
+            }
+            if ($email.val() == '') {
+                addError($form, $email.data('required'));
+                error = true;
+            } else if (!validateEmail($email.val())) {
+                addError($form, $email.data('invalid'));
+                error = true;
+            }
+            if ($name.val() == '') {
+                addError($form, $name.data('required'));
+                error = true;
+            }
+            if (!error) {
+                $form.addClass('submit');
+                $form.submit();
+            }
+        } else {
+            if ($form.hasClass('submit')) {
+                return;
+            }
+            console.log('test');
+            var url = 'https://source-code.com/ajax/validate-mail?mail=' + encodeURIComponent($email.val());
+            $.get(url, function (data) {
+                var error = false;
+                if (!data.valid) {
+                    addError($form, $email.data('already-registered'));
+                    error = true;
+                }
+                if ($email.val() == '') {
+                    addError($form, $email.data('required'));
+                    error = true;
+                } else if (!validateEmail($email.val())) {
+                    addError($form, $email.data('invalid'));
+                    error = true;
+                };
+                if ($password.val() == '') {
+                    addError($form, $password.data('required'));
+                    error = true;
+                }
+                if (!error) {
+                    $form.addClass('submit');
+                    $form.submit();
+                }
+            }, 'json');
+        }
+
+        if (e.preventDefault) e.preventDefault();
+        else e.returnValue = false;
+        return false;
+    });
     // End Contact Form Code
 
-    // Get referrer from URL string 
+    // Get referrer from URL string
     if (getURLParameter("ref")) {
         $('form.form-email').append('<input type="text" name="referrer" class="hidden" value="' + getURLParameter("ref") + '"/>');
     }
@@ -386,7 +351,7 @@ $(document).ready(function() {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
     }
 
-   
+
 
     $('.validate-required, .validate-email').on('blur change', function() {
         validateFields($(this).closest('form'));
@@ -433,27 +398,27 @@ $(document).ready(function() {
 
         return error;
     }
-    
+
     // Remove screen when user clicks on the map, then add it again when they scroll
-    
+
     $('.screen').click(function(){
-    	$(this).removeClass('screen');
+        $(this).removeClass('screen');
     });
-    
+
     $(window).scroll(function(){
-    	$('.contact-2 .map-holder').addClass('screen');
+        $('.contact-2 .map-holder').addClass('screen');
     });
 
-}); 
+});
 
-$(window).load(function() { 
+$(window).load(function() {
 
-	"use strict";
-	
-	// Sticky nav
+    "use strict";
+
+    // Sticky nav
 
     if (!$('nav').hasClass('overlay')) {
-    	$('.nav-container').css('min-height', $('.navbar').height());
+        $('.nav-container').css('min-height', $('.navbar').height());
     }
 
     // Initialize twitter feed
@@ -493,15 +458,15 @@ $(window).load(function() {
         }
     }, 500);
 
-}); 
+});
 
 function scrollHoverGallery(gallery){
-	var nextActiveSlide = $(gallery).find('li.active').next();
+    var nextActiveSlide = $(gallery).find('li.active').next();
 
-	if (nextActiveSlide.length === 0) {
-		nextActiveSlide = $(gallery).find('li:first-child');
-	}
+    if (nextActiveSlide.length === 0) {
+        nextActiveSlide = $(gallery).find('li:first-child');
+    }
 
-	$(gallery).find('li.active').removeClass('active');
-	nextActiveSlide.addClass('active');
+    $(gallery).find('li.active').removeClass('active');
+    nextActiveSlide.addClass('active');
 }
