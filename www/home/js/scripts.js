@@ -267,7 +267,7 @@ $(document).ready(function() {
         if (!validateEmail(email)) {
             addError($form, $(this).data('invalid'));
         } else if (!$form.hasClass('no-reg')) {
-            var url = 'https://source-code.com/ajax/validate-mail?mail=' + encodeURIComponent(email);
+            var url = 'http://pilotincommand.com/ajax/validate-mail?mail=' + encodeURIComponent(email);
             $.get(url, function (data) {
                 if (!data.valid) {
                     addError($form, $email.data('already-registered'));
@@ -311,7 +311,7 @@ $(document).ready(function() {
                 return;
             }
             console.log('test');
-            var url = 'https://source-code.com/ajax/validate-mail?mail=' + encodeURIComponent($email.val());
+            var url = 'http://pilotincommand.com/ajax/validate-mail?mail=' + encodeURIComponent($email.val());
             $.get(url, function (data) {
                 var error = false;
                 if (!data.valid) {
