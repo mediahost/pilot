@@ -16,11 +16,6 @@
             </a>
         </li>
         <li class="">
-            <a href="#tab_5" data-toggle="tab">
-                {_"IT Skills"}
-            </a>
-        </li>
-        <li class="">
             <a href="#tab_6" data-toggle="tab">
                 {_"Pre-Screening Questions"}
             </a>
@@ -29,7 +24,7 @@
 
 {form editJobForm}
 {$form->render('errors')}
-    
+
     <div class="tab-content">
         <div class="tab-pane fade active in" id="tab_1">
             <div class="form-body">
@@ -95,14 +90,14 @@
                     <div class="col-sm-10">
                         {input $el}
                     </div>
-                </div>  
+                </div>
                 <div class="form-group">
                     {var el => $form['locations']}
                     {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
                     <div class="col-sm-10">
                         {input $el}
                     </div>
-                </div>           
+                </div>
                 <div class="form-group">
                     {var el => $form['ref']}
                     {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
@@ -124,10 +119,10 @@
                         {input $el}
                     </div>
                 </div>
-                    
+
             </div>
         </div>
-            
+
         <div class="tab-pane fade" id="tab_3">
             <div class="form-body">
                 <div class="form-group">
@@ -145,9 +140,9 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-            
+
         <div class="tab-pane fade" id="tab_4">
             <div class="form-body">
                 <div class="form-group">
@@ -165,11 +160,11 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-            
+
         <div class="tab-pane fade" id="tab_5">
-            
+
             <div class="panel-group accordion">
                 <div n:foreach="$skills as $skillCategory => $skillItems" class="panel panel-default">
                     <div class="panel-heading">
@@ -180,7 +175,7 @@
                         </h4>
                     </div>
                     <div id="collapse_{$skillCategory|webalize}" class="panel-collapse collapse" style="height: auto;">
-                        <div class="panel-body">   
+                        <div class="panel-body">
                             <div class="form-body">
                             {foreach $skillItems as $skillGroupName => $skillGroup}
                                 <h4 n:if="$skillGroupName">{$skillGroupName}</h4>
@@ -191,9 +186,9 @@
                                     {? $scale->getControlPrototype()->addClass("input-inline input-medium")}
                                     {var $number => $container->components['number']}
                                     {? $number->getControlPrototype()->addClass("input-inline input-xsmall")}
-                                    
+
                                     {label $scale}{$skillName}{/label}
-                                    
+
                                     <div class="col-sm-9">
                                         {input $scale}
                                         <label>
@@ -208,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="tab-pane fade" id="tab_6">
             <div class="form-body">
@@ -221,13 +216,13 @@
                 </div>
             </div>
         </div>
-    </div>      
-                    
+    </div>
+
     <div class="form-actions fluid">
         <div class="col-sm-offset-2 col-sm-10">
             {input back} {input send}
         </div>
     </div>
-        
+
     {/form}
 {/snippet}
