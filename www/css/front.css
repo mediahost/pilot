@@ -120,7 +120,7 @@ textarea {
   padding: 0px 15px;
   line-height: 41px;
   height: 40px;
-  color: #B6CF6C;
+  color: #666;
 }
 #head #menu .top-menu .nav > li > a:hover {
   background-color: #f0f0f0;
@@ -1388,7 +1388,7 @@ footer .logo {
 }
 #dashboard h1 {
   font-size: 16px;
-  color: #B6CF6C;
+  color: #666;
   margin-bottom: 10px;
 }
 #dashboard p.message {

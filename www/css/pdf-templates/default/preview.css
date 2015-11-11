@@ -51,10 +51,10 @@ table.main tr th {
 }
 
 table.main tr th.headline {
-    color: #204f9b;
+    color: #7f9e23;
 }
 table.main tr th.headlineBig {
-    color: #204f9b;
+    color: #7f9e23;
     text-transform: uppercase;
     font-size: 8px;
 }
@@ -105,7 +105,7 @@ table.main tr td table.company {
     margin-top: -2px;
 }
 table.main tr td table.company tr td.position {
-    color: #204f9b;
+    color: #7f9e23;
     font-size: 10px;
 }
 
@@ -134,7 +134,7 @@ table.main tr.emptySeparator td, table.main tr.emptySeparator th {
 }
 
 table.main tr.mainGrid td {
-    color: #204f9b;
+    color: #7f9e23;
     text-transform: uppercase;
     padding: 5px 0px;
     text-align: center;
@@ -143,7 +143,7 @@ table.main tr.mainGrid td {
     border-width: 1px 1px;
 }
 table.main tr.subGrid td {
-    color: #204f9b;
+    color: #7f9e23;
     padding: 5px 0px;
     text-align: center;
     border-style: solid;
@@ -169,7 +169,7 @@ table.main tr.evenGrid td {
     text-align: center;
 }
 table.main tr.notice td {
-    color: #204f9b;
+    color: #7f9e23;
     font-size: 5px;
 }
 
@@ -187,18 +187,18 @@ table.header td {
 table.header td.left {
     background-image: url("/css/pdf-templates/default/title.png");
     background-repeat: no-repeat;
-    background-size: 50px 20px;
+    background-size: 62px 18px;
     background-position: bottom left;
     width: 100px;
     height: 12px;
 }
 table.header td.middle {
-    color: #204f9b;
+    color: #7f9e23;
     font-size: 8px;
 }
 table.header td.right1 {
     width: 18px;
-    background-color: #0000d5;
+    background-color: #b6cf6c;
 }
 table.header td.right2 {
     width: 3px;
@@ -206,7 +206,7 @@ table.header td.right2 {
 table.header td.right3 {
     height: 12px;
     width: 18px;
-    background-color: #051878;
+    background-color: #9cb64f;
 }
 
 div.footer {
@@ -219,7 +219,7 @@ div.footer {
 table.footer td.left1 {
     height: 12px;
     width: 18px;
-    background-color: #051878;
+    background-color: #9cb64f;
 }
 table.footer td.left2 {
     width: 3px;
@@ -227,12 +227,12 @@ table.footer td.left2 {
 table.footer td.left3 {
     height: 12px;
     width: 18px;
-    background-color: #0000d5;
+    background-color: #b6cf6c;
 }
 table.footer td.middle {
 }
 table.footer td.right {
     height: 12px;
     width: 18px;
-    background-color: #051878;
+    background-color: #9cb64f;
 }
