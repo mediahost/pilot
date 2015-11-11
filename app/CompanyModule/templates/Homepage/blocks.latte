@@ -10,6 +10,7 @@
 {/define}
 
 {define candidate}
+{var $userEntity = $userService->find($candidate->cv->userId)}
 {if !isset($showStatusUpdate)}{var showStatusUpdate = FALSE}{/if}
 <div class="candidate" id="can-{$candidate->id}">
     <div class="data">
@@ -42,75 +43,46 @@
                     </div>
                 </div>
                 <h2>{$candidate->cv->getFullName()}</h2>
-                <table>
-                    <tr n:if="count($candidate->cv->itSkills)" class="skills">
-                        {*
-                        <th>{_"IT Skills"}:</th>
-                        <td>
-                            <ul>
-                                <li n:foreach="$candidate->cv->itSkills as $skill">
-                                    - {$skill->name} ({$skill->scale}{if $skill->years}, {$skill->years} {_"year", $skill->years}{/if})
-                                    {if $iterator->getCounter() >= 3}{? break}{/if}
-                                </li>
-                            </ul>
-                        </td>
-                        *}
-                        <td colspan="2">
-                            {var progLanguages = $candidate->cv->getSortedProgramingLanguages(5)}
-                            <div class="skill-category" n:if="count($progLanguages)">
-                                <h3>{_'Programing languages'}</h3>
-                                <ul class="skill-list">
-                                    {foreach $progLanguages as $skill}
-                                    <li style="clear: both">
-                                        {foreach [1,2,3,4,5] as $quality}
-                                            <div n:class="$quality <= $skill->quality ? qualified"></div>
-                                        {/foreach}
-                                        &nbsp; {$skill->name}
-                                    </li>
-                                    {/foreach}
-                                </ul>
-                            </div>
-                            {var frameworks = $candidate->cv->getSortedFrameworks(5)}
-                            <div class="skill-category" n:if="count($frameworks)">
-                                <h3>{_'Frameworks'}</h3>
-                                <ul class="skill-list">
-                                    {foreach $frameworks as $skill}
-                                        <li style="clear: both">
-                                            {foreach [1,2,3,4,5] as $quality}
-                                                <div n:class="$quality <= $skill->quality ? qualified"></div>
-                                            {/foreach}
-                                            &nbsp; {$skill->name}
-                                        </li>
-                                    {/foreach}
-                                </ul>
-                            </div>
-                        </td>
-
-
+                <table style="font-weight: bold; margin-left: 15px;">
+                    <tr>
+                        <td>CAPTAIN</td>
+                        <td>Co-Pilot</td>
                     </tr>
-                    <tr n:if="isset($jobUserInfo) && count($jobUserInfo[$candidate->id]['history'])">
-                        <td colspan="2">
-                            <br>
-                            <strong>{_"Last action"}:</strong>
-                            {var last = $jobUserInfo[$candidate->id]['history'][0]}
-                            {if $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_REJECTED} {_"Rejected"}
-                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_SHORTLISTED} {_"Shortlisted"}
-                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_MESSAGE} {_"Message sent"}
-                            {elseif $last->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_STATUS} {_"Status changed"} ({$last->text})
-                            {/if}
-                            on {$last->date|date:'j M Y'}. <a href="javascript:$('#actions-u'+{$candidate->id}).dialog({ title:'{$candidate->cv->getFullName()}' })">See all</a>
-                            <div id="actions-u{$candidate->id}" class="display-none">
-                                <ul>
-                                    <li n:foreach="$jobUserInfo[$candidate->id]['history'] as $info">
-                                        {if $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_REJECTED} {_"Rejected"}
-                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_SHORTLISTED} {_"Shortlisted"}
-                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_MESSAGE} {_"Message sent"}
-                                        {elseif $info->action == Model\Mapper\Dibi\JobsDibiMapper::JOB_USER_ACTION_STATUS} {_"Status changed"} ({$info->text})
-                                        {/if}
-                                        on {$info->date|date:'j M Y'}.
-                                    </li>
-                                </ul>
-                            </div>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td n:inner-if="$userEntity->currentCaptainAircraft">
+                            Current Plane:
+                            {$userEntity->currentCaptainAircraft->manufacturerName},
+                            {$userEntity->currentCaptainAircraft->aircraftName}
+
+                        </td>
+                        <td n:inner-if="$userEntity->currentCopilotAircraft">
+                            Current Plane:
+                            {$userEntity->currentCopilotAircraft->manufacturerName},
+                            {$userEntity->currentCopilotAircraft->aircraftName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td n:inner-if="$userEntity->currentCaptainAircraft">
+                            Hours on Current PIC:
+                            {$userEntity->currentCaptainAircraft->pic}
+                        </td>
+                        <td n:inner-if="$userEntity->currentCopilotAircraft">
+                            Hours on Current:
+                            {$userEntity->currentCopilotAircraft->hours}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td n:inner-if="count($userEntity->pilotExperiences)">
+                            Total Hours:
+                            {$userEntity->getTotalCaptainHours()}
+                        </td>
+                        <td n:inner-if="count($userEntity->copilotExperiences)">
+                            Total Hours:
+                            {$userEntity->getTotalCopilotHours()}
                         </td>
                     </tr>
                 </table>

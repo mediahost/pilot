@@ -23,7 +23,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      * Allowed languages - values for automatic detection from explorer
      * search on Google: "locale codes"
      * http://download1.parallels.com/Plesk/Plesk8.2/Doc/plesk-8.2-win-l10n-guide/39382.htm
-     * @var array 
+     * @var array
      */
     protected $langs = array();
 
@@ -108,6 +108,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
         $this->translator->setLang($this->lang); // nastavíme jazyk
         $template->setTranslator($this->translator);
+        $template->userService = $this->context->users;
 
         return $template;
     }
