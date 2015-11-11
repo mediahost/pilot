@@ -18,10 +18,10 @@
 #cvcontent .headline1 th {
     font-size: 1.3em;
     border-right: none;
-    border-bottom: #3454A4 1px solid;
+    border-bottom: #B6CF6C 1px solid;
     text-align: left;
     padding-bottom: 5px;
-    color: #3454A4;
+    color: #B6CF6C;
 }
 #cvcontent .headline2 th {
     color: #6f6f6f;
@@ -110,7 +110,7 @@ table.main tr td table.company tr td.position {
 }
 
 #cvcontent table.main tr.separator > td {
-    border-color: #032bdf;
+    border-color: #B6CF6C;
     border-width: 0px;
     border-style: solid;
     border-bottom-width: 1px;
@@ -127,7 +127,7 @@ table.main tr td table.company tr td.position {
     height: 8px;
     padding-top: 0px;
     padding-bottom: 0px;
-    background-color: #032bdf;
+    background-color: #B6CF6C;
 }
 table.main tr.emptySeparator td, table.main tr.emptySeparator th {
     padding-bottom: 6px;
