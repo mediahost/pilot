@@ -184,7 +184,7 @@ class Step11Form extends StepsForm
     {
         $manufacturers = $this->aircraftService->getManufacturers();
         $models = $this->aircraftService->getModels();
-
+		
         $container->addSelect('type', NULL, [
             AircraftService::TYPE_JET => 'Jet',
             AircraftService::TYPE_TURBO => 'Turbo',

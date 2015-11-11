@@ -9,6 +9,11 @@
     p.message {
         font-size: 14px;
     }
+	h2 {
+        font-size: @fontSizeBig;
+        color: @labelGray;
+        padding: 15px;	
+	}
 }
 
 #timeline {
@@ -526,3 +531,33 @@
 		}
 	}
 }
+
+form.custom {
+	.form-group {
+		padding: 5px 15px;
+	}
+	h2 {
+        font-size: @fontSizeBig;
+        color: @labelGray;
+        padding: 25px 0 5px 0 !important;
+        clear: both;
+	}
+	h3 {
+        font-size: @fontSizeMiddle;
+        color: @labelGray;
+        padding: 5px 0;
+        clear: both;
+        
+	}
+	.radio {
+		div {
+			float: left;
+			text-align: center;
+			width: 60px;
+		}
+	}
+	.jstree {
+		padding: 0;
+	}
+}
+

@@ -179,10 +179,12 @@ class PreferencesForm extends AppForms
 
 	public function createComponent($name)
 	{
-		$this->form->getElementPrototype()->class = "styled ajax";
+		$this->form->getElementPrototype()->class = "styled ajax custom";
 
 		$this->form->addRadioList('english_level', 'English level', UserEntity::$englishLevelOptions)
 			->setDefaultValue($this->defaults['english_level']);
+		
+	\Nette\Diagnostics\Debugger::barDump(UserEntity::$englishLevelOptions);
 
 		$this->form->addRadioList('medical', 'Medical', [1 => 'Yes', 0 => 'No'])
 			->setDefaultValue($this->defaults['medical'])
@@ -201,7 +203,7 @@ class PreferencesForm extends AppForms
 		$copilotExperiences->addSubmit('add', 'Add plane')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'addExperience'];
-
+		
 		$countryContainer = $this->form->addContainer('countries');
 		foreach ($this->flatCountries as $countryId => $countryName) {
 			$countryContainer->addCheckbox($countryId, $countryName)
@@ -247,9 +249,11 @@ class PreferencesForm extends AppForms
 			->addAttributes(['style' => 'width: 82px']);
 		$container->addCheckbox('current');
 
+		/* @var $remove \Nette\Forms\Controls\SubmitButton */
 		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
+		$container['remove']->getControlPrototype()->class[] = 'button';
 
 		if ($this->form->isSubmitted()) {
 			$type = $container->values->type;
@@ -299,6 +303,7 @@ class PreferencesForm extends AppForms
 		$container->addSubmit('remove', '❌')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
+		$container['remove']->getControlPrototype()->class[] = 'button';
 
 		if ($this->form->isSubmitted()) {
 			$type = $container->values->type;
