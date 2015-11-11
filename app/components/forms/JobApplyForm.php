@@ -78,7 +78,7 @@ class JobApplyForm extends AppForms
 
     public function onSuccess(Form $form)
     {
-        $subject = "Source-code.com " . $form->values->subject;
+        $subject = "pilotincommands.com " . $form->values->subject;
         $tmpSaveDir = \CommonHelpers::concatStrings("/", ".", "tmp", $this->userEntity->id, "attachments");
 
         $attachments = array();
