@@ -20,11 +20,11 @@ table.main tr th {
 }
 
 table.main tr th.headline {
-    color: #204f9b;
+    color: #9cb64f;
 }
 table.main tr th.headlineBig {
     font-size: 14px;
-    color: #204f9b;
+    color: #9cb64f;
     text-transform: uppercase;
 }
 table.main tr td.info {
@@ -74,12 +74,12 @@ table.main tr td table.company {
     margin-top: -2px;
 }
 table.main tr td table.company tr td.position {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 14px;
 }
 
 table.main tr.separator td {
-    border-color: #204f9b;
+    border-color: #9cb64f;
     border-width: 0px;
     border-style: solid;
     border-bottom-width: 2px;
@@ -94,7 +94,7 @@ table.main tr.separator td table.block tr td {
     margin: 0px;
     width: 15px;
     height: 15px;
-    background-color: #204f9b;
+    background-color: #9cb64f;
     border-bottom-width: 0px;
 }
 table.main tr.emptySeparator td, table.main tr.emptySeparator th {
@@ -102,7 +102,7 @@ table.main tr.emptySeparator td, table.main tr.emptySeparator th {
 }
 
 table.main tr.mainGrid td {
-    color: #204f9b;
+    color: #9cb64f;
     text-transform: uppercase;
     padding: 5px 0px;
     text-align: center;
@@ -111,7 +111,7 @@ table.main tr.mainGrid td {
     border-width: 1px 1px;
 }
 table.main tr.subGrid td {
-    color: #204f9b;
+    color: #9cb64f;
     padding: 5px 0px;
     text-align: center;
     border-style: solid;
@@ -137,7 +137,7 @@ table.main tr.evenGrid td {
     text-align: center;
 }
 table.main tr.notice td {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 10px;
 }
 table.header td {
@@ -151,7 +151,7 @@ table.header td.left {
     width: 190px;
 }
 table.header td.middle {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 12px;
 }
 

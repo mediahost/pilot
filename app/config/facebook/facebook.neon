@@ -1,5 +1,5 @@
 parameters:
 	facebook:
-		app_name: 'pilotincommands.com'
-		description: 'pilotincommands.com'
+		app_name: 'pilotincommand.com'
+		description: 'pilotincommand.com'
 		scope: 'email,user_birthday'

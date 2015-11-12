@@ -51,10 +51,10 @@ table.main tr th {
 }
 
 table.main tr th.headline {
-    color: #204f9b;
+    color: #9cb64f;
 }
 table.main tr th.headlineBig {
-    color: #204f9b;
+    color: #9cb64f;
     text-transform: uppercase;
     font-size: 8px;
 }
@@ -105,12 +105,12 @@ table.main tr td table.company {
     margin-top: -2px;
 }
 table.main tr td table.company tr td.position {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 10px;
 }
 
 #cvcontent table.main tr.separator > td {
-    border-color: #204f9b;
+    border-color: #9cb64f;
     border-width: 0px;
     border-style: solid;
     border-bottom-width: 1px;
@@ -127,14 +127,14 @@ table.main tr td table.company tr td.position {
     height: 8px;
     padding-top: 0px;
     padding-bottom: 0px;
-    background-color: #204f9b;
+    background-color: #9cb64f;
 }
 table.main tr.emptySeparator td, table.main tr.emptySeparator th {
     padding-bottom: 6px;
 }
 
 table.main tr.mainGrid td {
-    color: #204f9b;
+    color: #9cb64f;
     text-transform: uppercase;
     padding: 5px 0px;
     text-align: center;
@@ -143,7 +143,7 @@ table.main tr.mainGrid td {
     border-width: 1px 1px;
 }
 table.main tr.subGrid td {
-    color: #204f9b;
+    color: #9cb64f;
     padding: 5px 0px;
     text-align: center;
     border-style: solid;
@@ -169,7 +169,7 @@ table.main tr.evenGrid td {
     text-align: center;
 }
 table.main tr.notice td {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 5px;
 }
 
@@ -193,7 +193,7 @@ table.header td.left {
     height: 12px;
 }
 table.header td.middle {
-    color: #204f9b;
+    color: #9cb64f;
     font-size: 8px;
 }
 

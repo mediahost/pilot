@@ -413,7 +413,7 @@ class CvEntity extends Entity
 //            1 => "Personal Details",
             5 => "Work Experience",
             7 => "Education & Training",
-            11 => "Pilot`s skills",
+            11 => "Flying Experience",
             6 => "Other Experience",
             9 => "Personal Skills and Competence",
             8 => "Language Skills",

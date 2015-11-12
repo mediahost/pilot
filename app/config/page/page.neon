@@ -2,7 +2,7 @@ parameters:
 	lang:
 		default: en
 	pageInfo:
-		title: "pilotincommands.com"
+		title: "pilotincommand.com"
 		author: "Mediahost"
 		keywords: ""
 		description: ""

@@ -38,7 +38,7 @@ class SendCvByMailForm extends AppForms
                 ->setEmptyValue("@")
                 ->addRule(Form::EMAIL, 'Entered value is not email!');
         $this->form->addTextArea('text', 'E-mail text')
-				->setDefaultValue('Hi, look at my new cv from pilotincommands.com');
+				->setDefaultValue('Hi, look at my new cv from pilotincommand.com');
 
         $this->form->addSubmit('send', 'Send')
                         ->getControlPrototype()->class = "button";

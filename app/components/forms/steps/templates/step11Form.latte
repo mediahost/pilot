@@ -1,4 +1,4 @@
-<div n:snippet="formInsert" class="skills custom">
+<div n:snippet="formInsert" class="skills">
 	{form step11Form style => "overflow: scroll"}
 	{$form->render('errors')}
 
@@ -8,7 +8,7 @@
 			<tr>
 				<td n:snippet="form_content_captain">
 					{var $_form = $form = $control[$formName]}
-					<table style="width: auto">
+					<table style="width: auto" class="planes">
 						{var count = count($form['experiences']->containers)}
 						{foreach $form['experiences']->containers as $container}
 							<tr>
@@ -24,6 +24,7 @@
 									{$container['model']->label}
 									{$container['model']->control}
 								</td>
+								<td rowspan="2" class="remove">{$container['remove']->control}</td>
 							</tr>
 							<tr>
 								<td>
@@ -37,7 +38,6 @@
 									{$container['pic']->label}
 									{$container['pic']->control}
 								</td>
-								<td>{$container['remove']->control}</td>
 							</tr>
 						{/foreach}
 						<tr>
@@ -55,24 +55,32 @@
 			<tr>
 				<td n:snippet="form_content_copilot">
 					{var $_form = $form = $control[$formName]}
-					<table style="width: auto">
+					<table style="width: auto" class="planes">
 						{var count = count($form['copilot_experiences']->containers)}
-						<tr n:if="$count">
-							<th>Type</th>
-							<th>Manufacturer</th>
-							<th>Model</th>
-							<th>Total hours</th>
-							<th>Current</th>
-							<th></th>
-						</tr>
 						{foreach $form['copilot_experiences']->containers as $container}
 							<tr>
-								<td>{$container['type']->control}</td>
-								<td>{$container['manufacturer']->control}</td>
-								<td>{$container['model']->control}</td>
-								<td>{$container['hours']->control}</td>
-								<td>{$container['current']->control}</td>
-								<td>{$container['remove']->control}</td>
+								<td>
+									{$container['type']->label}
+									{$container['type']->control}
+								</td>
+								<td>
+									{$container['manufacturer']->label}
+									{$container['manufacturer']->control}
+								</td>
+								<td>
+									{$container['model']->label}
+									{$container['model']->control}
+								</td>
+								<td rowspan="2" class="remove">{$container['remove']->control}</td>
+							</tr>
+							<tr>
+								<td>
+									{$container['current']->label} {$container['current']->control}
+								</td>
+								<td colspan="2">
+									{$container['hours']->label}
+									{$container['hours']->control}
+								</td>
 							</tr>
 						{/foreach}
 						<tr>
@@ -81,13 +89,12 @@
 					</table>
 				</td>
 			</tr>
-			<tr>
-				<th>&nbsp;</th>
-				<td style="padding-left: 30px;">{input send, class => button}</td>
-			</tr>
 		</tbody>
 	</table>
-
-
+						
+	<div class="form-group">
+		{input send, class => 'button red'}
+	</div>
+	
 	{/form}
 	</div>

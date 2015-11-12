@@ -17,9 +17,9 @@ use Nette\Http\Session,
 class MailFactory
 {
 
-    const SEND_FROM = "info@pilotincommands.com";
-    const EMAIL_SUPPORT = "support@pilotincommands.com";
-    const RECIEVER_HELLO_MESSAGE = "support@pilotincommands.com";
+    const SEND_FROM = "info@pilotincommand.com";
+    const EMAIL_SUPPORT = "support@pilotincommand.com";
+    const RECIEVER_HELLO_MESSAGE = "support@pilotincommand.com";
     const MAIL_SIGN_CREATE_ACCOUNT = 1;
     const MAIL_SIGN_CHANGE_PASSWORD = 2;
     const MAIL_SIGN_VERIFY = 3;
@@ -86,10 +86,10 @@ class MailFactory
     {
         switch ($from) {
             case self::FROM_NOREPLY:
-                $this->mail->setFrom(self::SEND_FROM, "pilotincommands.com");
+                $this->mail->setFrom(self::SEND_FROM, "pilotincommand.com");
                 break;
             case self::FROM_SUPPORT:
-                $this->mail->setFrom(self::EMAIL_SUPPORT, "pilotincommands.com");
+                $this->mail->setFrom(self::EMAIL_SUPPORT, "pilotincommand.com");
                 break;
             default:
                 break;
@@ -117,7 +117,7 @@ class MailFactory
                         $fromTemplate .= "emailSignVerify.latte";
                         break;
                 }
-                $this->mail->setSubject($this->translator->translate("Pilot in Commands"));
+                $this->mail->setSubject($this->translator->translate("Pilot in Command"));
 
                 $password = array_key_exists('password', $params) ? $params['password'] : "";
                 $username = array_key_exists('username', $params) ? $params['username'] : "";
@@ -140,7 +140,7 @@ class MailFactory
 					$this->mail->setBody(
 							"Hi," .
 							"\n" .
-							"Look at my new cv form pilotincommands.com"
+							"Look at my new cv form pilotincommand.com"
 					);
 				}
 				$this->mail->addAttachment($attach);
@@ -219,7 +219,7 @@ class MailFactory
                 break;
             case self::MAIL_CHAT_NOTIFY:
                 
-                $this->mail->setSubject('New message on pilotincommands.com');
+                $this->mail->setSubject('New message on pilotincommand.com');
                 $template->from = $params['message_from'];
                 $template->text = $params['message_text'];
                 $template->jobLink = $params['job_link'];
@@ -229,7 +229,7 @@ class MailFactory
                 $fromTemplate = $emailTemplatesDir . 'emailChatMessageNotify.latte';
                 break;
             case self::MAIL_MATCHED_NOTIFY:
-                $this->mail->setSubject('pilotincommands.com');
+                $this->mail->setSubject('pilotincommand.com');
                 $this->setTo($params['to']);
                 $this->selectFrom(self::FROM_SUPPORT);
                 
@@ -241,7 +241,7 @@ class MailFactory
                 $fromTemplate = $emailTemplatesDir . 'emailJobMatched.latte';
                 break;
             case self::MAIL_REJECTED:
-                $this->mail->setSubject('pilotincommands.com');
+                $this->mail->setSubject('pilotincommand.com');
                 $this->setTo($params['to']);
                 $this->selectFrom(self::FROM_NOREPLY);
                 

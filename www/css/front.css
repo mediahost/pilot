@@ -1927,6 +1927,19 @@ form.custom h3 {
   padding: 5px 0;
   clear: both;
 }
+form.custom .planes td {
+  padding-right: 10px;
+}
+form.custom .planes td > label {
+  display: block;
+  line-height: 18px;
+}
+form.custom .planes tr:nth-child(2n) > td {
+  padding-bottom: 20px;
+}
+form.custom .planes td.remove {
+  padding-top: 18px;
+}
 form.custom .radio div {
   float: left;
   text-align: center;
@@ -2555,6 +2568,9 @@ form.styled select.labelTop {
 form.styled input.button {
   background-color: #b6cf6c;
   color: #ffffff;
+}
+form.styled input.button.red {
+  background-color: #F3565D;
 }
 form.styled label {
   color: #3f3f3f;

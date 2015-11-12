@@ -42,6 +42,7 @@ class Step11Form extends StepsForm
     {
         parent::__construct($presenter, $service, $cv, $step);
         $this->skills = $this->service->buildSkills();
+		$this->form->getElementPrototype()->addClass('custom');
     }
 
     public function loadAircrafts()
@@ -237,25 +238,25 @@ class Step11Form extends StepsForm
         $manufacturers = $this->aircraftService->getManufacturers();
         $models = $this->aircraftService->getModels();
 
-        $container->addSelect('type', NULL, [
+        $container->addSelect('type', 'Type', [
             AircraftService::TYPE_JET => 'Jet',
             AircraftService::TYPE_TURBO => 'Turbo',
         ])
             ->setPrompt('---')
             ->getControlPrototype()
             ->addAttributes(['style' => 'width: 80px']);
-        $container->addSelect('manufacturer', NULL, $manufacturers)
+        $container->addSelect('manufacturer', 'Manufacturer', $manufacturers)
             ->setPrompt('---')
             ->getControlPrototype()
             ->addAttributes(['style' => 'width: 180px']);
-        $container->addSelect('model', NULL, $models)
+        $container->addSelect('model', 'Model', $models)
             ->setPrompt('---')
             ->getControlPrototype()
             ->addAttributes(['style' => 'width: 210px']);
-        $container->addSelect('hours', NULL, $this->getHoursItems())
+        $container->addSelect('hours', 'Total hours', $this->getHoursItems())
             ->getControlPrototype()
             ->addAttributes(['style' => 'width: 82px']);
-        $container->addCheckbox('current');
+        $container->addCheckbox('current', 'Current');
 
         $container->addSubmit('remove', '❌')
             ->setValidationScope(FALSE)
