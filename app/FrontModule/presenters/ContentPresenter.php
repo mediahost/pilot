@@ -34,8 +34,8 @@ class ContentPresenter extends BasePresenter
                 break;
         }
         if (empty($pages)) {
-            $this->flashMessage("This page isn't exists.", "warning");
-            $this->redirect("Homepage:");
+            $this->flashMessage('Sorry – this page does not exist.', 'warning');
+            $this->redirect('Homepage:');
         } else {
             $this->template->pages = $pages;
         }
@@ -62,7 +62,7 @@ class ContentPresenter extends BasePresenter
     {
         $page = $this->context->pages->getTermPage($this->lang);
         switch ($type) {
-            case "text":
+            case 'text':
                 $this->printText($page);
                 break;
             default:
@@ -74,22 +74,22 @@ class ContentPresenter extends BasePresenter
     private function printPage(\Model\Entity\PageEntity $page)
     {
         if ($page->id === NULL) {
-            $this->flashMessage("This page isn't exists.", "warning");
-            $this->redirect("Homepage:");
+            $this->flashMessage('Sorry – this page does not exist.', 'warning');
+            $this->redirect('Homepage:');
         } else {
             $this->template->page = $page;
-            $this->template->canEditContent = $this->user->isAllowed("content", "edit");
+            $this->template->canEditContent = $this->user->isAllowed('content', 'edit');
         }
-        $this->setView("page");
+        $this->setView('page');
     }
 
     private function printText(\Model\Entity\PageEntity $page)
     {
         if ($page->id === NULL) {
-            $page->name = "This page isn't exists.";
+            $page->name = 'Sorry – this page does not exist.';
         }
         $this->template->page = $page;
-        $this->setView("text");
+        $this->setView('text');
     }
 
 }

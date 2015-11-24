@@ -32,7 +32,7 @@
                             {_'You have %s new notifications', $defaultCv->getRequirmentsUncompletedCount()}
                         </p>
                         <p n:if="!$defaultCv->getRequirmentsUncompletedCount()">
-                            {_'You have completed profile'}
+                            {_'You have completed your profile'}
                         </p>
                     </li>
                     <li>
@@ -148,7 +148,7 @@
             </li>
             <!-- END USER LOGIN DROPDOWN -->
             <li class="dropdown">
-                <a n:href=":Front:Sign:out" class="dropdown-toggle">
+                <a n:href=":Front:Sign:out" class="dropdown-toggle" title="Log out">
                     <i class="icon-logout"></i>
                 </a>
             </li>

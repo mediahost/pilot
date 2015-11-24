@@ -206,7 +206,7 @@ class CvPresenter extends BasePresenter
         $this->template->registerHelper("CvLanguage", "\Model\Entity\CvEntity::helperGetLanguage");
         $this->template->registerHelper("CvNationality", "\Model\Entity\CvEntity::helperGetNationality");
         $this->template->registerHelper("CvSector", "\Model\Entity\CvEntity::helperGetSector");
-        $this->template->registerHelper("CvLicenses", "\Model\Entity\CvEntity::helperGetLicenses");
+//        $this->template->registerHelper("CvLicenses", "\Model\Entity\CvEntity::helperGetLicenses");
         $this->template->registerHelper("CvLangLevel", "\Model\Entity\CvLangEntity::helperGetScale");
         $this->template->registerHelper("CvLangLevelHtm1", "\Model\Entity\CvLangEntity::helperGetScaleHtm1");
         $this->template->registerHelper("CvEducInstitution", "\Model\Entity\CvEducEntity::helperGetInstitution");

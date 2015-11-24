@@ -12,30 +12,28 @@ use \Nette\Application\UI\Form;
 class Step6Form extends StepsForm
 {
 
-    protected function createComponent($name)
-    {
-        // NON EXISTING
-        // using Step5 with step=6
-        
-        $this->form->onSuccess[] = $this->onSuccess;
-        return $this->form;
-    }
+	protected function createComponent($name)
+	{
+		// NON EXISTING
+		// using Step5 with step=6
 
-    public function onSuccess(Form $form)
-    {
-        parent::onSuccess($form);
-    }
+		$this->form->onSuccess[] = $this->onSuccess;
+		return $this->form;
+	}
 
-    /**
-     * Fill entity from form
-     * @param \Nette\ArrayHash $values
-     * @param \Model\Entity\CvEntity $entity
-     */
-    protected function formToEntity(\Nette\ArrayHash $values, \Model\Entity\CvEntity &$entity, $submByBtn = FALSE)
-    {
-        
-    }
+	public function onSuccess(Form $form)
+	{
+		parent::onSuccess($form);
+	}
+
+	/**
+	 * Fill entity from form
+	 * @param \Nette\ArrayHash $values
+	 * @param \Model\Entity\CvEntity $entity
+	 */
+	protected function formToEntity(\Nette\ArrayHash $values, \Model\Entity\CvEntity &$entity, $submByBtn = FALSE)
+	{
+		
+	}
 
 }
-
-?>

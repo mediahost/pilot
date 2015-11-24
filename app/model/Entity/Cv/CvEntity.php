@@ -61,7 +61,8 @@ class CvEntity extends Entity
     public $skillComputer;
     public $skillArtistic;
     public $skillOther;
-    public $licenses;
+//    public $licenses;
+	public $passportNumber;
     public $info;
     public $templateName = "default";
 
@@ -193,17 +194,17 @@ class CvEntity extends Entity
         $this->gender = self::genders($value);
     }
 
-    public function setLicenses($value)
-    {
-        if (is_array($value)) {
-            $this->licenses = array();
-            foreach ($value as $item) {
-                $this->licenses[$item] = self::licenses($item);
-            }
-        } else {
-            $this->licenses = "...";
-        }
-    }
+//    public function setLicenses($value)
+//    {
+//        if (is_array($value)) {
+//            $this->licenses = array();
+//            foreach ($value as $item) {
+//                $this->licenses[$item] = self::licenses($item);
+//            }
+//        } else {
+//            $this->licenses = "...";
+//        }
+//    }
 
     public function setSector($value)
     {
@@ -437,9 +438,10 @@ class CvEntity extends Entity
     public static function titles($id = FALSE)
     {
         $titles = array(
-            'mr' => "Mr.",
-            'mrs' => "Mrs.",
-            'ms' => "Ms.",
+            'mr' => 'Mr.',
+            'mrs' => 'Mrs.',
+            'ms' => 'Ms.',
+			'capt' => 'Captain',
         );
 
         if ($id === FALSE) {
@@ -456,9 +458,9 @@ class CvEntity extends Entity
     public static function genders($id = FALSE)
     {
         $genders = array(
-            1 => "Male",
-            2 => "Female",
-            3 => "Not disclosed",
+            1 => 'Male',
+            2 => 'Female',
+            3 => 'Not disclosed',
         );
 
         if ($id === FALSE) {
@@ -472,34 +474,34 @@ class CvEntity extends Entity
         }
     }
 
-    public static function licenses($id = FALSE)
-    {
-        $licenses = array(
-            'a' => "A",
-            'a1' => "A1",
-            'b' => "B",
-            'b1' => "B1",
-            'be' => "BE",
-            'c' => "C",
-            'c1' => "C1",
-            'ce' => "CE",
-            'c1e' => "C1E",
-            'd' => "D",
-            'd1' => "D1",
-            'de' => "DE",
-            'd1e' => "D1E",
-        );
-
-        if ($id === FALSE) {
-            return $licenses;
-        } else {
-            if (array_key_exists($id, $licenses)) {
-                return $licenses[$id];
-            } else {
-                return NULL;
-            }
-        }
-    }
+//    public static function licenses($id = FALSE)
+//    {
+//        $licenses = array(
+//            'a' => "A",
+//            'a1' => "A1",
+//            'b' => "B",
+//            'b1' => "B1",
+//            'be' => "BE",
+//            'c' => "C",
+//            'c1' => "C1",
+//            'ce' => "CE",
+//            'c1e' => "C1E",
+//            'd' => "D",
+//            'd1' => "D1",
+//            'de' => "DE",
+//            'd1e' => "D1E",
+//        );
+//
+//        if ($id === FALSE) {
+//            return $licenses;
+//        } else {
+//            if (array_key_exists($id, $licenses)) {
+//                return $licenses[$id];
+//            } else {
+//                return NULL;
+//            }
+//        }
+//    }
 
     public static function sectors($id = FALSE)
     {
@@ -931,14 +933,14 @@ class CvEntity extends Entity
         return $sector;
     }
 
-    public static function helperGetLicenses($cvLincenses, $separator)
-    {
-        $licenses = "";
-        foreach ($cvLincenses as $part) {
-            $licenses .= ($licenses === "" ? "" : $separator) . self::licenses($part);
-        }
-        return $licenses;
-    }
+//    public static function helperGetLicenses($cvLincenses, $separator)
+//    {
+//        $licenses = "";
+//        foreach ($cvLincenses as $part) {
+//            $licenses .= ($licenses === "" ? "" : $separator) . self::licenses($part);
+//        }
+//        return $licenses;
+//    }
 
     public static function helperGetLanguage($in)
     {

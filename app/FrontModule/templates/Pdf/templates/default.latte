@@ -442,7 +442,17 @@
         </tr>
         {/ifset}
 
-        {if !empty($cv->licenses)}
+        {if !empty($cv->passportNumber)}
+        <tr>
+            <th class="headline">{_"Passport Number"}</th>
+            <td colspan="{$colspan}">{$cv->passportNumber}</td>
+        </tr>
+        <tr class="emptySeparator">
+            <td colspan="{$colspan+1}"></td>
+        </tr>
+        {/if}
+		
+        {*if !empty($cv->licenses)}
         <tr>
             <th class="headline">{_"Driving licenses"}</th>
             <td colspan="{$colspan}">{$cv->licenses|CvLicenses:", "}</td>
@@ -450,7 +460,7 @@
         <tr class="emptySeparator">
             <td colspan="{$colspan+1}"></td>
         </tr>
-        {/if}
+        {/if*}
 
         <!-- ///// Additional Information ///// -->
         {ifset $cv->info}

@@ -54,7 +54,7 @@ class CvPrinter
         $template->registerHelper("CvItSkillLScale", "\Model\Entity\CvItScaleEntity::helperGetScale");
         $template->registerHelper("CvNationality", "\Model\Entity\CvEntity::helperGetNationality");
         $template->registerHelper("CvSector", "\Model\Entity\CvEntity::helperGetSector");
-        $template->registerHelper("CvLicenses", "\Model\Entity\CvEntity::helperGetLicenses");
+//        $template->registerHelper("CvLicenses", "\Model\Entity\CvEntity::helperGetLicenses");
         $template->registerHelper("CvLangLevel", "\Model\Entity\CvLangEntity::helperGetScale");
         $template->registerHelper("CvLangLevelHtm1", "\Model\Entity\CvLangEntity::helperGetScaleHtm1");
         $template->registerHelper("CvEducInstitution", "\Model\Entity\CvEducEntity::helperGetInstitution");

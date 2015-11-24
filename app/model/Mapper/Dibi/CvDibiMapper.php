@@ -73,6 +73,7 @@ class CvDibiMapper extends DibiMapper
             "is_graduated" => "isGraduated",
             "in_eu" => "inEu",
             "is_completed" => "completed",
+			"passport_number" => "passportNumber",
         );
 
         return $alias;
@@ -140,6 +141,7 @@ class CvDibiMapper extends DibiMapper
             'is_graduated' => $item->isGraduated,
             'in_eu' => CvEntity::isEuCountry($item->nationality),
             'is_completed' => $item->isCompleted(),
+			'passport_number' => $item->passportNumber,
         );
         if (is_array($item->sector)) {
             $data['sector'] = json_encode($item->sector);
@@ -147,9 +149,9 @@ class CvDibiMapper extends DibiMapper
         if (is_array($item->jobPosition)) {
             $data['job_position'] = json_encode($item->jobPosition);
         }
-        if (is_array($item->licenses)) {
-            $data['licenses'] = json_encode($item->licenses);
-        }
+//        if (is_array($item->licenses)) {
+//            $data['licenses'] = json_encode($item->licenses);
+//        }
 
         return $data;
     }
@@ -177,9 +179,9 @@ class CvDibiMapper extends DibiMapper
             if (array_key_exists('job_position', $data)) {
                 $item->jobPosition = json_decode($data['job_position']);
             }
-            if (array_key_exists('licenses', $data)) {
-                $item->licenses = json_decode($data['licenses']);
-            }
+//            if (array_key_exists('licenses', $data)) {
+//                $item->licenses = json_decode($data['licenses']);
+//            }
         }
 
         $this->loadWorks($item);

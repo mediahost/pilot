@@ -28,7 +28,7 @@ class Step1Form extends StepsForm
 		$this->form->addGroup('Personal Info');
 		$title = CvEntity::titles();
 		$this->form->addSelect('title', "Title", $title)
-						->getControlPrototype()->class = "small";
+						->getControlPrototype()->class = "";
 		$this->form->addText('degree_b', 'Degree in front of name', NULL, 50)
 						->getControlPrototype()->class = "small";
 		$this->form->addText('firstname', 'First Name(s)', NULL, 100)
