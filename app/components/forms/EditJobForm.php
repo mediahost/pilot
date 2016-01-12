@@ -82,17 +82,11 @@ class EditJobForm extends AppForms
     public function setDefaults(JobEntity $entity)
     {
         $form = $this->getComponent($this->name);
-        $d = array();
-        foreach ($entity->locations as $l) {
-            $help = $this->locationService->find('name=%s', $l);
-            $d[] = $help[0]->id;
-        }
         $categories = $this->getCategories();
         $entity->category = array_search($entity->category, $categories);
         $e = $entity->to_array();
         $this->datecreated = $e['datecreated'];
         unset($e['datecreated']);
-        $e['locations'] = $d;
         $skills = $this->service->loadSkills($e['id']);
         foreach ($skills as $skill) {
             $e[$skill->cv_skill_id] = array('scale' => $skill->scale, 'number' => $skill->years);
@@ -118,7 +112,7 @@ class EditJobForm extends AppForms
         );
 
         $form->addHidden('id');
-        $form->addText('ref_num', 'Number')
+        $form->addText('ref_num', 'Job Ref. No.')
                 ->setRequired("Number must be filled");
         $form->addText('name', 'Job Title')
                 ->setRequired("Title must be filled");
@@ -135,33 +129,34 @@ class EditJobForm extends AppForms
         $form->addSelect('type', 'Type', $jobTypes)
                 ->setRequired("Type must be selected")
                 ->setAttribute("class", "select2me");
-
-        $form->addSelect('category', 'Category', $this->getCategories())
-                ->setRequired("Type must be selected")
-                ->setAttribute("class", "select2me");
-        $form->addMultiSelect('locations', 'Location', $this->getLocations())
-                ->setRequired("Type must be selected")
-                ->setAttribute("class", "select2me");
+		
+		$form->addSelect('category', 'Category', $this->getCategories())
+						->setRequired("Type must be selected")
+						->setAttribute("class", "select2me");
+        $form->addText('location_text', 'Location')
+                ->setRequired("Location must be inserted");
 
         $form->addText('salary_from', "From");
         $form->addText('salary_to', "To");
+        $form->addSelect('currency', "Currency", JobEntity::getCurrencies())
+                ->setAttribute("class", "select2me");
 
         $form->addGroup('Job administrator', TRUE);
-        $form->addText('ref', 'Job administrator name')
-                ->setRequired("Job administrator name must be filled");
-        $form->addText('ref_email', 'Job administrator email')
+        $form->addText('ref', 'Recruiter Name')
+                ->setRequired("Recruiter name name must be filled");
+        $form->addText('ref_email', 'Recruiter Email')
                 ->setEmptyValue("@")
-                ->setRequired("Job administrator email must be filled")
+                ->setRequired("Recruiter email must be filled")
                 ->addCondition(Form::FILLED)
                 ->addRule(Form::EMAIL, 'Please use right format');
-        $form->addText('ref_tel', 'Job administrator phone')
-                ->setRequired("Job administrator phone must be filled")
+        $form->addText('ref_tel', 'Recruiter Phone')
+                ->setRequired("Recruiter phone must be filled")
                 ->setAttribute("class", "mask_phone");
 
         $form->addGroup("Summary");
-        $form->addTextArea('summary', 'Summary')
+        $form->addTextArea('summary', 'Vacancy Summary')
                 ->setAttribute("class", "ckeditor");
-        $form->addTextArea('description', 'Description')
+        $form->addTextArea('description', 'Vacancy Detail')
                 ->setAttribute("class", "ckeditor");
         $form->addTextArea('offers', 'Offers')
                 ->setAttribute("class", "input_tags")
@@ -236,7 +231,7 @@ class EditJobForm extends AppForms
 
             $this->service->save($entity);
 
-            $this->saveLocations($values['locations'], $values['id']);
+//            $this->saveLocations($values['locations'], $values['id']);
             $this->service->saveSkills($values['id'], $skills);
 
             $this->presenter->flashMessage("Job was succesfully saved", 'success');
@@ -279,11 +274,11 @@ class EditJobForm extends AppForms
     private function saveLocations($_data, $_id)
     {
         $this->locationService->deleteConn($_id);
-        foreach ($_data as $d) {
-            $parent = $this->locationService->findById(intval($d));
-            $location = array('location_id' => intval($d), 'jobs_id' => $_id, 'location_parent_id' => $parent->parent_id);
-            $this->locationService->saveConnection($location);
-        }
+//        foreach ($_data as $d) {
+//            $parent = $this->locationService->findById(intval($d));
+//            $location = array('location_id' => intval($d), 'jobs_id' => $_id, 'location_parent_id' => $parent->parent_id);
+//            $this->locationService->saveConnection($location);
+//        }
     }
     
     public function render()

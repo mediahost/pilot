@@ -21,11 +21,11 @@
             {/if}
         {/if}
         <p class="subtitle">
-            {$job->company} | {$job->locations|implodeMy:", "}
+            {$job->company} | {$job->location_text}
             {if $job->salary_from || $job->salary_to}
                 |
-                {if $job->salary_from}{_"from"} {$job->salary_from|currency:$job->currencySymbol}{/if}
-                {if $job->salary_to}{_"to_"} {$job->salary_to|currency:$job->currencySymbol}{/if}
+                {if $job->salary_from}{_"from"} {$job->salary_from}{$job->getCurrencySymbol()}{/if}
+                {if $job->salary_to}{_"to_"} {$job->salary_to}{$job->getCurrencySymbol()}{/if}
             {/if}
         </p>
 
@@ -86,11 +86,11 @@
                     <th>{_"Salary"}:</th>
                     <td>
                         {if $job->salary_from && $job->salary_to}
-                            {$job->salary_from|currency:$job->currencySymbol} - {$job->salary_to|currency:$job->currencySymbol}
+                            {$job->salary_from}{$job->getCurrencySymbol()} - {$job->salary_to}{$job->getCurrencySymbol()}
                         {elseif $job->salary_from}
-                            {_"from"} {$job->salary_from|currency:$job->currencySymbol}
+                            {_"from"} {$job->salary_from}{$job->getCurrencySymbol()}
                         {elseif $job->salary_to}
-                            {_"to"} {$job->salary_to|currency:$job->currencySymbol}
+                            {_"to"} {$job->salary_to}{$job->getCurrencySymbol()}
                         {else}
                             {_"not inserted"}
                         {/if}
@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <th>{_"Location"}:</th>
-                    <td>{$job->locations|implodeMy:", "}</td>
+                    <td>{$job->location_text}</td>
                 </tr>
                 <tr>
                     <th>{_"Work type"}:</th>

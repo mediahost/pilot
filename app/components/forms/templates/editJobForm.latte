@@ -7,12 +7,12 @@
         </li>
         <li class="">
             <a href="#tab_3" data-toggle="tab">
-                {_"Offers & Requirments"}
+                {_"Minimum Requirements"}
             </a>
         </li>
         <li class="">
             <a href="#tab_4" data-toggle="tab">
-                {_"Descriptions"}
+                {_"Description"}
             </a>
         </li>
         <li class="">
@@ -22,8 +22,8 @@
         </li>
     </ul>
 
-{form editJobForm}
-{$form->render('errors')}
+	{form editJobForm}
+	{$form->render('errors')}
 
     <div class="tab-content">
         <div class="tab-pane fade active in" id="tab_1">
@@ -50,13 +50,13 @@
                     </div>
                 </div>
                 {if $showCompanySelect}
-                {var el => $form['company_id']}
-                <div n:class="form-group, $el->isRequired() ? required">
-                    {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
-                    <div class="col-sm-10">
-                        {input $el}
-                    </div>
-                </div>
+					{var el => $form['company_id']}
+					<div n:class="form-group, $el->isRequired() ? required">
+						{label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
+						<div class="col-sm-10">
+							{input $el}
+						</div>
+					</div>
                 {/if}
                 <div class="form-group">
                     {var el => $form['type']}
@@ -77,11 +77,14 @@
                     {? $from->getControlPrototype()->addClass("input-inline input-small")}
                     {var to => $form['salary_to']}
                     {? $to->getControlPrototype()->addClass("input-inline input-small")}
+                    {var currency => $form['currency']}
+                    {? $currency->getControlPrototype()->addClass("input-inline input-xsmall")}
                     {label $from}{_"Salary"}<span n:if="$from->isRequired()" class="required">*</span>{/label}
                     <div class="col-sm-10">
                         {input $from}
                         -
-                        {input $to} €
+                        {input $to}
+                        {input $currency}
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,7 +95,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {var el => $form['locations']}
+                    {var el => $form['location_text']}
                     {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
                     <div class="col-sm-10">
                         {input $el}
@@ -147,14 +150,26 @@
             <div class="form-body">
                 <div class="form-group">
                     {var el => $form['summary']}
-                    {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
+                    {label $el}
+						{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>
+						<br />
+						<small>
+							{_'add an overview of the vacancy and its position in the organisation'}
+						</small>
+					{/label}
                     <div class="col-sm-10">
                         {input $el}
                     </div>
                 </div>
                 <div class="form-group">
                     {var el => $form['description']}
-                    {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
+                    {label $el}
+						{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>
+						<br />
+						<small>
+							{_'add an overview of the vacancy and its position in the organisation'}
+						</small>
+					{/label}
                     <div class="col-sm-10">
                         {input $el}
                     </div>
@@ -177,15 +192,15 @@
                     <div id="collapse_{$skillCategory|webalize}" class="panel-collapse collapse" style="height: auto;">
                         <div class="panel-body">
                             <div class="form-body">
-                            {foreach $skillItems as $skillGroupName => $skillGroup}
-                                <h4 n:if="$skillGroupName">{$skillGroupName}</h4>
-                                <div n:foreach="$skillGroup as $skillId => $skillName" class="form-group">
-                                    {var $container => $form[$skillId]}
-                                    {var $scale => $container->components['scale']}
-                                    {? $scale->getLabelPrototype()->class("col-sm-3 control-label")}
-                                    {? $scale->getControlPrototype()->addClass("input-inline input-medium")}
-                                    {var $number => $container->components['number']}
-                                    {? $number->getControlPrototype()->addClass("input-inline input-xsmall")}
+								{foreach $skillItems as $skillGroupName => $skillGroup}
+									<h4 n:if="$skillGroupName">{$skillGroupName}</h4>
+									<div n:foreach="$skillGroup as $skillId => $skillName" class="form-group">
+										{var $container => $form[$skillId]}
+										{var $scale => $container->components['scale']}
+										{? $scale->getLabelPrototype()->class("col-sm-3 control-label")}
+										{? $scale->getControlPrototype()->addClass("input-inline input-medium")}
+										{var $number => $container->components['number']}
+										{? $number->getControlPrototype()->addClass("input-inline input-xsmall")}
 
                                     {label $scale}{$skillName}{/label}
 
@@ -198,31 +213,31 @@
                                     </div>
                                 </div>
                             {/foreach}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        </div>
-        <div class="tab-pane fade" id="tab_6">
-            <div class="form-body">
-                <div class="form-group" n:foreach="[1,2,3,4,5] as $counter">
-                    {var el => $form['question'.$counter]}
-                    {label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
-                    <div class="col-sm-10">
-                        {input $el}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	</div>
+	<div class="tab-pane fade" id="tab_6">
+		<div class="form-body">
+			<div class="form-group" n:foreach="[1,2,3,4,5] as $counter">
+				{var el => $form['question'.$counter]}
+				{label $el}{$el->getLabel()->getText()}<span n:if="$el->isRequired()" class="required">*</span>{/label}
+				<div class="col-sm-10">
+					{input $el}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-    <div class="form-actions fluid">
-        <div class="col-sm-offset-2 col-sm-10">
-            {input back} {input send}
-        </div>
-    </div>
+<div class="form-actions fluid">
+	<div class="col-sm-offset-2 col-sm-10">
+		{input back} {input send}
+	</div>
+</div>
 
-    {/form}
-{/snippet}
+{/form}
+	{/snippet}

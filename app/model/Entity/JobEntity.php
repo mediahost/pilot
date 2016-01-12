@@ -49,6 +49,9 @@ class JobEntity extends Entity
     /** @var LocationEntity[] */
     protected $locations;
 
+    /** @var string */
+    protected $location_text;
+
     /** @var int */
     protected $salary_from;
 
@@ -69,9 +72,6 @@ class JobEntity extends Entity
 
     /** @var string */
     protected $requirments;
-
-	/** @var string */
-	protected $currencySymbol;
 
     /** @var \Nette\DateTime */
     protected $datecreated;
@@ -145,7 +145,6 @@ class JobEntity extends Entity
     {
         $_notIncluded[] = 'locations';
 		$_notIncluded[] = 'currencySymbol';
-		$_notIncluded[] = 'currency';
 		$_notIncluded[] = 'matched_count';
         $_notIncluded[] = 'applyed';
         $_notIncluded[] = 'applyed_count';
@@ -175,6 +174,21 @@ class JobEntity extends Entity
             3 => 'Contract',
         );
 		return $jobTypes[$this->type];
+	}
+	
+	public function getCurrencySymbol()
+	{
+		$currencies = self::getCurrencies();
+		return $currencies[$this->currency];
+	}
+	
+	static public function getCurrencies()
+	{
+		return array(
+            1 => '€',
+            2 => 'Ł',
+            3 => '$',
+        );
 	}
 
 }
