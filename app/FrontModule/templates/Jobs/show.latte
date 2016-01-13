@@ -45,23 +45,6 @@
             </ul>
         </div>
 
-        <h4>{_"Required IT skills"}</h4>
-        <div class="description">
-            <ul class="multilevel-list">
-                {var last => NULL}
-                {foreach $skills as $category => $categorySkills}
-                    <li>
-                        <b>{$category}</b>
-                        <ul>
-                            <li n:foreach="$categorySkills as $skill">
-                                {$skill->name} <small>({$skill->scale} - {$skill->years} {_"year", $skill->years})</small>
-                            </li>
-                        </ul>
-                    </li>
-                {/foreach}
-            </ul>
-        </div>
-
 		{var thStyle => 'font-size: 11px; font-weight: bold; padding-bottom: 5px; text-align: left;'}
 		{var tdStyle => 'padding-right: 30px; padding-bottom: 5px;'}
 		{var flyingExp => count($job->pilotExperiences) || count($job->copilotExperiences)}
