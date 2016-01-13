@@ -221,20 +221,77 @@ class JobsDibiMapper extends DibiMapper
         return $return;
     }
 
-    public function save($data)
+    public function save(JobEntity $job)
     {
-        if ($this->findById($data->id)->id) {
+        if ($this->findById($job->id)->id) {
             //update
-            $data = $data->to_array();
+            $data = $job->to_array();
             unset($data['code']);
-            return $this->conn->update($this->jobsTable, $data)->where('id=%i', $data->id)->execute();
+            $this->conn->update($this->jobsTable, $data)->where('id=%i', $data->id)->execute();
         } else {
-            $data = $data->to_array();
+            $data = $job->to_array();
             $data['code'] = $this->generateUniqCode();
             //insert
-            return $this->conn->insert($this->jobsTable, $data)->execute(\dibi::IDENTIFIER);
+            $job->id = $this->conn->insert($this->jobsTable, $data)->execute(\dibi::IDENTIFIER);
         }
+		return $this->saveAircrafts($job);
     }
+	
+	public function saveAircrafts(JobEntity $job)
+	{
+		$this->conn->delete('job_aircraft')
+			->where('job_id = %i', $job->id)
+			->execute();
+		/** @var JobAircraft $pilotExperience */
+		foreach ($job->pilotExperiences as $pilotExperience) {
+			$this->conn->insert('job_aircraft', [
+				'job_id' => $job->id,
+				'aircraft_id' => $pilotExperience->aircraftId,
+				'hours' => $pilotExperience->hours,
+				'pic' => $pilotExperience->pic,
+			])->execute();
+		}
+		/** @var JobAircraft $copilotExperience */
+		foreach ($job->copilotExperiences as $copilotExperience) {
+			$this->conn->insert('job_aircraft', [
+				'job_id' => $job->id,
+				'aircraft_id' => $copilotExperience->aircraftId,
+				'hours' => $copilotExperience->hours,
+				'pic' => NULL,
+			])->execute();
+		}
+		return $this->loadAircrafts($job);
+	}
+
+	public function loadAircrafts(JobEntity $job)
+	{
+		$aircrafts = $this->conn->select('job_aircraft.*, aircraft.name AS aname, aircraft_manufacturer.name AS mname, aircraft.aircraft_manufacturer_id AS manufacturerid, aircraft.type')
+			->from('job_aircraft')
+			->join('aircraft')->on('aircraft.id = job_aircraft.aircraft_id')
+			->join('aircraft_manufacturer')->on('aircraft_manufacturer.id = aircraft.aircraft_manufacturer_id')
+			->where('job_id = %i', $job->id)
+			->fetchAll();
+		$job->pilotExperiences = [];
+		$job->copilotExperiences = [];
+		foreach ($aircrafts as $aircraft) {
+			$userAircraft = new \Model\Entity\JobAircraft();
+			$userAircraft->aircraftId = $aircraft->aircraft_id;
+			$userAircraft->aircraftName = $aircraft->aname;
+			$userAircraft->aircraftTypeName = \Model\Service\AircraftService::getTypeName($aircraft->type);
+			$userAircraft->aircraftType = $aircraft->type;
+			$userAircraft->manufacturerId = $aircraft->manufacturerid;
+			$userAircraft->manufacturerName = $aircraft->mname;
+			$userAircraft->hours = $aircraft->hours;
+			$userAircraft->pic = $aircraft->pic;
+
+			if ($aircraft->pic === NULL) {
+				$job->copilotExperiences[] = $userAircraft;
+			} else {
+				$job->pilotExperiences[] = $userAircraft;
+			}
+		}
+		return $job;
+	}
 
     public function delete($id)
     {

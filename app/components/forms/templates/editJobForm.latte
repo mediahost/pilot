@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="">
-            <a href="#tab_3" data-toggle="tab">
+            <a href="#tab_3" data-toggle="tab" class="ajaxClick">
                 {_"Minimum Requirements"}
             </a>
         </li>
@@ -143,6 +143,65 @@
                     </div>
                 </div>
             </div>
+			<h4 style="margin-left: 20px; padding-bottom: 10px;">{_'Flying experience'} - {_'Captain'}</h4>
+			<div class="form-group" n:snippet="form_content_captain">
+				{var thStyle => 'text-align: left; font-size: 14px; font-weight: normal;'}
+				{var tdStyle => 'padding-right: 5px; padding-bottom: 5px;'}
+				{var $_form = $form = $control[$formName]}
+				<table style="width: auto; margin-left: 30px;">
+					{var count = count($form['experiences']->containers)}
+					<tr n:if="$count">
+						<th style="{!=$thStyle}">Type</th>
+						<th style="{!=$thStyle}">Manufacturer</th>
+						<th style="{!=$thStyle}">Model</th>
+						<th style="{!=$thStyle}">Total hours</th>
+						<th style="{!=$thStyle}">PIC</th>
+						<th style="{!=$thStyle}"></th>
+					</tr>
+					{foreach $form['experiences']->containers as $container}
+						<tr>
+							<td style="{!=$tdStyle}">{$container['type']->control}</td>
+							<td style="{!=$tdStyle}">{$container['manufacturer']->control}</td>
+							<td style="{!=$tdStyle}">{$container['model']->control}</td>
+							<td style="{!=$tdStyle}">{$container['hours']->control}</td>
+							<td style="{!=$tdStyle}">{$container['pic']->control}</td>
+							<td style="{!=$tdStyle}">{$container['remove']->control}</td>
+						</tr>
+					{/foreach}
+					<tr>
+						<td colspan="6">{input experiences-add, class => 'button btn btn-default ajaxSend'}</td>
+					</tr>
+				</table>
+			</div>
+
+			<h4 style="margin-left: 20px; padding-bottom: 10px;">{_'Flying experience'} - {_'Co-pilot'}</h4>
+			<div class="form-group" n:snippet="form_content_copilot">
+				{var thStyle => 'text-align: left; font-size: 14px; font-weight: normal;'}
+				{var tdStyle => 'padding-right: 5px; padding-bottom: 5px;'}
+				{var $_form = $form = $control[$formName]}
+				<table style="width: auto; margin-left: 30px;">
+					{var count = count($form['copilot_experiences']->containers)}
+					<tr n:if="$count">
+						<th style="{!=$thStyle}">Type</th>
+						<th style="{!=$thStyle}">Manufacturer</th>
+						<th style="{!=$thStyle}">Model</th>
+						<th style="{!=$thStyle}">Total hours</th>
+						<th style="{!=$thStyle}"></th>
+					</tr>
+					{foreach $form['copilot_experiences']->containers as $container}
+						<tr>
+							<td style="{!=$tdStyle}">{$container['type']->control}</td>
+							<td style="{!=$tdStyle}">{$container['manufacturer']->control}</td>
+							<td style="{!=$tdStyle}">{$container['model']->control}</td>
+							<td style="{!=$tdStyle}">{$container['hours']->control}</td>
+							<td style="{!=$tdStyle}">{$container['remove']->control}</td>
+						</tr>
+					{/foreach}
+					<tr>
+						<td colspan="6">{input copilot_experiences-add, class => 'button btn btn-default ajaxSend'}</td>
+					</tr>
+				</table>
+			</div>
 
         </div>
 
@@ -235,7 +294,7 @@
 
 <div class="form-actions fluid">
 	<div class="col-sm-offset-2 col-sm-10">
-		{input back} {input send}
+		{input back, class => 'button btn btn-primary button'} {input send}
 	</div>
 </div>
 

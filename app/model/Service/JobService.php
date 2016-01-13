@@ -185,6 +185,11 @@ class JobService
         return $this->jobMapper->loadCategorizedSkills($id);
     }
 
+    public function loadAircrafts(JobEntity $data)
+    {
+        return $this->jobMapper->loadAircrafts($data);
+    }
+
     public function getDataGrid()
     {
         return $this->jobMapper->getDataGrid();

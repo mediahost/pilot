@@ -37,8 +37,7 @@ class JobsPresenter extends BasePresenter
 
     public function actionEdit($id = NULL)
     {
-        $job = $this->context->jobs->find($id);
-        $this['editJobForm']->setDefaults($job);
+        $this['editJobForm']->setId($id);
     }
 
     public function actionEditCategory($id = NULL)
@@ -155,7 +154,7 @@ class JobsPresenter extends BasePresenter
 
     protected function createComponentEditJobForm()
     {
-        $form = new \AppForms\EditJobForm($this, $this->context->jobs, $this->context->location, $this->context->jobscategory, $this->context->getByType('\Model\Service\CompanyService'));
+        $form = new \AppForms\EditJobForm($this, $this->context->jobs, $this->context->location, $this->context->jobscategory, $this->context->getByType('\Model\Service\CompanyService'), $this->context->getByType('Model\Service\AircraftService'));
         $form->setOnSaveCallback($this->onJobSave);
         $form->setOnSaveAndBackCallback($this->onJobSaveAndBack);
         return $form;

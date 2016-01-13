@@ -50,6 +50,7 @@ class JobsPresenter extends BasePresenter
         } else {
             $job = $this->context->jobs->findByCode($id, $this->user->id);
         }
+		$job = $this->context->jobs->loadAircrafts($job);
 		$offers = explode(',', $job->offers);
 		$requirments = explode(',', $job->requirments);
 		$this->template->job = $job;

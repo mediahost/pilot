@@ -198,7 +198,7 @@ class HomepagePresenter extends BasePresenter
 
     protected function createComponentEditJobForm()
     {
-        $form = new \AppForms\EditJobForm($this, $this->context->jobs, $this->context->location, $this->context->jobscategory, $this->context->getByType('\Model\Service\CompanyService'));
+        $form = new \AppForms\EditJobForm($this, $this->context->jobs, $this->context->location, $this->context->jobscategory, $this->context->getByType('\Model\Service\CompanyService'), $this->context->getByType('Model\Service\AircraftService'));
         $form->setCompanyId($this->user->id);
         $form->setOnSaveCallback($this->onJobSave);
         $form->setOnSaveAndBackCallback($this->onJobSaveAndBack);

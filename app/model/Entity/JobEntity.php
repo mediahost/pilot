@@ -115,6 +115,12 @@ class JobEntity extends Entity
     /** @var string */
     protected $question5;
 
+	/** @var JobAircraft[] */
+	protected $pilotExperiences = array();
+
+	/** @var JobAircraft[] */
+	protected $copilotExperiences = array();
+
     public function __construct($_data)
     {
         $this->commonSet($_data);
@@ -153,6 +159,8 @@ class JobEntity extends Entity
         $_notIncluded[] = 'invited_count';
         $_notIncluded[] = 'offer_made_count';
         $_notIncluded[] = 'process_completed_count';
+        $_notIncluded[] = 'pilotExperiences';
+        $_notIncluded[] = 'copilotExperiences';
         return parent::to_array($_notIncluded);
     }
 

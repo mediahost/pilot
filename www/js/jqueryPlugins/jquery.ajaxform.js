@@ -59,7 +59,9 @@ jQuery.fn.extend({
 
         if (callback) {
             ajaxOptions.success = callback;
-        }
+        } else {
+			ajaxOptions.success = jQuery.nette.success;
+		}
 
         return jQuery.ajax(ajaxOptions);
     }

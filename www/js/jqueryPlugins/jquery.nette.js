@@ -54,6 +54,8 @@ jQuery.extend({
                     jQuery.nette.updateSnippet(i, payload.snippets[i]);
                 }
             }
+			
+			App.afterAjax();
         }
     }
 });

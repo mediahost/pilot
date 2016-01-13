@@ -62,6 +62,53 @@
             </ul>
         </div>
 
+		{var thStyle => 'font-size: 11px; font-weight: bold; padding-bottom: 5px; text-align: left;'}
+		{var tdStyle => 'padding-right: 30px; padding-bottom: 5px;'}
+		{var flyingExp => count($job->pilotExperiences) || count($job->copilotExperiences)}
+        <h4 style="padding: 10px 0px;" n:if="$flyingExp">{_"Required Flying experiences"}</h4>
+        <div class="description" n:if="$flyingExp">
+			<h4 n:if="count($job->pilotExperiences)">{_"As captain"}</h4>
+			<table style="margin-left: 20px;" n:if="count($job->pilotExperiences)">
+				<thead>
+					<tr>
+						<th style="{!=$thStyle} min-width: 80px">{_'Type'}</th>
+						<th style="{!=$thStyle} min-width: 150px;">{_'Manufacturer'}</th>
+						<th style="{!=$thStyle} min-width: 150px;">{_'Model'}</th>
+						<th style="{!=$thStyle} min-width: 80px">{_'Total hours'}</th>
+						<th style="{!=$thStyle}">{_'PIC'}</th>
+					</tr>
+				</thead>
+				<tbody n:foreach="$job->pilotExperiences as $pilotExp">
+					<tr>
+						<td style="{!=$tdStyle}">{$pilotExp->aircraftTypeName}</td>
+						<td style="{!=$tdStyle}">{$pilotExp->manufacturerName}</td>
+						<td style="{!=$tdStyle}">{$pilotExp->aircraftName}</td>
+						<td style="{!=$tdStyle}">{$pilotExp->hours}</td>
+						<td style="{!=$tdStyle}">{$pilotExp->pic}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4 style="padding: 10px 0px;" n:if="count($job->copilotExperiences)">{_"As co-pilot"}</h4>
+			<table style="margin-left: 20px;" n:if="count($job->copilotExperiences)">
+				<thead>
+					<tr>
+						<th style="{!=$thStyle} min-width: 80px">{_'Type'}</th>
+						<th style="{!=$thStyle} min-width: 150px;">{_'Manufacturer'}</th>
+						<th style="{!=$thStyle} min-width: 150px;">{_'Model'}</th>
+						<th style="{!=$thStyle} min-width: 80px">{_'Total hours'}</th>
+					</tr>
+				</thead>
+				<tbody n:foreach="$job->copilotExperiences as $copilotExp">
+					<tr>
+						<td style="{!=$tdStyle}">{$copilotExp->aircraftTypeName}</td>
+						<td style="{!=$tdStyle}">{$copilotExp->manufacturerName}</td>
+						<td style="{!=$tdStyle}">{$copilotExp->aircraftName}</td>
+						<td style="{!=$tdStyle}">{$copilotExp->hours}</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+
         {if $job->summary != ''}
         <h4>{_"Summary"}</h4>
         <div class="description">{!$job->summary}</div>
