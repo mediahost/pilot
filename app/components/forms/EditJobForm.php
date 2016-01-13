@@ -117,8 +117,8 @@ class EditJobForm extends AppForms
 			];
 		}
 		
-        $categories = $this->getCategories();
-        $entity->category = array_search($entity->category, $categories);
+//        $categories = $this->getCategories();
+//        $entity->category = array_search($entity->category, $categories);
         $e = $entity->to_array();
         $this->datecreated = $e['datecreated'];
         unset($e['datecreated']);
@@ -168,9 +168,6 @@ class EditJobForm extends AppForms
                 ->setRequired("Type must be selected")
                 ->setAttribute("class", "select2me");
 		
-		$form->addSelect('category', 'Category', $this->getCategories())
-						->setRequired("Type must be selected")
-						->setAttribute("class", "select2me");
         $form->addText('location_text', 'Location')
                 ->setRequired("Location must be inserted");
 
