@@ -67,18 +67,15 @@ class JobsDibiMapper extends DibiMapper
     {
         if ($_userId) {
             $data = $this->conn
-                ->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category, ' . $this->jobUser . '.applyed AS applyed')
+                ->select($this->jobsTable . '.* ' . $this->jobUser . '.applyed AS applyed')
                 ->from($this->jobsTable)
                 ->where('job.code=%s', $code)
-                ->join($this->jobsCategoryTable)->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->join($this->jobUser)->on("{$this->jobUser}.job_id = {$this->jobsTable}.id AND {$this->jobUser}.user_id = %i", $_userId)
                 ->fetch();
 
         } else {
-            $data = $this->conn->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category')->from($this->jobsTable)
+            $data = $this->conn->select($this->jobsTable . '.*')->from($this->jobsTable)
                 ->where('job.code=%s', $code)
-                ->join($this->jobsCategoryTable)
-                ->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->fetch();
         }
 
@@ -90,18 +87,15 @@ class JobsDibiMapper extends DibiMapper
     {
         if ($_userId) {
             $data = $this->conn
-                ->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category, ' . $this->jobUser . '.applyed AS applyed')
+                ->select($this->jobsTable . '.* ' . $this->jobUser . '.applyed AS applyed')
                 ->from($this->jobsTable)
                 ->where('job.id=%i', $_id)
-                ->join($this->jobsCategoryTable)->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->join($this->jobUser)->on("{$this->jobUser}.job_id = {$this->jobsTable}.id AND {$this->jobUser}.user_id = %i", $_userId)
                 ->fetch();
 
         } else {
-            $data = $this->conn->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category')->from($this->jobsTable)
+            $data = $this->conn->select($this->jobsTable . '.*')->from($this->jobsTable)
                 ->where('job.id=%i', $_id)
-                ->join($this->jobsCategoryTable)
-                ->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->fetch();
         }
 
@@ -111,10 +105,8 @@ class JobsDibiMapper extends DibiMapper
 
     public function findOneBy($array)
     {
-        $data = $this->conn->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category')->from($this->jobsTable)
+        $data = $this->conn->select($this->jobsTable . '.*')->from($this->jobsTable)
                 ->where($array)
-                ->join($this->jobsCategoryTable)
-                ->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->fetch();
 
         $return = new JobEntity($data);
@@ -123,16 +115,10 @@ class JobsDibiMapper extends DibiMapper
 
     public function getAll($_offset = NULL, $_limit = NULL, $_where = NULL, $_order = NULL)
     {
-        $data = $this->conn->select($this->jobsTable . '.*, ' . $this->jobsCategoryTable . '.name as category, COUNT(job_user.id) AS matched_count, job_user.applyed AS applyed')
+        $data = $this->conn->select($this->jobsTable . '.*, COUNT(job_user.id) AS matched_count, job_user.applyed AS applyed')
                         ->from($this->jobsTable)
-                        ->join($this->jobsCategoryTable)->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
-                        ->join($this->jobsLocationsTable)->on($this->jobsTable . '.id=' . $this->jobsLocationsTable . '.jobs_id')
                         ->leftJoin('job_user')->on("job_user.job_id = {$this->jobsTable}.id")
                         ->groupBy("{$this->jobsTable}.id");
-
-        if (isset($_where['job.skills'])) {
-            $data->leftJoin($this->jobsSkillTable)->on($this->jobsTable . '.id=' . $this->jobsSkillTable . '.jobs_id');
-        }
 
         if ($_where !== NULL && $_where !== array()) {
 
@@ -159,22 +145,6 @@ class JobsDibiMapper extends DibiMapper
             unset($_where['jobs.salary_to']);
             unset($_where['jobs.salary_from']);
 
-            if (isset($_where['job.locations']) && is_array($_where['job.locations'])) {
-                $data->where('(job_to_locations.location_id IN %l OR job_to_locations.location_parent_id IN %l)', $_where['job.locations'], $_where['job.locations']);
-                unset($_where['job.locations']);
-            }
-            if (isset($_where['job.skills'])) {
-                $ids = array();
-                foreach ($_where['job.skills'] as $skillId => $skill) {
-                    if ($skill->scale) {
-                        $ids[] = $skillId;
-                    }
-                }
-                if ($ids !== array()) {
-                    $data->where('job_skills.cv_skill_id IN %l', $ids);
-                }
-            }
-            unset($_where['job.skills']);
             if (isset($_where['datecreated'])) {
                 $data->where('datecreated > %t', $_where['datecreated']);
             }
@@ -202,9 +172,6 @@ class JobsDibiMapper extends DibiMapper
         switch ($_order) {
             case 'time':
                 $orderBy = 'datecreated DESC';
-                break;
-            case 'location':
-                $orderBy = 'job_to_locations.location_id';
                 break;
             case 'salary':
                 $orderBy = 'salary_from DESC';

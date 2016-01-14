@@ -43,8 +43,21 @@
     initGroupTimeline("timeline", "works");
     jQuery(document).ready(function() {    
     {if isset($bootstrapPlugins) && $bootstrapPlugins}
-        App.init(); // initlayout and core plugins
-        ComponentsFormTools.init();
+//        App.init(); // initlayout and core plugins
+//        ComponentsFormTools.init();
+		$("form.ajax").livequery('change', function (e) {
+			console.log($(e.target).hasClass('ajaxSend'));
+			if ($(e.target).hasClass('ajaxSend')) {
+				e.preventDefault();
+//				$(this).ajaxSubmit();
+			}
+		});
+		$("form.ajax :submit").livequery('click', function (e) {
+			if ($(e.target).hasClass('ajaxSend')) {
+				e.preventDefault();
+//				$(this).ajaxSubmit();
+			}
+		});
     {/if}
         FormDropzone.init();
         $('body').on('change', 'select.jobuser-status-selector', function(){

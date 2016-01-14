@@ -136,7 +136,7 @@ class EditJobForm extends AppForms
     {
         $this->setStyle(AppForms::STYLE_METRONIC);
         $form = $this->form;
-        $form->getElementPrototype()->class('form-horizontal ajax');
+        $form->getElementPrototype()->class('form-horizontal ajax2');
 
         $jobTypes = array(
             1 => 'Full-Time',
@@ -266,7 +266,6 @@ class EditJobForm extends AppForms
             $data->company_id = $this->companyId;
         }
         $values = array('datecreated' => $this->datecreated);
-        $skills = array();
         foreach ($data as $key => $value) {
             if (intval($key) == 0) { //informations
 				switch ($key) { // skip
@@ -277,8 +276,6 @@ class EditJobForm extends AppForms
 						$values[$key] = $value;
 						break;
 				}
-            } else { //skills
-                $skills[$key] = $value;
             }
         }
         try {
@@ -312,9 +309,6 @@ class EditJobForm extends AppForms
 			}
 
             $this->service->save($entity);
-
-//            $this->saveLocations($values['locations'], $values['id']);
-            $this->service->saveSkills($values['id'], $skills);
 
             $this->presenter->flashMessage("Job was succesfully saved", 'success');
         } catch (Exception $exc) {

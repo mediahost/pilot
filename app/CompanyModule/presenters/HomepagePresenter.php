@@ -222,6 +222,7 @@ class HomepagePresenter extends BasePresenter
     {
         if ($id) {
             $job = $this->context->jobs->find($id);
+            $job = $this->context->jobs->loadAircrafts($job);
             if ($job->company_id != $this->user->id) {
                 $this->error();
             }

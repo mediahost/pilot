@@ -1300,13 +1300,13 @@ var App = function () {
 
 
 $(document).ready(function () {
-	$("form.ajax").livequery('change', function (e) {
+	$("form.ajax2").livequery('change', function (e) {
 		if ($(e.target).hasClass('ajaxSend')) {
 			e.preventDefault();
 			$(this).ajaxSubmit();
 		}
 	});
-	$("form.ajax :submit").livequery('click', function (e) {
+	$("form.ajax2 :submit").livequery('click', function (e) {
 		if ($(e.target).hasClass('ajaxSend')) {
 			e.preventDefault();
 			$(this).ajaxSubmit();

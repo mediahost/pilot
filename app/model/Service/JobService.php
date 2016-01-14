@@ -147,7 +147,7 @@ class JobService
     {
         $data = $this->jobMapper->findById($id, $userId);
 
-        $data->locations = $this->locMapper->getJobLocations($data->id);
+//        $data->locations = $this->locMapper->getJobLocations($data->id);
         return $data;
     }
 
@@ -155,7 +155,7 @@ class JobService
     {
         $data = $this->jobMapper->findByCode($code, $userId);
 
-        $data->locations = $this->locMapper->getJobLocations($data->id);
+//        $data->locations = $this->locMapper->getJobLocations($data->id);
         return $data;
     }
 
