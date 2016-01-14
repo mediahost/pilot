@@ -105,9 +105,6 @@ class JobsGrid extends Grid
             $this->addColumn('companyUser', $this->translator->translate('Company user'));        
         }
 
-        $this->addColumn('category', $this->translator->translate('Category'), NULL)
-                ->setTextFilter();
-
         $this->addColumn('ref', $this->translator->translate('Job administrator'), NULL)
                 ->setTextFilter();
         

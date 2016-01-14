@@ -359,7 +359,7 @@ class EditJobForm extends AppForms
 		$container->addSubmit('remove', 'x')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
-		$container['remove']->getControlPrototype()->class[] = 'button btn btn-primary';
+		$container['remove']->getControlPrototype()->class[] = 'button btn btn-primary ajaxSend';
 
 		if ($this->form->isSubmitted()) {
 			$type = $container->values->type;
@@ -409,7 +409,7 @@ class EditJobForm extends AppForms
 		$container->addSubmit('remove', 'x')
 			->setValidationScope(FALSE)
 			->onClick[] = [$this, 'removeExperience'];
-		$container['remove']->getControlPrototype()->class[] = 'button btn btn-primary';
+		$container['remove']->getControlPrototype()->class[] = 'button btn btn-primary ajaxSend';
 
 		if ($this->form->isSubmitted()) {
 			$type = $container->values->type;

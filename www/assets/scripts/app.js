@@ -1306,4 +1306,10 @@ $(document).ready(function () {
 			$(this).ajaxSubmit();
 		}
 	});
+	$("form.ajax :submit").livequery('click', function (e) {
+		if ($(e.target).hasClass('ajaxSend')) {
+			e.preventDefault();
+			$(this).ajaxSubmit();
+		}
+	});
 });
