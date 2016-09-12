@@ -1,14 +1,44 @@
-{block content}
+{layout '../@pilot.latte'}
 
-<div id="module" class="container sign">
-    
-    <h2>{_"Registration"}</h2>
-    
-    <div class="message">
-        {_"Register your new account by inserting data"}
-    </div>
+{block container}
+<section class="form-section form-section-5 bg-gray sm-pd-reset sm-align-c" id="freetrial" rgen-id="rgaSt"
+		 data-bg="{$basePath}/new/images/15.jpg"
+		 style="background-image: url(&quot;{$basePath}/new/images/15.jpg&quot;);">
+	<div class="container">
 
-    <div class="form">
-        {control createAccountForm}
-    </div>
-</div>
+		<div class="flex-row middle-md">
+
+			<div class="flex-col-md-5">
+				<h2 class="title medium bold-4" rgen-id="rgl9u">Take off and find a new career <br></h2>
+				<p class="title-sub small" rgen-id="rgSI6">Create your own unique profile by logging in here with
+					your e-mail address and a memorable password.
+					The following pages allow you to add as much detail as you need to create a profile which will
+					allow you to be ready to apply for any position which interests you.
+					<br>
+					<br>
+					You can add, change and amend your profile at any time to keep it up-to-date.
+					When an airline advertises a vacancy which suits your profile, you will see these vacancies
+					appear in the 'Matched Jobs' section of your profile dashboard.
+					<br></p>
+			</div><!-- / column -->
+
+			<div class="flex-col-md-6 flex-col-md-offset-1 align-c">
+				<!-- Form block -->
+				<div class="form-block mr-b-20 pd-40 bdr-color2 bg-white bdr-1 rd-5">
+					<h2 class="title fs20 bold-4 mr-b-30">REGISTER NOW</h2>
+
+					{control createAccountForm}
+
+				</div><!-- /Form block -->
+
+				<p>
+					By clicking this button, you agree to our
+					<a n:href=":Front:Content:terms" target="_blank" class="">Terms &amp; Conditions</a> and
+					<a n:href=":Front:Content:terms" target="_blank">Privacy Policy.</a>
+				</p>
+			</div><!-- / column -->
+
+		</div><!-- / row -->
+
+	</div><!-- / container -->
+</section><!-- /.form-section --></div>

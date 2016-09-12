@@ -20,6 +20,7 @@ class MailFactory
     const SEND_FROM = "info@pilotincommand.com";
     const EMAIL_SUPPORT = "support@pilotincommand.com";
     const RECIEVER_HELLO_MESSAGE = "support@pilotincommand.com";
+    const RECIEVER_TOUCH_MESSAGE = "info@pilotincommand.com";
     const MAIL_SIGN_CREATE_ACCOUNT = 1;
     const MAIL_SIGN_CHANGE_PASSWORD = 2;
     const MAIL_SIGN_VERIFY = 3;
@@ -152,7 +153,7 @@ class MailFactory
                 $message = array_key_exists('message', $params) ? $params['message'] : "";
                 $feelings = array_key_exists('feelings', $params) ? $params['feelings'] : "";
 
-                $this->setTo(self::RECIEVER_HELLO_MESSAGE);
+                $this->setTo(self::RECIEVER_TOUCH_MESSAGE);
                 $this->mail->setFrom($from, $name);
                 $this->mail->setSubject($subject);
 				

@@ -1,254 +1,571 @@
-{layout none}
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Pilot in Command</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="{$basePath}/home/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="{$basePath}/home/css/icons.min.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="{$basePath}/home/css/flexslider.min.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="{$basePath}/home/css/theme-olive.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="{$basePath}/home/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-	<link href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic" rel="stylesheet" type="text/css">
-	<link href="{$basePath}/home/css/font-helvetica.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<div class="nav-container">
-	<nav class="nav-1">
-		<div class="navbar">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-6 col-xs-4">
-						<a href="#registration" class="inner-link" >
-							<img  alt="Logo" src="{$basePath}/home/img/Drawing_3.png">
+{layout '../@pilot.latte'}
+
+{block container}
+<!-- Slider -->
+<section class="slider-section slider-section-1 edit-item" data-sandboxid="tmp-85">
+
+	<div class="carousel-widget ctrl-1" id="carousel-widget" data-items="1" data-itemrange="false"
+		 data-tdrag="false" data-mdrag="false" data-pdrag="false" data-autoplay="true" data-loop="true"
+		 data-nav="true">
+
+		<div class="owl-carousel">
+
+			<!-- /.item -->
+
+			<div class="item">
+				<div class="overlay full-wh bg-cover edit-item" data-bg="{$basePath}/new/images/landin2.png"
+					 data-sandboxid="tmp-65"></div>
+				<div class="container">
+					<div class="info-wrp">
+						<h2 class="main-text edit-item edit-content" data-sandboxid="tmp-27">
+							<small class="edit-item" data-sandboxid="tmp-88">Looking for a new opportunity in
+								the right location, with the right benefits is becoming more and more of a
+							</small>
+							challenge.
+						</h2>
+						<hr class="edit-item" data-sandboxid="tmp-11">
+						<p class="sub-text edit-item edit-content" data-sandboxid="tmp-32">The recruitment
+							market has gone wild. Airlines all over the world are looking for pilots. </p>
+						<a n:href="Sign:create" class="btn btn-line light btn-sm edit-item edit-content" data-sandboxid="tmp-14">
+							Register now
 						</a>
 					</div>
-					<div class="col-md-4 col-md-push-1" style="line-height: 79px; font-size: 18px">
-						<a n:href=":Front:Sign:in" style="display: inline-block">Candidate login</a>
-						<a n:href=":Company:Sign:in" style="display: inline-block; margin-left: 20px;">Employer login</a>
+				</div><!-- /.container -->
+			</div>
+
+
+			<div class="item">
+				<div class="overlay full-wh bg-cover edit-item" data-bg="{$basePath}/new/images/landin1.png"
+					 data-sandboxid="tmp-65"></div>
+				<div class="container">
+					<div class="info-wrp">
+						<h2 class="main-text edit-item edit-content" data-sandboxid="tmp-27">
+							<small class="edit-item" data-sandboxid="tmp-88">Finding a pilot <br/>
+								with the right experience
+							</small>
+							something of a challenge?
+						</h2>
+						<hr class="edit-item" data-sandboxid="tmp-11">
+						<p class="sub-text edit-item edit-content" data-sandboxid="tmp-32">
+							Contact our admin at admin@pilotincommand.com
+						</p>
+						<a n:href="this" class="btn btn-line light btn-sm edit-item edit-content" data-sandboxid="tmp-14">
+							Learn more
+						</a>
 					</div>
-					<div class="col-md-3 text-right col-sm-6 col-md-push-1 col-xs-8">
-						<a class="btn btn-filled" href="#registration">Join Now »</a>
-						<div class="mobile-toggle">
-							<div class="upper"></div>
-							<div class="middle"></div>
-							<div class="lower"></div>
+				</div>
+				<!-- /.container -->
+			</div>
+			<!-- /.item -->
+
+		</div><!-- /.owl-carousel -->
+	</div><!-- /.carousel-widget -->
+</section><!-- /.slider-section -->
+
+<section class="portfolio-section portfolio-section-2">
+	<div class="container">
+		<h2 class="title" rgen-id="rgIjb">Our partner airlines</h2>
+		<p class="title-sub">
+			Our partner airlines work with us because they believe in the value of our new and innovative
+			approach to attracting and selecting pilots. We have taken every opportunity to gain feedback from
+			them to enhance our recruitment services and, in doing so, bring together candidates and airlines in
+			an open and collaborative way. Partnering with Pilot in Command gives airlines the opportunity to
+			reach future employees through a single channel, providing a methodology for fine-tuning search
+			criteria to reach pilots who are the closest match, and communicating only with those pilots
+			genuinely interested in a new opportunity with the airline.</p>
+
+		<ul class="rw eq3 mb10 gt10 popgallery-widget popgallery1" id="popgallery1">
+			<li class="cl">
+				<div class="portfolio-box portfolio-box1">
+
+					<a href="emirates.html"><img src="{$basePath}/new/images/emirates.jpg"
+												 alt="Emirates and Pilot in Command"
+												 class=""></a>
+				</div><!-- /.portfolio-box -->
+
+			</li><!-- /.cl -->
+
+			<li class="cl">
+				<div class="portfolio-box portfolio-box1">
+
+					<a href="aerlingus.html"><img src="{$basePath}/new/images/aerlingus.jpg"
+												  alt="Aerlingus and Pilot in Command" class=""></a>
+				</div><!-- /.portfolio-box -->
+			</li><!-- /.cl -->
+
+			<li class="cl">
+				<div class="portfolio-box portfolio-box1">
+
+					<a href="norwegian.html"><img src="{$basePath}/new/images/norwegian.jpg"
+												  alt="Norwegian Airlines and Pilot in Command" class=""></a>
+				</div><!-- /.portfolio-box -->
+			</li><!-- /.cl -->
+
+
+		</ul><!-- /.rw -->
+	</div>
+</section><!-- / Portfolio section --><!-- team-section -->
+
+
+<!-- Content -->
+<section class="content-section align-c content-section-9 bg-gray edit-item" id="services"
+		 data-sandboxid="tmp-85">
+	<div class="container">
+		<h2 class="title medium edit-item edit-content" data-sandboxid="tmp-27">Our Team</h2>
+		<p class="title-sub edit-item edit-content" data-sandboxid="tmp-32">Our expert team can help you with
+			all aspects of international pilot recruitment. Coming from a background in the aviation industry
+			and with over 20 years' experience of recruiting in to the left or right hand seat, we feel we are
+			well placed to support our airline partners and those looking for their next flight deck position.
+		</p>
+		<hr class="mr-b-40 dark edit-item" data-sandboxid="tmp-11">
+
+	</div>
+
+
+</section><!-- /.content-section -->
+<section class="other-section other-section-common edit-item" id="author" data-sandboxid="tmp-85"
+		 data-selector=".edit-item">
+	<div class="container">
+		<div class="flex-row middle-md mb20">
+			<div class="flex-col-md-3 align-c">
+				<img src="{$basePath}/new/images/ruth1.png" class="img-responsive rd-150 mr-auto edit-item" alt="author"
+					 data-sandboxid="tmp-18" data-selector=".edit-item">
+			</div><!-- /column -->
+			<div class="flex-col-md-8 flex-col-md-offset-1 sm-align-c">
+				<h2 class="edit-item edit-content" data-sandboxid="tmp-27" data-selector=".edit-item">Ruth Spalding,
+					Director</h2>
+				<hr class="dark edit-item" data-sandboxid="tmp-11" data-selector=".edit-item">
+				<p class="mr-b-30 edit-item edit-content" data-sandboxid="tmp-32" data-selector=".edit-item">
+					After a varied career in the service industry, initially starting in an operations role,
+					Ruth moved in to human resources where, after taking up roles in learning and development
+					and change consultancy, she found her niche in recruitment and resourcing with BAA at
+					Heathrow. In 2009, Ruth started at easyJet as Head of Volume Recruitment, managing the
+					critical task of sourcing pilots and cabin crew for the UK's largest airline, 4th largest in
+					Europe. The demand for pilots, ranging from Second Officers through to Command, became a key
+					focus as the recruitment market became more competitive and the airline market started to
+					develop following recession. In 2015 the concept for Pilot in Command was first discussed,
+					and following many conversations with airline recruiters around the challenges of finding
+					great pilots in a challenging global marketplace, it became reality in 2016.
+				</p>
+			</div><!-- /column -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+</section><!-- /other-section -->
+
+<!-- other-section -->
+<section class="other-section other-section-common edit-item" id="author" data-sandboxid="tmp-85"
+		 data-selector=".edit-item">
+	<div class="container">
+		<div class="flex-row middle-md mb20">
+			<div class="flex-col-md-3 align-c">
+				<img src="{$basePath}/new/images/laura.png" class="img-responsive rd-150 mr-auto edit-item" alt="author"
+					 data-sandboxid="tmp-18" data-selector=".edit-item">
+			</div><!-- /column -->
+			<div class="flex-col-md-8 flex-col-md-offset-1 sm-align-c">
+				<h2 class="edit-item edit-content" data-sandboxid="tmp-27" data-selector=".edit-content">
+					Laura Phelan, Operations Director
+				</h2>
+				<hr class="dark edit-item" data-sandboxid="tmp-11" data-selector=".edit-item">
+				<p class="mr-b-30 edit-item edit-content" data-sandboxid="tmp-32" data-selector=".edit-content"
+				   rgen-id="rgkIT">Laura has over twenty years’ experience working with organisations ensuring
+					that their leadership strategies and practices support the achievement of the business
+					agenda. As General Manager HR in Permanent TSB, she held the Executive leadership
+					responsibility for the overall planning, development, organisation and cost effective
+					delivery of a range of strategic HR services that supported the achievement of the bank's
+					business objectives and its 2,500 employees. As Managing Director of SHL (Ireland), Laura
+					worked with both public and private sector clients on a range of organisational development
+					initiatives. Currently, her position as Global Operations Director involves her in
+					interaction with a range of global airlines and their partners.
+				</p>
+			</div><!-- /column -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+</section><!-- /other-section -->
+<section class="other-section other-section-common edit-item" id="author" data-sandboxid="tmp-85"
+		 data-selector=".edit-item">
+	<div class="container">
+		<div class="flex-row middle-md mb20">
+			<div class="flex-col-md-3 align-c">
+				<img src="{$basePath}/new/images/l1.png" class="img-responsive rd-150 mr-auto edit-item" alt="author"
+					 data-sandboxid="tmp-18" data-selector=".edit-item">
+			</div><!-- /column -->
+			<div class="flex-col-md-8 flex-col-md-offset-1 sm-align-c">
+				<h2 class="edit-item edit-content" data-sandboxid="tmp-27" data-selector=".edit-content">Laura
+					Casey, Marketing Assistant</h2>
+				<hr class="dark edit-item" data-sandboxid="tmp-11" data-selector=".edit-item">
+				<p class="mr-b-30 edit-item edit-content" data-sandboxid="tmp-32" data-selector=".edit-content"
+				   rgen-id="rgkIT">Laura joined cut-e, a provider of psychometric tools and products to a range
+					of clients, in September 2013 and started working on “Momentum”-a government initiative
+					aimed at getting long term unemployed back into the workforce. In 2014 Laura moved across to
+					join the Support Team offering support to clients and candidates from Singapore, Australia
+					and the UAE. In addition to her other responsibilities, Laura also reviews the video
+					interviews for Global clients, which she believes gives her great experience in matching
+					candidate profiles with client requirements. From time to time, Laura has been involved in
+					Assessment Centres and supervising candidate re-tests with cut-e's Irish clients. In January
+					2016, Laura joined the team at Pilot in Command, supporting with administration, marketing,
+					client and candidate communications and is a valuable member of the office-based team.</p>
+
+
+			</div><!-- /column -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+</section><!-- /other-section -->
+
+
+<section class="feature-section dark feature-section-3 fs-equalize-element edit-item" data-sandboxid="tmp-85">
+	<div class="container">
+		<h2 class="title edit-item edit-content" data-sandboxid="tmp-27" data-selector=".edit-content">
+			That's not all, there is...
+		</h2>
+		<p class="title-sub edit-item edit-content" data-sandboxid="tmp-32" data-selector=".edit-content"></p>
+
+		<hr class="mr-tb-40 edit-item" data-sandboxid="tmp-11">
+
+		<div class="row eqh fs-equalize-element">
+
+			<div class="col-lg-3 col-sm-6" style="height: 471px;">
+				<div class="info-box info-box3 edit-item" data-sandboxid="tmp-29">
+					<div class="img edit-item" data-sandboxid="tmp-109"><i class="fa fa-television edit-item"
+																		   data-sandboxid="tmp-12"></i></div>
+					<div class="info edit-item" data-sandboxid="tmp-110" style="height: 231px;">
+						<i class="fa fa-caret-up edit-item" data-sandboxid="tmp-12"></i>
+						<h2 class="hd edit-item edit-content" data-sandboxid="tmp-27"
+							data-selector=".edit-content">Smart matching algorithm</h2>
+						<p class="sub-txt edit-item edit-content" data-sandboxid="tmp-32"
+						   data-selector=".edit-content"></p>
+					</div>
+				</div><!-- /.info-box -->
+			</div>
+
+			<div class="col-lg-3 col-sm-6" style="height: 471px;">
+				<div class="info-box info-box3 edit-item" data-sandboxid="tmp-29">
+					<div class="img edit-item" data-sandboxid="tmp-109"><i class="fa fa-object-group edit-item"
+																		   data-sandboxid="tmp-12"></i></div>
+					<div class="info edit-item" data-sandboxid="tmp-110" style="height: 231px;">
+						<i class="fa fa-caret-up edit-item" data-sandboxid="tmp-12"></i>
+						<h2 class="hd edit-item edit-content" data-sandboxid="tmp-27"
+							data-selector=".edit-content">Direct Employer Contact</h2>
+						<p class="sub-txt edit-item edit-content" data-sandboxid="tmp-32"
+						   data-selector=".edit-content"></p>
+					</div>
+				</div><!-- /.info-box -->
+			</div>
+
+			<div class="col-lg-3 col-sm-6" style="height: 471px;">
+				<div class="info-box info-box3 edit-item" data-sandboxid="tmp-29">
+					<div class="img edit-item" data-sandboxid="tmp-109"><i class="fa fa-map-o edit-item"
+																		   data-sandboxid="tmp-12"></i></div>
+					<div class="info edit-item" data-sandboxid="tmp-110" style="height: 231px;">
+						<i class="fa fa-caret-up edit-item" data-sandboxid="tmp-12"></i>
+						<h2 class="hd edit-item edit-content" data-sandboxid="tmp-27"
+							data-selector=".edit-content">Career Dropbox</h2>
+						<p class="sub-txt edit-item edit-content" data-sandboxid="tmp-32"
+						   data-selector=".edit-content"></p>
+					</div>
+				</div><!-- /.info-box -->
+			</div>
+
+			<div class="col-lg-3 col-sm-6" style="height: 471px;">
+				<div class="info-box info-box3 edit-item" data-sandboxid="tmp-29">
+					<div class="img edit-item" data-sandboxid="tmp-109"><i class="fa fa-diamond edit-item"
+																		   data-sandboxid="tmp-12"></i></div>
+					<div class="info edit-item" data-sandboxid="tmp-110" style="height: 231px;">
+						<i class="fa fa-caret-up edit-item" data-sandboxid="tmp-12"></i>
+						<h2 class="hd edit-item edit-content" data-sandboxid="tmp-27"
+							data-selector=".edit-content">CV generator</h2>
+						<p class="sub-txt edit-item edit-content" data-sandboxid="tmp-32"
+						   data-selector=".edit-content"></p>
+					</div>
+				</div><!-- /.info-box -->
+			</div>
+
+		</div>
+
+	</div><!-- /.container -->
+</section><!-- /.feature-section -->
+<section class="extra-section extra-content3 bg-gray">
+	<div class="container">
+		<div class="flex-row gt40">
+			<div class="flex-col-md-6">
+
+				<!-- accordion-widget -->
+				<div class="accordion-widget acc-style3 accwidget1" data-acc-handle="y"
+					 data-acc-openclass="ti-arrow-circle-down" data-acc-closeclass="ti-arrow-circle-up"
+					 id="accwidget1" style="opacity: 1;">
+					<div class="acc-block">
+						<div class="acc-hd" data-accid="#accwidget1-acc-block-0">
+							<div class="info-obj img-l mid g20 mini">
+								<div class="img"><span class="iconwrp"><i class="pe-7s-rocket"></i></span></div>
+								<h3 class="info">Our Company Mission</h3>
+							</div>
+							<i class="acc-open ti-arrow-circle-down"></i><i
+									class="acc-close ti-arrow-circle-up"></i><i
+									class="acc-open ti-arrow-circle-down "></i><i
+									class="acc-close ti-arrow-circle-up"></i></div>
+						<div class="acc-content" id="accwidget1-acc-block-0" style="display: none;">
+							<p class="">Our mission is to be the preferred and trusted online recruitment
+								partner for our airline partners and candidates. We will deliver a quality,
+								responsive, flexible and professional online recruitment solution to our
+								airlines, and provide our candidates with a safe and secure method to finding
+								their next flying job.</p>
+						</div><!-- / content -->
+					</div><!-- / acc-block -->
+
+					<div class="acc-block">
+						<div class="acc-hd" data-accid="#accwidget1-acc-block-1">
+							<div class="info-obj img-l mid g20 mini">
+								<div class="img"><span class="iconwrp"><i class="pe-7s-medal"></i></span></div>
+								<h3 class="info">Why Choose Us</h3>
+							</div>
+							<i class="acc-open ti-arrow-circle-down"></i><i
+									class="acc-close ti-arrow-circle-up"></i><i
+									class="acc-open ti-arrow-circle-down "></i><i
+									class="acc-close ti-arrow-circle-up"></i></div>
+						<div class="acc-content" id="accwidget1-acc-block-1" style="display: none;">
+							<p class="">Everything we do is driven by client demands. Customer service to us
+								means identifying our clients' needs and providing the optimum solution for
+								these. Building strong client relationships and advising our clients, not
+								preaching at them, to deliver clear value for money, sets us apart from our
+								competitors.
+							</p>
+						</div><!-- / content -->
+					</div><!-- / acc-block -->
+
+					<div class="acc-block">
+						<div class="acc-hd" data-accid="#accwidget1-acc-block-2">
+							<div class="info-obj img-l mid g20 mini">
+								<div class="img"><span class="iconwrp"><i class="pe-7s-like2"></i></span></div>
+								<h3 class="info">Our Promise</h3>
+							</div>
+							<i class="acc-open ti-arrow-circle-down"></i><i
+									class="acc-close ti-arrow-circle-up"></i><i
+									class="acc-open ti-arrow-circle-down "></i><i
+									class="acc-close ti-arrow-circle-up"></i></div>
+						<div class="acc-content" id="accwidget1-acc-block-2" style="display: none;">
+							<p class="edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content"><strong>WE PROMISE OUR AIRLINE PARTNERS…</strong>
+								<br>
+								- To act ethically and responsibly, and respect client confidentiality at all
+								times.
+								<br>
+								- To be in this for the long term; we're not simply interested in fee
+								generation, we recognise that we have a responsibility to give you access to
+								those applicants who are the best possible 'fit' to your selection criteria.
+								<br>
+								- To listen and to be honest
+								<br>
+								- To give you access to an online tool which is simple, straightforward and
+								easily configurable, and allows you fast access to the pilots you need
+								<br>
+								- To be respectful of your brand as if it was our own
+								<br>
+								<br>
+								<strong>WE PROMISE OUR CANDIDATES… </strong>
+								<br>
+								- To act ethically and responsibly, and respect candidate confidentiality at all
+								times - we will never reveal your identity to a client without your agreement.
+								<br>
+								<br></p>
+						</div><!-- / content -->
+					</div><!-- / acc-block -->
+
+					<div class="acc-block">
+						<div class="acc-hd" data-accid="#accwidget1-acc-block-3">
+							<div class="info-obj img-l mid g20 mini">
+								<div class="img"><span class="iconwrp"><i class="pe-7s-users"></i></span></div>
+								<h3 class="info">What We Do</h3>
+							</div>
+							<i class="acc-open ti-arrow-circle-down"></i><i
+									class="acc-close ti-arrow-circle-up"></i><i
+									class="acc-open ti-arrow-circle-down "></i><i
+									class="acc-close ti-arrow-circle-up"></i></div>
+						<div class="acc-content" id="accwidget1-acc-block-3" style="display: none;">
+							<p class="edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content">Pilot In Command (PIC) was created to fill the
+								resourcing gap matching both direct entry and cadet pilots with opportunities
+								available in airlines across Europe and beyond. It is a cost effective and
+								efficient approach to filling pilot vacancies, and, because it is not an agency,
+								the airline partner retains the important role of maintaining direct contact
+								with pilot applicants, directly marketing their organisation and the roles
+								available, and managing all corporate messaging.
+								<br>
+								<br>
+								<strong>FOR PILOTS</strong><br>
+								<br>
+								Allows you to create a discreet and confidential profile containing your
+								experience and type ratings in a consistent format, along with the inclusion of
+								copies of log books, medicals and licenses as attachments. The profile can be
+								updated at any time, thus keeping it current and relevant for any future
+								opportunities offered by airlines which match your experience. Airlines can only
+								contact you when you have expressed an interest in their vacancy, so saving you
+								from unwanted approaches.
+								<br>
+								<br>
+								<strong>FOR AIRLINES</strong><br>
+								<br>
+								PIC allows our airline partners to specify exactly the pilots you are searching
+								for through the creation of a vacancy profile which allows you to input hours,
+								aircraft type, rank and all other information relevant to the opportunity. You
+								can then 'market' that vacancy to the database of candidates who meet your
+								specific requirements.
+								<br>
+								<br>
+								In addition, the site can be an applicant tracking system where you don't have
+								the relevant technology, allowing you to view candidates, progress them through
+								a selection workflow and monitor and view what stage and status each candidate
+								has reached.<br></p>
+						</div><!-- / content -->
+					</div><!-- / acc-block -->
+
+				</div><!-- / accordion-widget -->
+
+			</div><!-- / column -->
+
+
+			<div class="flex-col-md-6">
+				<h3 class="fs14 mr-b-5">1,397 airlines operate a fleet of 25,000 aircraft serving 3,864
+					airports</h3>
+				<div class="progress">
+					<div class="progress-bar bg-color1" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+						 aria-valuemax="100" style="width: 100%;">
+						1,397 airlines
+					</div>
+				</div><!-- / progress bar -->
+
+				<h3 class="fs14 mr-b-5">In 2015, nearly 3.6 billion passengers were carried by the world's
+					airlines.</h3>
+				<div class="progress">
+					<div class="progress-bar bg-color2" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+						 aria-valuemax="100" style="width: 100%;">
+						3.6 billion passengers
+					</div>
+				</div><!-- / progress bar -->
+
+				<h3 class="fs14 mr-b-5">Approx. 130,000 commercial pilots around the World</h3>
+				<div class="progress">
+					<div class="progress-bar bg-color3" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+						 aria-valuemax="100" style="width: 100%;">
+						130,000 commercial pilots
+					</div>
+				</div><!-- / progress bar -->
+
+				<h3 class="fs14 mr-b-5">9.9 million people work directly in the aviation industry</h3>
+				<div class="progress">
+					<div class="progress-bar bg-color4" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+						 aria-valuemax="100" style="width: 100%;">
+						9.9 million people
+					</div>
+				</div><!-- / progress bar -->
+
+				<h3 class="fs14 mr-b-5">Aviation Industry generates $664 billion of GDP per year</h3>
+				<div class="progress">
+					<div class="progress-bar bg-color5" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+						 aria-valuemax="100" style="width: 100%;">
+						$664 billion of GDP per year
+					</div>
+				</div><!-- / progress bar -->
+			</div><!-- / column -->
+
+		</div><!-- / row -->
+	</div><!-- / container -->
+</section><!-- / extra-section --><!-- Call to action-section -->
+<section class="calltoaction-section calltoaction-section-4 pd-tb-large pos-rel no-border edit-item"
+		 data-sandboxid="tmp-85">
+	<div class="container align-c pos-rel z1">
+		<h2 class="title medium edit-item edit-content" data-sandboxid="tmp-27" data-selector=".edit-content">
+			Interested? Register now today.</h2>
+		<p class="title-sub small edit-item edit-content" data-sandboxid="tmp-32" data-selector=".edit-content">
+			Free registration, we will help you to find a dream job.</p>
+		<a n:href="Sign:create" class="btn btn-line-dark2 btn-lg bdr-1 edit-item edit-content"
+		   data-sandboxid="tmp-14" data-selector=".edit-content">
+			REGISTER
+		</a>
+	</div>
+	<div class="full-wh bg-cover bg-cc edit-item" data-bg="{$basePath}/new/images/18.jpg" data-sandboxid="tmp-63"
+		 style="background-image: url(&quot;{$basePath}/new/images/register_background_1800x9002.png&quot;);"></div>
+</section><!-- /.calltoaction-section -->
+
+<!-- / Contact section -->
+<section class="contact-section contact-section-4 edit-item" data-sandboxid="tmp-85">
+	<div class="container">
+		<div class="flex-row">
+			<div class="flex-col-md-6">
+
+				<!-- Popup contact form - 1 -->
+				<div id="contact-form" class="form-block edit-item" data-sandboxid="tmp-72">
+					<h2 class="title small edit-item edit-content" data-sandboxid="tmp-27"
+						data-selector=".edit-content">Drop us a line</h2>
+					<hr class="edit-item" data-sandboxid="tmp-11">
+
+					{control getInTouch}
+
+					<div class="msg-block"></div>
+				</div><!-- /#popup-contact-form -->
+
+			</div><!-- / column -->
+
+			<div class="flex-col-md-5 flex-col-md-offset-1">
+				<div class="content edit-item" data-sandboxid="tmp-44">
+					<h2 class="title small edit-item edit-content" data-sandboxid="tmp-27"
+						data-selector=".edit-content">Our Contact Information</h2>
+
+					<hr class="edit-item" data-sandboxid="tmp-11">
+
+					<div class="info-obj img-l g20 mini edit-item" data-sandboxid="tmp-83">
+						<div class="img edit-item" data-sandboxid="tmp-84"><span class="iconwrp edit-item"
+																				 data-sandboxid="tmp-16"><i
+										class="pe-7s-map-marker edit-item" data-sandboxid="tmp-17"></i></span>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-</div>
-<div class="main-container">
-	<section class="header header-1">
-		<div class="background-image-holder" id="registration">
-			<img alt="Pilot in Command" class="background-image" src="{$basePath}/home/img/pic1.jpg">
-		</div>
-		<div class="container">
-			<div class="row v-align-children">
-				<div class="col-md-6">
-					<h3 class="text-white">Looking for a New Airline?</h3>
-					<h5 class="text-white">
-						You can find thousands of open Pilot roles at Pilot in Command</h5>
-				</div>
-				<div class="col-md-6">
-					<div class="inner">
-						<ul>
-							<li>
-								<i class="text-white icon-browser-streamline-window"></i>
-								<p class="text-white">Register today and find a new Pilot role</p>
-							</li>
-							<li>
-								<p class="text-white"> </p>
-							</li>
-						</ul>
-						<form class="form-email" method="post" action="http://pilotincommand.com/registration">
-							<input type="text" name="email" class="signup-name-field validate-required" placeholder="Email Address" data-invalid="Please enter valid email." data-already-registered="This mail is already registered." data-required="Please fill email address">
-							<input type="password" name="password" class="validate-required validate-email signup-email-field" placeholder="Password" data-required="Please fill password">
-							<input type="submit" value="Register »">
-							<p class="sub">* We don’t share your personal info with anyone. Check out our <a href="privacy.html"> Privacy Policy</a> for more information.</p>
-							<iframe srcdoc="" class="mail-list-form">
-							</iframe>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="cta cta-4">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<img alt="etihad" src="{$basePath}/home/img/etihad.jpeg">
-					<img alt="Affiliate" src="{$basePath}/home/img/emirates.png">
-					<img alt="Indigo" src="{$basePath}/home/img/indigo.png">
-					<img alt="Turkish" src="{$basePath}/home/img/turkish.png">
-					<img alt="Affiliate" src="{$basePath}/home/img/norwegian.jpeg">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<h3>You're in good company</h3>
-					<h5>Secure a Pilot role at one of the top airlines anywhere across the World</h5>
-					<a class="btn btn-filled super-action inner-link" href="#registration" target="default">Register today</a>
-					<p class="sub"><br></p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="cta cta-5">
-		<div class="background-image-holder">
-			<img alt="Background Image" class="background-image" src="{$basePath}/home/img/pilotco.jpg">
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<h2 class="text-white">Top Pilot roles at the Top airlines <br>are at your fingertips</h2>
-					<h5 class="text-white">Start today with your free Pilot in Command account</h5>
-					<a class="inner-link btn btn-filled super-action" href="#registration">Register today</a>
-					<p class="sub">By continuting you agree to our<br><a href="#">Terms of Use</a></p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="features features-19">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<h4>Filter jobs and apply</h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="tabbed-content text-tabs">
-					<ul class="tabs">
-						<li class="active">
-							<div class="tab-title text-center">
-								<h6>Emirates</h6>
-							</div>
-							<div class="tab-content">
-								<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
-									<img alt="Image" src="{$basePath}/home/img/emirates_plane.png">
-									<h5>Emirates</h5>
-									<p>Emirates is the world’s biggest international carrier, the seventh largest airline in the world in terms of revenue, and the largest airline in the Middle East in terms of revenue, fleet size, and passengers carried. The airline is also the fourth-largest airline in the world in terms of international passengers carried, and the third largest in terms of scheduled passenger-kilometres flown. The company also operates four of the world's longest non-stop commercial flights from Dubai to Los Angeles, San Francisco, Dallas/Fort Worth, and Houston. Furthermore, Emirates plans on launching the longest non-stop commercial flight in the world, from Dubai to Panama City, in February 2016.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="tab-title text-center">
-								<h6>turkish airlines</h6>
-							</div>
-							<div class="tab-content">
-								<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
-									<div class="embed-video-container">
-										<iframe src="https://www.youtube.com/embed/3TAkCqkZ37E?list=PLMD7KGMihJ9EQakqcZqg9Lw5ROF0q0HhJ?showinfo=0&amp;rel=0&amp;modestbranding=1"></iframe>
-									</div>
-									<h5>Turkish airlines</h5>
-									<p>Turkish Airlines is the national flag carrier airline of Turkey, headquartered at the Turkish Airlines General Management Building on the grounds of Atatürk Airport in Yeşilköy, Bakırköy, Istanbul.<br> As of February 2015, it operates scheduled services to 280 destinations in Europe, Asia, Africa, and the Americas, making it the fourth-largest carrier in the world by number of destinations. <br>Turkish Airlines is also the operator that flies to most countries.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="tab-title text-center">
-								<h6>etihad</h6>
-							</div>
-							<div class="tab-content">
-								<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
-									<div class="slider">
-										<ul class="slides">
-											<li>
-												<img alt="Image" src="{$basePath}/home/img/etihad_plane.png">
-											</li>
+						<div class="info edit-item" data-sandboxid="tmp-32">
+							<h3 class="bold-1 fs20 mr-b-10 edit-item edit-content" data-sandboxid="tmp-28"
+								data-selector=".edit-content">Headquarters</h3>
+							<p class="edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content">1<span class="s2">st</span> Floor, 1 &amp; 2 Bride
+								St, Loughrea, Co. Galway</p>
+						</div>
+					</div><!-- / info object -->
 
-											<li>
-												<img alt="Image" src="{$basePath}/home/img/etihad_plane.png">
-											</li>
+					<hr class="edit-item" data-sandboxid="tmp-11">
 
-											<li>
-												<img alt="Image" src="{$basePath}/home/img/etihad_plane.png">
-											</li>
-										</ul>
-									</div>
-									<h5>Etihad</h5>
-									<p>The airline operates more than 1,000 flights per week to over 120 passenger and cargo destinations in the Middle East, Africa, Europe, Asia, Australia and the Americas, with a fleet of 119 Airbus and Boeing aircraft as of August 2015. In 2012, Etihad carried 10.3 million passengers, a 23% increase from the previous year, delivering revenues of US$4.8 billion and net profits of US$42 million.<br> Etihad Airways is the third largest airline in the Middle East and it is the second largest airline in the UAE, after the Dubai-based airline Emirates. Its main base is Abu Dhabi International Airport.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="tab-title text-center">
-								<h6>norwegian</h6>
-							</div>
-							<div class="tab-content">
-								<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
-									<img alt="Jobs at Norwegian Airlines" src="{$basePath}/home/img/norwegian_plane.png">
-									<h5>Norwegian Airlines</h5>
-									<p>Norwegian Air Shuttle ASA (OSE: NAS), trading as Norwegian, is the third largest low-cost carrier in Europe, the second-largest airline in Scandinavia, and the ninth-largest airline in Europe in terms of passenger numbers. It offers a high-frequency domestic flight schedule within Scandinavia and Finland, and to business destinations such as London, as well as to holiday destinations in the Mediterranean and the Canary Islands, transporting 24 million people in 2014.</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="cta cta-10">
-		<div class="background-image-holder">
-			<img alt="Background Image" class="background-image" src="{$basePath}/home/img/hero2.jpg">
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<a href="#">
-						<img alt="App Store" src="{$basePath}/home/img/appstore.png">
-					</a>
-					<a href="#">
-						<img alt="App Store" src="{$basePath}/home/img/googleplay.png">
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="contact contact-3">
-		<div class="container">
-			<div class="row">
-				<div id="contact" class="col-sm-12 text-center">
-					<h3>Get In Touch</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-					{form contact, class=>'form-email no-reg', data-success=>"Thanks for your submission, we will be in touch shortly."}
-						<input n:input="name" class="signup-name-field validate-required" placeholder="Your Name" data-required="Please enter your name">
-						<input n:input="email" class="validate-required validate-email signup-email-field" placeholder="Email Address" data-invalid="Please enter valid email." data-required="Please fill email address">
-						<textarea n:input="message" rows="4" class="validate-required" placeholder="Your Message"  data-required="Please enter message"></textarea>
-						<input n:input="send" value="Submit Enquiry »">
-						<p class="sub">* We don’t share your personal info with anyone. Check out our <a href="privacy.html"> Privacy Policy</a> for more information.</p>
-						<iframe srcdoc="" class="mail-list-form">
-						</iframe>
-						{foreach $flashes as $flash}
-							<div class="form-success" style="display: block">{$flash->message}</div>
-						{/foreach}
-					{/form}
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
-<script src="{$basePath}/home/js/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
-<script src="{$basePath}/home/js/bootstrap.min.js"></script>
-<script src="{$basePath}/home/js/flexslider.min.js"></script>
-<script src="{$basePath}/home/js/smooth-scroll.min.js"></script>
-<script src="{$basePath}/home/js/placeholders.min.js"></script>
-<script src="{$basePath}/home/js/twitterfetcher.min.js"></script>
-<script src="{$basePath}/home/js/spectragram.min.js"></script>
-<script src="{$basePath}/home/js/parallax.js"></script>
-<script src="{$basePath}/home/js/scripts.js"></script>
-</body>
-</html>
+					<div class="info-obj img-l g20 mini edit-item" data-sandboxid="tmp-83">
+						<div class="img edit-item" data-sandboxid="tmp-84"><span class="iconwrp edit-item"
+																				 data-sandboxid="tmp-16"><i
+										class="pe-7s-call edit-item" data-sandboxid="tmp-17"></i></span></div>
+						<div class="info edit-item" data-sandboxid="tmp-32">
+							<h3 class="bold-1 fs20 mr-b-0 edit-item edit-content" data-sandboxid="tmp-28"
+								data-selector=".edit-content">Phone</h3>
+							<p class="mr-b-20 edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content">+353 91 881170</p>
 
-<input type="text" name="email" class="signup-name-field validate-required" placeholder="Email Address" data-invalid="Please enter valid email." data-already-registered="This mail is already registered." data-required="Please fill email address">
-<input type="text" name="password" class="validate-required validate-email signup-email-field" placeholder="Password" data-required="Please fill password">
+							<h3 class="bold-1 fs20 mr-b-0 edit-item edit-content" data-sandboxid="tmp-28"
+								data-selector=".edit-content"></h3>
+							<p class="mr-b-20 edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content"></p>
+						</div>
+					</div><!-- / info object -->
+
+					<hr class="edit-item" data-sandboxid="tmp-11">
+
+					<div class="info-obj img-l g20 mini edit-item" data-sandboxid="tmp-83">
+						<div class="img edit-item" data-sandboxid="tmp-84"><span class="iconwrp edit-item"
+																				 data-sandboxid="tmp-16"><i
+										class="pe-7s-mail edit-item" data-sandboxid="tmp-17"></i></span></div>
+						<div class="info edit-item" data-sandboxid="tmp-32">
+							<h3 class="bold-1 fs20 mr-b-10 edit-item edit-content" data-sandboxid="tmp-28"
+								data-selector=".edit-content">Email us</h3>
+							<p class="edit-item edit-content" data-sandboxid="tmp-32"
+							   data-selector=".edit-content"><a href="mailto:abcmail@xyz.com"
+																class="edit-item edit-content"
+																data-sandboxid="tmp-14"
+																data-selector=".edit-content">info@pilotincommand.com</a>
+							</p>
+						</div>
+					</div><!-- / info object -->
+
+				</div><!-- /.content -->
+
+			</div><!-- / column -->
+
+		</div><!-- / row -->
+	</div><!-- / container-fluid -->
+</section><!-- /contact-section --><!-- other-section -->

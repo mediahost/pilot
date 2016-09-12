@@ -1,0 +1,25 @@
+{snippet}
+    {form getInTouchForm, class=>'form-widget'}
+		<div class="field-wrp edit-item" data-sandboxid="tmp-74">
+
+			<div class="form-group">
+				{input name, class => 'form-control edit-item'}
+			</div>
+			<div class="form-group">
+				{input sender, class => 'form-control edit-item'}
+			</div>
+			<div class="form-group">
+				{input subject, class => 'form-control edit-item'}
+			</div>
+			<div class="form-group">
+				{input message, class => 'form-control edit-item', rows => '4'}
+			</div>
+		</div>
+
+		{input $form['send'] class => 'btn btn-primary edit-item edit-content'}
+
+		<ul class="form-error" style="color: #e74c3c; margin-left: 20px; margin-top: 10px;" n:if="$form->errors">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+	{/form}
+{/snippet}

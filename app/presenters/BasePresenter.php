@@ -1,7 +1,6 @@
 <?php
 
-use \Acl,
-    \NetteTranslator\Gettext;
+use \NetteTranslator\Gettext;
 
 /**
  * Base presenter for all application presenters.

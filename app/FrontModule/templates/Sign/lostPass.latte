@@ -1,14 +1,27 @@
-{block content}
+{layout '../@pilot.latte'}
 
-<div id="module" class="container sign">
-    
-    <h2>{_"Lost Password"}</h2>
-    
-    <div class="message">
-        {_"Have you lost your password?"} {_"If so, insert your email address below and we will generate a new one for you."}
-    </div>
+{block container}
+<section class="extra-section extra-form1" rgen-id="rgipU" data-bg="{$basePath}/new/images/17.jpg"
+		 style="background-image: url(&quot;{$basePath}/new/images/17.jpg&quot;);">
+	<div class="container">
+		<!-- Tab structure -->
+		<div class="tabs-auto tab-style2 medium">
 
-    <div class="form">
-        {control lostPassForm}
-    </div>
-</div>
+			<div class="tb-pn active" id="0-tb-0">
+
+				<!-- form block -->
+				<div class="form-block form-block-style1 w50 mr-auto mr-t-40">
+					<h2 class="title small">{_"Lost Password"}</h2>
+					<div class="message">
+					{_"Have you lost your password?"} {_"If so, insert your email address below and we will generate a new one for you."}
+					</div>
+					<hr>
+					{control lostPassForm}
+				</div><!-- / form block -->
+
+			</div><!-- tab pane -->
+
+		</div><!-- / tabs-auto -->
+
+	</div><!-- / container -->
+</section><!-- / extra-form --></div>

@@ -56,7 +56,7 @@ class HomepagePresenter extends BasePresenter
      */
     protected function createComponentGetInTouch()
     {
-        return new \AppForms\GetInTouchForm2($this, $this->context->mail);
+        return new \AppForms\GetInTouchForm($this, $this->context->mail);
     }
 
     /**

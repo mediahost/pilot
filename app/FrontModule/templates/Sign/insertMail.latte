@@ -1,14 +1,33 @@
-{block content}
+{layout '../@pilot.latte'}
 
-<div id="module" class="container sign">
-    
-    <h2>{_"Insert Your Mail"}</h2>
-    
-    <div class="message">
-        {_"We need your e-mail for complete your registration."}
-    </div>
+{block container}
+<section class="extra-section extra-form1" rgen-id="rgipU" data-bg="{$basePath}/new/images/17.jpg"
+		 style="background-image: url(&quot;{$basePath}/new/images/17.jpg&quot;);">
+	<div class="container">
+		<!-- Tab structure -->
+		<div class="tabs-auto tab-style2 medium">
 
-    <div class="form">
-        {control insertMailForm}
-    </div>
-</div>
+			<div class="tb-pn active" id="0-tb-0">
+
+				<!-- form block -->
+				<div class="form-block form-block-style1 w50 mr-auto mr-t-40">
+
+					<h2 class="title small">{_"Insert Your Mail"}</h2>
+
+					<div class="message">
+						{_"We need your e-mail for complete your registration."}
+					</div>
+
+					<div class="form">
+						{control insertMailForm}
+					</div>
+
+				</div><!-- / form block -->
+
+			</div><!-- tab pane -->
+
+		</div><!-- / tabs-auto -->
+
+	</div><!-- / container -->
+</section><!-- / extra-form --></div>
+

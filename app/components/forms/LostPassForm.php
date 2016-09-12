@@ -19,7 +19,7 @@ class LostPassForm extends AppForms
 
     public function __construct(Presenter $presenter, UserService $service)
     {
-        parent::__construct(get_class($this), $presenter);
+        parent::__construct(get_class($this), $presenter, FALSE);
 
         $this->service = $service;
     }

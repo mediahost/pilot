@@ -101,7 +101,7 @@ abstract class BasePresenter extends \BasePresenter
      */
     protected function createComponentCreateAccountForm()
     {
-        return new \AppForms\CreateAccountForm($this, $this->context->users);
+        return new \AppForms\CreateAccountForm($this, $this->context->users, FALSE);
     }
 
 }

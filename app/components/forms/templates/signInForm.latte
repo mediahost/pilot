@@ -1,18 +1,12 @@
 {snippet}
-    {form signInForm}
+    {form signInForm class => 'form-widget placeholder-light'}
         <ul class=error n:if="$form->errors">
             <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>
 
         <div>
-
             <div class="form-group">
-                <span class="help-block lost">
-                    <a class="lost" href="{$lostLink}">{_"Lost password?"}</a>
-                </span>
-            </div>
-
-            <div class="form-group">
+                {label username}User name{/label}
                 {input username, class => 'form-control'}
                 <span class="help-block error" n:if="$form['username']->errors">
                     {$input->errors|implode:' '}
@@ -20,6 +14,7 @@
             </div>
 
             <div class="form-group">
+				{label password}Password{/label}
                 {input password, class => 'form-control'}
                 <span class="help-block error" n:if="$form['username']->errors">
                     {$input->errors|implode:' '}
@@ -34,11 +29,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="submit">
-                    {input $form['send'], class => 'btn green'} {_"or"} <a href="{$createLink}">{_"Create an account"}</a>
-                </div>
-            </div>
+            <hr class="mr-tb-30">
+            {input $form['send'] class => 'btn btn-primary inline-block'}
+            <a href="{plink Sign:lostPass}" class="pull-right">Forgot Password?</a>
 
         </div>
     {/form}

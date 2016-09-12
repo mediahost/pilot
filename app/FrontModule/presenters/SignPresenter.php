@@ -36,10 +36,15 @@ class SignPresenter extends BasePresenter
         $this->redirect("in");
     }
 
-    public function actionIn()
-    {
-        $this->_stopLoggedIn();
-    }
+	public function actionIn()
+	{
+		$this->_stopLoggedIn();
+	}
+
+	public function actionInAirline()
+	{
+		$this->_stopLoggedIn();
+	}
     
     public function actionCreate()
     {
