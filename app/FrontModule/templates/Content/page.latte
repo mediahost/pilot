@@ -1,33 +1,21 @@
-{block scripts}
-<script n:if="$canEditContent" type="text/javascript" src="{$basePath}/js/ckeditor/ckeditor.js"></script>
-<script n:if="$canEditContent">
-    CKEDITOR.on( 'instanceCreated', function( event ) {
-            var editor = event.editor,
-                    element = editor.element;
+{layout '../@pilot.latte'}
 
-            editor.on( 'blur', function( event ) {
-                var contentid = event.editor.name;
-                var data = event.editor.getData();
-                $.post(
-                    {link Ajax:editContentPage}, 
-                    { pageid: {$page->id}, contentid: contentid, data: data }, 
-                    "html" 
-                );
-            });
-    });
-</script>
-{/block}
+{block container}
+<section class="form-section form-section-5 bg-gray sm-pd-reset sm-align-c" id="freetrial" rgen-id="rgaSt"
+         data-bg="{$basePath}/new/images/15.jpg"
+         style="background-image: url(&quot;{$basePath}/new/images/15.jpg&quot;);">
+    <div class="container">
 
-{block content}
-<div class="container">
-    <div id="module">
+        <div class="flex-row middle-md">
 
-        <h2{if $canEditContent} id="ckeditor-title" contenteditable="true"{/if}>
-            {!$page->name}
-        </h2>
-        <div class="adminContent"{if $canEditContent} id="ckeditor-content" contenteditable="true"{/if}>
-            {!$page->getText()}
-        </div>
+            <div class="flex-col-md-6">
+                <h2 class="title medium bold-4" rgen-id="rgl9u">{!$page->name}<br></h2>
+                <p class="title-sub small" rgen-id="rgSI6">
+                    {!$page->getText()}
+                </p>
+            </div>
 
-    </div>
-</div>
+        </div><!-- / row -->
+
+    </div><!-- / container -->
+</section><!-- /.form-section --></div>
