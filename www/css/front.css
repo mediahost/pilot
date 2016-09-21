@@ -90,16 +90,17 @@ textarea {
   width: 1000px;
 }
 #head #logo a.logo {
+  margin-top: 15px;
   float: left;
   display: block;
-  background: transparent url('../../images/logo/logo3.png') top left no-repeat;
-  width: 187px;
+  background: transparent url('../../new/images/uploads/pic_logo.png') top left no-repeat;
+  width: 227px;
   height: 80px;
 }
 #head #logo .header-profile-link {
   font-size: 22px;
   float: left;
-  margin-top: 8px;
+  margin-top: 23px;
 }
 #head #menu {
   float: right;

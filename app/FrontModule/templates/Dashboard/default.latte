@@ -69,13 +69,13 @@
 					position: 'top'
 				}
 			}, {
-				wrapper: '#guide-2',
-				popup: {
-					content: '#walkthrough-6',
-					type: 'tooltip',
-					position: 'left'
-				}
-			}, {
+//				wrapper: '#guide-2',
+//				popup: {
+//					content: '#walkthrough-6',
+//					type: 'tooltip',
+//					position: 'left'
+//				}
+//			}, {
 				wrapper: '#guide-3',
 				popup: {
 					content: '#walkthrough-7',
@@ -150,27 +150,53 @@
                 </div>
             </div>
         </td>
-        <td>
-            <div class="block" id="guide-2">
-                <h3><a n:href="Dashboard:videoProfile">{_"Video Profile"}</a></h3>
-                <div class="list">
-                    <ul>
-                        <li>
-                            {if $step == 'fill identity'}
-                                <a n:href="videoProfile">Create your video profile</a>
-                            {elseif $step == 'do interview'}
-                                <a href="{$link}">Create your video profile</a>
-                            {elseif $step == 'review interview'}
-                                <a n:href="videoProfile">View your video profile</a>
-                            {/if}
-                        </li>
-                    </ul>
-                </div>
-                <div class="links">
+        {*<td>*}
+            {*<div class="block" id="guide-2">*}
+                {*<h3><a n:href="Dashboard:videoProfile">{_"Video Profile"}</a></h3>*}
+                {*<div class="list">*}
+                    {*<ul>*}
+                        {*<li>*}
+                            {*{if $step == 'fill identity'}*}
+                                {*<a n:href="videoProfile">Create your video profile</a>*}
+                            {*{elseif $step == 'do interview'}*}
+                                {*<a href="{$link}">Create your video profile</a>*}
+                            {*{elseif $step == 'review interview'}*}
+                                {*<a n:href="videoProfile">View your video profile</a>*}
+                            {*{/if}*}
+                        {*</li>*}
+                    {*</ul>*}
+                {*</div>*}
+                {*<div class="links">*}
 
-                </div>
-            </div>
-        </td>
+                {*</div>*}
+            {*</div>*}
+        {*</td>*}
+		<td>
+			<div class="block" id="guide-4">
+				{*
+				<h3><a n:href="Dashboard:recentActions">{_"My Recent Actions"}</a></h3>
+				<div class="list">
+					<ul n:if="!empty($recentActions)">
+						<li n:foreach="$recentActions as $recentAction">
+							<span class="date">{$recentAction->datetime|date:"d/m/Y H:i"}</span>
+							{if $recentAction->link}<a href="{$recentAction->link}">{/if}
+								<span>{_$recentAction->action}{if $recentAction->name} ({!$recentAction->name}){/if}</span>
+							{if $recentAction->link}</a>{/if}
+						</li>
+					</ul>
+				</div>
+				<div class="links">
+					<ul>
+						<li n:if="count($recentActions) > ($listCount-1)"><a n:href="Dashboard:recentActions"><span>{_"show all"}...</span></a></li>
+					</ul>
+				</div>
+				*}
+				<h3><a n:href="Dashboard:recentActions">{_"Your social network profile"}</a></h3>
+				<div class="social-links-form">
+					{control socialLinksForm}
+				</div>
+			</div>
+		</td>
     </tr>
 
     <tr>
@@ -195,32 +221,23 @@
                 </div>
             </div>
         </td>
-        <td>
-            <div class="block" id="guide-4">
-	            {*
-                <h3><a n:href="Dashboard:recentActions">{_"My Recent Actions"}</a></h3>
-                <div class="list">
-                    <ul n:if="!empty($recentActions)">
-                        <li n:foreach="$recentActions as $recentAction">
-                            <span class="date">{$recentAction->datetime|date:"d/m/Y H:i"}</span>
-                            {if $recentAction->link}<a href="{$recentAction->link}">{/if}
-                                <span>{_$recentAction->action}{if $recentAction->name} ({!$recentAction->name}){/if}</span>
-                            {if $recentAction->link}</a>{/if}
-                        </li>
-                    </ul>
-                </div>
-                <div class="links">
-                    <ul>
-                        <li n:if="count($recentActions) > ($listCount-1)"><a n:href="Dashboard:recentActions"><span>{_"show all"}...</span></a></li>
-                    </ul>
-                </div>
-                *}
-                <h3><a n:href="Dashboard:recentActions">{_"Your social network profile"}</a></h3>
-                <div class="social-links-form">
-	                {control socialLinksForm}
-                </div>
-            </div>
-        </td>
+		<td>
+			<div class="block" id="guide-6">
+				<h3><a n:href="Dashboard:docs">{_"Upload here: 1) Pilot License, 2) Medical Cert. & 3) Log Book"}</a></h3>
+				<div class="list">
+					<ul n:if="count($docs)">
+						<li n:foreach="$docs as $doc">
+							<a href="{$basePath}/docs/{$doc->name}" target="_blank">{$doc->originalName}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="links">
+					<ul>
+						<li><a n:href="Dashboard:docs"><span>{_"show all"}...</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</td>
     </tr>
 
     <tr>
@@ -248,23 +265,7 @@
                 </div>
             </div>
         </td>
-        <td>
-            <div class="block" id="guide-6">
-                <h3><a n:href="Dashboard:docs">{_"Upload here: 1) Pilot License, 2) Medical Cert. & 3) Log Book"}</a></h3>
-                <div class="list">
-                    <ul n:if="count($docs)">
-                        <li n:foreach="$docs as $doc">
-                            <a href="{$basePath}/docs/{$doc->name}" target="_blank">{$doc->originalName}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="links">
-                    <ul>
-                        <li><a n:href="Dashboard:docs"><span>{_"show all"}...</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </td>
+		<td></td>
     </tr>
 </table>
 
