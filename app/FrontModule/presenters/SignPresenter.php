@@ -2,8 +2,10 @@
 
 namespace FrontModule;
 
-use Model\Entity\AdapterUserEntity,
-    Model\Entity\AuthEntity;
+use Model\Entity\AdapterUserEntity;
+use Model\Entity\AuthEntity;
+use Model\Service\CompanyService;
+use Nette\Application\UI\Form;
 
 /**
  * Sign Presenter
@@ -21,6 +23,14 @@ class SignPresenter extends BasePresenter
 
     /** @var string */
     private $redirectIn = "Homepage:";
+
+	/** @var  CompanyService */
+	protected $company;
+
+	public function injectCompany(CompanyService $service)
+	{
+		$this->company = $service;
+	}
 
     private function _stopLoggedIn()
     {
@@ -296,13 +306,21 @@ class SignPresenter extends BasePresenter
      * Sign-in form factory.
      * @return Form
      */
-    protected function createComponentSignInForm()
-    {
-        $form = new \AppForms\SignInForm($this, $this->context->users);
-        $form->setBacklink($this->getParameter('backlink'));
-        $form->setStyled();
-        return $form;
-    }
+	protected function createComponentSignInForm()
+	{
+		$form = new \AppForms\SignInForm($this, $this->context->users);
+		$form->setBacklink($this->getParameter('backlink'));
+		$form->setStyled();
+		return $form;
+	}
+
+	protected function createComponentSignInCompanyForm()
+	{
+		$form = new \AppForms\SignInCompanyForm($this);
+		$form->setCompany($this->company);
+		$form->setStyled();
+		return $form;
+	}
 
 // </editor-fold>
 }

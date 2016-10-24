@@ -9,7 +9,8 @@ $configurator = new Configurator();
 
 // Enable Nette Debugger for error visualisation & logging
 $configurator->setDebugMode(array(
-		'188.121.172.183' // samo
+		'188.121.172.183', // samo
+		'149.62.146.153', // Pto Brno Lucka
 	));
 $configurator->enableDebugger(__DIR__ . '/../log');
 
