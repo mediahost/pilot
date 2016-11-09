@@ -43,7 +43,7 @@ class JobsDibiMapper extends DibiMapper
         )
                 ->from($this->jobsTable)
                 ->where($this->jobsTable . '.' . $column . '=%i', $value)
-                ->join($this->jobsCategoryTable)->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
+                ->leftJoin($this->jobsCategoryTable)->on($this->jobsTable . '.category=' . $this->jobsCategoryTable . '.id')
                 ->leftJoin('job_user AS matched_job_user')->on("matched_job_user.job_id = {$this->jobsTable}.id")
                 ->leftJoin('job_user AS applyed_job_user')->on("applyed_job_user.id = matched_job_user.id AND applyed_job_user.applyed = 1")
                 ->leftJoin('job_user AS shotlisted_job_user')->on("shotlisted_job_user.id = matched_job_user.id AND shotlisted_job_user.category = %i", self::JOB_USER_CATEGORY_SHORTLISTED)
