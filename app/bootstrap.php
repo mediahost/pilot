@@ -11,6 +11,7 @@ $configurator = new Configurator();
 $configurator->setDebugMode(array(
 		'188.121.172.183', // samo
 		'149.62.146.153', // Pto Brno Lucka
+		'89.102.3.159', // Pto Brno Lucka2
 	));
 $configurator->enableDebugger(__DIR__ . '/../log');
 
